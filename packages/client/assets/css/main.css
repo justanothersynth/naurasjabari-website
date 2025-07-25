@@ -1,11 +1,12 @@
 @import './reset.css';
 @import './normalize.css';
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 @import './typography.css';
 
 @theme {
   /* Fonts */
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Wotfard', sans-serif;
 
   /* Font size - 1.25 Ratio Scale */
   --text-*: initial;

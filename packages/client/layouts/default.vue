@@ -1,6 +1,6 @@
 <template>
   <TooltipProvider>
-    <div class="layout w-screen h-screen">
+    <div class="layout max-w-4xl mx-auto">
 
       <slot />
 

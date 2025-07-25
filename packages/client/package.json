@@ -45,6 +45,7 @@
   "devDependencies": {
     "@iconify-json/iconoir": "^1.2.7",
     "@nuxt/eslint": "^1.4.1",
+    "@tailwindcss/typography": "^0.5.16",
     "eslint": "^9.27.0",
     "eslint-plugin-tsdoc": "^0.4.0",
     "eslint-plugin-vue": "^10.1.0",
