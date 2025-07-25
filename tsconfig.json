@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@workspace/utils": ["./packages/utils/index.ts"],
+      "@workspace/types": ["./packages/types/index.ts"]
+    }
+  }
+}

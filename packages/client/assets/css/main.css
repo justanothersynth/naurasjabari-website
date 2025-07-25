@@ -1,0 +1,29 @@
+@import './reset.css';
+@import './normalize.css';
+@import 'tailwindcss';
+@import './typography.css';
+
+@theme {
+  /* Fonts */
+  --font-sans: 'Inter', sans-serif;
+
+  /* Font size - 1.25 Ratio Scale */
+  --text-*: initial;
+  --text-xs: 10px;    /* base ÷ 1.25² ≈ 10.2px */
+  --text-sm: 13px;    /* base ÷ 1.25 ≈ 12.8px */
+  --text-base: 16px;  /* base size */
+  --text-lg: 20px;    /* base × 1.25 */
+  --text-xl: 25px;    /* base × 1.25² */
+  --text-2xl: 31px;   /* base × 1.25³ ≈ 31.25px */
+  --text-3xl: 39px;   /* base × 1.25⁴ ≈ 39.06px */
+  --text-4xl: 49px;   /* base × 1.25⁵ ≈ 48.83px */
+  --text-5xl: 61px;   /* base × 1.25⁶ ≈ 61.04px */
+  --text-6xl: 76px;   /* base × 1.25⁷ ≈ 76.29px */
+}
+
+@layer components {
+  .shiki {
+    @apply p-4 h-full;
+    background-color: transparent !important;
+  }
+}
