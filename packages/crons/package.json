@@ -24,8 +24,10 @@
   "dependencies": {
     "@orpc/client": "^1.5.2",
     "@supabase/supabase-js": "^2.50.0",
+    "cheerio": "^1.1.2",
+    "commander": "^14.0.0",
     "dotenv": "^16.3.1",
-    "node-fetch": "^3.3.2",
+    "node-cron": "^4.2.1",
     "winston": "^3.11.0",
     "zod": "^3.25.67"
   },

@@ -12,7 +12,7 @@
     </p>
 
     <p>
-      I can [build AI agents, implement complex UIs, integrate APIs, set up backends, servers, cron jobs and CI pipelines, and so much more]
+      I can [build AI agents, implement complex UIs, integrate APIs, set up backends, servers, cron jobs and CI pipelines, scrape the web and so much more]
     </p>
 
   </div>

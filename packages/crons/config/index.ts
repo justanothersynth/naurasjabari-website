@@ -49,6 +49,10 @@ const config = {
     jwtSecret: validatedEnv.SUPABASE_JWT_SECRET,
     jwtIssuer: validatedEnv.SUPABASE_JWT_ISSUER,
     jwtSubject: validatedEnv.SUPABASE_JWT_SUBJECT
+  },
+  // Github Configuration
+  github: {
+    pat: validatedEnv.GITHUB_PAT
   }
 } as const
 

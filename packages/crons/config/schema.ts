@@ -25,5 +25,8 @@ export const configSchema = z.object({
   // JWT Configuration for authenticating cron jobs with Supabase
   SUPABASE_JWT_SECRET: z.string().describe('Secret key for signing internal JWTs'),
   SUPABASE_JWT_ISSUER: z.string().describe('JWT issuer'),
-  SUPABASE_JWT_SUBJECT: z.string().describe('JWT subject (user identifier) for cron processes')
+  SUPABASE_JWT_SUBJECT: z.string().describe('JWT subject (user identifier) for cron processes'),
+
+  // Github Configuration
+  GITHUB_PAT: z.string().optional().describe('GitHub Personal Access Token')
 })

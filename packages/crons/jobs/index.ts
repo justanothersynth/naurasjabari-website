@@ -1,2 +1,5 @@
-// Export all subcommands
-export const subcommands = []
+import { subcommand as githubContributionsCommand } from './github-contrib'
+
+export const subcommands = [
+  githubContributionsCommand
+]

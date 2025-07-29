@@ -87,6 +87,9 @@ app.use(
   })
 )
 
+app.use('/data', express.static(path.join(__dirname, 'static/data')))
+
+// Serve base endpoints
 app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'success'

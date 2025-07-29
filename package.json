@@ -41,6 +41,7 @@
     "crons:check": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/crons check",
     "crons:lint": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/crons lint",
     "crons:test": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/crons test",
+    "job:dev": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/crons dev",
     "utils:check": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/utils check",
     "utils:lint": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/utils lint",
     "utils:test": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/utils test",

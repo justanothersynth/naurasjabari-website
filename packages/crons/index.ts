@@ -3,7 +3,10 @@ import { subcommands } from './jobs'
 
 const program = new Command()
 
-program.name('crons').description('CLI tool for running jobs').version('1.0.0')
+program
+  .name('crons')
+  .description('CLI tool for running jobs')
+  .version('1.0.0')
 
 // Create the parent "run" command
 const runCommand = new Command('run').description('Run a specific job')
