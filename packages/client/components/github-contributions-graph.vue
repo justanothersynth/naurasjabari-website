@@ -1,5 +1,5 @@
 <template>
-  <div class="github-contributions mt-8" ref="containerRef">
+  <div class="github-contributions mt-20">
 
     <div class="flex gap-1 mb-4 justify-center">
       <button
@@ -231,7 +231,6 @@ const getContributionClass = (day: ContributionDay | null): string => {
   return `level-${day.level}`
 }
 
-const containerRef = ref<HTMLElement>()
 const { x, y } = useMouse()
 
 const tooltip = reactive({
