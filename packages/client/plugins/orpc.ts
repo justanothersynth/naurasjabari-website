@@ -9,21 +9,8 @@ type OrpcPlugin = {
 }
 
 export default defineNuxtPlugin((): OrpcPlugin => {
-  const { getToken, isSignedIn } = useAuth()
-
-  const getHeaders = async () => {
-    if (!isSignedIn.value) return {}
-    const token = await getToken.value()
-    if (!token) return {}
-    return {
-      authorization: `Bearer ${token}`
-    }
-  }
-
-  // Base client that always uses the currently logged in user's token
   const client = createORPCClient(new RPCLink({
-    url: useRuntimeConfig().public.apiUrl + '/orpc',
-    headers: getHeaders
+    url: useRuntimeConfig().public.apiUrl + '/orpc'
   }))
 
   return {

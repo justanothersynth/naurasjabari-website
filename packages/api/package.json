@@ -23,10 +23,7 @@
     "node": ">=22.0.0"
   },
   "dependencies": {
-    "@workspace/types": "workspace:*",
-    "@workspace/utils": "workspace:*",
     "@anthropic-ai/sdk": "^0.54.0",
-    "@clerk/backend": "^2.1.0",
     "@google/genai": "^1.8.0",
     "@mistralai/mistralai": "^1.7.2",
     "@orpc/client": "^1.5.2",
@@ -34,6 +31,8 @@
     "@orpc/server": "^1.5.2",
     "@orpc/zod": "^1.5.2",
     "@supabase/supabase-js": "^2.50.0",
+    "@workspace/types": "workspace:*",
+    "@workspace/utils": "workspace:*",
     "boxen": "^8.0.1",
     "canvas": "^3.1.2",
     "chalk": "^5.4.1",

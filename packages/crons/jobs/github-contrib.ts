@@ -12,13 +12,14 @@ import { delay } from '@workspace/utils'
 import * as cheerio from 'cheerio'
 import * as fs from 'fs/promises'
 import * as path from 'path'
+import { parse, format } from 'date-fns'
 
 export const OptionsSchema = z.object({})
 
 let JOB_IS_RUNNING = false
 
 type ContributionCalendar = Record<string, ({ level: number, tooltip: string, count: number } | null)[]>
-interface YearContribution { count: number, calendar: ContributionCalendar }
+interface YearContribution { count: number, calendar: ContributionCalendar, monthPosition: Record<string, number> }
 type ContributionsByYear = Record<string, YearContribution>
 
 /**
@@ -41,13 +42,14 @@ const loadExistingContributionsData = async (): Promise<ContributionsByYear> => 
  * Parses the contribution calendar from the HTML, comparing with existing data to preserve higher values
  * @param $ - The cheerio API
  * @param existingCalendar - The existing calendar data to compare against
- * @returns The parsed contribution calendar with higher values preserved
+ * @returns The parsed contribution calendar with higher values preserved and month indices
  */
-const parseContributionCalendar = ($: cheerio.CheerioAPI, existingCalendar?: ContributionCalendar): ContributionCalendar => {
+const parseContributionCalendar = ($: cheerio.CheerioAPI, existingCalendar?: ContributionCalendar): { calendar: ContributionCalendar, monthPosition: Record<string, number> } => {
   const calendar = $('.ContributionCalendar-grid tbody')
   const rows = calendar.children()
   const len = rows.length
   const contributionCalendar: ContributionCalendar = {}
+  const monthPosition: Record<string, number> = {}
 
   for (let i = 0; i < len; i++) {
     const row = $(rows).eq(i)
@@ -70,8 +72,23 @@ const parseContributionCalendar = ($: cheerio.CheerioAPI, existingCalendar?: Con
       } else {
         // Extract contribution count from tooltip text
         // Format: "12 contributions on January 25th." or "No contributions on January 18th."
-        const contributionMatch = tooltip?.match(/^(\d+) contributions/)
+        const contributionMatch = tooltip.match(/^(\d+) contributions/)
         const incomingCount = contributionMatch?.[1] ? parseInt(contributionMatch[1], 10) : 0
+        
+        // If it's the 1st of the month, record the index with 3-letter month abbreviation (date extracted from tooltip)
+        // Tooltip format: "X contributions on Month Day." or "No contributions on Month Day."
+        if (tooltip) {
+          const dateMatch = tooltip.match(/on ([A-Za-z]+) (\d+)(?:st|nd|rd|th)\./)
+          if (dateMatch && dateMatch[1] && dateMatch[2]) {
+            const fullMonthName = dateMatch[1]
+            const dayNumber = parseInt(dateMatch[2], 10)
+            if (dayNumber === 1) {
+              const tempDate = parse(`${fullMonthName} 1, 2024`, 'MMMM d, yyyy', new Date())
+              const monthAbbr = format(tempDate, 'MMM')
+              monthPosition[monthAbbr] = j
+            }
+          }
+        }
         
         // Check if we have existing data for this position
         const existingEntry = existingCalendar?.[day]?.[j]
@@ -89,7 +106,7 @@ const parseContributionCalendar = ($: cheerio.CheerioAPI, existingCalendar?: Con
     }
   }
 
-  return contributionCalendar
+  return { calendar: contributionCalendar, monthPosition }
 }
 
 /**
@@ -122,11 +139,12 @@ const fetchYearContributions = async (year: number, existingYearData?: YearContr
   const finalCount = Math.max(existingCount, incomingCount)
 
   // Extract the contribution calendar from the HTML, comparing with existing data
-  const calendar = parseContributionCalendar($, existingYearData?.calendar)
+  const { calendar, monthPosition } = parseContributionCalendar($, existingYearData?.calendar)
 
   return {
     count: finalCount,
-    calendar
+    calendar,
+    monthPosition
   }
 }
 
@@ -189,7 +207,8 @@ const runJob = async () => {
           // Use existing data if available, otherwise use empty data
           contributionsByYear[year.toString()] = existingData[year.toString()] || {
             count: 0,
-            calendar: {}
+            calendar: {},
+            monthPosition: {}
           }
           continue
         }

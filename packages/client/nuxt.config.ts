@@ -33,13 +33,7 @@ export default defineNuxtConfig({
       siteUrl: baseUrls.client,
       apiUrl: baseUrls.api,
       supabaseUrl: process.env.SUPABASE_URL,
-      supabaseKey: process.env.SUPABASE_KEY,
-      clerk: {
-        publishableKey: process.env.NUXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-      }
-    },
-    clerk: {
-      secretKey: process.env.NUXT_CLERK_SECRET_KEY
+      supabaseKey: process.env.SUPABASE_KEY
     }
   },
   devServer: {
@@ -88,21 +82,11 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxt/icon',
-    'motion-v/nuxt',
-    '@clerk/nuxt'
+    'motion-v/nuxt'
   ],
   icon: {
     serverBundle: {
       collections: ['iconoir', 'fluent']
     }
-  },
-  // @ts-expect-error - Looks like some Clerk types (proxyUrl) are not compatible with @clerk/nuxt module
-  clerk: {
-    publishableKey: process.env.NUXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
-    skipServerMiddleware: true,
-    ...(env !== 'development' ? {
-      domain: process.env.CLERK_DOMAIN,
-      proxyUrl: process.env.CLERK_PROXY_URL
-    } : {})
   }
 })

@@ -6,7 +6,6 @@ type HandleRealtimeChange = (payload: SupabaseRealtimePayload) => void
 
 export default defineNuxtPlugin(async () => {
   const config = useRuntimeConfig()
-  const { getToken, isSignedIn } = useAuth()
   const { $bus } = useNuxtApp()
   const channels = ref<Record<string, {
     channel: RealtimeChannel
@@ -21,11 +20,6 @@ export default defineNuxtPlugin(async () => {
       config.public.supabaseKey as string,
       import.meta.server ? {} : {
         accessToken: async (): Promise<string | null> => {
-          if (isSignedIn.value) {
-            const token = await getToken.value()
-            if (!token) return null
-            return token
-          }
           return null
         }
       }

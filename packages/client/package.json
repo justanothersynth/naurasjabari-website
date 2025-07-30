@@ -12,9 +12,6 @@
     "upgrade-nuxt": "bunx nuxi@latest upgrade --dedupe"
   },
   "dependencies": {
-    "@workspace/types": "workspace:*",
-    "@clerk/clerk-js": "^5.69.0",
-    "@clerk/nuxt": "^1.7.1",
     "@headlessui/vue": "^1.7.23",
     "@heroicons/vue": "^2.2.0",
     "@nuxt/icon": "^1.13.0",
@@ -26,6 +23,7 @@
     "@vueuse/core": "^13.3.0",
     "@vueuse/integrations": "^13.4.0",
     "@vueuse/nuxt": "^13.2.0",
+    "@workspace/types": "workspace:*",
     "change-case": "^5.4.4",
     "cheerio": "^1.0.0",
     "class-variance-authority": "^0.7.1",
