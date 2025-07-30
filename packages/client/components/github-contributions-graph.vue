@@ -1,5 +1,5 @@
 <template>
-  <div class="github-contributions mt-8">
+  <div class="github-contributions mt-8" ref="containerRef">
 
     <div class="flex gap-1 mb-4 justify-center">
       <button
@@ -41,8 +41,9 @@
                 v-for="(day, dayIndex) in week.days"
                 :key="dayIndex"
                 :class="getContributionClass(day)"
-                :title="day?.tooltip || ''"
-                class="day" />
+                class="day"
+                @mouseenter="showTooltip(day)"
+                @mouseleave="hideTooltip" />
             </div>
           </div>
         </div>
@@ -68,6 +69,19 @@
 
       </div>
     </div>
+    
+    <!-- Custom Tooltip -->
+    <Teleport to="body">
+      <div
+        v-if="tooltip.show && tooltip.content"
+        class="tooltip"
+        :style="{
+          left: `${x + 15}px`,
+          top: `${y + 55}px`
+        }">
+        {{ tooltip.content }}
+      </div>
+    </Teleport>
     
   </div>
 </template>
@@ -217,6 +231,32 @@ const getContributionClass = (day: ContributionDay | null): string => {
   return `level-${day.level}`
 }
 
+const containerRef = ref<HTMLElement>()
+const { x, y } = useMouse()
+
+const tooltip = reactive({
+  show: false,
+  content: ''
+})
+
+/**
+ * Shows the tooltip with the day's contribution data
+ */
+const showTooltip = (day: ContributionDay | null) => {
+  if (day?.tooltip) {
+    tooltip.content = day.tooltip
+    tooltip.show = true
+  }
+}
+
+/**
+ * Hides the tooltip
+ */
+const hideTooltip = () => {
+  tooltip.show = false
+  tooltip.content = ''
+}
+
 // Fetch data on component mount
 onMounted(() => {
   fetchContributionsData()
@@ -281,6 +321,16 @@ $cellSpacing: 3px;
 .calendar {
   grid-area: calendar;
   display: flex;
+  // &:hover {
+  //   .day {
+  //     transition: 150ms ease-in;
+  //     opacity: 0.75;
+  //     &:hover {
+  //       transition: 150ms ease-in;
+  //       opacity: 1;
+  //     }
+  //   }
+  // }
 }
 
 .week-column {
@@ -293,6 +343,32 @@ $cellSpacing: 3px;
   width: $cellDimension + $cellSpacing;
   height: $cellDimension + $cellSpacing;
   transition: 150ms ease-out;
+  &:hover {
+    &.level-0 {
+      &:before {
+        filter: brightness(1.05);
+      }
+    }
+    &.level-1,
+    &.level-2 {
+      &:before {
+        filter: brightness(1.1);
+      }
+    }
+    &.level-3 {
+      &:before {
+        filter: brightness(1.2);
+      }
+    }
+    &.level-4 {
+      &:before {
+        filter: brightness(1.4);
+      }
+    }
+    &:before {
+      transition: 150ms ease-in;
+    }
+  }
   &:before {
     content: '';
     position: absolute;
@@ -302,6 +378,7 @@ $cellSpacing: 3px;
     height: $cellDimension;
     border-radius: 5px;
     transform: translate(-50%, -50%);
+    transition: 150ms ease-out;
   }
 }
 
@@ -340,5 +417,21 @@ $cellSpacing: 3px;
     transition: 150ms ease-in;
     transform: scale(1.3);
   }
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transform: translateY(-100%);
+  max-width: 300px;
 }
 </style>
