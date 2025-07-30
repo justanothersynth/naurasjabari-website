@@ -1,6 +1,6 @@
 <template>
   <TooltipProvider>
-    <div class="layout max-w-4xl mx-auto">
+    <div :class="['layout overflow-x-hidden', { 'force-cursor-pointer': forceCursorPointer }]">
 
       <slot />
 
@@ -10,4 +10,15 @@
 
 <script lang="ts" setup>
 import { TooltipProvider } from 'reka-ui'
+
+const generalStore = useGeneralStore()
+const { forceCursorPointer } = storeToRefs(generalStore)
 </script>
+
+<style lang="scss" scoped>
+.layout {
+  &.force-cursor-pointer {
+    cursor: pointer;
+  }
+}
+</style>
