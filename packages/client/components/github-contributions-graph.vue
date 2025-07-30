@@ -1,7 +1,7 @@
 <template>
   <div class="github-contributions">
 
-    <div class="contributions-grid overflow-x-auto">
+    <div class="contributions-grid">
       <div v-if="selectedYearData" class="year-section mb-8 flex flex-col">
         
         <div class="grid-container">
@@ -24,14 +24,14 @@
           </div>
           
           <!-- Contributions grid -->
-          <div class="contributions-calendar">
+          <div class="calendar">
             <div v-for="week in getWeeksForYear(selectedYearData.calendar)" :key="week.weekIndex" class="week-column">
               <div
                 v-for="(day, dayIndex) in week.days"
                 :key="dayIndex"
                 :class="getContributionClass(day)"
                 :title="day?.tooltip || ''"
-                class="contribution-day" />
+                class="day" />
             </div>
           </div>
         </div>
@@ -201,6 +201,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 $cellGap: 3px;
 $cellDimension: 13px;
+$cellSpacing: 3px;
 
 .contributions-grid {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -218,7 +219,7 @@ $cellDimension: 13px;
   display: grid;
   grid-template-columns: repeat(53, $cellDimension);
   gap: $cellGap;
-  margin-left: 42px; /* Align with calendar */
+  margin-left: 44px; /* Align with calendar */
   margin-bottom: 8px;
   position: relative;
 }
@@ -242,67 +243,77 @@ $cellDimension: 13px;
 }
 
 .day-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 2px;
   color: #656d76;
   height: $cellDimension;
   text-align: right;
 }
 
-.contributions-calendar {
+.calendar {
   grid-area: calendar;
   display: flex;
-  gap: $cellGap;
-  overflow-x: auto;
 }
 
 .week-column {
   display: flex;
   flex-direction: column;
-  gap: $cellGap;
 }
 
-.contribution-day {
-  width: $cellDimension;
-  height: $cellDimension;
-  border-radius: 4px;
-  border: 1px solid transparent;
+.day {
+  position: relative;
+  width: $cellDimension + $cellSpacing;
+  height: $cellDimension + $cellSpacing;
+  transition: 150ms ease-out;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $cellDimension;
+    height: $cellDimension;
+    border-radius: 4px;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .level-0 {
-  background-color: #ebedf0;
-  border-color: rgba(27, 31, 36, 0.06);
+  &:before {
+    background-color: #ebedf0;
+  }
 }
 
 .level-1 {
-  background-color: #9be9a8;
-  border-color: rgba(27, 31, 36, 0.06);
+  &:before {
+    background-color: #9be9a8;
+  }
 }
 
 .level-2 {
-  background-color: #40c463;
-  border-color: rgba(27, 31, 36, 0.06);
+  &:before {
+    background-color: #40c463;
+  }
 }
 
 .level-3 {
-  background-color: #30a14e;
-  border-color: rgba(27, 31, 36, 0.06);
+  &:before {
+    background-color: #30a14e;
+  }
 }
 
 .level-4 {
-  background-color: #216e39;
-  border-color: rgba(27, 31, 36, 0.06);
-}
-
-.contribution-day:hover {
-  border-color: rgba(27, 31, 36, 0.15);
-}
-
-@media (max-width: 768px) {
-  .contributions-calendar {
-    padding-bottom: 16px;
+  &:before {
+    background-color: #216e39;
   }
-  
-  .grid-container {
-    overflow-x: auto;
+}
+
+.day {
+  &:hover {
+    transition: 150ms ease-in;
+    transform: scale(1.3);
   }
 }
 </style>
