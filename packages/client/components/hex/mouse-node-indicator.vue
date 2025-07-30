@@ -69,8 +69,6 @@ const computedPercentage = computed(() => {
   const selectedNode = hexagonStore.getHexNode(selectedHexNode.value.name)
   
   if (!selectedNode?.ref) return 0
-
-  // console.log(selectedNode)
   
   const selectedNodePos = getHexNodeViewportPosition(selectedNode.ref)
   let closestNode = null
@@ -79,7 +77,6 @@ const computedPercentage = computed(() => {
   // Find the closest non-selected node to the mouse
   for (const [nodeName, hexNode] of hexNodes.value.entries()) {
     if (nodeName === selectedHexNode.value.name || !hexNode.ref) continue
-    // console.log(nodeName)
     const nodePos = getHexNodeViewportPosition(hexNode.ref)
     const distance = calculateDistance(mousePos, nodePos)
     if (distance < shortestDistance) {

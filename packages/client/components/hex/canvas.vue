@@ -3,7 +3,7 @@
     ref="hexCanvasRef"
     class="hex-canvas w-screen h-screen relative"
     @mousemove="throttledMouseMove"
-    @mouseleave="store.setIsHoveringCanvas(false)">
+    @mouseleave="handleMouseLeave">
     <div
       ref="hexCanvasInnerRef"
       :style="{ transform: `translate(${hexCanvasTranslation.x}px, ${hexCanvasTranslation.y}px)` }"
@@ -18,17 +18,26 @@ import type { HexNode } from '@/types/hexagon'
 
 const { $bus } = useNuxtApp()
 
-const store = useHexagonStore()
-const { hexCanvasTranslation } = storeToRefs(store)
+const generalStore = useGeneralStore()
+const { forceCursorPointer } = storeToRefs(generalStore)
+const hexStore = useHexagonStore()
+const { hexCanvasTranslation } = storeToRefs(hexStore)
 const hexCanvasRef = ref<HTMLElement | null>(null)
 const hexCanvasInnerRef = ref<HTMLElement | null>(null)
 
 provide('hexCanvasRef', hexCanvasRef)
 
 const throttledMouseMove = useThrottleFn(() => {
-  if (store.isHoveringCanvas) return
-  store.setIsHoveringCanvas(true)
+  if (hexStore.isHoveringCanvas) return
+  hexStore.setIsHoveringCanvas(true)
 }, 100)
+
+const handleMouseLeave = () => {
+  hexStore.setIsHoveringCanvas(false)
+  if (forceCursorPointer.value) {
+    generalStore.setForceCursorPointer(false)
+  }
+}
 
 const handleTransitionEnd = (event: TransitionEvent) => {
   if (event.propertyName === 'transform') {
@@ -42,7 +51,7 @@ $bus.$on('hex-reset', () => {
 
 $bus.$on('hex-node-triggered', (event: unknown) => {
   const { name } = event as HexNode
-  const hexNode = store.getHexNode(name)
+  const hexNode = hexStore.getHexNode(name)
 
   if (!hexCanvasRef.value || !hexNode?.ref) return
 
@@ -70,7 +79,7 @@ $bus.$on('hex-node-triggered', (event: unknown) => {
   const offsetX = originalHexNodeX - canvasCenterX
   
   // Set the hex canvas translation to center the hex node
-  store.setHexCanvasTranslation({
+  hexStore.setHexCanvasTranslation({
     x: -offsetX,
     y: -offsetY
   })
