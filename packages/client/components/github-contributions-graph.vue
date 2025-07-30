@@ -231,7 +231,7 @@ const getContributionClass = (day: ContributionDay | null): string => {
   return `level-${day.level}`
 }
 
-const { x, y } = useMouse()
+const { x, y } = useMouse({ type: 'client' })
 
 const tooltip = reactive({
   show: false,
