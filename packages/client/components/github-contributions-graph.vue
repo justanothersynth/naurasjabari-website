@@ -1,5 +1,16 @@
 <template>
-  <div class="github-contributions">
+  <div class="github-contributions mt-8">
+
+    <div class="flex gap-1 mb-4 justify-center">
+      <button
+        v-for="year in years"
+        :key="year"
+        class="text-xs border-1 border-transparent rounded-lg px-2 py-1 hover:bg-gray-100 transition-colors duration-150"
+        :class="{ 'bg-gray-100': year === selectedYear }"
+        @click="selectedYear = year">
+        {{ year }}
+      </button>
+    </div>
 
     <div class="contributions-grid">
       <div v-if="selectedYearData" class="year-section mb-8 flex flex-col">
@@ -92,7 +103,21 @@ type WeekData = {
 }
 
 const contributionsData = ref<ContributionsData | null>(null)
-const selectedYear = ref<number>(2015)
+const selectedYear = ref<number>(new Date().getFullYear())
+
+/**
+ * Dynamically generates an array of years from 2015 to current year + 1
+ */
+const years = computed(() => {
+  const currentYear = new Date().getFullYear()
+  const startYear = 2015
+  const endYear = currentYear // Include next year for future data
+  
+  return Array.from(
+    { length: endYear - startYear + 1 },
+    (_, index) => (startYear + index)
+  )
+})
 
 /**
  * Legend colors for the contribution levels
@@ -275,7 +300,7 @@ $cellSpacing: 3px;
     left: 50%;
     width: $cellDimension;
     height: $cellDimension;
-    border-radius: 4px;
+    border-radius: 5px;
     transform: translate(-50%, -50%);
   }
 }
