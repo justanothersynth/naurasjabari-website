@@ -17,6 +17,8 @@
 
     </div>
 
+    <DemoCronApiSupabase />
+
     <DemoComplexUiCanvas />
 
   </div>

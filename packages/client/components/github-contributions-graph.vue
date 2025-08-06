@@ -5,7 +5,7 @@
       <button
         v-for="year in years"
         :key="year"
-        class="text-xs border-1 border-transparent rounded-lg px-2 py-1 hover:bg-gray-100 transition-colors duration-150"
+        class="text-xs rounded-lg px-2 py-1 hover:bg-gray-100 transition-colors duration-150"
         :class="{ 'bg-gray-100': year === selectedYear }"
         @click="selectedYear = year">
         {{ year }}
@@ -60,7 +60,7 @@
               <div
                 v-for="color in legendColors"
                 :key="color"
-                :class="['w-3 h-3 rounded-sm border border-gray-200', color]" />
+                :class="['w-3 h-3 rounded-sm', color]" />
             </div>
             <span>More</span>
           </div>
