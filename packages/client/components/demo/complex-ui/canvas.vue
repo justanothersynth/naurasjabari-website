@@ -10,7 +10,7 @@
         attached-to="origin"
         size="300px"
         :is-clipped="false">
-        <div class="cover text-base">
+        <div class="cover text-base flex flex-col justify-center">
           <div class="text-lg mb-4">
             Complex UIs
           </div>

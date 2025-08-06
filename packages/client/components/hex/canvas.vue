@@ -1,7 +1,7 @@
 <template>
   <div
     ref="hexCanvasRef"
-    class="hex-canvas w-screen h-screen relative"
+    class="hex-canvas w-screen h-[60rem] relative"
     @mousemove="throttledMouseMove"
     @mouseleave="handleMouseLeave">
     <div
@@ -29,11 +29,11 @@ provide('hexCanvasRef', hexCanvasRef)
 
 const throttledMouseMove = useThrottleFn(() => {
   if (hexStore.isHoveringCanvas) return
-  hexStore.setIsHoveringCanvas(true)
+  hexStore.setIsHoveringCanvas(hexCanvasRef.value)
 }, 100)
 
 const handleMouseLeave = () => {
-  hexStore.setIsHoveringCanvas(false)
+  hexStore.setIsHoveringCanvas(null)
   if (forceCursorPointer.value) {
     generalStore.setForceCursorPointer(false)
   }

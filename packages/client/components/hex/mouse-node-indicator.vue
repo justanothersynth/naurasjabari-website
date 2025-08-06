@@ -191,8 +191,32 @@ const calculateProgressPercentage = ( mousePos: Coordinates, selectedPos: Coordi
   return Math.min((mouseToSelectedDistance / totalDistance) * 100, 100)
 }
 
+/**
+ * Centers the canvas vertically in the viewport
+ */
+const centerCanvasVertically = () => {
+  if (!isHoveringCanvas.value) return
+  
+  const canvas = isHoveringCanvas.value
+  const rect = canvas.getBoundingClientRect()
+  const viewportHeight = window.innerHeight
+  
+  // Calculate the center position
+  const canvasHeight = rect.height
+  const targetTop = (viewportHeight - canvasHeight) / 2
+  const currentTop = rect.top
+  const scrollOffset = targetTop - currentTop
+  
+  // Smoothly scroll to center the canvas
+  window.scrollBy({
+    top: -scrollOffset,
+    behavior: 'smooth'
+  })
+}
+
 const toggleVisitButtonActive = () => {
   visitButtonActive.value = !visitButtonActive.value
+  centerCanvasVertically()
 }
 
 onMousePressStart(async () => {

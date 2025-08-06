@@ -10,7 +10,7 @@ export const useHexagonStore = defineStore('hexagon', () => {
   const hexCanvasTranslation = ref({ x: 0, y: 0 })
   const selectedHexNode = ref<HexNode | null>(null)
   const isHoveringHexagonName = ref<string>('')
-  const isHoveringCanvas = ref(false)
+  const isHoveringCanvas = ref<HTMLElement | null>(null)
 
   // ================================================================== computed
   const selectedHexagon = computed(() => Array.from(hexagons.value.values()).find(hexagon => hexagon.selected === true))
@@ -87,8 +87,8 @@ export const useHexagonStore = defineStore('hexagon', () => {
    * Sets whether the canvas is currently being hovered
    * @param hovering - True if hovering over the canvas, false otherwise
    */
-  const setIsHoveringCanvas = (hovering: boolean) => {
-    isHoveringCanvas.value = hovering
+  const setIsHoveringCanvas = (hovering: HTMLElement | null) => {
+    isHoveringCanvas.value = hovering as HTMLElement
   }
 
   // ==================================================================== return
