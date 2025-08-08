@@ -18,12 +18,21 @@ export const useSupabaseSubscribeMulti = <T = unknown>(options: SupabaseSubscrib
     if (!data.value?.data || !Array.isArray(data.value.data) || !payload.new) return
 
     const currentData = [...data.value.data] as SupabasePaginatedItem[]
+    const originalLength = currentData.length
     
     // Add new item at the beginning if desc order, at the end if asc order
-    if (orderDirection.value === 'desc') {
+    if (orderDirection === 'desc') {
       currentData.unshift(payload.new as SupabasePaginatedItem)
+      // Remove the last item to maintain array length
+      if (currentData.length > originalLength) {
+        currentData.pop()
+      }
     } else {
       currentData.push(payload.new as SupabasePaginatedItem)
+      // Remove the first item to maintain array length
+      if (currentData.length > originalLength) {
+        currentData.shift()
+      }
     }
 
     // Update the data with modified array

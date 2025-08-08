@@ -1,7 +1,7 @@
 <template>
   <div
     ref="hexCanvasRef"
-    class="hex-canvas w-screen h-[60rem] relative"
+    class="hex-canvas w-screen h-[50rem] relative"
     @mousemove="throttledMouseMove"
     @mouseleave="handleMouseLeave">
     <div

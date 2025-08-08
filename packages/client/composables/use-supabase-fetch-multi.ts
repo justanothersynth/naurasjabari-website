@@ -1,7 +1,5 @@
 // import type { RealtimeChannel } from '@supabase/supabase-js';
-import type { SupabasePaginationOptions } from '@workspace/types'
-
-type SupabaseResponse<T> = { data: T | null; error: unknown }
+import type { SupabasePaginationOptions, SupabaseResponse } from '@workspace/types'
 
 // Generic record type for items with timestamps
 type PaginatedItem = Record<string, string | number | Date | null>

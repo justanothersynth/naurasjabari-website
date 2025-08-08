@@ -8,133 +8,131 @@ import cron from 'node-cron'
 import { Command } from 'commander'
 import type { Job } from './job.types'
 import { config } from '../config'
-// import { delay } from '@workspace/utils'
-// import * as cheerio from 'cheerio'
 import * as fs from 'fs/promises'
 import * as path from 'path'
 import { format } from 'date-fns'
-
-// TypeScript interfaces for the MET Norway API responses
-interface Coordinates {
-  type: 'Point'
-  coordinates: [number, number] // [longitude, latitude]
-}
-
-interface TimeInterval {
-  interval: [string, string] // ISO date strings
-}
-
-interface SunProperties {
-  body: 'Sun'
-  sunrise: {
-    time: string
-    azimuth: number
-  }
-  sunset: {
-    time: string
-    azimuth: number
-  }
-  solarnoon: {
-    time: string
-    disc_centre_elevation: number
-    visible: boolean
-  }
-  solarmidnight: {
-    time: string
-    disc_centre_elevation: number
-    visible: boolean
-  }
-}
-
-interface MoonProperties {
-  body: 'Moon'
-  moonrise: {
-    time: string
-    azimuth: number
-  }
-  moonset: {
-    time: string
-    azimuth: number
-  }
-  high_moon: {
-    time: string
-    disc_centre_elevation: number
-    visible: boolean
-  }
-  low_moon: {
-    time: string
-    disc_centre_elevation: number
-    visible: boolean
-  }
-  moonphase: number
-}
-
-interface SunResponse {
-  copyright: string
-  licenseURL: string
-  type: 'Feature'
-  geometry: Coordinates
-  when: TimeInterval
-  properties: SunProperties
-}
-
-interface MoonResponse {
-  copyright: string
-  licenseURL: string
-  type: 'Feature'
-  geometry: Coordinates
-  when: TimeInterval
-  properties: MoonProperties
-}
+import type { SunResponse, MoonResponse } from '@workspace/types'
 
 export const OptionsSchema = z.object({})
 
 let JOB_IS_RUNNING = false
 
 /**
- * Scrapes the github contributions calendar for a user and saves the data to a file
- * @link https://github.com/users/timelytree/contributions
+ * Fetches sun and moon data for a specific location
+ */
+const fetchSunMoonData = async (locationName: string, location: { lat: number, lon: number, offset: string }) => {
+  const baseUrl = 'https://api.met.no/weatherapi/sunrise/3.0'
+  const date = format(new Date(Date.now()), 'yyyy-MM-dd')
+  const params = `lat=${location.lat}&lon=${location.lon}&date=${date}&offset=${location.offset}`
+
+  const sunResponse = await fetch(`${baseUrl}/sun?${params}`)
+  const sunData = await sunResponse.json() as SunResponse
+
+  const moonResponse = await fetch(`${baseUrl}/moon?${params}`)
+  const moonData = await moonResponse.json() as MoonResponse
+
+  return {
+    sun: sunData,
+    moon: moonData
+  }
+}
+
+/**
+ * Fetches sun and moon data for all locations and saves to files
  */
 const runJob = async () => {
   if (JOB_IS_RUNNING) return
   JOB_IS_RUNNING = true
 
+  const locations = {
+    toronto: {
+      lat: 43.6331636987516,
+      lon: -79.4052209221851,
+      offset: '-04:00'
+    },
+    vancouver: {
+      lat: 49.28695892813821,
+      lon: -122.9906367731808,
+      offset: '-07:00'
+    },
+    kosiv: {
+      lat: 48.31190552772112,
+      lon: 25.08750276251672,
+      offset: '+03:00'
+    },
+    montreal: {
+      lat: 45.49843176406388,
+      lon: -73.59679126838567,
+      offset: '-04:00'
+    },
+    heidelberg: {
+      lat: 49.384717247235955,
+      lon: 8.710628642202217,
+      offset: '+02:00'
+    },
+    bristol: {
+      lat: 51.461915032689305,
+      lon: -2.6436497485357067,
+      offset: '+01:00'
+    },
+    snowdonia: {
+      lat: 52.915079284916125,
+      lon: -3.899525933139459,
+      offset: '+01:00'
+    },
+    sayulita: {
+      lat: 20.87045807143342,
+      lon: -105.4419350597342,
+      offset: '-06:00'
+    }
+  }
+
   /* eslint-disable-next-line no-console */
   console.log(
     createLogBox(
       '🚀 Job: sun-moon',
-      `Fetching sun and moon data`,
+      `Fetching sun and moon data for:\n\n${Chalk.bold(Object.keys(locations).join(', '))}`,
       'info'
     )
   )
 
-  const baseUrl = 'https://api.met.no/weatherapi/sunrise/3.0'
-  const latitude = 43.3234212234634
-  const longitude = -79.79471981518594
+  const sunDataByLocation: Record<string, SunResponse> = {}
+  const moonDataByLocation: Record<string, MoonResponse> = {}
   const date = format(new Date(Date.now()), 'yyyy-MM-dd')
-  const offset = '-05:00'
-  const params = `lat=${latitude}&lon=${longitude}&date=${date}&offset=${offset}`
 
   try {
-    const sunResponse = await fetch(`${baseUrl}/sun?${params}`)
-    const sunJson = await sunResponse.json() as SunResponse
+    // Fetch data for all locations
+    for (const [locationName, location] of Object.entries(locations)) {
+      const { sun, moon } = await fetchSunMoonData(locationName, location)
+      sunDataByLocation[locationName] = sun
+      moonDataByLocation[locationName] = moon
+    }
+
+    // Save sun data
     const sunOutputPath = path.join(process.cwd(), '../../packages/api/static/data/sun.json')
-    await fs.writeFile(sunOutputPath, JSON.stringify(sunJson, null, 2), 'utf8')
+    await fs.writeFile(sunOutputPath, JSON.stringify(sunDataByLocation, null, 2), 'utf8')
 
-    const moonResponse = await fetch(`${baseUrl}/moon?${params}`)
-    const moonJson = await moonResponse.json() as MoonResponse
+    // Save moon data
     const moonOutputPath = path.join(process.cwd(), '../../packages/api/static/data/moon.json')
-    await fs.writeFile(moonOutputPath, JSON.stringify(moonJson, null, 2), 'utf8')
+    await fs.writeFile(moonOutputPath, JSON.stringify(moonDataByLocation, null, 2), 'utf8')
 
+    // Create summary for all locations
     let summary = `${Chalk.bold('Date:')} ${date}\n\n`
-    summary += `🌞 ${format(new Date(sunJson.properties.sunrise.time), 'HH:mm')} - ${format(new Date(sunJson.properties.sunset.time), 'HH:mm')}\n`
-    summary += `🌕 ${format(new Date(moonJson.properties.moonrise.time), 'HH:mm')} - ${format(new Date(moonJson.properties.moonset.time), 'HH:mm')}, 🌙 ${moonJson.properties.moonphase}\n`
+    
+    for (const [locationName, sunData] of Object.entries(sunDataByLocation)) {
+      const moonData = moonDataByLocation[locationName]
+      if (!moonData) continue
+      summary += `${Chalk.bold(locationName)}:\n`
+      summary += `🌞 ${format(new Date(sunData.properties.sunrise.time), 'HH:mm')} - ${format(new Date(sunData.properties.sunset.time), 'HH:mm')}\n`
+      summary += `🌕 ${format(new Date(moonData.properties.moonrise.time), 'HH:mm')} - ${format(new Date(moonData.properties.moonset.time), 'HH:mm')}, 🌙 ${moonData.properties.moonphase}\n\n`
+    }
+    
     /* eslint-disable-next-line no-console */
     console.log(createLogBox('Sun and Moon Summary', summary, 'success'))
 
   } catch (error) {
     /* eslint-disable-next-line no-console */
-    console.error('❌ Error in GitHub contributions job:', error)
+    console.error('❌ Error in sun-moon job:', error)
     JOB_IS_RUNNING = false
   } finally {
     JOB_IS_RUNNING = false

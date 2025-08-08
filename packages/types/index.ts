@@ -4,8 +4,28 @@ export type {
   SupabaseSubscribeMultiOptions,
   SupabaseSubscribeSingleOptions,
   SupabaseRealtimeSubscriptionEvent,
-  SupabasePaginatedItem
+  SupabasePaginatedItem,
+  SupabaseResponse
 } from './supabase'
 
 export type { OrpcContext, OrpcClient } from './orpc'
+
 export type { NuxtError } from './nuxt'
+
+export type {
+  Coordinates,
+  TimeInterval,
+  SunProperties,
+  MoonProperties,
+  SunResponse,
+  MoonResponse,
+  SunMoonSupabase,
+  SunMoonMetadata,
+  SunMoonOrpcInput,
+  SunMoonLocationKey
+} from './sun-moon'
+
+export {
+  sunMoonMetadata,
+  sunMoonOrpcInput
+} from './sun-moon'

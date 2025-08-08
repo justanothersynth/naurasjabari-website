@@ -30,7 +30,7 @@ export interface SupabaseSubscribeMultiOptions<T> {
   topic: string
   events: SupabaseRealtimeSubscriptionEvent[]
   data: Ref<{ data: T | null; error: unknown } | null>
-  orderDirection: Ref<'asc' | 'desc'>
+  orderDirection: 'asc' | 'desc'
 }
 
 export interface SupabaseSubscribeSingleOptions<T> {
@@ -38,4 +38,9 @@ export interface SupabaseSubscribeSingleOptions<T> {
   subscriptionOptions: SupabaseRealtimeSubscriptionEvent
   data: Ref<T | null>
   itemId: string | number
+}
+
+export interface SupabaseResponse<T> {
+  data: T | null
+  error: unknown
 }

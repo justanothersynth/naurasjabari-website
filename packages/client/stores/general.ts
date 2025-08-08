@@ -6,12 +6,15 @@ export const useGeneralStore = defineStore('general', () => {
 
   // =================================================================== actions
   /**
-   * Sets the selected hex node
-   * @param name - The name of the hex node to set as selected
+   * Sets the force cursor pointer state
+   * @param force - Whether to force the cursor to be a pointer
    */
   const setForceCursorPointer = (force: boolean) => {
     forceCursorPointer.value = force
   }
+
+
+
   // ==================================================================== return
   return {
     // ----- state

@@ -3,6 +3,8 @@ import { api as downloadFile } from '../lib/files/download-file'
 
 import { api as generateJwt } from '../lib/auth/generate-jwt'
 
+import { api as createLocation } from '../lib/sun-moon/create-location'
+
 export const router = {
   file: {
     upload: uploadFile,
@@ -10,5 +12,8 @@ export const router = {
   },
   auth: {
     generateJwt
+  },
+  sunMoon: {
+    createLocation
   }
 }
