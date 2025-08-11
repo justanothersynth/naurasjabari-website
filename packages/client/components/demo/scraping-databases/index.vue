@@ -18,6 +18,17 @@
 
     <DemoScrapingDatabasesTable :data="data?.data || []" />
 
+    <client-only>
+      <DemoScrapingDatabasesPagination
+        :current-page="currentPage"
+        :page-size="pageSize"
+        :total-items="totalItems"
+        :has-previous="hasPrevious"
+        :has-next="hasNext"
+        @previous="goToPreviousPage"
+        @next="goToNextPage" />
+    </client-only>
+
   </div>
 </template>
 
@@ -47,7 +58,16 @@ const fetchData = async (opts: SupabasePaginationOptions) => {
   return await query as SupabaseResponse<GeostormSupabase[]>
 }
 
-const { data } = useSupabaseFetchMulti<GeostormSupabase[]>(fetchData, {
+const {
+  data,
+  currentPage,
+  pageSize,
+  hasNext,
+  hasPrevious,
+  totalItems,
+  goToNextPage,
+  goToPreviousPage,
+} = useSupabaseFetchMulti<GeostormSupabase[]>(fetchData, {
   table: 'geostorm',
   pageSize: 20,
   orderBy: 'created_at',
