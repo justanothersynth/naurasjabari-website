@@ -39,7 +39,7 @@
           class="mt-8 first:mt-0">
           
           <!-- Timestamp Column -->
-          <div class="whitespace-nowrap pr-4 mb-3 font-bold">
+          <div class="whitespace-nowrap pr-4 mb-3 font-bold pl-4">
             {{ format(entry?.created_at || '', 'MMM d, h:mm a') }}
           </div>
 
