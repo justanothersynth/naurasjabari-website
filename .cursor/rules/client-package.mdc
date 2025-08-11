@@ -1,11 +1,9 @@
 ---
-description: Vue 3, Nuxt, and client-side development patterns (excluding Convex functions)  
+description: Vue 3, Nuxt, and client-side development patterns
 globs: packages/client/**/*
 ---
 
 You are an expert in TypeScript, TSDoc, Node.js, NuxtJS, Vue 3, Shadcn Vue, Radix Vue, VueUse and Tailwind v4.
-
-**SCOPE**: This rule applies to client-side code only. Do NOT apply these patterns to Convex functions in the convex/ directory.
 
 Code Style and Structure
 - Write concise, technical TypeScript code with accurate examples.
@@ -66,5 +64,3 @@ Vue 3 and Composition API Best Practices
 - Implement custom composables for reusable logic.
 
 Follow the official Nuxt.js and Vue.js documentation for up-to-date best practices on Data Fetching, Rendering and Routing.
-
-**IMPORTANT**: When working with Convex functions (files in convex/ directory), defer to Convex-specific rules instead of these client-side patterns.

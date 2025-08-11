@@ -21,6 +21,8 @@
 
     <DemoComplexUiCanvas />
 
+    <DemoScrapingDatabases />
+
   </div>
 </template>
 

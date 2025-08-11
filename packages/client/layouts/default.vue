@@ -12,9 +12,8 @@
           :style="{
             left: `${tooltip.x + 15}px`,
             top: `${tooltip.y + 15}px`
-          }">
-          {{ tooltip.content }}
-        </div>
+          }"
+          v-html="tooltip.content" />
       </Teleport>
 
     </div>

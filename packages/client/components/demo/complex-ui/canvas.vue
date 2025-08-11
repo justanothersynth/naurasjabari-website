@@ -22,14 +22,14 @@
     <HexNode
       name="where-am-i"
       attached-to="intro"
-      :angle="55">
+      :angle="90">
       <DemoComplexUiLocation />
     </HexNode>
 
     <HexNode
       name="widgets"
       attached-to="intro"
-      :angle="-55">
+      :angle="-90">
       <DemoComplexUiWidgets />
     </HexNode>
 

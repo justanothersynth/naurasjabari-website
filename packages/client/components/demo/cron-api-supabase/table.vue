@@ -196,7 +196,7 @@ const moonPhase = computed(() => {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 2px;
-  height: calc(var(--spacing) * 6);
+  height: calc(var(--spacing) * 4.5);
   z-index: 10;
   &:before,
   &:after {
@@ -214,7 +214,7 @@ const moonPhase = computed(() => {
     top: -6px;
     left: 0;
     width: 100%;
-    height: 12px;
+    height: 8px;
     border-radius: 2px;
   }
   &.sun {

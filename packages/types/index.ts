@@ -29,3 +29,9 @@ export {
   sunMoonMetadata,
   sunMoonOrpcInput
 } from './sun-moon'
+
+export {
+  geostormOrpcInput,
+  type GeostormOrpcInput,
+  type GeostormSupabase
+} from './geostorm'
