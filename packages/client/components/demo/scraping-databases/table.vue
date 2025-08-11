@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full mt-12 aspect-video text-sm border-1 border-gray-200 rounded-lg overflow-hidden">
+  <div class="flex flex-col w-full mt-12 aspect-video text-sm border-1 border-gray-200 rounded-3xl overflow-hidden">
 
     <div class="grid grid-cols-5 border-b-1 border-gray-200 py-2 px-4">
       <div
@@ -9,59 +9,82 @@
         {{ timeframe }}
       </div>
     </div>
-    
-    <div class="flex-1 p-2 overflow-y-scroll">
+
+    <div class="data-container relative flex-1 flex flex-col overflow-hidden">
+
+      <!-- Top gradient -->
       <div
-        v-for="entry in data"
-        :key="entry.id"
-        class="mt-8 first:mt-0">
+        class="gradient-top absolute top-0 left-0 right-0 h-16 w-full bg-gradient-to-b from-white to-transparent pointer-events-none z-10 transition-opacity duration-150"
+        :class="{
+          'opacity-100': canScrollUp,
+          'opacity-0': !canScrollUp
+        }" />
+
+      <!-- Bottom gradient -->
+      <div
+        class="gradient-bottom absolute bottom-0 left-0 right-0 h-16 w-full bg-gradient-to-t from-white to-transparent pointer-events-none z-10 opacity-0 transition-opacity duration-150"
+        :class="{
+          'opacity-100': canScrollDown,
+          'opacity-0': !canScrollDown
+        }" />
+      
+      <!-- Data -->
+      <div
+        ref="scrollContainer"
+        class="relative flex-1 p-2 overflow-y-scroll">
         
-        <!-- Timestamp Column -->
-        <div class="whitespace-nowrap pr-4 mb-3 font-bold">
-          {{ format(entry?.created_at || '', 'MMM d, h:mm a') }}
-        </div>
+        <div
+          v-for="entry in data"
+          :key="entry.id"
+          class="mt-8 first:mt-0">
+          
+          <!-- Timestamp Column -->
+          <div class="whitespace-nowrap pr-4 mb-3 font-bold">
+            {{ format(entry?.created_at || '', 'MMM d, h:mm a') }}
+          </div>
 
-        <!-- Data Columns -->
-        <div class="flex flex-col gap-4 border-1 border-gray-200 rounded-lg p-2">
-          <div
-            v-for="(regions, region) in reformatData(entry)"
-            :key="region"
-            class="flex flex-col gap-2">
+          <!-- Data Columns -->
+          <div class="flex flex-col gap-4 border-1 border-gray-200 rounded-2xl p-2">
+            <div
+              v-for="(regions, region) in reformatData(entry)"
+              :key="region"
+              class="flex flex-col gap-2">
 
-            <div class="text-xs font-semibold">
-              {{ region }}
-            </div>
+              <div class="text-xs font-semibold">
+                {{ region }}
+              </div>
 
-            <div class="flex">
-              <div
-                v-for="(activities, timeframeIndex) in regions"
-                :key="`${region}-${timeframeIndex}`"
-                class="relative flex gap-1 hover:bg-gray-200 transition-colors duration-150 rounded-md p-[4px]"
-                @mouseenter="$tooltip.show(`${timeframeMap[activities.timeframe]}<br /> <span class='font-mono'>${activities.transition}</span>`)"
-                @mouseleave="$tooltip.hide">
+              <div class="flex">
                 <div
-                  v-for="(activity, activityIndex) in activities.points"
-                  :key="`${region}-${timeframeIndex}-${activityIndex}`"
-                  class="flex justify-end gap-1">
+                  v-for="(activities, timeframeIndex) in regions"
+                  :key="`${region}-${timeframeIndex}`"
+                  class="relative flex gap-1 hover:bg-gray-200 transition-colors duration-150 rounded-md p-[4px]"
+                  @mouseenter="$tooltip.show(`${timeframeMap[activities.timeframe]}<br /> <span class='font-mono'>${activities.transition}</span>`)"
+                  @mouseleave="$tooltip.hide">
                   <div
-                    v-for="column in activity"
-                    :key="`${region}-${timeframeIndex}-${activityIndex}-${column}`"
-                    class="flex flex-col justify-end gap-1">
-                    <span
-                      v-for="point in column"
-                      :key="`${region}-${timeframeIndex}-${activityIndex}-${column}-${point}`"
-                      class="block w-2 h-2 rounded-full"
-                      :class="activityColors[column] || 'bg-green-500'">
-                    </span>
+                    v-for="(activity, activityIndex) in activities.points"
+                    :key="`${region}-${timeframeIndex}-${activityIndex}`"
+                    class="flex justify-end gap-1">
+                    <div
+                      v-for="column in activity"
+                      :key="`${region}-${timeframeIndex}-${activityIndex}-${column}`"
+                      class="flex flex-col justify-end gap-1">
+                      <span
+                        v-for="point in column"
+                        :key="`${region}-${timeframeIndex}-${activityIndex}-${column}-${point}`"
+                        class="block w-2 h-2 rounded-full"
+                        :class="activityColors[column] || 'bg-green-500'">
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
+            </div>
           </div>
         </div>
-
       </div>
+
     </div>
 
   </div>
@@ -69,11 +92,22 @@
 
 <script setup lang="ts">
 import { format } from 'date-fns'
+import { useScroll } from '@vueuse/core'
 import type { GeostormSupabase, GeostormOrpcInput } from '@workspace/types'
 
 const _props = defineProps<{
   data: GeostormSupabase[]
 }>()
+
+// Scroll container ref for VueUse
+const scrollContainer = ref<HTMLElement>()
+
+// Use VueUse to track scroll position - using element as target
+const { arrivedState } = useScroll(scrollContainer)
+
+// Computed properties to determine when to show gradients
+const canScrollUp = computed(() => !arrivedState.top)
+const canScrollDown = computed(() => !arrivedState.bottom)
 
 const timeframes = [
   '← 24hr',
