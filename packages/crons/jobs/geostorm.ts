@@ -195,8 +195,8 @@ const runJob = async () => {
   /* eslint-disable-next-line no-console */
   console.log(
     createLogBox(
-      '🚀 Job: azimuth',
-      `Creating per-second azimuth data`,
+      '🚀 Job: geostorm',
+      `Scraping geostorm data from the government of Canada`,
       'info'
     )
   )
@@ -212,8 +212,6 @@ const runJob = async () => {
     orpcContext.headers = { authorization: `Bearer ${token}` }
 
     const data = await fetchData()
-    /* eslint-disable-next-line no-console */
-    console.log(data)
 
     await createEntry.internal(orpcContext)(data)
 
@@ -251,7 +249,7 @@ const runJob = async () => {
 
   } catch (error) {
     /* eslint-disable-next-line no-console */
-    console.error('❌ Error in azimuth job:', error)
+    console.error('❌ Error in geostorm job:', error)
     JOB_IS_RUNNING = false
   } finally {
     JOB_IS_RUNNING = false
