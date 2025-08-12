@@ -49,7 +49,7 @@ The `client` uses Supabase as a backend. It is currently set up to connect direc
 ❗️❗️❗️ Do **NOT** use the local Supabase dashboard. Only use the cloud-hosted solution. In fact, don't run `npx supabase start` at all.
 ❗️ Make sure you have Docker installed and running locally before proceeding
 
-If you haven't done so already, link the `web-core-dev` project to your local supabase working directory (❗️ you MUST link the **dev** project, not staging).
+If you haven't done so already, link the `*-dev` project to your local supabase working directory (❗️ you MUST link the **dev** project, not staging or production).
 
 ```bash
 cd node/packages/supabase
