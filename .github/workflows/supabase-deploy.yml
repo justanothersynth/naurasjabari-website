@@ -22,17 +22,17 @@ jobs:
           version: latest
 
       - name: Link to Supabase project
-        working-directory: node/packages
+        working-directory: packages
         run: supabase link --project-ref $SUPABASE_PROJECT_ID
 
       - name: List migration files
-        working-directory: node/packages
+        working-directory: packages
         run: ls -R supabase/migrations
 
       - name: List migrations
-        working-directory: node/packages
+        working-directory: packages
         run: supabase migration list
 
       - name: Deploy migrations
-        working-directory: node/packages
+        working-directory: packages
         run: supabase db push
