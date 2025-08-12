@@ -108,12 +108,16 @@ const runJob = async () => {
       moonDataByLocation[locationName] = moon
     }
 
+    // Ensure the static/data directory exists
+    const staticDataDir = path.join(process.cwd(), '../../packages/api/static/data')
+    await fs.mkdir(staticDataDir, { recursive: true })
+
     // Save sun data
-    const sunOutputPath = path.join(process.cwd(), '../../packages/api/static/data/sun.json')
+    const sunOutputPath = path.join(staticDataDir, 'sun.json')
     await fs.writeFile(sunOutputPath, JSON.stringify(sunDataByLocation, null, 2), 'utf8')
 
     // Save moon data
-    const moonOutputPath = path.join(process.cwd(), '../../packages/api/static/data/moon.json')
+    const moonOutputPath = path.join(staticDataDir, 'moon.json')
     await fs.writeFile(moonOutputPath, JSON.stringify(moonDataByLocation, null, 2), 'utf8')
 
     // Create summary for all locations
