@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full mt-12 aspect-video text-sm border-1 border-gray-200 rounded-3xl overflow-hidden">
+  <div class="flex flex-col w-full my-4 aspect-video text-sm border-1 border-gray-200 rounded-3xl overflow-hidden">
 
     <div class="grid grid-cols-5 border-b-1 border-gray-200 py-2 px-4">
       <div
@@ -93,9 +93,9 @@
 <script setup lang="ts">
 import { format } from 'date-fns'
 import { useScroll } from '@vueuse/core'
-import type { GeostormSupabase, GeostormOrpcInput } from '@workspace/types'
+import type { GeostormSupabase, GeostormOrpcInput, GeostormOrpcInputRegions } from '@workspace/types'
 
-const _props = defineProps<{
+defineProps<{
   data: GeostormSupabase[]
 }>()
 
@@ -216,7 +216,7 @@ const reformatData = (data: GeostormSupabase) => {
 
     const activitiesList: string[] = []
     for (const timePeriod of timePeriods) {
-      const activities = data[timePeriod as keyof GeostormOrpcInput][region]
+      const activities = (data[timePeriod as keyof GeostormOrpcInput] as GeostormOrpcInputRegions)[region]
       for (const activity of activities) {
         activitiesList.push(activity === '' ? activities[0] : activity)
       }
@@ -299,7 +299,6 @@ const reformatData = (data: GeostormSupabase) => {
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
-    // background-color: var(--color-gray-500);
     z-index: -1;
   }
 }

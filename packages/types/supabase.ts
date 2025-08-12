@@ -1,13 +1,27 @@
 import type { Ref } from 'vue'
 
+export interface SupabaseFilter {
+  id: string
+  columnName: string
+  mode: 'partial' | 'exact'
+  defaultValue: string
+  filterMapping?: Record<string, string[]>
+  filterValue?: string | null
+}
+
 export interface SupabasePaginationOptions {
+  select: string
   table: string
   pageSize?: number
   cursor?: string | null
   orderBy?: string
   orderDirection?: 'asc' | 'desc'
-  filter?: string
+  filters?: SupabaseFilter[]
   searchTerm?: string
+  filterMaps?: {
+    column: string
+    map: Record<string, string[]>
+  }[]
 }
 
 export type SupabasePaginatedItem = Record<string, string | number | Date | null>

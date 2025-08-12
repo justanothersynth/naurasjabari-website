@@ -11,9 +11,11 @@ export const geostormOrpcInput = z.object({
   last6Hours: regions,
   currentConditions: regions,
   next6Hours: regions,
-  next24Hours: regions
+  next24Hours: regions,
+  activities: z.string()
 })
 
+export type GeostormOrpcInputRegions = z.infer<typeof regions>
 export type GeostormOrpcInput = z.infer<typeof geostormOrpcInput>
 
 export interface GeostormSupabase extends GeostormOrpcInput {

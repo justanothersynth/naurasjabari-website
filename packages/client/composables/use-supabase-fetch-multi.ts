@@ -1,23 +1,18 @@
-// import type { RealtimeChannel } from '@supabase/supabase-js';
-import type { SupabasePaginationOptions, SupabaseResponse } from '@workspace/types'
+import type { SupabaseFilter, SupabasePaginationOptions, SupabaseResponse } from '@workspace/types'
 
 // Generic record type for items with timestamps
 type PaginatedItem = Record<string, string | number | Date | null>
 
 /**
  * Client-only composable for fetching data from Supabase with realtime subscriptions and cursor-based pagination
- * @param table - The Supabase table to query
- * @param queryFn - Function that returns a Supabase query promise, receives pagination options
+ * @param dataQueryBuilderFn - Function that returns a base query builder with filtering logic applied
  * @param paginationOptions - Options for pagination
- * @param filterMapping - Optional mapping of filter values to status values for total count query
  * @returns Object with data, error, loading state, refresh function, and pagination methods
  */
 export const useSupabaseFetchMulti = <T = unknown>(
-  queryFn: (options: SupabasePaginationOptions) => Promise<SupabaseResponse<T>>,
-  options: SupabasePaginationOptions,
-  filterMapping?: Record<string, string[]>
+  options: SupabasePaginationOptions
 ) => {
-  const { $supabase, $bus } = useNuxtApp()
+  const { $bus, $supabase } = useNuxtApp()
 
   // Reactive state
   const data = ref<SupabaseResponse<T> | null>(null)
@@ -32,13 +27,20 @@ export const useSupabaseFetchMulti = <T = unknown>(
   const currentCursor = ref<string | null>(options.cursor || null)
   const orderBy = ref(options.orderBy || 'createdAt')
   const orderDirection = ref<'asc' | 'desc'>(options.orderDirection || 'desc')
-  const filter = ref(options.filter || 'all')
+  const filters = ref<SupabaseFilter[]>(options.filters || [])
   const searchTerm = ref(options.searchTerm || '')
   
   // Keep track of cursors for previous pages
   const cursorHistory = ref<(string | null)[]>([null])
   const currentPage = ref(1)
   const hasPrevious = computed(() => currentPage.value > 1)
+
+  // Set default filter values
+  if (filters.value.length) {
+    filters.value.forEach(filter => {
+      filter.filterValue = filter.defaultValue
+    })
+  }
 
   // Compute hasNext based on returned data
   const hasNext = computed(() => {
@@ -58,30 +60,41 @@ export const useSupabaseFetchMulti = <T = unknown>(
       }
       error.value = null
 
-      // Fetch main data
-      const result = await queryFn({
-        pageSize: pageSize.value,
-        cursor: currentCursor.value,
-        orderBy: orderBy.value,
-        orderDirection: orderDirection.value,
-        filter: filter.value,
-        searchTerm: searchTerm.value,
-        table: options.table
-      })
+      // Build data query with pagination and ordering
+      let dataQuery = $supabase.client
+        .from(options.table)
+        .select(options.select)
+        .order(orderBy.value, { ascending: orderDirection.value === 'asc' })
+        .limit(pageSize.value)
 
-      // Fetch total count
-      let countQuery = $supabase.client.from(options.table).select('*', { count: 'estimated', head: true })
-      if (filterMapping) {
-        countQuery = useSupabaseApplyFiltersToQuery(countQuery, filter.value, filterMapping)
-      } else if (filter.value && filter.value !== 'all') {
-        // Fallback to simple filter if no mapping provided
-        countQuery = countQuery.eq('status', filter.value)
+      // Apply cursor pagination
+      if (currentCursor.value) {
+        const operator = orderDirection.value === 'asc' ? 'gt' : 'lt'
+        dataQuery = dataQuery.filter(orderBy.value, operator, currentCursor.value)
       }
-      const { count } = await countQuery
 
-      data.value = result
+      let countQuery = $supabase.client
+        .from(options.table)
+        .select(options.select, { count: 'exact', head: true })
+
+
+      // Apply filter
+      if (filters.value.length) {
+        filters.value.forEach(filter => {
+          dataQuery = useSupabaseApplyFiltersToQuery(dataQuery, filter)
+          countQuery = useSupabaseApplyFiltersToQuery(countQuery, filter)
+        })
+      }
+      
+      // Execute both queries in parallel
+      const [result, countResult] = await Promise.all([
+        dataQuery.then(),
+        countQuery.then()
+      ])
+
+      data.value = result as unknown as SupabaseResponse<T>
       error.value = result.error
-      totalItems.value = count || 0
+      totalItems.value = countResult.count || 0
     } catch (err) {
       error.value = err
       data.value = null
@@ -100,8 +113,12 @@ export const useSupabaseFetchMulti = <T = unknown>(
   const refresh = async () => await fetchData()
 
   // Update filter and refetch
-  const updateFilter = async (newFilter: string) => {
-    filter.value = newFilter
+  const updateFilter = async (payload: { filterId: string, filterValue: string }) => {
+    const { filterId, filterValue } = payload
+    if (!filters.value.length) return
+    const filter = filters.value.find(filter => filter.id === filterId)
+    if (!filter) return
+    filter.filterValue = filterValue
     await resetPagination()
   }
 
@@ -185,7 +202,7 @@ export const useSupabaseFetchMulti = <T = unknown>(
     goToPreviousPage,
     resetPagination,
     // Filter
-    filter,
+    filters,
     updateFilter,
     // Search
     searchTerm,

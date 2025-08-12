@@ -29,33 +29,11 @@
 </template>
 
 <script setup lang="ts">
-import type { SupabasePaginationOptions, SunMoonSupabase, SupabaseResponse } from '@workspace/types'
+import type { SunMoonSupabase } from '@workspace/types'
 
-const { $supabase } = useNuxtApp()
-
-const fetchData = async (opts: SupabasePaginationOptions) => {
-  let query = $supabase
-    .client
-    .from(opts.table)
-    .select('*')
-    .order(opts.orderBy || 'created_at', {
-      ascending: opts.orderDirection === 'asc'
-    })
-    .limit(opts.pageSize || 20)
-    
-  if (opts.cursor) {
-    const operator = opts.orderDirection === 'asc' ? 'gt' : 'lt'
-    query = query.filter(
-      opts.orderBy || 'created_at',
-      operator,
-      opts.cursor
-    )
-  }
-  return await query as SupabaseResponse<SunMoonSupabase[]>
-}
-
-const { data } = useSupabaseFetchMulti<SunMoonSupabase[]>(fetchData, {
+const { data } = useSupabaseFetchMulti<SunMoonSupabase[]>({
   table: 'sun_moon',
+  select: '*',
   pageSize: 1,
   orderBy: 'created_at',
   orderDirection: 'desc'

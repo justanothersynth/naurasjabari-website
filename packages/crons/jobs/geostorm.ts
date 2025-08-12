@@ -8,7 +8,7 @@ import cron from 'node-cron'
 import { Command } from 'commander'
 import type { Job } from './job.types'
 import { config } from '../config'
-import type { OrpcContext, GeostormOrpcInput } from '@workspace/types'
+import type { OrpcContext, GeostormOrpcInput, GeostormOrpcInputRegions } from '@workspace/types'
 import { generateInternalJWT } from '@workspace/utils'
 import { createEntry } from '@workspace/api/lib/geostorm'
 import * as cheerio from 'cheerio'
@@ -146,13 +146,15 @@ const fetchData = async () => {
       subAuroral: [],
       auroral: [],
       polar: []
-    }
+    },
+    activities: ''
   }
 
   // Populates and returns the output
   let headingIndex = 0
   let rowHeadingIndex = 0
   const len = rowValues.length
+  let activities: string[] = []
   for (let i = 0; i < len; i++) {
     const row = rowValues[i]
     $ = cheerio.load(`<div class="row">${row}</div>`)
@@ -162,15 +164,20 @@ const fetchData = async () => {
     const rowHeading = rowHeadings[rowHeadingIndex]
     const headerValue = header[headingIndex]
     if (!rowHeading || !headerValue) continue
-    const timeKey = timeHeadingMap[rowHeading] as keyof GeostormOrpcInput
-    const locationKey = locationMap[headerValue] as keyof GeostormOrpcInput[keyof GeostormOrpcInput]
-    output[timeKey][locationKey] = values
+    const timeKey = timeHeadingMap[rowHeading] as keyof Omit<GeostormOrpcInput, 'activities'>
+    const locationKey = locationMap[headerValue] as 'subAuroral' | 'auroral' | 'polar'
+    (output[timeKey] as GeostormOrpcInputRegions)[locationKey] = values
     headingIndex++
     if (i > 0 && (i + 1) % 3 === 0) {
       headingIndex = 0
       rowHeadingIndex++
     }
+    // Compile values into a string for the activities search vector
+    activities = activities.concat(values)
+    activities = activities.filter(activity => activity !== '')
   }
+
+  output.activities = activities.join(',')
 
   return output
 }
@@ -232,8 +239,8 @@ const runJob = async () => {
       const timeframeData = data[timeframe as keyof GeostormOrpcInput]
       
       for (const [region, regionName] of Object.entries(regionEmojis)) {
-        const activities = timeframeData[region as keyof typeof timeframeData]
-        const activityStr = activities.filter(a => a !== '').join(' → ') || activities[0] || 'quiet'
+        const activities = (timeframeData as GeostormOrpcInputRegions)[region as keyof GeostormOrpcInputRegions]
+        const activityStr = activities.filter((a: string) => a !== '').join(' → ') || activities[0]
         summary += `  ${regionName}: ${activityStr}\n`
       }
       summary += '\n'

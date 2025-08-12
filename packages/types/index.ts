@@ -1,4 +1,5 @@
 export type {
+  SupabaseFilter,
   SupabasePaginationOptions,
   SupabaseRealtimePayload,
   SupabaseSubscribeMultiOptions,
@@ -33,5 +34,6 @@ export {
 export {
   geostormOrpcInput,
   type GeostormOrpcInput,
+  type GeostormOrpcInputRegions,
   type GeostormSupabase
 } from './geostorm'

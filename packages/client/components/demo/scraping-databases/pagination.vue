@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-14 p-2 mt-4 border border-gray-200 bg-white flex justify-between items-center z-30 rounded-2xl" aria-label="Pagination">
+  <div class="w-full h-14 p-2 border border-gray-200 bg-white flex justify-between items-center z-30 rounded-2xl" aria-label="Pagination">
 
     <!-- Items count -->
     <div v-if="totalItems !== undefined && totalItems > 0" class="hidden sm:block text-sm text-gray-700">
@@ -54,17 +54,10 @@
       
     </div>
 
-    <!-- Shadow backdrop -->
-    <div
-      class="absolute top-0 left-0 w-full h-full shadow-md rounded-lg transition-opacity duration-300 ease-in-out z-[-1]"
-      :style="{ opacity: shadowOpacity }" />
-
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useScroll } from '@vueuse/core'
-
 interface Props {
   currentPage: number
   pageSize: number
@@ -79,19 +72,6 @@ interface Emits {
 
 const props = defineProps<Props>()
 const emit = defineEmits<Emits>()
-
-const { y: scrollY } = useScroll(window)
-
-// Hide shadow when at bottom, show when scrolled up
-const shadowOpacity = computed(() => {
-  if (import.meta.server) return 0
-  const scrollTop = scrollY.value
-  const windowHeight = window.innerHeight
-  const documentHeight = document.documentElement.scrollHeight
-  // Check if we're at the bottom (with a small threshold for precision)
-  const isAtBottom = scrollTop + windowHeight >= documentHeight - 10
-  return isAtBottom ? 0 : 1
-})
 
 const startItem = computed(() => {
   return (props.currentPage - 1) * props.pageSize + 1

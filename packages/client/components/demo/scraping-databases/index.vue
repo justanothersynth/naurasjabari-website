@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-4xl mx-auto">
     
-    <div class="prose">
+    <div class="prose mb-12">
       <h2>Web scraping and database interfacing</h2>
       <p>
         While it's not as severe as other people I know, I do get migraines from time to time.
@@ -15,6 +15,11 @@
         (The Github contributions graph at the top of this page was also scraped, but that's a story for another time 🤓)
       </p>
     </div>
+
+    <DemoScrapingDatabasesToolbar
+      :filter="activityFilter"
+      @search-change="updateSearchTerm"
+      @filter-change="updateFilter" />
 
     <DemoScrapingDatabasesTable :data="data?.data || []" />
 
@@ -33,30 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SupabasePaginationOptions, GeostormSupabase, SupabaseResponse } from '@workspace/types'
-
-const { $supabase } = useNuxtApp()
-
-const fetchData = async (opts: SupabasePaginationOptions) => {
-  let query = $supabase
-    .client
-    .from(opts.table)
-    .select('*')
-    .order(opts.orderBy || 'created_at', {
-      ascending: opts.orderDirection === 'asc'
-    })
-    .limit(opts.pageSize || 20)
-    
-  if (opts.cursor) {
-    const operator = opts.orderDirection === 'asc' ? 'gt' : 'lt'
-    query = query.filter(
-      opts.orderBy || 'created_at',
-      operator,
-      opts.cursor
-    )
-  }
-  return await query as SupabaseResponse<GeostormSupabase[]>
-}
+import type { GeostormSupabase, SupabaseFilter } from '@workspace/types'
 
 const {
   data,
@@ -67,11 +49,23 @@ const {
   totalItems,
   goToNextPage,
   goToPreviousPage,
-} = useSupabaseFetchMulti<GeostormSupabase[]>(fetchData, {
+  filters,
+  updateFilter,
+  updateSearchTerm
+} = useSupabaseFetchMulti<GeostormSupabase[]>({
   table: 'geostorm',
-  pageSize: 20,
+  select: '*',
+  pageSize: 2,
   orderBy: 'created_at',
-  orderDirection: 'desc'
+  orderDirection: 'desc',
+  filters: [
+    {
+      id: 'activities',
+      columnName: 'activities',
+      mode: 'partial',
+      defaultValue: 'all'
+    }
+  ]
 })
 
 useSupabaseSubscribeMulti({
@@ -84,4 +78,6 @@ useSupabaseSubscribeMulti({
   data,
   orderDirection: 'desc'
 })
+
+const activityFilter = computed(() => filters.value.find(filter => filter.id === 'activities') as SupabaseFilter)
 </script>
