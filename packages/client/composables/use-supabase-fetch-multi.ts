@@ -85,6 +85,11 @@ export const useSupabaseFetchMulti = <T = unknown>(
           countQuery = useSupabaseApplyFiltersToQuery(countQuery, filter)
         })
       }
+
+      if (searchTerm.value !== '') {
+        dataQuery = dataQuery.ilike('activities', `%${searchTerm.value}%`)
+        countQuery = countQuery.ilike('activities', `%${searchTerm.value}%`)
+      }
       
       // Execute both queries in parallel
       const [result, countResult] = await Promise.all([

@@ -103,7 +103,9 @@ defineProps<{
 const scrollContainer = ref<HTMLElement>()
 
 // Use VueUse to track scroll position - using element as target
-const { arrivedState } = useScroll(scrollContainer)
+const { arrivedState, measure } = useScroll(scrollContainer)
+
+// console.log(arrivedState)
 
 // Computed properties to determine when to show gradients
 const canScrollUp = computed(() => !arrivedState.top)
@@ -260,6 +262,11 @@ const reformatData = (data: GeostormSupabase) => {
 
   return reformattedData
 }
+
+onMounted(async () => {
+  await useDelay(1000)
+  measure()
+})
 </script>
 
 <style lang="scss" scoped>
