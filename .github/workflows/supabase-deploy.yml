@@ -1,0 +1,38 @@
+name: Supabase deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  prod:
+    runs-on: self-hosted
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_PROD_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_PROD_DB_PASSWORD }}
+      SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROD_PROJECT_ID }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Link to Supabase project
+        working-directory: node/packages
+        run: supabase link --project-ref $SUPABASE_PROJECT_ID
+
+      - name: List migration files
+        working-directory: node/packages
+        run: ls -R supabase/migrations
+
+      - name: List migrations
+        working-directory: node/packages
+        run: supabase migration list
+
+      - name: Deploy migrations
+        working-directory: node/packages
+        run: supabase db push
