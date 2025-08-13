@@ -76,6 +76,8 @@
 </template>
 
 <script lang="ts" setup>
+const config = useRuntimeConfig().public
+
 type ContributionDay = {
   date: string
   level: number
@@ -143,7 +145,7 @@ const dayLabels = ['', 'Mon', '', 'Wed', '', 'Fri', '']
  */
 const fetchContributionsData = async () => {
   try {
-    const response = await fetch('http://localhost:20040/data/github-contrib-total.json')
+    const response = await fetch(`${config.apiUrl}/data/github-contrib-total.json`)
     if (response.ok) {
       contributionsData.value = await response.json()
     }
