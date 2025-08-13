@@ -105,8 +105,6 @@ const scrollContainer = ref<HTMLElement>()
 // Use VueUse to track scroll position - using element as target
 const { arrivedState, measure } = useScroll(scrollContainer)
 
-// console.log(arrivedState)
-
 // Computed properties to determine when to show gradients
 const canScrollUp = computed(() => !arrivedState.top)
 const canScrollDown = computed(() => !arrivedState.bottom)
@@ -115,8 +113,8 @@ const timeframes = [
   '← 24hr',
   '← 6hr',
   'current',
-  '→ 6hr',
-  '→ 24hr'
+  '6hr →',
+  '24hr →'
 ]
 
 const timeframeMap = {

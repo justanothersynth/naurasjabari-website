@@ -67,6 +67,18 @@ git commit -a -m 'feat: synced supabase migration file'
 
 ❗️ Always open a new PR when you do this. There is a github action that runs that checks for database drifts between the git-committed migrations and the staging site.
 
+### Vercel
+
+This project utilizes edge functions that run on Vercel. To deploy them, do the following:
+
+```bash
+cd packages/vercel
+vercel login # if not already logged in
+vercel --prod
+```
+
+❗️ You _must_ run `vercel --prod` from `packages/vercel`
+
 ### Client setup
 
 Grab the `Studio URL` and `anon key` from the Supabase staging cloud instance (`naurasjabari-dev`) and add them as the following environment variables to a `.env` file in the `client` package root:

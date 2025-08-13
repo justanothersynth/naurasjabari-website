@@ -99,7 +99,7 @@ const getRowValues = ($: cheerio.CheerioAPI) => {
  */
 
 const fetchData = async () => {
-  const response = await fetch('https://www.spaceweather.gc.ca/forecast-prevision/short-court/zone-en.php')
+  const response = await fetch('https://naurasjabari-website-edge.vercel.app/api/geostorm')
   const data = await response.text()
   let $ = cheerio.load(data)
   
