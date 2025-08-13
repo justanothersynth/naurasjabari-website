@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-40 pb-100">
+  <div class="pt-40 pb-20">
 
     <HexMouseNodeIndicator />
     
@@ -40,6 +40,8 @@
         ~ and more to come, stay tuned ~
       </Divider>
     </div>
+
+    <Footer />
 
   </div>
 </template>

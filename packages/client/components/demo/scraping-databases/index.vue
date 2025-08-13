@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-4xl mx-auto">
     
-    <div class="prose mb-12">
+    <div class="prose mb-12 max-w-[66ch]">
       <h2>Web scraping and database interfacing</h2>
       <p>
         While it's not as severe as other people I know, I do get migraines from time to time.
@@ -32,7 +32,7 @@
           <div
             v-for="color in activityColors"
             :key="color"
-            :class="['w-3 h-3 rounded-sm', color]" />
+            :class="['w-3 h-3 rounded-full', color]" />
         </div>
       </div>
       <span class="text-sm text-gray-600">Stormier</span>
