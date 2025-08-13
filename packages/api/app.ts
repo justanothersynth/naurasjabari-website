@@ -27,21 +27,21 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ['self', 'unpkg.com'],
+        defaultSrc: [`'self'`, 'unpkg.com'], // eslint-disable-line quotes
         styleSrc: [
-          'self',
-          'unsafe-inline',
+          `'self'`, // eslint-disable-line quotes
+          `'unsafe-inline'`, // eslint-disable-line quotes
           'cdn.jsdelivr.net',
           'fonts.googleapis.com',
           'unpkg.com'
         ],
-        fontSrc: ['self', 'fonts.gstatic.com', 'data:'],
-        imgSrc: ['self', 'data:', 'cdn.jsdelivr.net'],
+        fontSrc: [`'self'`, 'fonts.gstatic.com', 'data:'], // eslint-disable-line quotes
+        imgSrc: [`'self'`, 'data:', 'cdn.jsdelivr.net'], // eslint-disable-line quotes
         scriptSrc: [
-          'self',
+          `'self'`, // eslint-disable-line quotes
           'https: unsafe-inline',
           'cdn.jsdelivr.net',
-          'unsafe-eval'
+          `'unsafe-eval'` // eslint-disable-line quotes
         ]
       }
     }
