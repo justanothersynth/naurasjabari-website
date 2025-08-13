@@ -2,9 +2,7 @@
   <div class="me">
 
     <div class="avatar">
-      <UiTooltip text="Log out">
-        <img class="avatar-img" />
-      </UiTooltip>
+      <img class="avatar-img" />
       <div class="spinner inner">
         <span
           v-for="(item, index) in innerRing"
