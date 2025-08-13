@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-12">
+  <section class="flex gap-12">
 
     <div class="prose max-w-none flex-2">
       <h1 class="text-2xl flex items-center gap-2">
@@ -24,7 +24,7 @@
       </client-only>
     </div>
 
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

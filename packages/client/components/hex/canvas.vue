@@ -1,16 +1,20 @@
 <template>
-  <div
+  <section
     ref="hexCanvasRef"
     class="hex-canvas w-screen h-[50rem] relative"
     @mousemove="throttledMouseMove"
     @mouseleave="handleMouseLeave">
+    
     <div
       ref="hexCanvasInnerRef"
       :style="{ transform: `translate(${hexCanvasTranslation.x}px, ${hexCanvasTranslation.y}px)` }"
       class="hex-canvas-inner absolute inset-0">
+      
       <slot />
+      
     </div>
-  </div>
+    
+  </section>
 </template>
 
 <script setup lang="ts">

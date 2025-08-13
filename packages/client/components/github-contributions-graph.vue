@@ -1,5 +1,5 @@
 <template>
-  <div class="github-contributions mt-20">
+  <section class="github-contributions mt-20">
 
     <div class="flex gap-1 mb-4 justify-center">
       <button
@@ -72,7 +72,7 @@
     
 
     
-  </div>
+  </section>
 </template>
 
 <script lang="ts" setup>

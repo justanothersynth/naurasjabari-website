@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl mx-auto">
+  <section class="max-w-4xl mx-auto">
     
     <div class="prose mb-12 max-w-[66ch]">
       <h2>Web scraping and database interfacing</h2>
@@ -49,7 +49,7 @@
         @next="goToNextPage" />
     </client-only>
 
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

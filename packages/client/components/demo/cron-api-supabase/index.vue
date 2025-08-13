@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl mx-auto my-20">
+  <section class="max-w-4xl mx-auto my-20">
     
     <div class="prose">
       <h2>Cron jobs, API integration and Supabase Realtime</h2>
@@ -25,7 +25,7 @@
 
     <DemoCronApiSupabaseTable :data="data?.data || []" />
 
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
