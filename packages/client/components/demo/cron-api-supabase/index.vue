@@ -34,7 +34,7 @@ import type { SunMoonSupabase } from '@workspace/types'
 const { data } = useSupabaseFetchMulti<SunMoonSupabase[]>({
   table: 'sun_moon',
   select: '*',
-  pageSize: 1,
+  limit: 1,
   orderBy: 'created_at',
   orderDirection: 'desc'
 })

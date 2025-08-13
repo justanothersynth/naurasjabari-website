@@ -23,7 +23,7 @@ export const useSupabaseFetchMulti = <T = unknown>(
   const totalItems = ref<number>(0)
 
   // Pagination state
-  const pageSize = ref(options.pageSize || 20)
+  const limit = ref(options.limit || 20)
   const currentCursor = ref<string | null>(options.cursor || null)
   const orderBy = ref(options.orderBy || 'createdAt')
   const orderDirection = ref<'asc' | 'desc'>(options.orderDirection || 'desc')
@@ -47,7 +47,7 @@ export const useSupabaseFetchMulti = <T = unknown>(
     if (!data.value?.data || !Array.isArray(data.value.data)) {
       return false
     }
-    return data.value.data.length >= pageSize.value
+    return data.value.data.length >= limit.value
   })
 
   // Data fetching function
@@ -65,7 +65,7 @@ export const useSupabaseFetchMulti = <T = unknown>(
         .from(options.table)
         .select(options.select)
         .order(orderBy.value, { ascending: orderDirection.value === 'asc' })
-        .limit(pageSize.value)
+        .limit(limit.value)
 
       // Apply cursor pagination
       if (currentCursor.value) {
@@ -199,7 +199,7 @@ export const useSupabaseFetchMulti = <T = unknown>(
     realtimeTicker,
     // Pagination state
     currentPage: readonly(currentPage),
-    pageSize: readonly(pageSize),
+    limit: readonly(limit),
     hasNext: readonly(hasNext),
     hasPrevious,
     // Pagination methods

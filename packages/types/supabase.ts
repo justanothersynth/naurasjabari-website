@@ -12,7 +12,7 @@ export interface SupabaseFilter {
 export interface SupabasePaginationOptions {
   select: string
   table: string
-  pageSize?: number
+  limit?: number
   cursor?: string | null
   orderBy?: string
   orderDirection?: 'asc' | 'desc'

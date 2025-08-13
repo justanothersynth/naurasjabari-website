@@ -41,7 +41,7 @@
     <client-only>
       <DemoScrapingDatabasesPagination
         :current-page="currentPage"
-        :page-size="pageSize"
+        :limit="limit"
         :total-items="totalItems"
         :has-previous="hasPrevious"
         :has-next="hasNext"
@@ -70,7 +70,7 @@ const activityColors = [
 const {
   data,
   currentPage,
-  pageSize,
+  limit,
   hasNext,
   hasPrevious,
   totalItems,
@@ -82,7 +82,7 @@ const {
 } = useSupabaseFetchMulti<GeostormSupabase[]>({
   table: 'geostorm',
   select: '*',
-  pageSize: 20,
+  limit: 20,
   orderBy: 'created_at',
   orderDirection: 'desc',
   filters: [

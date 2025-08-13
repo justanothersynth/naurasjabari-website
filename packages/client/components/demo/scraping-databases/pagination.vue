@@ -60,7 +60,7 @@
 <script lang="ts" setup>
 interface Props {
   currentPage: number
-  pageSize: number
+  limit: number
   totalItems?: number
   hasPrevious: boolean
   hasNext: boolean
@@ -74,11 +74,11 @@ const props = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 const startItem = computed(() => {
-  return (props.currentPage - 1) * props.pageSize + 1
+  return (props.currentPage - 1) * props.limit + 1
 })
 
 const endItem = computed(() => {
-  return Math.min(props.currentPage * props.pageSize, props.totalItems || props.currentPage * props.pageSize)
+  return Math.min(props.currentPage * props.limit, props.totalItems || props.currentPage * props.limit)
 })
 
 const goToPrevious = () => {
