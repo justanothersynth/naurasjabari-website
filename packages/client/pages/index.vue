@@ -5,7 +5,7 @@
     
     <div class="max-w-4xl mx-auto">
 
-      <div class="flex bg-red-200 py-2 px-3 mb-10 rounded-lg text-left">
+      <div class="flex bg-red-200 py-2 px-3 mb-20 rounded-lg text-left">
         <span>🚧</span>
         <p class="mx-2">
           This website is currently under construction and is being actively worked upon.

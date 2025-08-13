@@ -21,7 +21,22 @@
       @search-change="updateSearchTerm"
       @filter-change="updateFilter" />
 
-    <DemoScrapingDatabasesTable :data="data?.data || []" />
+    <DemoScrapingDatabasesTable
+      :data="data?.data || []"
+      :activity-colors="activityColors" />
+
+    <div class="flex justify-center items-center gap-2 mb-4">
+      <span class="text-sm text-gray-600">Calmer</span>
+      <div class="flex items-center gap-2 text-sm text-gray-600">
+        <div class="flex gap-1">
+          <div
+            v-for="color in activityColors"
+            :key="color"
+            :class="['w-3 h-3 rounded-sm', color]" />
+        </div>
+      </div>
+      <span class="text-sm text-gray-600">Stormier</span>
+    </div>
 
     <client-only>
       <DemoScrapingDatabasesPagination
@@ -40,6 +55,18 @@
 <script setup lang="ts">
 import type { GeostormSupabase, SupabaseFilter } from '@workspace/types'
 
+const activityColors = [
+  'bg-purple-100',
+  'bg-purple-200',
+  'bg-purple-300',
+  'bg-purple-400',
+  'bg-purple-500',
+  'bg-purple-600',
+  'bg-purple-700',
+  'bg-purple-800',
+  'bg-purple-900'
+]
+
 const {
   data,
   currentPage,
@@ -55,7 +82,7 @@ const {
 } = useSupabaseFetchMulti<GeostormSupabase[]>({
   table: 'geostorm',
   select: '*',
-  pageSize: 2,
+  pageSize: 20,
   orderBy: 'created_at',
   orderDirection: 'desc',
   filters: [

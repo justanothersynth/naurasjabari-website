@@ -98,6 +98,7 @@ import type { GeostormSupabase, GeostormOrpcInput, GeostormOrpcInputRegions } fr
 
 defineProps<{
   data: GeostormSupabase[]
+  activityColors: string[]
 }>()
 
 // Scroll container ref for VueUse
@@ -137,18 +138,6 @@ const heatMap = {
   'major storm intervals': 7,
   'major storm': 8
 }
-
-const activityColors = [
-  'bg-purple-100',
-  'bg-purple-200',
-  'bg-purple-300',
-  'bg-purple-400',
-  'bg-purple-500',
-  'bg-purple-600',
-  'bg-purple-700',
-  'bg-purple-800',
-  'bg-purple-900'
-]
 
 /**
  * Generates an array with 7 entries that creates a curve-like transition from current to next value
