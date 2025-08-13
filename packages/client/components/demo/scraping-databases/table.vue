@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full my-4 aspect-video text-sm border-1 border-gray-200 rounded-3xl overflow-hidden">
+  <div class="flex flex-col w-full h-full text-sm">
 
     <div class="grid grid-cols-5 border-b-1 border-gray-200 py-2 px-4">
       <div

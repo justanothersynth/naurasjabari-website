@@ -21,9 +21,16 @@
       @search-change="updateSearchTerm"
       @filter-change="updateFilter" />
 
-    <DemoScrapingDatabasesTable
-      :data="data?.data || []"
-      :activity-colors="activityColors" />
+    <div class="my-4 aspect-video border-1 border-gray-200 rounded-3xl overflow-hidden">
+      <DemoScrapingDatabasesSkeleton v-if="shouldShowSkeleton" :count="3" />
+      <div v-else-if="geostormEntries.length === 0" class="h-full flex items-center justify-center text-sm text-gray-500 font-medium">
+        No results found
+      </div>
+      <DemoScrapingDatabasesTable
+        v-else
+        :data="data?.data || []"
+        :activity-colors="activityColors" />
+    </div>
 
     <div class="flex justify-center items-center gap-2 mb-4">
       <span class="text-sm text-gray-600">Calmer</span>
@@ -67,13 +74,19 @@ const activityColors = [
   'bg-purple-900'
 ]
 
+// Track delayed refresh skeleton
+const showDelayedRefreshSkeleton = ref(false)
+
 const {
   data,
+  error,
   currentPage,
   limit,
   hasNext,
   hasPrevious,
   totalItems,
+  initialLoading,
+  refreshLoading,
   goToNextPage,
   goToPreviousPage,
   filters,
@@ -107,4 +120,30 @@ useSupabaseSubscribeMulti({
 })
 
 const activityFilter = computed(() => filters.value.find(filter => filter.id === 'activities') as SupabaseFilter)
+
+// Toggle skeleton visibility
+const shouldShowSkeleton = computed(() => {
+  return initialLoading.value || showDelayedRefreshSkeleton.value
+})
+
+// Handle delayed skeleton for refresh loading
+watch(refreshLoading, async (isRefreshLoading) => {
+  if (isRefreshLoading) {
+    showDelayedRefreshSkeleton.value = false
+    await useDelay(500)
+    // Only show skeleton if still refresh loading after delay
+    if (refreshLoading.value) {
+      showDelayedRefreshSkeleton.value = true
+    }
+  } else {
+    showDelayedRefreshSkeleton.value = false
+  }
+})
+
+const geostormEntries = computed(() => {
+  if (error.value || data.value?.error) {
+    return []
+  }
+  return [...(data.value?.data || [])]
+})
 </script>
