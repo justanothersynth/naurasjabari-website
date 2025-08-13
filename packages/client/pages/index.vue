@@ -21,11 +21,11 @@
 
       <GithubContributionsGraph />
 
-      <div class="divider flex items-center gap-4 mt-20 before:bg-gray-300 after:bg-gray-300">
+      <Divider>
         <Icon name="iconoir:arrow-down" size="12" />
         things I can do
         <Icon name="iconoir:arrow-down" size="12" />
-      </div>
+      </Divider>
 
     </div>
 
@@ -35,16 +35,11 @@
 
     <DemoScrapingDatabases />
 
+    <div class="max-w-4xl mx-auto">
+      <Divider>
+        ~ and more to come, stay tuned ~
+      </Divider>
+    </div>
+
   </div>
 </template>
-
-<style lang="scss" scoped>
-.divider {
-  &::before,
-  &::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-  }
-}
-</style>
