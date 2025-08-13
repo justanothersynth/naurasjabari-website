@@ -11,6 +11,7 @@ import { config } from '../config'
 import type { OrpcContext } from '@workspace/types'
 import { generateInternalJWT } from '@workspace/utils'
 import { createClient } from '@workspace/api/lib/supabase'
+import { format } from 'date-fns'
 
 export const OptionsSchema = z.object({})
 
@@ -22,6 +23,7 @@ let JOB_IS_RUNNING = false
 
 /**
  * Deletes azimuth data older than 1 day (UTC) from the sun_moon table
+ * and geostorm data older than 1 month (UTC) from the geostorm table
  */
 const runJob = async () => {
   if (JOB_IS_RUNNING) return
@@ -31,7 +33,7 @@ const runJob = async () => {
   console.log(
     createLogBox(
       '🚀 Job: delete',
-      'Deleting azimuth data older than 1 day',
+      'Deleting azimuth data older than 1 day and geostorm data older than 1 month',
       'info'
     )
   )
@@ -48,31 +50,47 @@ const runJob = async () => {
     // Create Supabase client
     const supabase = createClient(token)
 
-    // Calculate the cutoff date (5 seconds ago from now in UTC)
-    // const fiveSecondsAgo = new Date()
-    // fiveSecondsAgo.setSeconds(fiveSecondsAgo.getSeconds() - 5)
-    // const cutoffDate = fiveSecondsAgo.toISOString()
-
-    // Calculate the cutoff date (1 day ago from now in UTC)
+    // Calculate cutoff dates
     const oneDayAgo = new Date()
     oneDayAgo.setUTCDate(oneDayAgo.getUTCDate() - 1)
-    const cutoffDate = oneDayAgo.toISOString()
+    const azimuthCutoffDate = oneDayAgo.toISOString()
 
-    // Delete records older than 1 day
-    const { error, count } = await supabase
+    const oneMonthAgo = new Date()
+    oneMonthAgo.setUTCMonth(oneMonthAgo.getUTCMonth() - 1)
+    const geostormCutoffDate = oneMonthAgo.toISOString()
+
+    // Delete azimuth data older than 1 day
+    const { error: azimuthError, count: azimuthCount } = await supabase
       .from('sun_moon')
       .delete({ count: 'exact' })
-      .lt('created_at', cutoffDate)
+      .lt('created_at', azimuthCutoffDate)
 
-    if (error) {
-      throw new Error(`Supabase error: ${error.message}`)
+    if (azimuthError) {
+      throw new Error(`Supabase error (azimuth): ${azimuthError.message}`)
     }
 
-    const deletedCount = count || 0
-    const summary = `${Chalk.bold('Cutoff Date:')} ${cutoffDate}\n${Chalk.bold('Records Deleted:')} ${deletedCount}`
+    // Delete geostorm data older than 1 month
+    const { error: geostormError, count: geostormCount } = await supabase
+      .from('geostorm')
+      .delete({ count: 'exact' })
+      .lt('created_at', geostormCutoffDate)
+
+    if (geostormError) {
+      throw new Error(`Supabase error (geostorm): ${geostormError.message}`)
+    }
+
+    const azimuthDeleted = azimuthCount || 0
+    const geostormDeleted = geostormCount || 0
+    
+    const summary = `${Chalk.bold('Azimuth')}\n` +
+      `Cutoff: ${format(new Date(azimuthCutoffDate), 'MMM dd, yyyy \'at\' HH:mm:ss')} UTC\n` +
+      `Deleted: ${azimuthDeleted} record${azimuthDeleted === 1 ? '' : 's'}\n\n` +
+      `${Chalk.bold('Geostorm')}\n` +
+      `Cutoff: ${format(new Date(geostormCutoffDate), 'MMM dd, yyyy \'at\' HH:mm:ss')} UTC\n` +
+      `Deleted: ${geostormDeleted} record${geostormDeleted === 1 ? '' : 's'}`
 
     /* eslint-disable-next-line no-console */
-    console.log(createLogBox('Delete Summary', summary, 'success'))
+    console.log(createLogBox('Data Deletion Summary', summary, 'success'))
 
   } catch (error) {
     /* eslint-disable-next-line no-console */
@@ -84,7 +102,7 @@ const runJob = async () => {
 
 const job: Job = {
   name: 'delete',
-  description: 'Deletes azimuth data older than 1 day (UTC)',
+  description: 'Deletes azimuth data older than 1 day and geostorm data older than 1 month',
   optionsSchema: OptionsSchema,
   async run() {
     if (config.nodeEnv === 'development') {
