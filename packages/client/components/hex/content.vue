@@ -26,13 +26,19 @@ const contentVisible = ref(false)
 const contentRef = ref<HTMLElement | null>(null)
 const route = useRoute()
 
-$bus.$on('hex-canvas-shift-complete', () => {
+const handleHexCanvasShiftComplete = () => {
   if (route.meta.singularPage) {
     offset.value = selectedHexagon.value?.ref?.getBoundingClientRect().bottom ?? 0
     contentVisible.value = route.path !== '/'
   } else {
     contentVisible.value = false
   }
+}
+
+$bus.$on('hex-canvas-shift-complete', handleHexCanvasShiftComplete)
+
+onBeforeUnmount(() => {
+  $bus.$off('hex-canvas-shift-complete', handleHexCanvasShiftComplete)
 })
 </script>
 

@@ -74,13 +74,15 @@ const componentProps = computed(() => {
   }
 })
 
-$bus.$on(props.buttonId, (event: unknown) => {
+const handleButtonLoadingState = (event: unknown) => {
   isLoading.value = (event as { isLoading: boolean }).isLoading
-})
+}
 
-onUnmounted(() => {
+$bus.$on(props.buttonId, handleButtonLoadingState)
+
+onBeforeUnmount(() => {
   if (props.buttonId !== '') {
-    $bus.$off(`disable-loading-${props.buttonId}`)
+    $bus.$off(props.buttonId, handleButtonLoadingState)
   }
 })
 </script>

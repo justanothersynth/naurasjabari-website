@@ -164,6 +164,19 @@ const handleTransitionEnd = (event: TransitionEvent) => {
 }
 
 /**
+ * When a parent hexagon is registered and positioned, initialize positioning of dependent hexagons
+ * @param event - The event and hexagon data
+ */
+const handleHexagonRegistered = (event: unknown) => {
+  const { name } = event as Hexagon
+  if (props.attachedTo === name) {
+    if (!hexagonRef.value) return
+    updatePosition()
+    visible.value = true
+  }
+}
+
+/**
  * When hexagons are registered or their properties are updated, update their position
  */
 watch(
@@ -171,18 +184,8 @@ watch(
   updatePosition
 )
 
-/**
- * When a parent hexagon is registered and positioned, initialize positioning of dependent hexagons
- * @param event - The event and hexagon data
- */
-$bus.$on('hexagon-registered', (event: unknown) => {
-  const { name } = event as Hexagon
-  if (props.attachedTo === name) {
-    if (!hexagonRef.value) return
-    updatePosition()
-    visible.value = true
-  }
-})
+
+$bus.$on('hexagon-registered', handleHexagonRegistered)
 
 onMounted(() => {
   // Start the animation chain
@@ -194,6 +197,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   hexagonRef.value?.removeEventListener('transitionend', handleTransitionEnd)
+  $bus.$off('hexagon-registered', handleHexagonRegistered)
 })
 </script>
 

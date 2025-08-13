@@ -198,13 +198,14 @@ const handleHexNodeTriggered = (event: unknown) => {
   }
 }
 
-$bus.$on('hex-node-mounted', (event: unknown) => {
+const handleHexNodeMounted = (event: unknown) => {
   const { name, radius } = event as HexNode
   if (props.attachedTo === name) {
     positionAlongRadius(radius, props.angle)
   }
-})
+}
 
+$bus.$on('hex-node-mounted', handleHexNodeMounted)
 $bus.$on('hex-node-triggered', handleHexNodeTriggered)
 
 onMounted(() => {
@@ -221,6 +222,11 @@ onMounted(() => {
   }
   $bus.$emit('hex-node-mounted', data)
   isMounted.value = true
+})
+
+onBeforeUnmount(() => {
+  $bus.$off('hex-node-mounted', handleHexNodeMounted)
+  $bus.$off('hex-node-triggered', handleHexNodeTriggered)
 })
 </script>
 

@@ -45,11 +45,11 @@ const handleTransitionEnd = (event: TransitionEvent) => {
   }
 }
 
-$bus.$on('hex-reset', () => {
+const handleHexReset = () => {
   hexCanvasTranslation.value = { x: 0, y: 0 }
-})
+}
 
-$bus.$on('hex-node-triggered', (event: unknown) => {
+const handleHexNodeTriggered = (event: unknown) => {
   const { name } = event as HexNode
   const hexNode = hexStore.getHexNode(name)
 
@@ -83,7 +83,11 @@ $bus.$on('hex-node-triggered', (event: unknown) => {
     x: -offsetX,
     y: -offsetY
   })
-})
+}
+
+$bus.$on('hex-reset', handleHexReset)
+
+$bus.$on('hex-node-triggered', handleHexNodeTriggered)
 
 onMounted(() => {
   hexCanvasInnerRef.value?.addEventListener('transitionend', handleTransitionEnd)
@@ -91,6 +95,8 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   hexCanvasInnerRef.value?.removeEventListener('transitionend', handleTransitionEnd)
+  $bus.$off('hex-reset', handleHexReset)
+  $bus.$off('hex-node-triggered', handleHexNodeTriggered)
 })
 </script>
 
