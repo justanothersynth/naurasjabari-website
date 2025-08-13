@@ -69,6 +69,7 @@
                       v-for="column in activity"
                       :key="`${region}-${timeframeIndex}-${activityIndex}-${column}`"
                       class="flex flex-col justify-end gap-1">
+                      <!-- {{ column }} -->
                       <span
                         v-for="point in column"
                         :key="`${region}-${timeframeIndex}-${activityIndex}-${column}-${point}`"
@@ -127,9 +128,10 @@ const timeframeMap = {
 
 const heatMap = {
   quiet: 1,
-  unsettled: 2,
-  'active intervals': 3,
-  active: 4,
+  'unsettled intervals': 2,
+  unsettled: 3,
+  'active intervals': 4,
+  active: 5,
   'stormy intervals': 5,
   stormy: 6,
   'major storm intervals': 7,
