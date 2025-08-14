@@ -235,21 +235,19 @@ const centerCanvasVertically = () => {
   })
 }
 
-const toggleVisitButtonActive = () => {
-  visitButtonActive.value = !visitButtonActive.value
-  centerCanvasVertically()
-}
-
 onMousePressStart(async () => {
-  if (!isHoveringCanvas.value) return
-  toggleVisitButtonActive()
+  if (!isHoveringCanvas.value || !visitButtonVisible.value) return
+  visitButtonActive.value = true
   await useDelay(150)
   const targetHexNode = hexagonStore.getHexNode(targetNodeInfo.value?.name ?? '')
   if (targetHexNode?.url && visitButtonVisible.value) {
     $bus.$emit('hex-node-triggered', { name: targetNodeInfo.value?.name })
   }
 })
-onMousePressEnd(toggleVisitButtonActive)
+onMousePressEnd(() => {
+  visitButtonActive.value = false
+  centerCanvasVertically()
+})
 
 watch(computedPercentage, (newVal) => {
   const setForceCursorPointer = newVal > settings.maxPercentage && isHoveringHexagonName.value === ''
