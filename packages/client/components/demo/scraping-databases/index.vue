@@ -95,7 +95,7 @@ const {
 } = useSupabaseFetchMulti<GeostormSupabase[]>({
   table: 'geostorm',
   select: '*',
-  limit: 20,
+  limit: 10,
   orderBy: 'created_at',
   orderDirection: 'desc',
   filters: [

@@ -58,23 +58,22 @@
 </template>
 
 <script lang="ts" setup>
-interface Props {
+const props = defineProps<{
   currentPage: number
   limit: number
-  totalItems?: number
+  totalItems: number
   hasPrevious: boolean
   hasNext: boolean
-}
+}>()
 
-interface Emits {
+const emit = defineEmits<{
   (e: 'previous' | 'next'): void
-}
-
-const props = defineProps<Props>()
-const emit = defineEmits<Emits>()
+}>()
 
 const startItem = computed(() => {
-  return (props.currentPage - 1) * props.limit + 1
+  const value = (props.currentPage - 1) * props.limit + 1
+  if (value > props.totalItems) return props.totalItems
+  return value
 })
 
 const endItem = computed(() => {

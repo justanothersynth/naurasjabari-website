@@ -30,8 +30,8 @@ export const useSupabaseFetchMulti = <T = unknown>(
   const filters = ref<SupabaseFilter[]>(options.filters || [])
   const searchTerm = ref(options.searchTerm || '')
   
-  // Keep track of cursors for previous pages
-  const cursorHistory = ref<(string | null)[]>([null])
+  // Keep track of page boundaries for navigation
+  const pageHistory = ref<{ startCursor: string | null, endCursor: string | null }[]>([{ startCursor: null, endCursor: null }])
   const currentPage = ref(1)
   const hasPrevious = computed(() => currentPage.value > 1)
 
@@ -163,12 +163,16 @@ export const useSupabaseFetchMulti = <T = unknown>(
 
     const lastItem = data.value.data[data.value.data.length - 1] as PaginatedItem
     if (lastItem && lastItem[orderBy.value]) {
-      // Store current cursor in history
-      cursorHistory.value.push(currentCursor.value)
+      // Store current page end cursor in history
+      const currentPageIndex = currentPage.value - 1
+      pageHistory.value[currentPageIndex].endCursor = lastItem[orderBy.value] as string
       
-      // Set new cursor
+      // Set new cursor and add new page to history
       currentCursor.value = lastItem[orderBy.value] as string
       currentPage.value++
+      
+      // Add new page entry to history
+      pageHistory.value.push({ startCursor: currentCursor.value, endCursor: null })
       
       // Refresh data with new cursor
       initQueries()
@@ -179,12 +183,15 @@ export const useSupabaseFetchMulti = <T = unknown>(
   const goToPreviousPage = async () => {
     if (!hasPrevious.value) return
 
-    // Get previous cursor from history
-    cursorHistory.value.pop() // Remove current cursor
-    const previousCursor = cursorHistory.value[cursorHistory.value.length - 1]
-    
-    currentCursor.value = previousCursor
+    // Remove current page from history
+    pageHistory.value.pop()
     currentPage.value--
+    
+    // Get the previous page's start cursor
+    const previousPageIndex = currentPage.value - 1
+    const previousPage = pageHistory.value[previousPageIndex]
+    
+    currentCursor.value = previousPage.startCursor
     
     // Refresh data with previous cursor
     initQueries()
@@ -193,7 +200,7 @@ export const useSupabaseFetchMulti = <T = unknown>(
 
   const resetPagination = async () => {
     currentCursor.value = null
-    cursorHistory.value = [null]
+    pageHistory.value = [{ startCursor: null, endCursor: null }]
     currentPage.value = 1
     initQueries()
     await fetchData()
