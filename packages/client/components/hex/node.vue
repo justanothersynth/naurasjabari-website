@@ -49,7 +49,8 @@ const settings = {
 const { $bus } = useNuxtApp()
 const store = useHexagonStore()
 const {
-  selectedHexNode
+  selectedHexNode,
+  canvasIsInViewport
 } = storeToRefs(store)
 const hexNodeRef = ref<HTMLElement | null>(null)
 const hexNodeOffset = ref('')
@@ -63,9 +64,42 @@ const { tilt: parallaxTilt, roll: parallaxRoll } = useParallax(typeof document !
 // Mouse tracking relative to viewport for opacity animation
 const { x: mouseX, y: mouseY } = useMouse({ type: 'client' })
 
+// Store last mouse position when canvas was in viewport
+const lastMousePosition = ref({ x: 0, y: 0 })
+// Store last parallax values when canvas was in viewport
+const lastParallaxValues = ref({ tilt: 0, roll: 0 })
+
+/**
+ * Returns the appropriate mouse position based on canvas viewport visibility
+ * Uses current mouse position when canvas is in viewport, last stored position when not
+ */
+const mousePosition = computed(() => {
+  return canvasIsInViewport.value
+    ? { x: mouseX.value, y: mouseY.value }
+    : lastMousePosition.value
+})
+
+/**
+ * Returns the appropriate parallax values based on canvas viewport visibility
+ * Uses current parallax when canvas is in viewport, last stored values when not
+ */
+const parallaxValues = computed(() => {
+  return canvasIsInViewport.value
+    ? { tilt: parallaxTilt.value, roll: parallaxRoll.value }
+    : lastParallaxValues.value
+})
+
+// Update stored values only when canvas is in viewport
+watchEffect(() => {
+  if (canvasIsInViewport.value) {
+    lastMousePosition.value = { x: mouseX.value, y: mouseY.value }
+    lastParallaxValues.value = { tilt: parallaxTilt.value, roll: parallaxRoll.value }
+  }
+})
+
 // Track if mouse has moved from initial position
 const mouseHasMoved = computed(() => {
-  return mouseX.value !== 0 || mouseY.value !== 0
+  return mousePosition.value.x !== 0 || mousePosition.value.y !== 0
 })
 
 const selectedHexNodeName = computed(() => {
@@ -75,14 +109,15 @@ const selectedHexNodeName = computed(() => {
 /**
  * Calculate parallax offset using useParallax composable
  * Uses pre-scaled tilt/roll values (-0.5 to 0.5) with inverse scaling
+ * Only updates when canvas is in viewport, preserves last value when not visible
  */
 const parallaxOffset = computed(() => {
   // Return zero offset during SSR to match server-rendered content
   if (!isMounted.value) return { x: 0, y: 0 }
   const dampening = selectedHexNodeName.value === props.name ? 1 : settings.dampeningFactor
   return {
-    x: -parallaxTilt.value * props.parallaxIntensity * dampening,
-    y: parallaxRoll.value * props.parallaxIntensity * dampening
+    x: -parallaxValues.value.tilt * props.parallaxIntensity * dampening,
+    y: parallaxValues.value.roll * props.parallaxIntensity * dampening
   }
 })
 
@@ -143,6 +178,7 @@ const getHexNodeViewportPosition = () => {
 
 /**
  * Calculate opacity based on mouse distance from hex node center in viewport
+ * Only updates when canvas is in viewport, preserves last calculated value when not visible
  * @returns Opacity value between 0 and 1 based on mouse proximity to hex node
  */
 const calculateProximityOpacity = computed(() => {
@@ -157,9 +193,9 @@ const calculateProximityOpacity = computed(() => {
 
   const hexNodePosition = getHexNodeViewportPosition()
   
-  // Calculate distance from mouse to hex node center
-  const deltaX = mouseX.value - hexNodePosition.x
-  const deltaY = mouseY.value - hexNodePosition.y
+  // Calculate distance from mouse to hex node center using viewport-aware mouse position
+  const deltaX = mousePosition.value.x - hexNodePosition.x
+  const deltaY = mousePosition.value.y - hexNodePosition.y
   const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
   
   // If mouse is within the radius, opacity is always 1
