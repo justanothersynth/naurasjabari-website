@@ -1,6 +1,6 @@
 <template>
   <div
-    :style="{ transform: `translate(${x - 20}px, ${y - 155}px)` }"
+    :style="{ transform: `translate(${mousePosition.x - 20}px, ${mousePosition.y - 155}px)` }"
     :class="['mouse-hex-node-indicator', {
       visible: mouseHexNodeVisible && isHoveringCanvas && isHoveringHexagonName === '',
       'visit-button-visible': visitButtonVisible,
@@ -46,12 +46,33 @@ const {
   hexNodes,
   selectedHexNode,
   isHoveringHexagonName,
-  isHoveringCanvas
+  isHoveringCanvas,
+  canvasIsInViewport
 } = storeToRefs(hexagonStore)
 
 const mouseHexNodeVisible = ref(false)
 const visitButtonVisible = ref(false)
 const visitButtonActive = ref(false)
+
+// Store the last mouse position when canvas was in viewport
+const lastMousePosition = ref({ x: 0, y: 0 })
+
+/**
+ * Returns the appropriate mouse position based on canvas viewport visibility
+ * Uses current mouse position when canvas is in viewport, last stored position when not
+ */
+const mousePosition = computed(() => {
+  return canvasIsInViewport.value
+    ? { x: x.value, y: y.value }
+    : lastMousePosition.value
+})
+
+// Update last mouse position only when canvas is in viewport
+watchEffect(() => {
+  if (canvasIsInViewport.value) {
+    lastMousePosition.value = { x: x.value, y: y.value }
+  }
+})
 
 const settings = {
   minPercentage: 30,
@@ -65,7 +86,7 @@ const computedPercentage = computed(() => {
   if (!selectedHexNode.value || !import.meta.client) return 0
 
   // Use viewport coordinates for mouse position
-  const mousePos = { x: x.value, y: y.value } as Coordinates
+  const mousePos = { x: mousePosition.value.x, y: mousePosition.value.y } as Coordinates
   const selectedNode = hexagonStore.getHexNode(selectedHexNode.value.name)
   
   if (!selectedNode?.ref) return 0
@@ -106,7 +127,7 @@ const targetNodeInfo = computed(() => {
   if (!selectedHexNode.value || !import.meta.client) return null
   
   // Use viewport coordinates for mouse position
-  const mousePos = { x: x.value, y: y.value } as Coordinates
+  const mousePos = { x: mousePosition.value.x, y: mousePosition.value.y } as Coordinates
   const selectedNode = hexagonStore.getHexNode(selectedHexNode.value.name)
 
   if (!selectedNode?.ref) return null

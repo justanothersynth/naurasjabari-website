@@ -19,6 +19,7 @@
 
 <script setup lang="ts">
 import type { HexNode } from '@/types/hexagon'
+import { useElementVisibility } from '@vueuse/core'
 
 const { $bus } = useNuxtApp()
 
@@ -28,6 +29,14 @@ const hexStore = useHexagonStore()
 const { hexCanvasTranslation } = storeToRefs(hexStore)
 const hexCanvasRef = ref<HTMLElement | null>(null)
 const hexCanvasInnerRef = ref<HTMLElement | null>(null)
+
+// Detect when the canvas is in viewport
+const canvasIsVisible = useElementVisibility(hexCanvasRef)
+
+// Update store when canvas visibility changes
+watchEffect(() => {
+  hexStore.setCanvasIsInViewport(canvasIsVisible.value)
+})
 
 provide('hexCanvasRef', hexCanvasRef)
 

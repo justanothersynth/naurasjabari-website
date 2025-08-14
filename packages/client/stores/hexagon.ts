@@ -11,6 +11,7 @@ export const useHexagonStore = defineStore('hexagon', () => {
   const selectedHexNode = ref<HexNode | null>(null)
   const isHoveringHexagonName = ref<string>('')
   const isHoveringCanvas = ref<HTMLElement | null>(null)
+  const canvasIsInViewport = ref<boolean>(false)
 
   // ================================================================== computed
   const selectedHexagon = computed(() => Array.from(hexagons.value.values()).find(hexagon => hexagon.selected === true))
@@ -91,6 +92,14 @@ export const useHexagonStore = defineStore('hexagon', () => {
     isHoveringCanvas.value = hovering as HTMLElement
   }
 
+  /**
+   * Sets whether the canvas is currently in viewport
+   * @param inViewport - True if canvas is in viewport, false otherwise
+   */
+  const setCanvasIsInViewport = (inViewport: boolean) => {
+    canvasIsInViewport.value = inViewport
+  }
+
   // ==================================================================== return
   return {
     // ----- state
@@ -100,6 +109,7 @@ export const useHexagonStore = defineStore('hexagon', () => {
     selectedHexNode,
     isHoveringHexagonName,
     isHoveringCanvas,
+    canvasIsInViewport,
     // ----- computed
     selectedHexagon,
     // ----- actions
@@ -111,6 +121,7 @@ export const useHexagonStore = defineStore('hexagon', () => {
     setHexCanvasTranslation,
     setSelectedHexNode,
     setIsHoveringHexagonName,
-    setIsHoveringCanvas
+    setIsHoveringCanvas,
+    setCanvasIsInViewport
   }
 })
