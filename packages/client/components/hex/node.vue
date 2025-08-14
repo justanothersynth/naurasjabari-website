@@ -50,7 +50,8 @@ const { $bus } = useNuxtApp()
 const store = useHexagonStore()
 const {
   selectedHexNode,
-  canvasIsInViewport
+  canvasIsInViewport,
+  isHoveringHexagonName
 } = storeToRefs(store)
 const hexNodeRef = ref<HTMLElement | null>(null)
 const hexNodeOffset = ref('')
@@ -183,6 +184,11 @@ const getHexNodeViewportPosition = () => {
  */
 const calculateProximityOpacity = computed(() => {
   if (!isMounted.value || !hexNodeRef.value) return settings.minOpacity
+
+  // If hovering over a hexagon inside this hex node, always return full opacity
+  if (isHoveringHexagonName.value === props.name) {
+    return isSelected.value ? settings.opacitySelectedHexNode : settings.opacityUnselectedHexNode
+  }
 
   // If mouse hasn't moved yet, return initial opacity
   if (!mouseHasMoved.value) {

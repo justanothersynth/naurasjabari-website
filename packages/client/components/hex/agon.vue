@@ -144,7 +144,7 @@ const handleTransitionEnd = (event: TransitionEvent) => {
 /**
  * Update the position of the hexagon relative to its parent hexagon
  */
- const updatePosition = () => {
+const updatePosition = () => {
   const parent = hexagons.value.get(props.attachedTo)
   if (!parent || !hexagonRef.value) return { x: 0, y: 0 }
   const width = hexagonRef.value.clientWidth || parseInt(props.size)
@@ -159,7 +159,7 @@ const handleTransitionEnd = (event: TransitionEvent) => {
  * Handle mouse enter/exit event on hexagon. Primarily used to control the
  * visibility of the mouse indicator.
  */
- const handleMouseEnterLeave = (status: boolean) => {
+const handleMouseEnterLeave = (status: boolean) => {
   store.setIsHoveringHexagonName(status ? belongsToHexNode : '')
 }
 
