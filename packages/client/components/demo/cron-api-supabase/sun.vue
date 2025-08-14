@@ -1,25 +1,31 @@
 <template>
-  <div class="me">
+  <div ref="sunElement" class="sun">
 
     <div class="avatar">
       <img class="avatar-img" />
-      <div class="spinner inner">
+      <div
+        class="spinner inner"
+        :style="{ animationPlayState: isVisible ? 'running' : 'paused' }">
         <span
           v-for="(item, index) in innerRing"
           :key="index"
           :style="{
             transform: `translateX(calc(30px - 2px)) rotateZ(-${360 / innerRing * item}deg)`,
-            animationDelay: `${Math.floor(Math.random() * 30)}s`
+            animationDelay: `${Math.floor(Math.random() * 30)}s`,
+            animationPlayState: isVisible ? 'running' : 'paused'
           }"
           class="peg inner" />
       </div>
-      <div class="spinner outer">
+      <div
+        class="spinner outer"
+        :style="{ animationPlayState: isVisible ? 'running' : 'paused' }">
         <span
           v-for="(item, index) in outerRing"
           :key="index"
           :style="{
             transform: `translateX(calc(30px - 2px)) rotateZ(-${360 / outerRing * item}deg)`,
-            animationDelay: `${Math.floor(Math.random() * 30)}s`
+            animationDelay: `${Math.floor(Math.random() * 30)}s`,
+            animationPlayState: isVisible ? 'running' : 'paused'
           }"
           class="peg outer" />
       </div>
@@ -31,6 +37,9 @@
 <script lang="ts" setup>
 const innerRing = 50
 const outerRing = 45
+
+const sunElement = ref<HTMLElement>()
+const isVisible = useElementVisibility(sunElement)
 </script>
 
 <style lang="scss" scoped>
@@ -107,6 +116,7 @@ const outerRing = 45
       opacity: 0.5;
       animation: spark1 forwards infinite linear alternate 10s;
       animation-delay: inherit;
+      animation-play-state: inherit;
       border-radius: 2px;
     }
   }
@@ -119,6 +129,7 @@ const outerRing = 45
       opacity: 0.3;
       animation: spark2 forwards infinite linear alternate 10s;
       animation-delay: inherit;
+      animation-play-state: inherit;
       border-radius: 1px;
     }
   }
