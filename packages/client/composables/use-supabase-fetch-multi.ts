@@ -35,6 +35,10 @@ export const useSupabaseFetchMulti = <T = unknown>(
   const currentPage = ref(1)
   const hasPrevious = computed(() => currentPage.value > 1)
 
+  // Query variables that will be built by initQueries()
+  let dataQuery: any = null // eslint-disable-line @typescript-eslint/no-explicit-any
+  let countQuery: any = null // eslint-disable-line @typescript-eslint/no-explicit-any
+
   // Set default filter values
   if (filters.value.length) {
     filters.value.forEach(filter => {
@@ -50,7 +54,56 @@ export const useSupabaseFetchMulti = <T = unknown>(
     return data.value.data.length >= limit.value
   })
 
-  // Data fetching function
+  /**
+   * Initializes the data and count queries based on current state
+   */
+  const initQueries = () => {
+    // Set up queries
+    dataQuery = $supabase.client
+      .from(options.table)
+      .select(options.select)
+      .order(orderBy.value, { ascending: orderDirection.value === 'asc' })
+      .limit(limit.value)
+
+    countQuery = $supabase.client
+      .from(options.table)
+      .select(options.select, { count: 'exact', head: true })
+
+    // Apply cursor pagination
+    if (currentCursor.value) {
+      const operator = orderDirection.value === 'asc' ? 'gt' : 'lt'
+      dataQuery = dataQuery.filter(orderBy.value, operator, currentCursor.value)
+    }
+
+    // Apply filters
+    if (filters.value.length) {
+      filters.value.forEach(filter => {
+        dataQuery = useSupabaseApplyFiltersToQuery(dataQuery, filter)
+        countQuery = useSupabaseApplyFiltersToQuery(countQuery, filter)
+      })
+    }
+
+    // Apply search term
+    if (searchTerm.value !== '') {
+      dataQuery = dataQuery.ilike('activities', `%${searchTerm.value}%`)
+      countQuery = countQuery.ilike('activities', `%${searchTerm.value}%`)
+    }
+  }
+
+  // Count fetching function
+  const fetchCount = async () => {
+    try {
+      const countResult = await countQuery
+      totalItems.value = countResult.count || 0
+    } catch {
+      // Silently handle count fetch errors to avoid disrupting the UI
+      totalItems.value = 0
+    }
+  }
+
+  /**
+   * Executes the count and data queries and handles the results
+   */
   const fetchData = async () => {
     try {
       loading.value = true
@@ -59,47 +112,15 @@ export const useSupabaseFetchMulti = <T = unknown>(
         refreshLoading.value = true
       }
       error.value = null
-
-      // Build data query with pagination and ordering
-      let dataQuery = $supabase.client
-        .from(options.table)
-        .select(options.select)
-        .order(orderBy.value, { ascending: orderDirection.value === 'asc' })
-        .limit(limit.value)
-
-      // Apply cursor pagination
-      if (currentCursor.value) {
-        const operator = orderDirection.value === 'asc' ? 'gt' : 'lt'
-        dataQuery = dataQuery.filter(orderBy.value, operator, currentCursor.value)
-      }
-
-      let countQuery = $supabase.client
-        .from(options.table)
-        .select(options.select, { count: 'exact', head: true })
-
-
-      // Apply filter
-      if (filters.value.length) {
-        filters.value.forEach(filter => {
-          dataQuery = useSupabaseApplyFiltersToQuery(dataQuery, filter)
-          countQuery = useSupabaseApplyFiltersToQuery(countQuery, filter)
-        })
-      }
-
-      if (searchTerm.value !== '') {
-        dataQuery = dataQuery.ilike('activities', `%${searchTerm.value}%`)
-        countQuery = countQuery.ilike('activities', `%${searchTerm.value}%`)
-      }
       
       // Execute both queries in parallel
-      const [result, countResult] = await Promise.all([
+      const [result] = await Promise.all([
         dataQuery.then(),
-        countQuery.then()
+        fetchCount()
       ])
 
       data.value = result as unknown as SupabaseResponse<T>
       error.value = result.error
-      totalItems.value = countResult.count || 0
     } catch (err) {
       error.value = err
       data.value = null
@@ -115,7 +136,10 @@ export const useSupabaseFetchMulti = <T = unknown>(
   }
 
   // Refresh function
-  const refresh = async () => await fetchData()
+  const refresh = async () => {
+    initQueries()
+    await fetchData()
+  }
 
   // Update filter and refetch
   const updateFilter = async (payload: { filterId: string, filterValue: string }) => {
@@ -147,6 +171,7 @@ export const useSupabaseFetchMulti = <T = unknown>(
       currentPage.value++
       
       // Refresh data with new cursor
+      initQueries()
       await fetchData()
     }
   }
@@ -162,6 +187,7 @@ export const useSupabaseFetchMulti = <T = unknown>(
     currentPage.value--
     
     // Refresh data with previous cursor
+    initQueries()
     await fetchData()
   }
 
@@ -169,6 +195,7 @@ export const useSupabaseFetchMulti = <T = unknown>(
     currentCursor.value = null
     cursorHistory.value = [null]
     currentPage.value = 1
+    initQueries()
     await fetchData()
   }
 
@@ -176,16 +203,24 @@ export const useSupabaseFetchMulti = <T = unknown>(
   
   const handleSupabaseClientRefreshed = () => {
     initialLoading.value = true
+    initQueries()
     refresh()
   }
 
+  const handleRealtimeChange = () => {
+    fetchCount()
+  }
+
   onMounted(() => {
+    initQueries()
     fetchData()
     $bus.$on('supabase:client-refreshed', handleSupabaseClientRefreshed)
+    $bus.$on('supabase:realtime-change', handleRealtimeChange)
   })
 
   onUnmounted(() => {
     $bus.$off('supabase:client-refreshed', handleSupabaseClientRefreshed)
+    $bus.$off('supabase:realtime-change', handleRealtimeChange)
   })
 
   return {

@@ -47,6 +47,7 @@ useSupabaseSubscribeMulti({
     table: 'sun_moon'
   }],
   data,
+  limit: 1,
   orderDirection: 'desc'
 })
 </script>

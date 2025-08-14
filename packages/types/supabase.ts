@@ -45,6 +45,7 @@ export interface SupabaseSubscribeMultiOptions<T> {
   events: SupabaseRealtimeSubscriptionEvent[]
   data: Ref<{ data: T | null; error: unknown } | null>
   orderDirection: 'asc' | 'desc'
+  limit?: number
 }
 
 export interface SupabaseSubscribeSingleOptions<T> {

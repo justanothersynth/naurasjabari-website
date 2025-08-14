@@ -7,8 +7,7 @@ import type { SupabaseSubscribeMultiOptions, SupabaseRealtimePayload, SupabasePa
  */
 export const useSupabaseSubscribeMulti = <T = unknown>(options: SupabaseSubscribeMultiOptions<T>) => {
   const { $bus, $supabase } = useNuxtApp()
-  const { topic, events, data, orderDirection } = options
-  const realtimeTicker = ref(0) // Track the number of realtime changes
+  const { topic, events, data, orderDirection, limit } = options
 
   /**
    * Handle INSERT operations
@@ -18,24 +17,24 @@ export const useSupabaseSubscribeMulti = <T = unknown>(options: SupabaseSubscrib
     if (!data.value?.data || !Array.isArray(data.value.data) || !payload.new) return
 
     const currentData = [...data.value.data] as SupabasePaginatedItem[]
-    const originalLength = currentData.length
+    const pageLimit = limit || 20 // Default to 20 if no limit provided
     
     // Add new item at the beginning if desc order, at the end if asc order
     if (orderDirection === 'desc') {
       currentData.unshift(payload.new as SupabasePaginatedItem)
-      // Remove the last item to maintain array length
-      if (currentData.length > originalLength) {
+      // Only remove the last item if we exceed the page limit
+      if (currentData.length > pageLimit) {
         currentData.pop()
       }
     } else {
       currentData.push(payload.new as SupabasePaginatedItem)
-      // Remove the first item to maintain array length
-      if (currentData.length > originalLength) {
+      // Only remove the first item if we exceed the page limit
+      if (currentData.length > pageLimit) {
         currentData.shift()
       }
     }
 
-    // Update the data with modified array
+    // Update the data with modified array and trigger reactivity
     data.value = {
       ...data.value,
       data: currentData as T
@@ -97,7 +96,6 @@ export const useSupabaseSubscribeMulti = <T = unknown>(options: SupabaseSubscrib
    * @param payload - The payload from the Supabase realtime subscription
    */
   const handleRealtimeChange = (payload: SupabaseRealtimePayload) => {
-    realtimeTicker.value++
     switch (payload.eventType) {
       case 'INSERT': handleInsert(payload); break
       case 'UPDATE': handleUpdate(payload); break

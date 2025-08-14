@@ -29,7 +29,6 @@ defineProps<{
   100% {
     transform: translateX(100%);
   }
-
 }
 
 .animate-shimmer {

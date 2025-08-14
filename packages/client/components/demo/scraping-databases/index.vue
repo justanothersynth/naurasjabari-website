@@ -116,6 +116,7 @@ useSupabaseSubscribeMulti({
     table: 'geostorm'
   }],
   data,
+  limit: 20,
   orderDirection: 'desc'
 })
 
