@@ -17,6 +17,7 @@
     <div class="flex items-start justify-end flex-1">
       <client-only>
         <img
+          ref="imageRef"
           src="/images/nauras-profile.jpg"
           alt="Profile picture of Nauras"
           class="w-80 aspect-square object-cover rounded-4xl shadow-2xl"
@@ -28,15 +29,26 @@
 </template>
 
 <script setup lang="ts">
-import { useMouse } from '@vueuse/core'
+import { useMouse, useElementVisibility } from '@vueuse/core'
 
 const { x, y } = useMouse()
 
+// Create template reference for the image
+const imageRef = ref<HTMLImageElement>()
+
+// Detect when the image is in viewport
+const isImageVisible = useElementVisibility(imageRef)
+
+// Store the last calculated transform value
+const lastTransform = ref({
+  transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)',
+  transition: 'transform 0.1s ease-out'
+})
+
 /**
- * Calculate tilt transformation based on mouse position
- * Creates a subtle 3D perspective effect on the profile picture
+ * Calculate current tilt transformation based on mouse position
  */
-const tiltTransform = computed(() => {
+const currentTransform = computed(() => {
   // Get viewport dimensions
   const centerX = window.innerWidth / 2
   const centerY = window.innerHeight / 2
@@ -53,5 +65,20 @@ const tiltTransform = computed(() => {
     transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
     transition: 'transform 0.1s ease-out'
   }
+})
+
+// Update last transform when image is visible
+watchEffect(() => {
+  if (isImageVisible.value) {
+    lastTransform.value = currentTransform.value
+  }
+})
+
+/**
+ * Returns the appropriate transform based on viewport visibility
+ * Uses current transform when visible, last calculated value when not visible
+ */
+const tiltTransform = computed(() => {
+  return isImageVisible.value ? currentTransform.value : lastTransform.value
 })
 </script>
