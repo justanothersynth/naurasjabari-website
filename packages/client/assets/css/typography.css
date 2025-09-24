@@ -1,14 +1,14 @@
-@font-face {
+/* @font-face {
   font-family: 'Inter';
   src: url('../fonts/inter/variable.ttf') format('truetype-variations');
   font-weight: 100 900;
-}
+} */
 
-@font-face {
+/* @font-face {
   font-family: 'Inconsolata';
   src: url('../fonts/inconsolata/variable.ttf') format('truetype-variations');
   font-weight: 100 900;
-}
+} */
 
 @font-face {
   font-family: 'Wotfard';
@@ -17,5 +17,40 @@
        url('../fonts/wotfard/regular.woff2') format('woff2'),
        url('../fonts/wotfard/regular.ttf') format('truetype');
   font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('../fonts/proximanova/regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('../fonts/proximanova/regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('../fonts/proximanova/medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('../fonts/proximanova/semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('../fonts/proximanova/black.otf') format('opentype');
+  font-weight: 800;
   font-style: normal;
 }
