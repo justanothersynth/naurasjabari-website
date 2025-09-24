@@ -1,5 +1,5 @@
 <template>
-  <main class="pt-40 pb-20 font-proxima">
+  <main class="pt-40 pb-20 font-inter">
 
     <div class="max-w-4xl mx-auto">
 

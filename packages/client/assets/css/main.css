@@ -7,7 +7,7 @@
 @theme {
   /* Fonts */
   --font-sans: 'Wotfard', sans-serif;
-  --font-proxima: 'Proxima Nova', serif;
+  --font-inter: 'Inter', serif;
 
   /* Font size - 1.25 Ratio Scale */
   --text-*: initial;
