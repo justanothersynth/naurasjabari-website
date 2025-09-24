@@ -3,7 +3,7 @@
 
     <div class="flex rounded-md bg-white outline-1 -outline-offset-1 outline-gray-200 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-blue-600">
       <input
-        ref="searchInput"
+        ref="searchInputRef"
         v-model="searchTerm"
         type="text"
         name="claims-search"
@@ -49,14 +49,24 @@ const emit = defineEmits<{
 }>()
 
 const searchTerm = ref(props.searchTerm || '')
-const searchInput = ref<HTMLInputElement>()
+const searchInputRef = ref<HTMLInputElement>()
 const keys = useMagicKeys()
 const cmdK = keys['Meta+k']
+const { y } = useWindowScroll()
 
 // Watch for Cmd+K and focus the search input
 watch(cmdK, (pressed) => {
-  if (pressed && searchInput.value) {
-    searchInput.value.focus()
+  if (pressed && searchInputRef.value) {
+    // Get the element's position relative to the document
+    const rect = searchInputRef.value.getBoundingClientRect()
+    const elementTop = rect.top + window.scrollY
+    const targetScrollY = elementTop - 20
+    // Smooth scroll to the calculated position
+    y.value = targetScrollY
+    // Focus after a small delay to ensure scroll has started
+    setTimeout(() => {
+      searchInputRef.value?.focus()
+    }, 100)
   }
 })
 
