@@ -10,9 +10,7 @@
     </div>
 
     <div class="mt-auto">
-      <p class="font-bold">
-        ABOUT ME
-      </p>
+      <img src="/images/profile-img.png" alt="Nauras Jabari" class="aspect-square w-25 mb-6" />
       <p>
         I really enjoy the process of designing and building things that are useful and that will bring joy to those that use them.
       </p>
