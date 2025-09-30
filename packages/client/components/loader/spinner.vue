@@ -1,12 +1,30 @@
 <template>
-  <div class="spinner">
+  <div
+    class="spinner"
+    :style="{
+      '--spin-duration': `${duration}s`,
+      '--l20-1-duration': `${duration * 0.6}s`,
+      '--l20-2-duration': `${duration * 1.2}s`
+    }">
     <div class="loader" />
   </div>
 </template>
 
+<script setup lang="ts">
+/**
+ * Props for the Spinner component
+ */
+type Props = {
+  /** Animation duration in seconds. Defaults to 1 second. */
+  duration?: number
+}
+
+const { duration = 1 } = defineProps<Props>()
+</script>
+
 <style lang="scss" scoped>
 .spinner {
-  animation: spin 1s infinite linear;
+  animation: spin var(--spin-duration, 1s) infinite linear;
 }
 
 .loader {
@@ -15,8 +33,8 @@
   border-radius: 50%;
   border: 2px solid #514B82;
   animation:
-    l20-1 0.6s infinite linear alternate,
-    l20-2 1.2s infinite linear;
+    l20-1 var(--l20-1-duration, 0.6s) infinite linear alternate,
+    l20-2 var(--l20-2-duration, 1.2s) infinite linear;
 }
 
 @keyframes l20-1{

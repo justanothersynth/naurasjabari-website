@@ -9,7 +9,8 @@ export const buttonVariants = cva(
         bare: '',
         default: 'py-2 px-3',
         sidebar: 'rounded-xl p-1.5 aspect-square w-10 h-10',
-        link: 'text-dark underline-offset-4 hover:underline'
+        link: 'text-dark underline-offset-4 hover:underline',
+        form: 'py-2 px-3 bg-gray-200 rounded-sm'
       },
       selected: {
         true: 'bg-white cursor-default',
@@ -36,6 +37,11 @@ export const buttonVariants = cva(
         selected: true,
         disabled: false,
         class: 'bg-gray-900 text-white'
+      },
+      {
+        variant: 'form',
+        disabled: false,
+        class: 'hover:bg-gray-500 hover:text-white'
       }
     ],
     defaultVariants: {
