@@ -14,9 +14,7 @@
         <div class="divider-horiz bg-line bottom-0" />
       </div>
       <div class="py-4">
-        <p v-for="n in 20" :key="n">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur, nisl nisi consectetur nisi, euismod euismod nisi nisi euismod. Sed euismod, nisl euismod euismod, nisi nisi euismod nisi, euismod euismod nisi nisi euismod. Mauris euismod, nisi euismod euismod, nisi nisi euismod nisi, euismod euismod nisi nisi euismod. Suspendisse potenti. Proin euismod, nisi euismod euismod, nisi nisi euismod nisi, euismod euismod nisi nisi euismod. Etiam euismod, nisi euismod euismod, nisi nisi euismod nisi, euismod euismod nisi nisi euismod. Nullam euismod, nisi euismod euismod, nisi nisi euismod nisi, euismod euismod nisi nisi euismod.
-        </p>
+        <ProjectEntry1 />
       </div>
     </main>
 
