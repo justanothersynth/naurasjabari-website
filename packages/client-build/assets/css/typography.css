@@ -1,21 +1,12 @@
-@font-face {
-  font-family: 'Inter';
-  src: url('../fonts/inter/variable.ttf') format('truetype-variations');
-  font-weight: 100 900;
-}
-
 /* @font-face {
-  font-family: 'Inconsolata';
-  src: url('../fonts/inconsolata/variable.ttf') format('truetype-variations');
-  font-weight: 100 900;
+  font-family: 'Monument Grotesk';
+  src: url('../fonts/monument-grotesk/mono.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
 } */
 
 @font-face {
-  font-family: 'Wotfard';
-  src: url('../fonts/wotfard/regular.eot');
-  src: url('../fonts/wotfard/regular.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/wotfard/regular.woff2') format('woff2'),
-       url('../fonts/wotfard/regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'Inconsolata';
+  src: url('../fonts/inconsolata/variable.ttf') format('truetype-variations');
+  font-weight: 100 900;
 }
