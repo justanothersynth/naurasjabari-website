@@ -1,0 +1,8 @@
+{
+  "strict": "true",
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "types": ["node", "bun"]
+  },
+  "exclude": [".output"]
+}

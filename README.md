@@ -69,7 +69,7 @@ git commit -a -m 'feat: synced supabase migration file'
 
 ### Vercel
 
-This project utilizes edge functions that run on Vercel. To deploy them, do the following:
+This project utilizes edge functions that run on Vercel. To deploy them, run the following:
 
 ```bash
 cd packages/vercel

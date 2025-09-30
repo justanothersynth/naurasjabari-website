@@ -8,11 +8,6 @@
     "type": "git",
     "url": "git@github.com:timelytree/naurasjabari-website.git"
   },
-  "devDependencies": {
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
-    "husky": "^9.1.7"
-  },
   "bugs": {
     "url": "https://github.com/timelytree/naurasjabari-website/issues"
   },
@@ -24,14 +19,20 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "client:check": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client check",
-    "client:lint": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client lint",
-    "client:test": "echo 'TODO: add client tests'",
-    "client:dev": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client dev",
-    "client:start": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client start",
-    "client:launch": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client launch",
-    "client:build": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client build",
-    "client:upgrade-nuxt": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client upgrade-nuxt",
+    "client-dev:check": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client-dev check",
+    "client-dev:lint": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client-dev lint",
+    "client-dev:dev": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client-dev dev",
+    "client-dev:start": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client-dev start",
+    "client-dev:launch": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client-dev launch",
+    "client-dev:build": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client-dev build",
+    "client-dev:upgrade-nuxt": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client-dev upgrade-nuxt",
+    "client-build:check": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client-build check",
+    "client-build:lint": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client-build lint",
+    "client-build:dev": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client-build dev",
+    "client-build:start": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client-build start",
+    "client-build:launch": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client-build launch",
+    "client-build:build": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client-build build",
+    "client-build:upgrade-nuxt": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/client-build upgrade-nuxt",
     "api:check": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/api check",
     "api:lint": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/api lint",
     "api:test": "FORCE_COLOR=1 bun run --elide-lines 0 --filter @workspace/api test",
@@ -51,5 +52,10 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "husky": "^9.1.7"
+  }
 }
