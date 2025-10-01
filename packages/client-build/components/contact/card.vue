@@ -22,7 +22,7 @@
   <div
     v-if="size === 'mini'"
     :class="['flex items-center', size === 'mini' ? 'mt-2' : 'mt-6']"
-    @click="$emit('form')">
+    @click="$bus.$emit('open-contact-form')">
     <div :class="labelClasses">
       or
     </div>
@@ -38,6 +38,8 @@ withDefaults(defineProps<{
 }>(), {
   size: 'default'
 })
+
+const { $bus } = useNuxtApp()
 
 const labelClasses = 'label flex items-center font-semibold'
 const linkClasses = 'text-blue-600 hover:underline ml-auto'

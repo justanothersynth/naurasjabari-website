@@ -55,6 +55,10 @@ p:not(:last-child) {
   height: calc(100% - var(--spacing) * 8);
 }
 
+@utility bg-prime {
+  background-color: #FFFFF8;
+}
+
 @utility bg-line {
   background-color: rgba(0, 0, 0, 0.14);
 }

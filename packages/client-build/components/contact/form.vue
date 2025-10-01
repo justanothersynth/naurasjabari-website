@@ -1,5 +1,13 @@
 <template>
-  <form class="w-full max-w-md mx-auto space-y-4 flex flex-col items-center" @submit.prevent="handleSubmit">
+  <form
+    ref="formElement"
+    class="form w-full max-w-md mx-auto space-y-4 flex flex-col items-center"
+    :class="{
+      'floating absolute right-0 bg-prime border-line border-2 p-4 transition duration-300 ease-in-out z-100 shadow-xl': floating,
+      'translate-x-0 opacity-100': isOpen && floating,
+      'translate-x-full opacity-0': !isOpen && floating
+    }"
+    @submit.prevent="handleSubmit">
     
     <!-- Name Field -->
     <div class="space-y-2 w-full">
@@ -77,18 +85,25 @@
       </p>
     </div>
 
-    <!-- Submit Button -->
-    <div class="pt-4">
+    <!-- Action Buttons -->
+    <div class="flex justify-end">
       <UiButton
         type="submit"
         variant="form"
-        :disabled="isSubmitting"
-        class="w-full">
+        :disabled="isSubmitting">
         <LoaderSpinner
           v-if="isSubmitting"
           :duration="1.5"
           class="mr-2" />
         {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+      </UiButton>
+      <UiButton
+        v-if="floating"
+        type="button"
+        variant="link"
+        class="ml-4"
+        @click="$bus.$emit('close-contact-form')">
+        Cancel
       </UiButton>
     </div>
 
@@ -104,6 +119,13 @@
 
 <script setup lang="ts">
 import { Primitive, Label } from 'reka-ui'
+import { onClickOutside, useEventListener, useMagicKeys } from '@vueuse/core'
+
+const props = withDefaults(defineProps<{
+  floating?: boolean
+}>(), {
+  floating: false
+})
 
 /**
  * Form data interface
@@ -133,17 +155,22 @@ const formData = ref<FormData>({
   message: ''
 })
 
+const { $bus } = useNuxtApp()
+
 const labelClasses = 'block font-medium mb-1'
 const fieldClasses = 'block w-full px-3 py-2 border border-line bg-gray-fill focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors'
 const errorClasses = 'text-sm text-red-500 mt-[-4px]'
 
-// Form validation errors
-const errors = ref<FormErrors>({})
+const formElement = ref<HTMLFormElement | null>(null)
+const isOpen = ref(false)
+const initialScrollY = ref(0)
 
-// Form submission state
+const errors = ref<FormErrors>({})
 const isSubmitting = ref(false)
 const submitMessage = ref('')
 const submitSuccess = ref(false)
+
+const { Escape } = useMagicKeys()
 
 /**
  * Validates the form data
@@ -288,4 +315,53 @@ const updateMessage = (event: Event): void => {
     errors.value = { ...errors.value, message: undefined }
   }
 }
+
+const handleOpenContactForm = () => {
+  isOpen.value = true
+  initialScrollY.value = window.scrollY
+}
+
+const handleCloseContactForm = () => {
+  isOpen.value = false
+}
+
+$bus.$on('open-contact-form', handleOpenContactForm)
+$bus.$on('close-contact-form', handleCloseContactForm)
+
+// Close form when clicking outside (only for floating forms)
+onClickOutside(formElement, () => {
+  if (props.floating && isOpen.value) {
+    handleCloseContactForm()
+  }
+})
+
+// Close form when scrolling more than 50px (only for floating forms)
+useEventListener(window, 'scroll', () => {
+  if (props.floating && isOpen.value) {
+    const scrollDiff = Math.abs(window.scrollY - initialScrollY.value)
+    if (scrollDiff > 50) {
+      handleCloseContactForm()
+    }
+  }
+})
+
+// Close form when pressing Escape key (only for floating forms)
+watch(Escape, (pressed) => {
+  if (pressed && props.floating && isOpen.value) {
+    handleCloseContactForm()
+  }
+})
+
+onBeforeUnmount(() => {
+  $bus.$off('open-contact-form', handleOpenContactForm)
+  $bus.$off('close-contact-form', handleCloseContactForm)
+})
 </script>
+
+<style lang="scss" scoped>
+.form {
+  &.floating {
+    top: calc(100% + var(--spacing) * 2);
+  }
+}
+</style>

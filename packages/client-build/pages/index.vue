@@ -23,6 +23,7 @@
             CONTACT ME
           </p>
           <ContactCard size="mini" />
+          <ContactForm :floating="true" />
           <div class="divider-vert bg-line left-0 top-0 h-full" />
         </div>
 
