@@ -1,11 +1,11 @@
 <template>
   <aside class="flex flex-col h-full">
 
-    <div class="relative h-30">
+    <div class="header relative h-30">
       <p class="font-bold">
         NAURAS JABARI
       </p>
-      <p>Carpenter at heart. General contractor everywhere else.</p>
+      <p>Carpenter at heart.<br />General contractor everywhere else.</p>
       <div class="divider-horiz bg-line bottom-0" />
     </div>
 
@@ -21,3 +21,11 @@
     
   </aside>
 </template>
+
+<style lang="scss" scoped>
+.header {
+  @include customMaxMQ(1233px) {
+    height: calc(var(--spacing) * 34);
+  }
+}
+</style>

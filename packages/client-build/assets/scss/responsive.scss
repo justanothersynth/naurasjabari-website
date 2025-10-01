@@ -1,0 +1,29 @@
+/**
+ * This file should NOT contain any styling (classes or IDs). It should only contain
+ * variables, functions, mixins, etc.
+ */
+
+// ----------------------------------------------------------------- Breakpoints
+$breakpoint_Tiny: 26.875rem; // 430px
+$breakpoint_Mini: 40rem; // 640px
+$breakpoint_Small: 53.125rem; // 850px
+$breakpoint_Medium: 64rem; // 1024px
+$breakpoint_Large: 75rem; // 1200px
+$breakpoint_Xlarge: 90rem; // 1440px
+$breakpoint_UltraLarge: 140.625rem; // 2250px
+
+$gridWidth: 90rem; // 1440px
+
+// --------------------------------------------------------------- Media Queries
+@mixin tiny { @media screen and (max-width: $breakpoint_Tiny) { @content; } }
+@mixin mini { @media screen and (max-width: $breakpoint_Mini) { @content; } }
+@mixin small { @media screen and (max-width: $breakpoint_Small) { @content; } }
+@mixin medium { @media screen and (max-width: $breakpoint_Medium) { @content; } }
+@mixin large { @media screen and (max-width: $breakpoint_Large) { @content; } }
+@mixin xlarge { @media screen and (max-width: $breakpoint_Xlarge) { @content; } }
+@mixin ultraLarge { @media screen and (max-width: $breakpoint_UltraLarge) { @content; } }
+
+@mixin gridMaxMQ { @media screen and (max-width: #{$gridWidth + 2rem}) { @content; } }
+@mixin gridMinMQ { @media screen and (max-width: #{$gridWidth + 0.0625rem}) { @content; } }
+@mixin customMaxMQ($width) { @media screen and (max-width: $width) { @content; } }
+@mixin customMinMQ($width) { @media screen and (min-width: $width) { @content; } }

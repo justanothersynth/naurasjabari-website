@@ -1,5 +1,5 @@
 import { cva  } from 'class-variance-authority'
-import type {VariantProps} from 'class-variance-authority';
+import type { VariantProps } from 'class-variance-authority'
 
 export const buttonVariants = cva(
   'cursor-pointer whitespace-nowrap transition-colors duration-150 ease-in-out',
@@ -10,7 +10,7 @@ export const buttonVariants = cva(
         default: 'py-2 px-3',
         sidebar: 'rounded-xl p-1.5 aspect-square w-10 h-10',
         link: 'text-dark underline-offset-4 hover:underline',
-        form: 'py-2 px-3 bg-gray-200 rounded-sm'
+        form: 'py-2 px-3 bg-gray-200'
       },
       selected: {
         true: 'bg-white cursor-default',
