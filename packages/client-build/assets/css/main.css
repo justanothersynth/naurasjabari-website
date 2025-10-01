@@ -63,6 +63,10 @@ p:not(:last-child) {
   border-color: rgba(0, 0, 0, 0.14);
 }
 
+@utility bg-gray-fill {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
 @utility cover {
   position: absolute;
   top: 0;

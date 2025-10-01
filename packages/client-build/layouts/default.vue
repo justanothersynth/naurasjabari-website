@@ -1,6 +1,6 @@
 <template>
   <TooltipProvider>
-    <div :class="['layout overflow-x-hidden', { 'force-cursor-pointer': forceCursorPointer }]">
+    <div :class="['layout flex justify-center items-center overflow-x-hidden', { 'force-cursor-pointer': forceCursorPointer }]">
 
       <slot />
 

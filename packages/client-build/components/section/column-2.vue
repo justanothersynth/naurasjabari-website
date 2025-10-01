@@ -33,7 +33,7 @@
           <Icon name="iconoir:at-sign" size="16" class="mr-1" />
           email
         </div>
-        <a href="mailto:hello@naurasjabari.com" class="pl-6 text-blue-600 hover:underline">
+        <a href="mailto:hello@naurasjabari.com" class="text-blue-600 hover:underline">
           hello@naurasjabari.com
         </a>
       </div>
