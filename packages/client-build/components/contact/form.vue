@@ -345,6 +345,13 @@ useEventListener(window, 'scroll', () => {
   }
 })
 
+// Close form when resizing the window (only for floating forms)
+useEventListener(window, 'resize', () => {
+  if (props.floating && isOpen.value) {
+    handleCloseContactForm()
+  }
+})
+
 // Close form when pressing Escape key (only for floating forms)
 watch(Escape, (pressed) => {
   if (pressed && props.floating && isOpen.value) {
