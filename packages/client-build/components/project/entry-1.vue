@@ -46,6 +46,7 @@ const images = [
 
 const currentImage = ref(defaultImage)
 const isLandscape = ref(true)
+let leaveTimeout: NodeJS.Timeout | null = null
 
 function checkImageOrientation(imageSrc: string) {
   const img = new Image()
@@ -56,13 +57,23 @@ function checkImageOrientation(imageSrc: string) {
 }
 
 function handleImageHover(image: string) {
+  // Clear any pending leave timeout
+  if (leaveTimeout) {
+    clearTimeout(leaveTimeout)
+    leaveTimeout = null
+  }
+  
   currentImage.value = image
   checkImageOrientation(image)
 }
 
 function handleImageLeave() {
-  currentImage.value = defaultImage
-  checkImageOrientation(defaultImage)
+  // Debounce the reset to default image
+  leaveTimeout = setTimeout(() => {
+    currentImage.value = defaultImage
+    checkImageOrientation(defaultImage)
+    leaveTimeout = null
+  }, 50)
 }
 
 // Check default image orientation on mount
