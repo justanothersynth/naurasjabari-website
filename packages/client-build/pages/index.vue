@@ -18,9 +18,9 @@
 
     <div ref="trackRef" class="track" :style="{ transform: trackTransformStyle }">
 
-      <!-- ====================================================== Left aside -->
+      <!-- ===================================================== About panel -->
       <div ref="aboutPanelRef" class="aside-1 fixed top-0 h-screen p-4">
-        <SectionColumn1 />
+        <PanelAbout />
         <div class="divider-vert bg-line right-0" />
       </div>
 
@@ -54,10 +54,10 @@
         
       </main>
 
-      <!-- ===================================================== Right aside -->
+      <!-- =================================================== Contact panel -->
       <div ref="contactPanelRef" class="aside-2 fixed top-0 h-screen">
         <div class="h-full p-4 overflow-y-scroll">
-          <SectionColumn2 />
+          <PanelContact />
         </div>
         <div class="divider-vert bg-line left-0" />
       </div>
