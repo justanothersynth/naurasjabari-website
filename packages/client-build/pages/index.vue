@@ -26,9 +26,9 @@
 
       <!-- ==================================================== Main content -->
       <main ref="worksPanelRef" class="main w-[640px] pt-4 px-4">
-        
-        <PanelWorks />
-        
+        <div class="main-content">
+          <PanelWorks />
+        </div>
       </main>
 
       <!-- =================================================== Contact panel -->
@@ -189,6 +189,12 @@ onUnmounted(() => {
   }
 }
 
+.main-content {
+  @include small {
+    padding-bottom: calc(var(--spacing) * 19);
+  }
+}
+
 .projects {
   @include small {
     padding-bottom: calc(var(--spacing) * 19);
@@ -231,31 +237,6 @@ onUnmounted(() => {
     display: block;
     width: 100vw;
     left: auto;
-  }
-}
-
-.headers {
-  @include customMaxMQ(1233px) {
-    height: calc(var(--spacing) * 34);
-  }
-}
-
-.header-works {
-  .icon {
-    display: none;
-    @include customMaxMQ(1233px) {
-      display: block;
-    }
-  }
-}
-
-.header-contact {
-  display: none;
-  @include customMaxMQ(1233px) {
-    display: block;
-  }
-  @include small {
-    display: none;
   }
 }
 </style>
