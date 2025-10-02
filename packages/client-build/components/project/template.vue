@@ -1,13 +1,13 @@
 <template>
-  <div class="project-1">
+  <div class="project-template">
 
-    <img :src="currentImage" alt="Yakisugi Cedar Step" :class="['aspect-video mb-4 bg-gray-fill', isLandscape ? 'object-cover' : 'object-contain']" />
+    <img :src="currentImage" :alt="title" :class="['aspect-video mb-4 bg-gray-fill', isLandscape ? 'object-cover' : 'object-contain']" />
 
     <div class="grid grid-cols-2 gap-4">
 
       <div>
         <p class="font-semibold">
-          Yakisugi Cedar Step
+          {{ title }}
         </p>
         <div class="image-grid flex gap-1 flex-wrap">
           <img
@@ -22,11 +22,9 @@
       </div>
 
       <div>
-        <p>A step in the style of a deck, finished with what is commonly referred to as the Yakisugi technique, involving charring of the wood with fire. Although usually attributed as a traditionally Japanese method, it has actually been used around the world for centuries.</p>
-        
-        <p>After charring, the top layer of the burnt Cedar was removed with a brass brush, leaving the underlying wood with a dark, rich color. Then sealed with a custom blend of tung oil, cedarwood oil and zinc oxide for water resistance, mold and mildew resistance and UV protection.</p>
-
-        <p>With minimal effort, this can last a lifetime.</p>
+        <p v-for="(paragraph, index) in description" :key="index">
+          {{ paragraph }}
+        </p>
       </div>
 
     </div>
@@ -35,16 +33,16 @@
 </template>
 
 <script setup lang="ts">
-const defaultImage = '/images/works/yakisugi-cedar-step/DSCF0730.jpg'
+interface Props {
+  title: string
+  description: string[]
+  images: string[]
+  defaultImage: string
+}
 
-const images = [
-  '/images/works/yakisugi-cedar-step/DSCF0727.jpg',
-  '/images/works/yakisugi-cedar-step/DSCF0720.jpg',
-  '/images/works/yakisugi-cedar-step/DSCF0725.jpg',
-  '/images/works/yakisugi-cedar-step/DSCF0724.jpg'
-]
+const props = defineProps<Props>()
 
-const currentImage = ref(defaultImage)
+const currentImage = ref(props.defaultImage)
 const isLandscape = ref(true)
 let leaveTimeout: NodeJS.Timeout | null = null
 
@@ -70,15 +68,15 @@ function handleImageHover(image: string) {
 function handleImageLeave() {
   // Debounce the reset to default image
   leaveTimeout = setTimeout(() => {
-    currentImage.value = defaultImage
-    checkImageOrientation(defaultImage)
+    currentImage.value = props.defaultImage
+    checkImageOrientation(props.defaultImage)
     leaveTimeout = null
   }, 50)
 }
 
 // Check default image orientation on mount
 onMounted(() => {
-  checkImageOrientation(defaultImage)
+  checkImageOrientation(props.defaultImage)
 })
 </script>
 

@@ -27,30 +27,7 @@
       <!-- ==================================================== Main content -->
       <main ref="worksPanelRef" class="main w-[640px] pt-4 px-4">
         
-        <div class="headers relative flex h-30">
-
-          <div class="header-works flex-1">
-            <p class="flex flex-col font-bold">
-              RECENT WORKS
-              <Icon name="iconoir:arrow-down" size="16" class="icon mt-2" />
-            </p>
-            <div class="divider-horiz bg-line bottom-0" />
-          </div>
-
-          <div class="header-contact flex-1 relative pl-4">
-            <p class="font-bold">
-              CONTACT ME
-            </p>
-            <ContactCard size="mini" />
-            <ContactForm :floating="true" />
-            <div class="divider-vert bg-line left-0 top-0 h-full" />
-          </div>
-
-        </div>
-        
-        <div class="projects flex flex-col gap-12 py-4">
-          <ProjectEntry1 />
-        </div>
+        <PanelWorks />
         
       </main>
 
