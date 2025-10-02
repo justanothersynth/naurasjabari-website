@@ -1,22 +1,15 @@
 <template>
   <div ref="pageRef" class="page" :style="{ height: pageHeightStyle }">
 
-    <div class="menu fixed bottom-4 left-1/2 -translate-x-1/2 z-100 bg-teal-600 p-4 rounded-full flex gap-4">
-      <button
-        :class="{ 'active': activePanel === 'about' }"
-        @click="navigateToPanel('about')">
-        About
-      </button>
-      <button
-        :class="{ 'active': activePanel === 'works' }"
-        @click="navigateToPanel('works')">
-        Works
-      </button>
-      <button
-        :class="{ 'active': activePanel === 'contact' }"
-        @click="navigateToPanel('contact')">
-        Contact
-      </button>
+    <div class="menu fixed bottom-4 left-1/2 -translate-x-1/2 z-100 bg-prime border-line border-1 p-2 rounded-full flex gap-2">
+      <UiButton
+        v-for="button in menuButtons"
+        :key="button.value"
+        variant="menu"
+        :selected="activePanel === button.value"
+        @click="navigateToPanel(button.value)">
+        {{ button.label }}
+      </UiButton>
     </div>
 
     <div ref="trackRef" class="track" :style="{ transform: trackTransformStyle }">
@@ -75,6 +68,12 @@ const activePanel = ref<'about' | 'works' | 'contact'>('works')
 const trackTransform = ref(-100)
 const pageHeight = ref(0)
 const windowWidth = ref(0)
+
+const menuButtons = [
+  { label: 'About', value: 'about' },
+  { label: 'Works', value: 'works' },
+  { label: 'Contact', value: 'contact' }
+] as const
 
 const pageRef = ref<HTMLDivElement>()
 const trackRef = ref<HTMLDivElement>()
@@ -180,9 +179,6 @@ onUnmounted(() => {
 .track {
   display: flex;
   @include small {
-    // position: absolute;
-    // top: 0;
-    // left: 0;
     width: 300vw;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -195,7 +191,6 @@ onUnmounted(() => {
   @include small {
     width: 100vw;
     padding-top: calc(var(--spacing) * 4);
-    // padding-bottom: calc(var(--spacing) * 4);
   }
 }
 
@@ -259,24 +254,6 @@ onUnmounted(() => {
   }
   @include small {
     display: none;
-  }
-}
-
-.menu {
-  button {
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    transition: all 0.2s;
-    cursor: pointer;
-    
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    &.active {
-      background-color: rgba(255, 255, 255, 0.2);
-      font-weight: bold;
-    }
   }
 }
 </style>
