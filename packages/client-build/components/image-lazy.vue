@@ -1,5 +1,5 @@
 <template>
-  <div ref="containerRef" :class="useCn('relative inline-block w-full h-full bg-gray-fill', containerClass)">
+  <component :is="tag" ref="containerRef" :class="useCn('relative inline-block w-full h-full bg-gray-fill', containerClass)">
 
     <Transition
       enter-active-class="transition-opacity duration-300 ease-in-out"
@@ -36,7 +36,7 @@
         @error="handleError" />
     </Transition>
 
-  </div>
+  </component>
 </template>
 
 <script setup lang="ts">
@@ -47,6 +47,8 @@ interface Props {
   alt?: string
   imageClass?: string
   containerClass?: string
+  /** Root element tag. Defaults to 'div' */
+  tag?: string
   /** Threshold for when to trigger loading (0-1). Defaults to 0.1 */
   threshold?: number
   /** Root margin for intersection observer. Defaults to '50px' */
@@ -57,6 +59,7 @@ const props = withDefaults(defineProps<Props>(), {
   alt: '',
   imageClass: '',
   containerClass: '',
+  tag: 'div',
   threshold: 0.1,
   rootMargin: '50px'
 })

@@ -35,6 +35,11 @@ p:not(:last-child) {
   margin-bottom: 1rem;
 }
 
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
 @layer components {
   .shiki {
     @apply p-4 h-full;
