@@ -1,7 +1,11 @@
 <template>
   <div class="project-template">
 
-    <img :src="currentImage" :alt="title" :class="['aspect-video mb-4 bg-gray-fill', isLandscape ? 'object-cover' : 'object-contain']" />
+    <ImageLazy
+      :src="currentImage"
+      :alt="title"
+      :image-class="`aspect-video ${isLandscape ? 'object-cover' : 'object-contain'}`"
+      container-class="aspect-video mb-4 bg-gray-fill" />
 
     <div class="grid grid-cols-2 gap-4">
 
@@ -10,12 +14,13 @@
           {{ title }}
         </p>
         <div class="image-grid flex gap-1 flex-wrap">
-          <img
+          <ImageLazy
             v-for="image in images"
             :key="image"
             :src="image"
             :alt="image"
-            class="block aspect-square object-cover w-12 h-12 grayscale opacity-50 hover:opacity-100 transition-opacity duration-150 ease-in-out cursor-pointer"
+            image-class="block aspect-square object-cover w-12 h-12 grayscale opacity-50 hover:opacity-100 transition-opacity duration-150 ease-in-out cursor-pointer"
+            container-class="w-12 h-12"
             @mouseenter="handleImageHover(image)"
             @mouseleave="handleImageLeave" />
         </div>
