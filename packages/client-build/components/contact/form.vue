@@ -77,7 +77,7 @@
         name="message"
         as="textarea"
         placeholder="Provide a project idea or just say hello 👋"
-        rows="4"
+        rows="20"
         :class="[fieldClasses,{ 'border-red-500': errors.message }]"
         @input="updateMessage" />
       <p v-if="errors.message" :class="errorClasses">
@@ -163,7 +163,6 @@ const errorClasses = 'text-sm text-red-500 mt-[-4px]'
 
 const formElement = ref<HTMLFormElement | null>(null)
 const isOpen = ref(false)
-const initialScrollY = ref(0)
 
 const errors = ref<FormErrors>({})
 const isSubmitting = ref(false)
@@ -318,7 +317,6 @@ const updateMessage = (event: Event): void => {
 
 const handleOpenContactForm = () => {
   isOpen.value = true
-  initialScrollY.value = window.scrollY
 }
 
 const handleCloseContactForm = () => {
@@ -332,16 +330,6 @@ $bus.$on('close-contact-form', handleCloseContactForm)
 onClickOutside(formElement, () => {
   if (props.floating && isOpen.value) {
     handleCloseContactForm()
-  }
-})
-
-// Close form when scrolling more than 50px (only for floating forms)
-useEventListener(window, 'scroll', () => {
-  if (props.floating && isOpen.value) {
-    const scrollDiff = Math.abs(window.scrollY - initialScrollY.value)
-    if (scrollDiff > 50) {
-      handleCloseContactForm()
-    }
   }
 })
 
@@ -369,6 +357,10 @@ onBeforeUnmount(() => {
 .form {
   &.floating {
     top: calc(100% + var(--spacing) * 2);
+    @include customMaxMQ(1233px) {
+      max-height: 30rem;
+      overflow-y: scroll;
+    }
   }
   &:not(.floating) {
     @include small {
