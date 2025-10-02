@@ -81,3 +81,13 @@ onMounted(() => {
   checkImageOrientation(defaultImage)
 })
 </script>
+
+<style lang="scss" scoped>
+.grid {
+  @include tiny {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing) * 8);
+  }
+}
+</style>

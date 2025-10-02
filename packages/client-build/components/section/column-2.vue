@@ -8,7 +8,7 @@
       <div class="divider-horiz bg-line bottom-0" />
     </div>
 
-    <div class="mb-20 py-4">
+    <div class="mb-20 pb-4">
 
       <p>
         I'm always happy to discuss a project idea or provide a quote.
@@ -33,6 +33,9 @@
 .header {
   @include customMaxMQ(1233px) {
     display: none;
+  }
+  @include customMinMQ(850px) {
+    margin-bottom: calc(var(--spacing) * 4);
   }
 }
 </style>

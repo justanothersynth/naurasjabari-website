@@ -1,5 +1,5 @@
 <template>
-  <aside class="flex flex-col h-full">
+  <aside class="flex flex-col h-full w-full">
 
     <div class="header relative h-30">
       <p class="font-bold">

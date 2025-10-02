@@ -370,5 +370,11 @@ onBeforeUnmount(() => {
   &.floating {
     top: calc(100% + var(--spacing) * 2);
   }
+  &:not(.floating) {
+    @include small {
+      width: 100%;
+      max-width: none;
+    }
+  }
 }
 </style>
