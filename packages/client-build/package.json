@@ -8,7 +8,7 @@
     "dev": "nuxt --bun dev",
     "generate": "nuxt --bun generate",
     "start": "bun .output/server/index.mjs",
-    "launch": "nuxi --bun build && pm2 restart client-build",
+    "launch": "nuxi --bun build && pm2 restart client_build",
     "lint": "eslint .",
     "upgrade-nuxt": "bunx nuxi@latest upgrade --dedupe"
   },
