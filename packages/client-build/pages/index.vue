@@ -5,7 +5,7 @@
     :class="{ 'loadded': pageMounted }"
     :style="{ height: pageHeightStyle }">
 
-    <nav class="menu fixed bottom-4 left-1/2 -translate-x-1/2 z-100 bg-prime border-line border-1 p-2 rounded-full flex gap-2">
+    <nav class="menu fixed bottom-4 left-1/2 -translate-x-1/2 z-100 bg-prime border-line border-1 p-2 h-11 rounded-full flex gap-2 shadow-xl">
       <UiButton
         v-for="button in menuButtons"
         :key="button.value"
@@ -48,7 +48,7 @@
 
         </div>
         
-        <div class="flex flex-col gap-12 py-4">
+        <div class="projects flex flex-col gap-12 py-4">
           <ProjectEntry1 />
         </div>
         
@@ -205,6 +205,12 @@ onUnmounted(() => {
   }
 }
 
+.projects {
+  @include small {
+    padding-bottom: calc(var(--spacing) * 19);
+  }
+}
+
 .aside-1,
 .aside-2 {
   width: 400px;
@@ -213,6 +219,7 @@ onUnmounted(() => {
   }
   @include small {
     position: relative;
+    padding-bottom: calc(var(--spacing) * 19);
   }
 }
 
