@@ -1,7 +1,11 @@
 <template>
-  <div ref="pageRef" class="page" :style="{ height: pageHeightStyle }">
+  <div
+    ref="pageRef"
+    class="page"
+    :class="{ 'loadded': pageMounted }"
+    :style="{ height: pageHeightStyle }">
 
-    <div class="menu fixed bottom-4 left-1/2 -translate-x-1/2 z-100 bg-prime border-line border-1 p-2 rounded-full flex gap-2">
+    <nav class="menu fixed bottom-4 left-1/2 -translate-x-1/2 z-100 bg-prime border-line border-1 p-2 rounded-full flex gap-2">
       <UiButton
         v-for="button in menuButtons"
         :key="button.value"
@@ -10,7 +14,7 @@
         @click="navigateToPanel(button.value)">
         {{ button.label }}
       </UiButton>
-    </div>
+    </nav>
 
     <div ref="trackRef" class="track" :style="{ transform: trackTransformStyle }">
 
@@ -68,6 +72,7 @@ const activePanel = ref<'about' | 'works' | 'contact'>('works')
 const trackTransform = ref(-100)
 const pageHeight = ref(0)
 const windowWidth = ref(0)
+const pageMounted = ref(false)
 
 const menuButtons = [
   { label: 'About', value: 'about' },
@@ -143,6 +148,10 @@ onMounted(() => {
   updatePageHeight()
   // Add resize listener
   window.addEventListener('resize', handleResize)
+  // Enable transition after 200ms
+  setTimeout(() => {
+    pageMounted.value = true
+  }, 200)
 })
 
 onUnmounted(() => {
@@ -155,8 +164,10 @@ onUnmounted(() => {
 .page {
   padding-left: calc((100vw - 640px) / 2);
   padding-right: calc((100vw - 640px) / 2);
-  transition: height 150ms cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  &.loadded {
+    transition: height 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
   @include customMaxMQ(1233px) {
     display: flex;
     padding-left: 0;
