@@ -26,9 +26,11 @@
       leave-active-class="transition-opacity duration-300 ease-in-out"
       enter-from-class="opacity-0"
       leave-to-class="opacity-0">
-      <img
+      <NuxtImg
         v-if="shouldLoad"
         v-show="showImage"
+        preload
+        format="webp"
         :src="src"
         :alt="alt"
         :class="useCn(imageClass)"

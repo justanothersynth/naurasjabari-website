@@ -82,6 +82,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxt/icon',
+    '@nuxt/image',
     'motion-v/nuxt'
   ],
   icon: {
