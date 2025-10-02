@@ -21,6 +21,7 @@
         as="input"
         type="text"
         placeholder="Enter your name"
+        :tabindex="tabIndex"
         :class="[fieldClasses,{ 'border-red-500': errors.name }]"
         @input="updateName" />
       <p v-if="errors.name" :class="errorClasses">
@@ -40,6 +41,7 @@
         as="input"
         type="text"
         placeholder="Enter your email"
+        :tabindex="tabIndex"
         :class="[fieldClasses,{ 'border-red-500': errors.email }]"
         @input="updateEmail" />
       <p v-if="errors.email" :class="errorClasses">
@@ -59,6 +61,7 @@
         as="input"
         type="tel"
         placeholder="Enter your phone number"
+        :tabindex="tabIndex"
         :class="[fieldClasses,{ 'border-red-500': errors.phone }]"
         @input="updatePhone" />
       <p v-if="errors.phone" :class="errorClasses">
@@ -78,6 +81,7 @@
         as="textarea"
         placeholder="Provide a project idea or just say hello 👋"
         rows="20"
+        :tabindex="tabIndex"
         :class="[fieldClasses,{ 'border-red-500': errors.message }]"
         @input="updateMessage" />
       <p v-if="errors.message" :class="errorClasses">
@@ -90,6 +94,7 @@
       <UiButton
         type="submit"
         variant="form"
+        :tabindex="tabIndex"
         :disabled="isSubmitting">
         <LoaderSpinner
           v-if="isSubmitting"
@@ -102,6 +107,7 @@
         type="button"
         variant="link"
         class="ml-4"
+        :tabindex="tabIndex"
         @click="$bus.$emit('close-contact-form')">
         Cancel
       </UiButton>
@@ -163,6 +169,11 @@ const errorClasses = 'text-sm text-red-500 mt-[-4px]'
 
 const formElement = ref<HTMLFormElement | null>(null)
 const isOpen = ref(false)
+
+// Computed tabindex to disable tabbing when floating form is closed
+const tabIndex = computed(() => {
+  return props.floating && !isOpen.value ? -1 : 0
+})
 
 const errors = ref<FormErrors>({})
 const isSubmitting = ref(false)
