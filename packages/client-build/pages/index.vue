@@ -5,7 +5,7 @@
     :class="{ 'loadded': pageMounted }"
     :style="{ height: pageHeightStyle }">
 
-    <nav class="menu fixed bottom-4 left-1/2 -translate-x-1/2 z-100 bg-prime border-line border-1 p-2 h-11 rounded-full flex gap-2 shadow-xl">
+    <nav class="menu fixed bottom-4 left-1/2 -translate-x-1/2 z-100 bg-prime border-line border-1 p-2 h-11 rounded-full gap-2 shadow-xl">
       <UiButton
         v-for="button in menuButtons"
         :key="button.value"
@@ -184,6 +184,13 @@ onUnmounted(() => {
   @include small {
     padding-left: 0;
     padding-top: 0;
+  }
+}
+
+.menu {
+  display: none;
+  @include small {
+    display: flex;
   }
 }
 
