@@ -32,9 +32,6 @@
 import YakisugiCedarStep from '@/content/yakisugi-cedar-step.json'
 
 const projects = [
-  YakisugiCedarStep,
-  YakisugiCedarStep,
-  YakisugiCedarStep,
   YakisugiCedarStep
 ]
 </script>

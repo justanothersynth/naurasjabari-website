@@ -1,5 +1,9 @@
 <template>
-  <component :is="tag" ref="containerRef" :class="useCn('relative inline-block w-full h-full bg-gray-fill', containerClass)">
+  <component
+    :is="tag"
+    ref="containerRef"
+    :aria-label="`View image: ${alt}`"
+    :class="useCn('relative inline-block w-full h-full bg-gray-fill', containerClass)">
 
     <Transition
       enter-active-class="transition-opacity duration-300 ease-in-out"

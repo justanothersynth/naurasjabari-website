@@ -2,8 +2,8 @@
   <div class="project-template">
 
     <ImageLazy
-      :src="currentImage"
-      :alt="title"
+      :src="currentImage.src"
+      :alt="currentImage.alt"
       :image-class="`aspect-video ${isLandscape ? 'object-cover' : 'object-contain'}`"
       container-class="aspect-video mb-4 bg-gray-fill" />
 
@@ -16,9 +16,9 @@
         <div class="image-grid flex gap-1 flex-wrap">
           <ImageLazy
             v-for="image in images"
-            :key="image"
-            :src="image"
-            :alt="image"
+            :key="image.src"
+            :src="image.src"
+            :alt="image.alt"
             :width="96"
             :height="96"
             tag="button"
@@ -41,14 +41,17 @@
 </template>
 
 <script setup lang="ts">
-interface Props {
-  title: string
-  description: string[]
-  images: string[]
-  defaultImage: string
+interface ImageData {
+  src: string
+  alt: string
 }
 
-const props = defineProps<Props>()
+const props = defineProps<{
+  title: string
+  description: string[]
+  images: ImageData[]
+  defaultImage: ImageData
+}>()
 
 const currentImage = ref(props.defaultImage)
 const isLandscape = ref(true)
@@ -62,7 +65,7 @@ function checkImageOrientation(imageSrc: string) {
   img.src = imageSrc
 }
 
-function handleImageHover(image: string) {
+function handleImageHover(image: ImageData) {
   // Clear any pending leave timeout
   if (leaveTimeout) {
     clearTimeout(leaveTimeout)
@@ -70,21 +73,21 @@ function handleImageHover(image: string) {
   }
   
   currentImage.value = image
-  checkImageOrientation(image)
+  checkImageOrientation(image.src)
 }
 
 function handleImageLeave() {
   // Debounce the reset to default image
   leaveTimeout = setTimeout(() => {
     currentImage.value = props.defaultImage
-    checkImageOrientation(props.defaultImage)
+    checkImageOrientation(props.defaultImage.src)
     leaveTimeout = null
   }, 50)
 }
 
 // Check default image orientation on mount
 onMounted(() => {
-  checkImageOrientation(props.defaultImage)
+  checkImageOrientation(props.defaultImage.src)
 })
 </script>
 

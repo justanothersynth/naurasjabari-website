@@ -5,11 +5,26 @@
     "After charring, the top layer of the burnt Cedar was removed with a brass brush, leaving the underlying wood with a dark, rich color. Then sealed with a custom blend of tung oil, cedarwood oil and zinc oxide for water resistance, mold and mildew resistance and UV protection.",
     "With minimal effort, this can last a lifetime."
   ],
-  "defaultImage": "/images/works/yakisugi-cedar-step/deck-end-view.jpg",
+  "defaultImage": {
+    "src": "/images/works/yakisugi-cedar-step/deck-end-view.jpg",
+    "alt": "Yakisugi Cedar Step - End View"
+  },
   "images": [
-    "/images/works/yakisugi-cedar-step/deck-full-view.jpg",
-    "/images/works/yakisugi-cedar-step/frame-top-view.jpg",
-    "/images/works/yakisugi-cedar-step/deck-block-cross-section-angled-view.jpg",
-    "/images/works/yakisugi-cedar-step/deck-block-cross-section-view.jpg"
+    {
+      "src": "/images/works/yakisugi-cedar-step/deck-full-view.jpg",
+      "alt": "Yakisugi Cedar Step - Full View"
+    },
+    {
+      "src": "/images/works/yakisugi-cedar-step/frame-top-view.jpg",
+      "alt": "Yakisugi Cedar Step - Frame Top View"
+    },
+    {
+      "src": "/images/works/yakisugi-cedar-step/deck-block-cross-section-angled-view.jpg",
+      "alt": "Yakisugi Cedar Step - Cross Section Angled View"
+    },
+    {
+      "src": "/images/works/yakisugi-cedar-step/deck-block-cross-section-view.jpg",
+      "alt": "Yakisugi Cedar Step - Cross Section View"
+    }
   ]
 }
