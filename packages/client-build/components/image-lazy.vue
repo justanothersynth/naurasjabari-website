@@ -31,7 +31,6 @@
         v-show="showImage"
         preload
         format="webp"
-        loading="lazy"
         :src="src"
         :alt="alt"
         :width="width !== -1 ? width : undefined"
