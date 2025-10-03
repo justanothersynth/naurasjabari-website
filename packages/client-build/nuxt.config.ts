@@ -64,6 +64,9 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'en'
+      },
       title: 'Nauras Jabari',
       meta: [
         { name: 'msapplication-config', content: '/favicon/light/browserconfig.xml' }
