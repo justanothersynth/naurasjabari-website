@@ -31,8 +31,11 @@
         v-show="showImage"
         preload
         format="webp"
+        loading="lazy"
         :src="src"
         :alt="alt"
+        :width="width !== -1 ? width : undefined"
+        :height="height !== -1 ? height : undefined"
         :class="useCn(imageClass)"
         @load="handleLoad"
         @error="handleError" />
@@ -54,7 +57,9 @@ interface Props {
   /** Threshold for when to trigger loading (0-1). Defaults to 0.1 */
   threshold?: number
   /** Root margin for intersection observer. Defaults to '50px' */
-  rootMargin?: string
+  rootMargin?: string,
+  width?: number
+  height?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -63,7 +68,9 @@ const props = withDefaults(defineProps<Props>(), {
   containerClass: '',
   tag: 'div',
   threshold: 0.1,
-  rootMargin: '50px'
+  rootMargin: '50px',
+  width: -1,
+  height: -1
 })
 
 const containerRef = ref<HTMLElement | null>(null)

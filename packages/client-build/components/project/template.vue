@@ -19,6 +19,8 @@
             :key="image"
             :src="image"
             :alt="image"
+            :width="96"
+            :height="96"
             tag="button"
             image-class="block aspect-square object-cover w-12 h-12 grayscale opacity-50 hover:opacity-100 transition-opacity duration-150 ease-in-out cursor-pointer"
             container-class="w-12 h-12"
