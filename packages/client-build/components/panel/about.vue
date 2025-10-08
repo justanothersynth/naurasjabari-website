@@ -17,10 +17,10 @@
         alt="Nauras Jabari"
         class="aspect-square w-25 mb-6" />
       <p>
-        I really enjoy the process of designing and building things that are useful and that will bring joy to those that use them.
+        I genuinely enjoy the process of designing and building and strive leave my clients feeling a sense of satisfaction and connection with the things I create.
       </p>
       <p>
-        Whether it's a coffee table, a pergola, a new stone walkway or a complete bathroom rebuild, I'm here to make it happen. Carpentry is my first true love, but I've always enjoyed being multi-faceted in my knowledge and abilities. I'm currently building up my portfolio and working on increasing my skillset, so I am offering my services at a significant discount. Regardless, your project will be completed with care and attention to detail.
+        Carpentry is my first true love, but I've always enjoyed being multi-faceted in my knowledge and abilities. I take my time and place great care in your project, opting for quality and attention to detail.
       </p>
     </div>
     
