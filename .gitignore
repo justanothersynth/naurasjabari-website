@@ -74,12 +74,12 @@ typings/
 # next.js build output
 .next
 
-# nuxt.js build output
+# Nuxt build output
 .nuxt
 .output
-
-# Nuxt generate
 dist
+sitemap.xml
+robots.txt
 
 # vuepress build output
 .vuepress/dist

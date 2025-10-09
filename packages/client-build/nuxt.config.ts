@@ -64,10 +64,10 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      title: 'Nauras Jabari',
       htmlAttrs: {
         lang: 'en'
       },
-      title: 'Nauras Jabari',
       meta: [
         { name: 'msapplication-config', content: '/favicon/light/browserconfig.xml' }
       ],
@@ -86,7 +86,14 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/icon',
     '@nuxt/image',
-    'motion-v/nuxt'
+    'motion-v/nuxt',
+    ['~/modules/seo', {
+      siteUrl: baseUrls.client,
+      defaultChangefreq: 'monthly',
+      defaultPriority: 1.0,
+      robotsUserAgent: '*',
+      robotsDisallow: []
+    }]
   ],
   icon: {
     serverBundle: {

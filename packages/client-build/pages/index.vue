@@ -45,6 +45,9 @@
 </template>
 
 <script setup lang="ts">
+const { $seo } = useNuxtApp()
+$seo('index')
+
 const activePanel = ref<'about' | 'works' | 'contact'>('works')
 const trackTransform = ref(-100)
 const pageHeight = ref(0)
