@@ -69,11 +69,11 @@ export default defineNuxtConfig({
         lang: 'en'
       },
       meta: [
-        { name: 'msapplication-config', content: '/favicon/light/browserconfig.xml' }
+        { name: 'msapplication-config', content: '/favicon/dark/browserconfig.xml' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon/light/favicon-96x96.png' },
-        { rel: 'manifest', href: '/favicon/light/manifest.json' }
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon/dark/favicon-96x96.png' },
+        { rel: 'manifest', href: '/favicon/dark/manifest.json' }
       ]
     }
   },
