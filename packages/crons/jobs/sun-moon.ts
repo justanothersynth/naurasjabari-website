@@ -127,8 +127,8 @@ const runJob = async () => {
       const moonData = moonDataByLocation[locationName]
       if (!moonData) continue
       summary += `${Chalk.bold(locationName)}:\n`
-      summary += `🌞 ${format(new Date(sunData.properties.sunrise.time), 'HH:mm')} - ${format(new Date(sunData.properties.sunset.time), 'HH:mm')}\n`
-      summary += `🌕 ${format(new Date(moonData.properties.moonrise.time), 'HH:mm')} - ${format(new Date(moonData.properties.moonset.time), 'HH:mm')}, 🌙 ${moonData.properties.moonphase}\n\n`
+      summary += `🌞 ${sunData.properties.sunrise?.time ? format(new Date(sunData.properties.sunrise.time), 'HH:mm') : 'NULL'} - ${sunData.properties.sunset?.time ? format(new Date(sunData.properties.sunset.time), 'HH:mm') : 'NULL'}\n`
+      summary += `🌕 ${moonData.properties.moonrise?.time ? format(new Date(moonData.properties.moonrise.time), 'HH:mm') : 'NULL'} - ${moonData.properties.moonset?.time ? format(new Date(moonData.properties.moonset.time), 'HH:mm') : 'NULL'}, 🌙 ${moonData.properties.moonphase ?? 'NULL'}\n\n`
     }
     
     /* eslint-disable-next-line no-console */

@@ -76,8 +76,7 @@ const orpcContext: OrpcContext = {
 let JOB_IS_RUNNING = false
 
 /**
- * Scrapes the github contributions calendar for a user and saves the data to a file
- * @link https://github.com/users/timelytree/contributions
+ * Creates per-second azimuth data
  */
 const runJob = async () => {
   if (JOB_IS_RUNNING) return
@@ -161,7 +160,7 @@ const runJob = async () => {
     
     for (const [locationName, data] of Object.entries(metadata)) {
       summary += `${Chalk.bold(locationName)}:\n`
-      summary += `🌅 ${data.period} | 🌞 ${data.sunAzimuth.toFixed(2)}° | 🌕 ${data.moonAzimuth.toFixed(2)}° | 🌙 ${data.moonPhase}°\n\n`
+      summary += `🌅 ${data.period ?? 'NULL'} | 🌞 ${data.sunAzimuth?.toFixed(2) ?? 'NULL'}° | 🌕 ${data.moonAzimuth?.toFixed(2) ?? 'NULL'}° | 🌙 ${data.moonPhase ?? 'NULL'}°\n\n`
     }
     /* eslint-disable-next-line no-console */
     console.log(createLogBox('Sun and Moon Summary', summary, 'success'))

@@ -12,6 +12,12 @@ export default tseslint.config(
   tseslint.configs.strict,
   tseslint.configs.stylistic,
   {
+    languageOptions: {
+      parserOptions: {
+        tsconfigRootDir: import.meta.dirname,
+        project: './tsconfig.json'
+      }
+    },
     rules: {
       '@typescript-eslint/no-unused-vars': [
         'error',

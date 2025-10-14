@@ -1,18 +1,18 @@
 import { z } from 'zod'
 
 export const sunMoonMetadata = z.object({
-  sunAzimuth: z.number(),
-  moonAzimuth: z.number(),
-  moonPhase: z.number(),
-  period: z.enum(['day', 'night']),
-  sunriseTime: z.string(),
-  sunriseAzimuth: z.number(),
-  sunsetTime: z.string(),
-  sunsetAzimuth: z.number(),
-  moonriseTime: z.string(),
-  moonriseAzimuth: z.number(),
-  moonsetTime: z.string(),
-  moonsetAzimuth: z.number()
+  sunAzimuth: z.number().nullable(),
+  moonAzimuth: z.number().nullable(),
+  moonPhase: z.number().nullable(),
+  period: z.enum(['day', 'night']).nullable(),
+  sunriseTime: z.string().nullable(),
+  sunriseAzimuth: z.number().nullable(),
+  sunsetTime: z.string().nullable(),
+  sunsetAzimuth: z.number().nullable(),
+  moonriseTime: z.string().nullable(),
+  moonriseAzimuth: z.number().nullable(),
+  moonsetTime: z.string().nullable(),
+  moonsetAzimuth: z.number().nullable()
 })
 
 export const sunMoonOrpcInput = z.object({
