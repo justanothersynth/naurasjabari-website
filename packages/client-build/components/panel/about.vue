@@ -17,7 +17,7 @@
         alt="Nauras Jabari"
         class="aspect-square w-25 mb-6" />
       <p>
-        I genuinely enjoy the process of designing and building and strive to leave my clients feeling a sense of satisfaction and connection with the things I create.
+        I genuinely enjoy the process of designing and building. I strive to leave my clients feeling a sense of satisfaction and connection with the things I create.
       </p>
       <p>
         Carpentry is my first true love, but I've always enjoyed being multi-faceted in my knowledge and abilities. I take my time and place great care in your project, opting for quality and attention to detail.
