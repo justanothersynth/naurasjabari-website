@@ -51,7 +51,6 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          api: 'modern',
           additionalData: `
             @use 'sass:math';
             @use '@/assets/scss/utilities.scss' as *;

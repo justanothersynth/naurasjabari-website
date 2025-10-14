@@ -74,6 +74,11 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon/dark/favicon-96x96.png' },
         { rel: 'manifest', href: '/favicon/dark/manifest.json' }
+      ],
+      script: [
+        ...(env === 'production' ? [{
+          src: 'https://analytics.naurasjabari.com/script.js', defer: true, 'data-website-id': 'cab27dd2-0288-4086-bf95-848b177149b8'
+        }] : [])
       ]
     }
   },
