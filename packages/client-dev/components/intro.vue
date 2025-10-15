@@ -43,8 +43,7 @@ const isImageVisible = useElementVisibility(imageRef)
 
 // Store the last calculated transform value
 const lastTransform = ref({
-  transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)',
-  transition: 'transform 0.1s ease-out'
+  transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)'
 })
 
 /**
@@ -64,8 +63,7 @@ const currentTransform = computed(() => {
   const rotateX = -offsetY * 15
   
   return {
-    transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-    transition: 'transform 0.1s ease-out'
+    transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
   }
 })
 
