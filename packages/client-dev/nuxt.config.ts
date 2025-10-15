@@ -65,11 +65,11 @@ export default defineNuxtConfig({
     head: {
       title: 'Nauras Jabari',
       meta: [
-        { name: 'msapplication-config', content: '/favicon/light/browserconfig.xml?v=0' }
+        { name: 'msapplication-config', content: '/favicon/dark/browserconfig.xml?v=0' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon/light/favicon-96x96.png?v=0' },
-        { rel: 'manifest', href: '/favicon/light/manifest.json?v=0' }
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon/dark/favicon-96x96.png?v=0' },
+        { rel: 'manifest', href: '/favicon/dark/manifest.json?v=0' }
       ]
     }
   },
