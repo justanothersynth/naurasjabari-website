@@ -1,19 +1,19 @@
 <template>
   <div class="flex flex-col items-center justify-center h-screen">
 
-    <h1 class="text-4xl font-bold">
+    <CrtMonitor>
       {{ error.statusCode }}
-    </h1>
+    </CrtMonitor>
 
-    <div class="text-lg">
+    <div class="text-lg mt-8">
       {{ error.message }}
     </div>
 
     <UiButton
-      variant="bare"
-      class="rounded-md flex items-center gap-1.5 bg-white px-3 py-2 mt-4 text-xs font-semibold ring-1 ring-gray-300 ring-inset hover:bg-gray-50 transition-colors"
+      variant="form"
+      class="mt-4"
       @click="navigateTo('/')">
-      <Icon name="iconoir:arrow-left" size="12" class="mr-1" />
+      <Icon name="iconoir:arrow-left" size="12" class="mr-2" />
       Back to home
     </UiButton>
 
