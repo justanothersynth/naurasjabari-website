@@ -62,26 +62,6 @@ const config = {
     jwtSecret: validatedEnv.SUPABASE_JWT_SECRET,
     jwtIssuer: validatedEnv.SUPABASE_JWT_ISSUER,
     jwtSubject: validatedEnv.SUPABASE_JWT_SUBJECT
-  },
-
-  // Mistral Configuration
-  mistral: {
-    apiKey: validatedEnv.MISTRAL_API_KEY
-  },
-
-  // Anthropic Configuration
-  anthropic: {
-    apiKey: validatedEnv.ANTHROPIC_API_KEY
-  },
-
-  // OpenAI Configuration
-  openai: {
-    apiKey: validatedEnv.OPENAI_API_KEY
-  },
-
-  // Gemini Configuration
-  gemini: {
-    apiKey: validatedEnv.GEMINI_API_KEY
   }
 } as const
 

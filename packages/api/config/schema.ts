@@ -42,12 +42,6 @@ export const configSchema = z.object({
     .default('info')
     .describe('Logging level'),
 
-  // API Keys
-  MISTRAL_API_KEY: z.string().describe('Mistral API key'),
-  ANTHROPIC_API_KEY: z.string().describe('Anthropic API key'),
-  OPENAI_API_KEY: z.string().describe('OpenAI API key'),
-  GEMINI_API_KEY: z.string().describe('Google Gemini API key'),
-
   // Supabase Configuration
   SUPABASE_URL: z.string().url().describe('Supabase project URL'),
   SUPABASE_KEY: z.string().describe('Supabase API key'),
