@@ -29,12 +29,24 @@
     <div class="flex justify-between sm:justify-end">
       
       <button
+        v-if="currentPage > 1"
+        :class="[
+          'relative inline-flex items-center rounded-md px-2 py-1 text-sm font-semibold focus-visible:outline-offset-0',
+          'bg-white text-gray-900 ring-gray-300 hover:bg-gray-50'
+        ]"
+        @click="goToFirst">
+        <Icon name="iconoir:fast-arrow-left" size="16" class="mr-1" />
+        First
+      </button>
+      
+      <button
         :disabled="!hasPrevious"
         :class="[
           'relative inline-flex items-center rounded-md px-2 py-1 text-sm font-semibold ring-1 ring-inset focus-visible:outline-offset-0',
           hasPrevious
             ? 'bg-white text-gray-900 ring-gray-300 hover:bg-gray-50'
-            : 'bg-gray-100 text-gray-400 ring-gray-200 cursor-not-allowed'
+            : 'bg-gray-100 text-gray-400 ring-gray-200 cursor-not-allowed',
+          currentPage > 1 ? 'ml-3' : ''
         ]"
         @click="goToPrevious">
         Previous
@@ -67,7 +79,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'previous' | 'next'): void
+  (e: 'first' |'previous' | 'next'): void
 }>()
 
 const startItem = computed(() => {
@@ -79,6 +91,10 @@ const startItem = computed(() => {
 const endItem = computed(() => {
   return Math.min(props.currentPage * props.limit, props.totalItems || props.currentPage * props.limit)
 })
+
+const goToFirst = () => {
+  emit('first')
+}
 
 const goToPrevious = () => {
   if (props.hasPrevious) {

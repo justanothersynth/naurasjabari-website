@@ -52,6 +52,7 @@
         :total-items="totalItems"
         :has-previous="hasPrevious"
         :has-next="hasNext"
+        @first="goToFirstPage"
         @previous="goToPreviousPage"
         @next="goToNextPage" />
     </client-only>
@@ -87,6 +88,7 @@ const {
   totalItems,
   initialLoading,
   refreshLoading,
+  goToFirstPage,
   goToNextPage,
   goToPreviousPage,
   filters,

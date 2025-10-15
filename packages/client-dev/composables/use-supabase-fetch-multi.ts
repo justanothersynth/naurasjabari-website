@@ -198,6 +198,11 @@ export const useSupabaseFetchMulti = <T = unknown>(
     await fetchData()
   }
 
+  const goToFirstPage = async () => {
+    if (currentPage.value === 1) return
+    await resetPagination()
+  }
+
   const resetPagination = async () => {
     currentCursor.value = null
     pageHistory.value = [{ startCursor: null, endCursor: null }]
@@ -247,6 +252,7 @@ export const useSupabaseFetchMulti = <T = unknown>(
     // Pagination methods
     goToNextPage,
     goToPreviousPage,
+    goToFirstPage,
     resetPagination,
     // Filter
     filters,
