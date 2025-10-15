@@ -9,6 +9,12 @@ export default withNuxt(
     plugins: {
       tsdoc
     },
+    languageOptions: {
+      parserOptions: {
+        tsconfigRootDir: import.meta.dirname,
+        project: './tsconfig.json'
+      }
+    },
     rules: {
       'no-console': process.env.NODE_ENV !== 'development' ? 'error' : 'off',
       'vue/html-closing-bracket-newline': ['error', {

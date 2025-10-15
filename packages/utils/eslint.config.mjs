@@ -12,6 +12,12 @@ export default [
   ...tseslint.configs.strict,
   ...tseslint.configs.stylistic,
   {
+    languageOptions: {
+      parserOptions: {
+        tsconfigRootDir: import.meta.dirname,
+        project: './tsconfig.json'
+      }
+    },
     rules: {
       semi: ['error', 'never'],
       quotes: ['error', 'single'],
