@@ -70,6 +70,11 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon/dark/favicon-96x96.png?v=0' },
         { rel: 'manifest', href: '/favicon/dark/manifest.json?v=0' }
+      ],
+      script: [
+        ...(env === 'production' ? [{
+          src: 'https://analytics.naurasjabari.com/script.js', defer: true, 'data-website-id': 'b1884ce3-3c92-4693-a216-d564f7ad24b4'
+        }] : [])
       ]
     }
   },
