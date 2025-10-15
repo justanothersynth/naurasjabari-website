@@ -16,12 +16,14 @@
 
     <div class="flex items-start justify-end flex-1">
       <client-only>
-        <img
+        <NuxtImg
           ref="imageRef"
+          preload
+          format="webp"
           src="/images/nauras-profile.jpg"
           alt="Profile picture of Nauras"
           class="w-80 aspect-square object-cover rounded-4xl shadow-2xl"
-          :style="tiltTransform">
+          :style="tiltTransform" />
       </client-only>
     </div>
 
