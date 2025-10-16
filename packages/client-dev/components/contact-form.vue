@@ -1,5 +1,6 @@
 <template>
   <form
+    :key="formKey"
     class="flex flex-col items-center gap-4 max-w-4xl"
     @submit.prevent="handleSubmit">
     
@@ -95,7 +96,7 @@
 
     <!-- Success/Error Messages -->
     <div v-if="submitMessage">
-      <p :class="submitSuccess ? 'text-green-600' : 'text-red-600'" class="text-sm text-center">
+      <p :class="submitSuccess ? 'text-green-600' : 'text-red-600'" class="text-center leading-snug">
         {{ submitMessage }}
       </p>
     </div>
@@ -142,6 +143,7 @@ const errors = ref<FormErrors>({})
 const isSubmitting = ref(false)
 const submitMessage = ref('')
 const submitSuccess = ref(false)
+const formKey = ref(0)
 
 /**
  * Validates the form data
@@ -222,14 +224,8 @@ const handleSubmit = async (): Promise<void> => {
     submitSuccess.value = true
     submitMessage.value = 'Your message has been sent successfully and I will get back to you as soon!'
     
-    // Reset form
-    formData.value = {
-      name: '',
-      email: '',
-      phone: '',
-      message: ''
-    }
-    errors.value = {}
+    // Reset form by incrementing key (forces re-render)
+    formKey.value++
     
   } catch (error) {
     submitSuccess.value = false

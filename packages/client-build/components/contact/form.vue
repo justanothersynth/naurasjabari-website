@@ -1,6 +1,7 @@
 <template>
   <form
     ref="formElement"
+    :key="formKey"
     class="form w-full max-w-md mx-auto space-y-4 flex flex-col items-center"
     :class="{
       'floating absolute right-0 bg-prime border-line border-2 p-4 transition duration-300 ease-in-out z-100 shadow-xl': floating,
@@ -179,6 +180,7 @@ const errors = ref<FormErrors>({})
 const isSubmitting = ref(false)
 const submitMessage = ref('')
 const submitSuccess = ref(false)
+const formKey = ref(0)
 
 const { Escape } = useMagicKeys()
 
@@ -259,16 +261,10 @@ const handleSubmit = async (): Promise<void> => {
     
     // Success
     submitSuccess.value = true
-    submitMessage.value = 'Thank you! Your message has been sent successfully.'
+    submitMessage.value = 'Your message has been sent successfully and I will get back to you as soon!'
     
-    // Reset form
-    formData.value = {
-      name: '',
-      email: '',
-      phone: '',
-      message: ''
-    }
-    errors.value = {}
+    // Reset form by incrementing key (forces re-render)
+    formKey.value++
     
   } catch (error) {
     submitSuccess.value = false
