@@ -4,6 +4,9 @@
 
       <slot />
 
+      <!-- Floating Navigation -->
+      <FloatingNav />
+
       <!-- Global mouse-following tooltip -->
       <Teleport to="body">
         <div

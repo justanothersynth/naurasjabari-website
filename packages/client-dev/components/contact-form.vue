@@ -208,7 +208,7 @@ const handleSubmit = async (): Promise<void> => {
       method: 'POST',
       body: JSON.stringify({
         ...formData.value,
-        '_subject': `❗️ GC Work Request - ${formData.value.name}`,
+        '_subject': `❗️ MM Work Request - ${formData.value.name}`,
         '_replyto': formData.value.email
       }),
       headers: {
