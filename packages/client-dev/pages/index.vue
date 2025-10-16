@@ -37,7 +37,7 @@
 
     <div class="max-w-4xl mx-auto">
       <Divider>
-        ~ and more to come, stay tuned ~
+        ⬇️
       </Divider>
     </div>
 

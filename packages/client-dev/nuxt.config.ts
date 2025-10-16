@@ -55,6 +55,7 @@ export default defineNuxtConfig({
             @use 'sass:math';
             @use '@/assets/scss/utilities.scss' as *;
             @use '@/assets/scss/x-browser.scss' as *;
+            @use '@/assets/scss/responsive.scss' as *;
           `
         }
       }
