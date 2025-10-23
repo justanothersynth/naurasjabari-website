@@ -1,5 +1,5 @@
 import { createConfigForNuxt } from '@nuxt/eslint-config/flat'
-import withNuxt from './.nuxt/eslint.config.mjs'
+import withNuxt from '.nuxt/eslint.config.mjs'
 import tsdoc from 'eslint-plugin-tsdoc'
 
 export default withNuxt(

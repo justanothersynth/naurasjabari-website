@@ -74,8 +74,7 @@ Sitemap: ${siteUrl}/sitemap.xml\n`
   const writeSitemap = () => {
     try {
       const sitemapContent = generateSitemap()
-      const publicDir = join(nuxt.options.srcDir, 'public')
-      const sitemapPath = join(publicDir, 'sitemap.xml')
+      const sitemapPath = join(nuxt.options.dir.public, 'sitemap.xml')
       
       writeFileSync(sitemapPath, sitemapContent, 'utf-8')
       logger.success(`Sitemap generated at ${sitemapPath}`)
@@ -88,8 +87,7 @@ Sitemap: ${siteUrl}/sitemap.xml\n`
   const writeRobotsTxt = () => {
     try {
       const robotsContent = generateRobotsTxt()
-      const publicDir = join(nuxt.options.srcDir, 'public')
-      const robotsPath = join(publicDir, 'robots.txt')
+      const robotsPath = join(nuxt.options.dir.public, 'robots.txt')
       
       writeFileSync(robotsPath, robotsContent, 'utf-8')
       logger.success(`robots.txt generated at ${robotsPath}`)

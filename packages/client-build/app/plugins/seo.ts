@@ -1,5 +1,5 @@
 import { defineNuxtPlugin, useHead } from '#imports'
-import type { SeoData, SeoEntry } from '@/modules/seo/types'
+import type { SeoData, SeoEntry } from '@@/modules/seo/types'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 
 /**
@@ -105,14 +105,13 @@ const compileData = (entry: SeoEntry, config: ReturnType<typeof useRuntimeConfig
 
 /**
  * Entrypoint for SEO plugin
+ * @param seoData - Preloaded SEO data
+ * @param config - The runtime config object
+ * @param route - The current route object
  * @param key - The key of the SEO data to use, must match the key in the /data/seo.json file. If no key is provided, the default SEO data will be used.
  * @param override - An optional override object to merge with the SEO data that will override the data in the /data/seo.json file
  */
-const seo = async (key?: string, override?: Partial<SeoEntry>): Promise<void> => {
-  const config = useRuntimeConfig()
-  const route = useRoute()
-  // Get the SEO data
-  const seoData = await getSeoData()
+const seo = (seoData: SeoData | null, config: ReturnType<typeof useRuntimeConfig>, route: RouteLocationNormalizedLoaded, key?: string, override?: Partial<SeoEntry>): void => {
   if (!seoData) return
   // Get the default SEO entry
   const defaultSeoEntry = getDefaultSeoEntry(seoData)
@@ -127,11 +126,15 @@ const seo = async (key?: string, override?: Partial<SeoEntry>): Promise<void> =>
   useHead(data)
 }
 
-export default defineNuxtPlugin(() => {
-  seo()
+export default defineNuxtPlugin(async () => {
+  const config = useRuntimeConfig()
+  const route = useRoute()
+  // Preload SEO data once at plugin initialization
+  const seoData = await getSeoData()
+  seo(seoData, config, route)
   return {
     provide: {
-      seo
+      seo: (key?: string, override?: Partial<SeoEntry>) => seo(seoData, config, route, key, override)
     }
   }
 })

@@ -8,6 +8,7 @@ const envPath = resolve(process.cwd(), '.env.local')
 const defaultEnvPath = resolve(process.cwd(), '.env')
 
 dotenv.config({
+  quiet: true,
   path: existsSync(envPath) ? envPath : defaultEnvPath
 })
 
@@ -92,7 +93,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     'motion-v/nuxt',
-    ['~/modules/seo', {
+    ['@@/modules/seo', {
       siteUrl: baseUrls.client,
       defaultChangefreq: 'monthly',
       defaultPriority: 1.0,

@@ -8,6 +8,7 @@ const envPath = resolve(process.cwd(), '.env.local')
 const defaultEnvPath = resolve(process.cwd(), '.env')
 
 dotenv.config({
+  quiet: true,
   path: existsSync(envPath) ? envPath : defaultEnvPath
 })
 
