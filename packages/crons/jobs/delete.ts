@@ -59,28 +59,55 @@ const runJob = async () => {
     oneMonthAgo.setUTCMonth(oneMonthAgo.getUTCMonth() - 1)
     const geostormCutoffDate = oneMonthAgo.toISOString()
 
-    // Delete azimuth data older than 1 day
-    const { error: azimuthError, count: azimuthCount } = await supabase
-      .from('sun_moon')
-      .delete({ count: 'exact' })
-      .lt('created_at', azimuthCutoffDate)
+    // Delete azimuth data older than 1 day (in batches of 25,000)
+    let totalAzimuthDeleted = 0
+    const BATCH_SIZE = 25000
+    
+    while (true) {
+      const { error: azimuthError, count: azimuthCount } = await supabase
+        .from('sun_moon')
+        .delete({ count: 'exact' })
+        .lt('created_at', azimuthCutoffDate)
+        .limit(BATCH_SIZE)
 
-    if (azimuthError) {
-      throw new Error(`Supabase error (azimuth): ${azimuthError.message}`)
+      if (azimuthError) {
+        throw new Error(`Supabase error (azimuth): ${azimuthError.message}`)
+      }
+
+      const deletedInBatch = azimuthCount || 0
+      totalAzimuthDeleted += deletedInBatch
+
+      // Stop if we deleted fewer records than the batch size (no more records to delete)
+      if (deletedInBatch < BATCH_SIZE) {
+        break
+      }
     }
 
-    // Delete geostorm data older than 1 month
-    const { error: geostormError, count: geostormCount } = await supabase
-      .from('geostorm')
-      .delete({ count: 'exact' })
-      .lt('created_at', geostormCutoffDate)
+    // Delete geostorm data older than 1 month (in batches of 25,000)
+    let totalGeostormDeleted = 0
+    
+    while (true) {
+      const { error: geostormError, count: geostormCount } = await supabase
+        .from('geostorm')
+        .delete({ count: 'exact' })
+        .lt('created_at', geostormCutoffDate)
+        .limit(BATCH_SIZE)
 
-    if (geostormError) {
-      throw new Error(`Supabase error (geostorm): ${geostormError.message}`)
+      if (geostormError) {
+        throw new Error(`Supabase error (geostorm): ${geostormError.message}`)
+      }
+
+      const deletedInBatch = geostormCount || 0
+      totalGeostormDeleted += deletedInBatch
+
+      // Stop if we deleted fewer records than the batch size (no more records to delete)
+      if (deletedInBatch < BATCH_SIZE) {
+        break
+      }
     }
 
-    const azimuthDeleted = azimuthCount || 0
-    const geostormDeleted = geostormCount || 0
+    const azimuthDeleted = totalAzimuthDeleted
+    const geostormDeleted = totalGeostormDeleted
     
     const summary = `${Chalk.bold('Azimuth')}\n` +
       `Cutoff: ${format(new Date(azimuthCutoffDate), 'MMM dd, yyyy \'at\' HH:mm:ss')} UTC\n` +
