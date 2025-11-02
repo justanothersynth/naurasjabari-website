@@ -8,16 +8,10 @@ import cron from 'node-cron'
 import { Command } from 'commander'
 import type { Job } from './job.types'
 import { config } from '../config'
-import type { OrpcContext } from '@workspace/types'
-import { generateInternalJWT } from '@workspace/utils'
-import { createClient } from '@workspace/api/lib/supabase'
+import { createClient } from '@supabase/supabase-js'
 import { format } from 'date-fns'
 
 export const OptionsSchema = z.object({})
-
-const orpcContext: OrpcContext = {
-  headers: {}
-}
 
 let JOB_IS_RUNNING = false
 
@@ -39,16 +33,11 @@ const runJob = async () => {
   )
 
   try {
-    // Generate internal JWT for authentication
-    const token = await generateInternalJWT(
-      config.supabase.jwtSecret,
-      config.supabase.jwtIssuer,
-      config.supabase.jwtSubject
+    // Create Supabase client with service role key (bypasses RLS)
+    const supabase = createClient(
+      config.supabase.url,
+      config.supabase.serviceRoleKey
     )
-    orpcContext.headers = { authorization: `Bearer ${token}` }
-
-    // Create Supabase client
-    const supabase = createClient(token)
 
     // Calculate cutoff dates
     const oneDayAgo = new Date()
@@ -64,11 +53,11 @@ const runJob = async () => {
     const BATCH_SIZE = 25000
     
     while (true) {
-      const { error: azimuthError, count: azimuthCount } = await supabase
-        .from('sun_moon')
-        .delete({ count: 'exact' })
-        .lt('created_at', azimuthCutoffDate)
-        .limit(BATCH_SIZE)
+      const { error: azimuthError, data: azimuthCount } = await supabase
+        .rpc('delete_old_sun_moon_batch', {
+          cutoff: azimuthCutoffDate,
+          batch_size: BATCH_SIZE
+        })
 
       if (azimuthError) {
         throw new Error(`Supabase error (azimuth): ${azimuthError.message}`)
@@ -87,11 +76,11 @@ const runJob = async () => {
     let totalGeostormDeleted = 0
     
     while (true) {
-      const { error: geostormError, count: geostormCount } = await supabase
-        .from('geostorm')
-        .delete({ count: 'exact' })
-        .lt('created_at', geostormCutoffDate)
-        .limit(BATCH_SIZE)
+      const { error: geostormError, data: geostormCount } = await supabase
+        .rpc('delete_old_geostorm_batch', {
+          cutoff: geostormCutoffDate,
+          batch_size: BATCH_SIZE
+        })
 
       if (geostormError) {
         throw new Error(`Supabase error (geostorm): ${geostormError.message}`)

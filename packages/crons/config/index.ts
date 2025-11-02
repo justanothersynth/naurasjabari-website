@@ -48,7 +48,8 @@ const config = {
     anonKey: validatedEnv.SUPABASE_KEY,
     jwtSecret: validatedEnv.SUPABASE_JWT_SECRET,
     jwtIssuer: validatedEnv.SUPABASE_JWT_ISSUER,
-    jwtSubject: validatedEnv.SUPABASE_JWT_SUBJECT
+    jwtSubject: validatedEnv.SUPABASE_JWT_SUBJECT,
+    serviceRoleKey: validatedEnv.SUPABASE_SERVICE_ROLE_KEY
   },
   // Github Configuration
   github: {

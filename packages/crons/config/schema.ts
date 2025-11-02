@@ -21,7 +21,8 @@ export const configSchema = z.object({
 
   SUPABASE_URL: z.string().url().describe('Supabase project URL'),
   SUPABASE_KEY: z.string().describe('Supabase API key'),
-  
+  SUPABASE_SERVICE_ROLE_KEY: z.string().describe('Supabase service role key'),
+
   // JWT Configuration for authenticating cron jobs with Supabase
   SUPABASE_JWT_SECRET: z.string().describe('Secret key for signing internal JWTs'),
   SUPABASE_JWT_ISSUER: z.string().describe('JWT issuer'),
