@@ -80,6 +80,12 @@ const runJob = async () => {
       }
     }
 
+    // Run VACUUM FULL and ANALYZE on sun_moon table
+    if (totalAzimuthDeleted > 0) {
+      await pool.query('VACUUM FULL sun_moon')
+      await pool.query('ANALYZE sun_moon')
+    }
+
     // Delete geostorm data older than 1 month (in batches of 25,000)
     let totalGeostormDeleted = 0
     
@@ -107,6 +113,12 @@ const runJob = async () => {
       if (deletedInBatch < BATCH_SIZE) {
         break
       }
+    }
+
+    // Run VACUUM FULL and ANALYZE on geostorm table
+    if (totalGeostormDeleted > 0) {
+      await pool.query('VACUUM FULL geostorm')
+      await pool.query('ANALYZE geostorm')
     }
 
     const azimuthDeleted = totalAzimuthDeleted
