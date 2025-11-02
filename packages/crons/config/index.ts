@@ -49,7 +49,7 @@ const config = {
     jwtSecret: validatedEnv.SUPABASE_JWT_SECRET,
     jwtIssuer: validatedEnv.SUPABASE_JWT_ISSUER,
     jwtSubject: validatedEnv.SUPABASE_JWT_SUBJECT,
-    serviceRoleKey: validatedEnv.SUPABASE_SERVICE_ROLE_KEY
+    databaseUrl: validatedEnv.SUPABASE_DATABASE_URL
   },
   // Github Configuration
   github: {

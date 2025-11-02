@@ -8,15 +8,17 @@ import cron from 'node-cron'
 import { Command } from 'commander'
 import type { Job } from './job.types'
 import { config } from '../config'
-import { createClient } from '@supabase/supabase-js'
+import pkg from 'pg'
 import { format } from 'date-fns'
+
+const { Pool } = pkg
 
 export const OptionsSchema = z.object({})
 
 let JOB_IS_RUNNING = false
 
 /**
- * Deletes azimuth data older than 1 day (UTC) from the sun_moon table
+ * Deletes azimuth data older than 10 seconds (UTC) from the sun_moon table
  * and geostorm data older than 1 month (UTC) from the geostorm table
  */
 const runJob = async () => {
@@ -27,44 +29,50 @@ const runJob = async () => {
   console.log(
     createLogBox(
       '🚀 Job: delete',
-      'Deleting azimuth data older than 1 day and geostorm data older than 1 month',
+      'Deleting azimuth data older than 10 seconds and geostorm data older than 1 month',
       'info'
     )
   )
 
-  try {
-    // Create Supabase client with service role key (bypasses RLS)
-    const supabase = createClient(
-      config.supabase.url,
-      config.supabase.serviceRoleKey
-    )
+  // Create Postgres connection pool
+  const pool = new Pool({
+    connectionString: config.supabase.databaseUrl
+  })
 
+  try {
     // Calculate cutoff dates
-    const oneDayAgo = new Date()
-    oneDayAgo.setUTCDate(oneDayAgo.getUTCDate() - 1)
-    const azimuthCutoffDate = oneDayAgo.toISOString()
+    const tenSecondsAgo = new Date()
+    tenSecondsAgo.setUTCSeconds(tenSecondsAgo.getUTCSeconds() - 10)
+    const azimuthCutoffDate = tenSecondsAgo.toISOString()
 
     const oneMonthAgo = new Date()
     oneMonthAgo.setUTCMonth(oneMonthAgo.getUTCMonth() - 1)
     const geostormCutoffDate = oneMonthAgo.toISOString()
 
-    // Delete azimuth data older than 1 day (in batches of 25,000)
-    let totalAzimuthDeleted = 0
     const BATCH_SIZE = 25000
     
+    // Delete azimuth data older than 10 seconds (in batches of 25,000)
+    let totalAzimuthDeleted = 0
+    
     while (true) {
-      const { error: azimuthError, data: azimuthCount } = await supabase
-        .rpc('delete_old_sun_moon_batch', {
-          cutoff: azimuthCutoffDate,
-          batch_size: BATCH_SIZE
-        })
+      const result = await pool.query(
+        `DELETE FROM sun_moon 
+         WHERE id IN (
+           SELECT id FROM sun_moon
+           WHERE created_at < $1
+           ORDER BY created_at
+           LIMIT $2
+         )`,
+        [azimuthCutoffDate, BATCH_SIZE]
+      )
 
-      if (azimuthError) {
-        throw new Error(`Supabase error (azimuth): ${azimuthError.message}`)
-      }
-
-      const deletedInBatch = azimuthCount || 0
+      const deletedInBatch = result.rowCount || 0
       totalAzimuthDeleted += deletedInBatch
+
+      if (deletedInBatch > 0) {
+        /* eslint-disable-next-line no-console */
+        console.log(Chalk.gray(`    Deleted ${deletedInBatch} azimuth records (total: ${totalAzimuthDeleted})`))
+      }
 
       // Stop if we deleted fewer records than the batch size (no more records to delete)
       if (deletedInBatch < BATCH_SIZE) {
@@ -76,18 +84,24 @@ const runJob = async () => {
     let totalGeostormDeleted = 0
     
     while (true) {
-      const { error: geostormError, data: geostormCount } = await supabase
-        .rpc('delete_old_geostorm_batch', {
-          cutoff: geostormCutoffDate,
-          batch_size: BATCH_SIZE
-        })
+      const result = await pool.query(
+        `DELETE FROM geostorm 
+         WHERE id IN (
+           SELECT id FROM geostorm 
+           WHERE created_at < $1 
+           ORDER BY created_at
+           LIMIT $2
+         )`,
+        [geostormCutoffDate, BATCH_SIZE]
+      )
 
-      if (geostormError) {
-        throw new Error(`Supabase error (geostorm): ${geostormError.message}`)
-      }
-
-      const deletedInBatch = geostormCount || 0
+      const deletedInBatch = result.rowCount || 0
       totalGeostormDeleted += deletedInBatch
+
+      if (deletedInBatch > 0) {
+        /* eslint-disable-next-line no-console */
+        console.log(Chalk.gray(`    Deleted ${deletedInBatch} geostorm records (total: ${totalGeostormDeleted})`))
+      }
 
       // Stop if we deleted fewer records than the batch size (no more records to delete)
       if (deletedInBatch < BATCH_SIZE) {
@@ -112,13 +126,15 @@ const runJob = async () => {
     /* eslint-disable-next-line no-console */
     console.error('❌ Error in delete job:', error)
   } finally {
+    // Always close the pool connection
+    await pool.end()
     JOB_IS_RUNNING = false
   }
 }
 
 const job: Job = {
   name: 'delete',
-  description: 'Deletes azimuth data older than 1 day and geostorm data older than 1 month',
+  description: 'Deletes azimuth data older than 10 seconds and geostorm data older than 1 month',
   optionsSchema: OptionsSchema,
   async run() {
     if (config.nodeEnv === 'development') {
