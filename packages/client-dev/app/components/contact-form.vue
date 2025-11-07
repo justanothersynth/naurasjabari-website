@@ -161,7 +161,7 @@ const validateForm = (): boolean => {
   if (!formData.value.email.trim()) {
     newErrors.email = 'Email address is required'
   } else {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[\w.%+-]+@[\w.-]+\.[a-z]{2,}$/i
     if (!emailRegex.test(formData.value.email)) {
       newErrors.email = 'Please enter a valid email address'
     }
@@ -171,7 +171,7 @@ const validateForm = (): boolean => {
   if (!formData.value.phone.trim()) {
     newErrors.phone = 'Phone number is required'
   } else {
-    const phoneRegex = /^[+]?[\d\s\-()]{10,}$/
+    const phoneRegex = /^\+?[\d\s\-()]{10,}$/
     if (!phoneRegex.test(formData.value.phone.trim())) {
       newErrors.phone = 'Please enter a valid phone number'
     }

@@ -35,9 +35,8 @@ import {
   TooltipTrigger,
   TooltipContent,
   TooltipPortal
-  
 } from 'reka-ui'
-import type {TooltipRootProps} from 'reka-ui';
+import type { TooltipRootProps } from 'reka-ui'
 import { Motion } from 'motion-v'
 
 interface Props extends TooltipRootProps {

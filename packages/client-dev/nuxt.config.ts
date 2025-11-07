@@ -1,8 +1,8 @@
 import { defineNuxtConfig } from 'nuxt/config'
 import tailwindcss from '@tailwindcss/vite'
 import * as dotenv from 'dotenv'
-import { existsSync } from 'fs'
-import { resolve } from 'path'
+import { existsSync } from 'node:fs'
+import { resolve } from 'node:path'
 
 const envPath = resolve(process.cwd(), '.env.local')
 const defaultEnvPath = resolve(process.cwd(), '.env')
@@ -47,7 +47,7 @@ export default defineNuxtConfig({
   },
   vite: {
     plugins: [
-      tailwindcss()
+      tailwindcss() as any
     ],
     css: {
       preprocessorOptions: {

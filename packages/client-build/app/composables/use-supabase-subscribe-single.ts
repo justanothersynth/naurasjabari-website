@@ -13,7 +13,6 @@ export interface SupabaseSubscribeSingleOptions<T> {
 /**
  * Composable for handling Supabase realtime subscriptions for single items
  * @param options - Configuration options for the subscription
- * @returns Object with subscription management functions
  */
 export const useSupabaseSubscribeSingle = <T = unknown>(options: SupabaseSubscribeSingleOptions<T>) => {
   const { $bus, $supabase } = useNuxtApp()

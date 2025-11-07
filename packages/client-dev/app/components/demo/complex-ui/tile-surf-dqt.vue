@@ -38,11 +38,11 @@
 </template>
 
 <script setup lang="ts">
-const ringCount = ref(5);
-const selectedRingCount = ref(ringCount.value);
+const ringCount = ref(5)
+const selectedRingCount = ref(ringCount.value)
 
-const buttonClicked = ref(false);
-const buttonHovered = ref(false);
+const buttonClicked = ref(false)
+const buttonHovered = ref(false)
 
 const getIndicatorText = (isHovered: boolean, isClicked: boolean) => {
   if (isClicked) return 'active'

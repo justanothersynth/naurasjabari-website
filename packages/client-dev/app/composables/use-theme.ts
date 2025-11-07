@@ -2,7 +2,6 @@ import { usePreferredDark } from '@vueuse/core'
 
 /**
  * Composable for managing application theme
- * @returns Object containing theme state and methods
  */
 export default function useTheme() {
   if (import.meta.server) { return }

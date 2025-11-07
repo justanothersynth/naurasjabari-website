@@ -1,5 +1,5 @@
-import { cva  } from 'class-variance-authority'
-import type {VariantProps} from 'class-variance-authority';
+import { cva } from 'class-variance-authority'
+import type { VariantProps } from 'class-variance-authority'
 
 export const buttonVariants = cva(
   'cursor-pointer whitespace-nowrap transition-colors duration-150 ease-in-out',

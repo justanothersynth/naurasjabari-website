@@ -1,5 +1,5 @@
 import { cva  } from 'class-variance-authority'
-import type {VariantProps} from 'class-variance-authority';
+import type {VariantProps} from 'class-variance-authority'
 
 export const kbdVariants = cva(
   'inline-flex items-center font-sans text-xs font-medium',

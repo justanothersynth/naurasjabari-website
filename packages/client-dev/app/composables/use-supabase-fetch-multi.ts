@@ -5,8 +5,7 @@ type PaginatedItem = Record<string, string | number | Date | null>
 
 /**
  * Client-only composable for fetching data from Supabase with realtime subscriptions and cursor-based pagination
- * @param dataQueryBuilderFn - Function that returns a base query builder with filtering logic applied
- * @param paginationOptions - Options for pagination
+ * @param options - Options for the fetch multi composable
  * @returns Object with data, error, loading state, refresh function, and pagination methods
  */
 export const useSupabaseFetchMulti = <T = unknown>(
@@ -165,7 +164,10 @@ export const useSupabaseFetchMulti = <T = unknown>(
     if (lastItem && lastItem[orderBy.value]) {
       // Store current page end cursor in history
       const currentPageIndex = currentPage.value - 1
-      pageHistory.value[currentPageIndex].endCursor = lastItem[orderBy.value] as string
+      const currentPageEntry = pageHistory.value[currentPageIndex]
+      if (currentPageEntry) {
+        currentPageEntry.endCursor = lastItem[orderBy.value] as string
+      }
       
       // Set new cursor and add new page to history
       currentCursor.value = lastItem[orderBy.value] as string
@@ -190,6 +192,8 @@ export const useSupabaseFetchMulti = <T = unknown>(
     // Get the previous page's start cursor
     const previousPageIndex = currentPage.value - 1
     const previousPage = pageHistory.value[previousPageIndex]
+
+    if (!previousPage) return
     
     currentCursor.value = previousPage.startCursor
     

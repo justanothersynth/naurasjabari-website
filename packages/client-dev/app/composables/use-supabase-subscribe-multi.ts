@@ -3,7 +3,6 @@ import type { SupabaseSubscribeMultiOptions, SupabaseRealtimePayload, SupabasePa
 /**
  * Composable for handling Supabase realtime subscriptions
  * @param options - Configuration options for the subscription
- * @returns Object with subscription management functions
  */
 export const useSupabaseSubscribeMulti = <T = unknown>(options: SupabaseSubscribeMultiOptions<T>) => {
   const { $bus, $supabase } = useNuxtApp()

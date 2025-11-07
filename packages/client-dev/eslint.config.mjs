@@ -1,9 +1,11 @@
 import { createConfigForNuxt } from '@nuxt/eslint-config/flat'
-import withNuxt from '.nuxt/eslint.config.mjs'
 import tsdoc from 'eslint-plugin-tsdoc'
 
-export default withNuxt(
-  await createConfigForNuxt(),
+export default createConfigForNuxt({
+  features: {
+    tooling: true
+  }
+}).append(
   {
     files: ['**/*.vue', '**/*.js', '**/*.ts'],
     plugins: {
@@ -16,6 +18,8 @@ export default withNuxt(
       }
     },
     rules: {
+      semi: ['error', 'never'],
+      quotes: ['error', 'single'],
       'no-console': process.env.NODE_ENV !== 'development' ? 'error' : 'off',
       'vue/html-closing-bracket-newline': ['error', {
         singleline: 'never',
@@ -45,7 +49,15 @@ export default withNuxt(
       'vue/no-v-for-template-key': 'off',
       'vue/no-v-for-template-key-on-child': 'error',
       // TSDoc rules
-      'tsdoc/syntax': 'error'
+      'tsdoc/syntax': 'error',
+      // Disable JSDoc nested param check (conflicts with TSDoc)
+      'jsdoc/check-param-names': 'off'
+    }
+  },
+  {
+    files: ['nuxt.config.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off'
     }
   }
 )

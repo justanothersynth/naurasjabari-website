@@ -196,7 +196,7 @@ const runJob = async () => {
   console.log(
     createLogBox(
       '🚀 Job: geostorm',
-      `Scraping geostorm data from the government of Canada`,
+      'Scraping geostorm data from the government of Canada',
       'info'
     )
   )

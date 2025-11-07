@@ -24,6 +24,11 @@
   "dependencies": {
     "@orpc/client": "^1.5.2",
     "@supabase/supabase-js": "^2.50.0",
+    "@workspace/api": "workspace:*",
+    "@workspace/types": "workspace:*",
+    "@workspace/utils": "workspace:*",
+    "boxen": "^8.0.1",
+    "chalk": "^5.6.2",
     "cheerio": "^1.1.2",
     "commander": "^14.0.0",
     "date-fns": "^4.1.0",
@@ -36,6 +41,8 @@
   },
   "devDependencies": {
     "@types/pg": "^8.15.6",
+    "@eslint/js": "^9.38.0",
+    "eslint": "^9.38.0",
     "rimraf": "^5.0.5",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.34.1"

@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "tsc --noEmit",
+    "check": "vue-tsc --noEmit",
     "build": "nuxt --bun build",
     "dev": "nuxt --bun dev",
     "generate": "nuxt --bun generate",
@@ -36,6 +36,7 @@
     "date-fns-tz": "^3.2.0",
     "dotenv": "^17.2.3",
     "filesize": "^10.1.6",
+    "mitt": "^3.0.1",
     "motion-v": "^1.6.1",
     "nuxt": "^4.0.0",
     "pinia": "^3.0.3",
@@ -48,15 +49,18 @@
     "zod": "^4.0.15"
   },
   "devDependencies": {
+    "@eslint/js": "^9.38.0",
     "@iconify-json/iconoir": "^1.2.7",
     "@nuxt/eslint": "^1.7.1",
+    "@nuxt/eslint-config": "^1.10.0",
     "@tailwindcss/typography": "^0.5.16",
-    "eslint": "^9.32.0",
+    "eslint": "^9.38.0",
     "eslint-plugin-tsdoc": "^0.4.0",
     "eslint-plugin-vue": "^10.3.0",
     "sass-embedded": "^1.89.2",
     "shiki": "^3.8.1",
     "supabase": "^2.33.7",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vue-tsc": "^2.2.0"
   }
 }

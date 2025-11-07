@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
 import {  kbdVariants } from './variants'
-import type {KbdVariants} from './variants';
+import type {KbdVariants} from './variants'
 
 interface Props {
   variant?: KbdVariants['variant']

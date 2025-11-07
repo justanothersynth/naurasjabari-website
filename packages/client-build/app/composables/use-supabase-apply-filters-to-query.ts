@@ -8,6 +8,7 @@ interface SupabaseQuery {
 
 /**
  * Helper function to apply filter mapping to a Supabase query
+ * @param query - The query to apply filters to
  * @param options - Configuration options for applying filters
  * @returns The query with filters applied
  */
@@ -43,7 +44,7 @@ export const useSupabaseApplyFiltersToQuery = <T extends SupabaseQuery>(
 
   // Apply single or multiple filter
   if (values.length === 1) {
-    return query.eq(columnName, values[0]) as T
+    return query.eq(columnName, values[0]!) as T
   } else {
     return query.in(columnName, values) as T
   }

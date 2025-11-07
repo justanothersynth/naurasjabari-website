@@ -7,7 +7,7 @@
     :side="5"
     :margin="margin"
     size="90px">
-    <div class="w-full h-full image bg-[position:-281px_-52px]" />
+    <div class="w-full h-full image bg-position-[-281px_-52px]" />
   </HexAgon>
 
   <HexAgon
@@ -16,7 +16,7 @@
     :side="4"
     :margin="margin"
     size="90px">
-    <div class="w-full h-full image bg-[position:-144px_-37px]" />
+    <div class="w-full h-full image bg-position-[-144px_-37px]" />
   </HexAgon>
 
   <!-- CN Tower: Middle row -->
@@ -26,7 +26,7 @@
     :side="3"
     :margin="margin"
     size="90px">
-    <div class="w-full h-full image bg-[position:-154px_-137px]" />
+    <div class="w-full h-full image bg-position-[-154px_-137px]" />
   </HexAgon>
 
   <HexAgon
@@ -34,7 +34,7 @@
     attached-to="origin"
     :margin="margin"
     size="90px">
-    <div class="w-full h-full image bg-[position:-236px_-130px]" />
+    <div class="w-full h-full image bg-position-[-236px_-130px]" />
   </HexAgon>
 
   <HexAgon
@@ -43,7 +43,7 @@
     :side="0"
     :margin="margin"
     size="90px">
-    <div class="w-full h-full image bg-[position:-334px_-137px]" />
+    <div class="w-full h-full image bg-position-[-334px_-137px]" />
   </HexAgon>
 
   <!-- CN Tower: Bottom row -->
@@ -53,7 +53,7 @@
     :side="1"
     :margin="margin"
     size="90px">
-    <div class="w-full h-full image bg-[position:-334px_-190px]" />
+    <div class="w-full h-full image bg-position-[-334px_-190px]" />
   </HexAgon>
 
   <HexAgon
@@ -62,7 +62,7 @@
     :side="2"
     :margin="margin"
     size="90px">
-    <div class="w-full h-full image bg-[position:-201px_-196px]" />
+    <div class="w-full h-full image bg-position-[-201px_-196px]" />
   </HexAgon>
 
   <!-- Extra -->

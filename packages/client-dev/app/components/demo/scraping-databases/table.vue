@@ -146,7 +146,7 @@ const heatMap = {
  * @returns Array of 7 numbers forming a curve pattern
  */
  function generatePointsArray(current: number, next: number): number[] {
-  const result: number[] = new Array(7)
+  const result: number[] = Array.from({ length: 7 })
   
   // If values are the same, return array of identical values
   if (current === next) {

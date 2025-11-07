@@ -86,7 +86,7 @@ const runJob = async () => {
   console.log(
     createLogBox(
       '🚀 Job: azimuth',
-      `Creating per-second azimuth data`,
+      'Creating per-second azimuth data',
       'info'
     )
   )

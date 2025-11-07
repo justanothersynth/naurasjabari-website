@@ -6,7 +6,7 @@ class Ls {
 
   /**
    * Creates a new Ls instance
-   * @param options - Configuration options
+   * @param options - Configuration options. The prefix property defines the prefix to use for the localStorage key.
    */
   constructor(options: { prefix?: string }) {
     this.prefix = options.prefix || 'zero__'

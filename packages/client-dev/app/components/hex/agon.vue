@@ -147,7 +147,7 @@ const handleTransitionEnd = (event: TransitionEvent) => {
 const updatePosition = () => {
   const parent = hexagons.value.get(props.attachedTo)
   if (!parent || !hexagonRef.value) return { x: 0, y: 0 }
-  const width = hexagonRef.value.clientWidth || parseInt(props.size)
+  const width = hexagonRef.value.clientWidth || Number.parseInt(props.size)
   const offset = getHexEdgeOffset(parent.coordinates.width, width)
   position.value = {
     x: parent.position.x + offset.x,

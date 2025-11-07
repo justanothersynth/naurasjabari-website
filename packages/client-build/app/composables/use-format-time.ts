@@ -43,7 +43,8 @@ export const useFormatTime = (
     if (!offsetMatch) return formatInTimeZone(date, 'UTC', formatPattern) // fallback to UTC
 
     const [_, hours, minutes] = offsetMatch
-    const offsetMinutes = parseInt(hours) * 60 + parseInt(minutes)
+    if (!hours || !minutes) return timeString
+    const offsetMinutes = Number.parseInt(hours) * 60 + Number.parseInt(minutes)
     const fakeOffsetZone = `Etc/GMT${offsetMinutes > 0 ? '-' : '+'}${Math.abs(offsetMinutes / 60)}`
     return formatInTimeZone(date, fakeOffsetZone, formatPattern)
   } catch {

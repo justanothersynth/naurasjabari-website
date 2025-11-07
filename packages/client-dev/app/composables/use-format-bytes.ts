@@ -11,7 +11,7 @@ import { filesize } from 'filesize'
  * const { value, unit } = useFormatBytes(1024, 'object') // { value: "1", unit: "KB" }
  * ```
  */
-export default (bytes: number, format: 'string' | 'object' = 'string'): string | { value: string, unit: string } => {
+export default (bytes: number, format: 'string' | 'object' = 'string'): string | { value: string | undefined, unit: string | undefined } => {
   const size = filesize(bytes, { round: 2 })
   if (format === 'string') { return size }
   const split = size.split(' ')
