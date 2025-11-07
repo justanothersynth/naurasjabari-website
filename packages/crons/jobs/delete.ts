@@ -18,7 +18,7 @@ export const OptionsSchema = z.object({})
 let JOB_IS_RUNNING = false
 
 /**
- * Deletes azimuth data older than 10 seconds (UTC) from the sun_moon table
+ * Deletes azimuth data older than 1 hour (UTC) from the sun_moon table
  * and geostorm data older than 1 month (UTC) from the geostorm table
  */
 const runJob = async () => {
@@ -29,7 +29,7 @@ const runJob = async () => {
   console.log(
     createLogBox(
       '🚀 Job: delete',
-      'Deleting azimuth data older than 10 seconds and geostorm data older than 1 month',
+      'Deleting azimuth data older than 1 hour and geostorm data older than 1 month',
       'info'
     )
   )
@@ -41,9 +41,9 @@ const runJob = async () => {
 
   try {
     // Calculate cutoff dates
-    const tenSecondsAgo = new Date()
-    tenSecondsAgo.setUTCSeconds(tenSecondsAgo.getUTCSeconds() - 10)
-    const azimuthCutoffDate = tenSecondsAgo.toISOString()
+    const oneHourAgo = new Date()
+    oneHourAgo.setUTCHours(oneHourAgo.getUTCHours() - 1)
+    const azimuthCutoffDate = oneHourAgo.toISOString()
 
     const oneMonthAgo = new Date()
     oneMonthAgo.setUTCMonth(oneMonthAgo.getUTCMonth() - 1)
@@ -51,7 +51,7 @@ const runJob = async () => {
 
     const BATCH_SIZE = 25000
     
-    // Delete azimuth data older than 10 seconds (in batches of 25,000)
+    // Delete azimuth data older than 1 hour (in batches of 25,000)
     let totalAzimuthDeleted = 0
     
     while (true) {
@@ -146,7 +146,7 @@ const runJob = async () => {
 
 const job: Job = {
   name: 'delete',
-  description: 'Deletes azimuth data older than 10 seconds and geostorm data older than 1 month',
+  description: 'Deletes azimuth data older than 1 hour and geostorm data older than 1 month',
   optionsSchema: OptionsSchema,
   async run() {
     if (config.nodeEnv === 'development') {
