@@ -8,14 +8,9 @@ program
   .description('CLI tool for running jobs')
   .version('1.0.0')
 
-// Create the parent "run" command
-const runCommand = new Command('run').description('Run a specific job')
-
-// Add all job subcommands to the run command
+// Add all job subcommands directly to the main program
 subcommands.forEach((subcommand) => {
-  runCommand.addCommand(subcommand)
+  program.addCommand(subcommand)
 })
-
-program.addCommand(runCommand)
 
 program.parse(process.argv)
