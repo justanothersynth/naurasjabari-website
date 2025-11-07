@@ -3,12 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "vue-tsc --noEmit",
     "build": "nuxt --bun build",
     "dev": "nuxt --bun dev",
     "generate": "nuxt --bun generate",
     "start": "bun .output/server/index.mjs",
     "launch": "nuxi --bun build && pm2 restart client_build",
+    "ts-check": "vue-tsc --noEmit",
     "lint": "eslint .",
     "upgrade-nuxt": "bunx nuxi@latest upgrade --dedupe"
   },

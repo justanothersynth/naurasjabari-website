@@ -9,7 +9,7 @@
     "./*": "./*"
   },
   "scripts": {
-    "check": "tsc --noEmit",
+    "ts-check": "tsc --noEmit",
     "lint": "eslint ."
   },
   "dependencies": {
