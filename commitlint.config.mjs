@@ -3,8 +3,8 @@ const config = {
   rules: {
     // You can customize rules here if needed
     // For example:
-    // 'body-max-line-length': [2, 'always', 100],
-  },
-};
+    // 'body-max-line-length': [2, 'always', 100]
+  }
+}
 
 export default config
