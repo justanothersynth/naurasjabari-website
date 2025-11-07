@@ -12,7 +12,7 @@
     <UiButton
       variant="form"
       class="mt-4"
-      @click="navigateTo('/')">
+      @click="handleNavigate">
       <Icon name="iconoir:arrow-left" size="12" class="mr-2" />
       Back to home
     </UiButton>
@@ -26,4 +26,6 @@ import type { NuxtError } from '@workspace/types'
 defineProps<{
   error: NuxtError
 }>()
+
+const handleNavigate = () => navigateTo('/')
 </script>

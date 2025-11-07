@@ -57,7 +57,7 @@ export default createConfigForNuxt({
   {
     files: ['nuxt.config.ts'],
     rules: {
-      '@typescript-eslint/no-unsafe-assignment': 'off'
+      '@typescript-eslint/no-explicit-any': 'off'
     }
   }
 )

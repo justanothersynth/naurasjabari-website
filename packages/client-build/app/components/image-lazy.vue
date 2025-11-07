@@ -3,7 +3,7 @@
     :is="tag"
     ref="containerRef"
     :aria-label="`View image: ${alt}`"
-    :class="useCn('relative inline-block w-full h-full bg-gray-fill', containerClass)">
+    :class="cn('relative inline-block w-full h-full bg-gray-fill', containerClass)">
 
     <Transition
       enter-active-class="transition-opacity duration-300 ease-in-out"
@@ -39,7 +39,7 @@
         :alt="alt"
         :width="width !== -1 ? width : undefined"
         :height="height !== -1 ? height : undefined"
-        :class="useCn(imageClass)"
+        :class="cn(imageClass)"
         @load="handleLoad"
         @error="handleError" />
     </Transition>
@@ -49,6 +49,8 @@
 
 <script setup lang="ts">
 import { useIntersectionObserver } from '@vueuse/core'
+
+const cn = useCn
 
 interface Props {
   src: string
@@ -115,8 +117,8 @@ watch(isLoaded, loaded => {
 // Set up intersection observer to trigger loading when in viewport
 useIntersectionObserver(
   containerRef,
-  ([{ isIntersecting }]) => {
-    if (isIntersecting && !shouldLoad.value) {
+  ([entry]) => {
+    if (entry?.isIntersecting && !shouldLoad.value) {
       shouldLoad.value = true
     }
   },

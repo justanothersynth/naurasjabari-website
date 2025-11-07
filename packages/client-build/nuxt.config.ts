@@ -32,9 +32,7 @@ export default defineNuxtConfig({
         prefix: 'naurasjabari-website-v1__'
       },
       siteUrl: baseUrls.client,
-      apiUrl: baseUrls.api,
-      supabaseUrl: process.env.SUPABASE_URL,
-      supabaseKey: process.env.SUPABASE_KEY
+      apiUrl: baseUrls.api
     }
   },
   devServer: {

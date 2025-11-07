@@ -3,7 +3,7 @@
     :is="resolvedComponent"
     data-slot="button"
     :disabled="disabled || isLoading"
-    :class="useCn(buttonVariants({ variant, size, disabled, selected }), props.class, 'button')"
+    :class="cn(buttonVariants({ variant, size, disabled, selected }), props.class, 'button')"
     v-bind="componentProps"
     @click="emit('click', $event)">
 
@@ -28,6 +28,8 @@ import { Primitive } from 'reka-ui'
 import type { PrimitiveProps } from 'reka-ui'
 import { buttonVariants } from './variants'
 import type { ButtonVariants } from './variants'
+
+const cn = useCn
 
 interface Props extends PrimitiveProps {
   variant?: ButtonVariants['variant']
