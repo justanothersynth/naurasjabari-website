@@ -1,5 +1,5 @@
 <template>
-  <kbd :class="useCn(kbdVariants({ variant, theme }), props.class)">
+  <kbd :class="cn(kbdVariants({ variant, theme }), props.class)">
     <slot />
   </kbd>
 </template>
@@ -20,4 +20,6 @@ const props = withDefaults(defineProps<Props>(), {
   theme: 'light',
   class: ''
 })
+
+const cn = useCn
 </script>

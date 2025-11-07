@@ -16,7 +16,7 @@
           :animate="{ opacity: 1, x: 0, y: 0 }"
           :exit="{ opacity: 0, x: initialX, y: initialY }"
           :transition="{ duration: animationDuration, ease: 'easeIn' }"
-          :class="useCn(
+          :class="cn(
             'z-50 overflow-hidden rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white shadow-md pointer-events-none',
             props.class
           )">
@@ -55,6 +55,8 @@ const props = withDefaults(defineProps<Props>(), {
   animationDuration: 0.2,
   class: ''
 })
+
+const cn = useCn
 
 // Calculate initial Y position based on side
 const initialY = computed(() => {

@@ -17,6 +17,11 @@ declare module '#app' {
         handleRealtimeChange: (payload: SupabaseRealtimePayload) => void
       ) => void
     }
+    $tooltip: {
+      show: (content: string) => void
+      hide: () => void
+      state: { show: boolean; content: string; x: number; y: number }
+    }
   }
 }
 

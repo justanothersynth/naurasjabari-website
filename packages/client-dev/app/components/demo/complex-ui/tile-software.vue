@@ -97,11 +97,14 @@ function draw() {
   
   for (let i = 0; i < dropCount; i++) {
     const text = lettersArray[Math.floor(Math.random() * lettersArray.length)]
-    ctx.fillStyle = fills.text
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize)
-    drops[i]++
+    const drop = drops[i]
+    if (!text || drop === undefined) continue
     
-    if (drops[i] * fontSize > canvasRef.value.height && Math.random() > .95) {
+    ctx.fillStyle = fills.text
+    ctx.fillText(text, i * fontSize, drop * fontSize)
+    drops[i]!++
+    
+    if (drops[i]! * fontSize > canvasRef.value.height && Math.random() > .95) {
       drops[i] = 0
     }
   }

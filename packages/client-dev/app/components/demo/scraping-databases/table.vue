@@ -101,6 +101,8 @@ defineProps<{
   activityColors: string[]
 }>()
 
+const { $tooltip } = useNuxtApp()
+
 // Scroll container ref for VueUse
 const scrollContainer = ref<HTMLElement>()
 
@@ -209,7 +211,7 @@ const reformatData = (data: GeostormSupabase) => {
     for (const timePeriod of timePeriods) {
       const activities = (data[timePeriod as keyof GeostormOrpcInput] as GeostormOrpcInputRegions)[region]
       for (const activity of activities) {
-        activitiesList.push(activity === '' ? activities[0] : activity)
+        activitiesList.push(activity === '' ? (activities[0] ?? '') : activity)
       }
     }
   
@@ -243,7 +245,8 @@ const reformatData = (data: GeostormSupabase) => {
       timeframeEntry.points.push(currentTimeperiodArray)
 
       if ((i + 1) % 2 === 0) {
-        currentTimeperiod = timePeriods[timePeriods.indexOf(currentTimeperiod) + 1]
+        const nextIndex: number = timePeriods.indexOf(currentTimeperiod) + 1
+        currentTimeperiod = timePeriods[nextIndex] ?? currentTimeperiod
       }
     }
 

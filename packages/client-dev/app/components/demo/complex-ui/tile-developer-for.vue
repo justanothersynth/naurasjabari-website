@@ -17,7 +17,7 @@
               v-for="(digit, j) in item.digits"
               :key="`item-${i}-digit-${digit}-index-${j}`"
               class="digit"
-              :class="{ 'flashing': item.key && flashingDigits[item.key] && flashingDigits[item.key][j] }">
+              :class="{ 'flashing': item.key && flashingDigits[item.key]?.[j] }">
               {{ digit }}
             </div>
           </div>

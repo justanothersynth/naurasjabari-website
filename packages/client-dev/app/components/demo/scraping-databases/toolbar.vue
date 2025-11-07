@@ -55,20 +55,22 @@ const cmdK = keys['Meta+k']
 const { y } = useWindowScroll()
 
 // Watch for Cmd+K and focus the search input
-watch(cmdK, (pressed) => {
-  if (pressed && searchInputRef.value) {
-    // Get the element's position relative to the document
-    const rect = searchInputRef.value.getBoundingClientRect()
-    const elementTop = rect.top + window.scrollY
-    const targetScrollY = elementTop - 20
-    // Smooth scroll to the calculated position
-    y.value = targetScrollY
-    // Focus after a small delay to ensure scroll has started
-    setTimeout(() => {
-      searchInputRef.value?.focus()
-    }, 100)
-  }
-})
+if (cmdK) {
+  watch(cmdK, (pressed) => {
+    if (pressed && searchInputRef.value) {
+      // Get the element's position relative to the document
+      const rect = searchInputRef.value.getBoundingClientRect()
+      const elementTop = rect.top + window.scrollY
+      const targetScrollY = elementTop - 20
+      // Smooth scroll to the calculated position
+      y.value = targetScrollY
+      // Focus after a small delay to ensure scroll has started
+      setTimeout(() => {
+        searchInputRef.value?.focus()
+      }, 100)
+    }
+  })
+}
 
 const labels = [
   'all',

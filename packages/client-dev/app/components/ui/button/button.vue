@@ -3,7 +3,7 @@
     :is="resolvedComponent"
     data-slot="button"
     :disabled="disabled || isLoading"
-    :class="useCn(buttonVariants({ variant, size, disabled, selected }), props.class, 'button')"
+    :class="cn(buttonVariants({ variant, size, disabled, selected }), props.class, 'button')"
     v-bind="componentProps"
     @click="emit('click', $event)">
 
@@ -56,6 +56,7 @@ const emit = defineEmits<{
 
 const { $bus } = useNuxtApp()
 const isLoading = ref(false)
+const cn = useCn
 
 const resolvedComponent = computed(() => {
   if (props.as === 'nuxt-link') return resolveComponent('NuxtLink')

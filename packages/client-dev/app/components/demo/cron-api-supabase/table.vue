@@ -5,8 +5,8 @@
       v-for="location in locationKeys"
       :key="location"
       :class="['relative border-1 rounded-2xl p-4 bg-white transition-all duration-200', {
-        'border-amber-200': data[0][location].period === 'day',
-        'border-gray-300': data[0][location].period === 'night',
+        'border-amber-200': data[0]?.[location]?.period === 'day',
+        'border-gray-300': data[0]?.[location]?.period === 'night',
         'scale-103 shadow-lg': hoveredLocation === location
       }]"
       @mouseenter="hoveredLocation = location"
@@ -14,14 +14,14 @@
 
       <div
         class="specific-azimuth-indicator absolute -top-3 -right-3 w-10 h-10"
-        @mouseenter="$tooltip.show(`Currently ${data[0][location].period === 'day' ? 'day ☀️' : 'night 🌙'}`)"
+        @mouseenter="$tooltip.show(`Currently ${data[0]?.[location]?.period === 'day' ? 'day ☀️' : 'night 🌙'}`)"
         @mouseleave="$tooltip.hide">
         <div
           class="needle sun before:bg-white"
-          :style="{ transform: `translate(-50%, -50%) rotate(${data[0][location].sunAzimuth - 90}deg)` }" />
+          :style="{ transform: `translate(-50%, -50%) rotate(${(data[0]?.[location]?.sunAzimuth ?? 0) - 90}deg)` }" />
         <div
           class="needle moon before:bg-white"
-          :style="{ transform: `translate(-50%, -50%) rotate(${data[0][location].moonAzimuth - 90}deg)` }" />
+          :style="{ transform: `translate(-50%, -50%) rotate(${(data[0]?.[location]?.moonAzimuth ?? 0) - 90}deg)` }" />
         <div class="container sun absolute top-0 left-1/2 -translate-x-1/2 w-6 h-1/2" />
         <div class="container moon absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-1/2" />
       </div>
@@ -36,14 +36,14 @@
         <div class="flex">
           <span class="bg-amber-100 rounded-full p-1 pb-[6px] mr-2 w-4 h-4 flex items-center justify-center">↑</span>
           <div class="flex flex-col">
-            <span class="lowercase">{{ getTime(data[0][location].sunriseTime) }}</span>
+            <span class="lowercase">{{ getTime(data[0]?.[location]?.sunriseTime ?? '') }}</span>
             <span class="text-xs">sunrise</span>
           </div>
         </div>
         <div class="flex">
           <span class="bg-amber-100 rounded-full p-1 pb-[6px] mr-2 w-4 h-4 flex items-center justify-center">↓</span>
           <div class="flex flex-col">
-            <span class="lowercase">{{ getTime(data[0][location].sunsetTime) }}</span>
+            <span class="lowercase">{{ getTime(data[0]?.[location]?.sunsetTime ?? '') }}</span>
             <span class="text-xs">sunset</span>
           </div>
         </div>
@@ -52,11 +52,11 @@
       <div class="flex items-center justify-between font-mono mt-4">
         <div class="flex">
           <span class="p-1 pb-[1px] mr-2 w-4 h-4 flex items-center justify-center">☀️</span>
-          {{ data[0][location].sunAzimuth.toFixed(3) }}
+          {{ (data[0]?.[location]?.sunAzimuth ?? 0).toFixed(3) }}
         </div>
         <div class="flex">
           <span class="p-1 pb-[1px] mr-2 w-4 h-4 flex items-center justify-center">🌗</span>
-          {{ data[0][location].moonAzimuth.toFixed(3) }}
+          {{ (data[0]?.[location]?.moonAzimuth ?? 0).toFixed(3) }}
         </div>
       </div>
 
@@ -64,18 +64,18 @@
 
     <div class="current-azimuth-indicator sun absolute top-15 left-1/2 -translate-y-1/2 -translate-x-1/2 w-1/2 aspect-square border-1 border-dashed border-amber-300 rounded-full">
       <div class="absolute top-30 left-0 w-full flex items-center justify-center">
-        <Icon name="iconoir:map-pin" size="16" class="mr-1" /> {{ data[0][hoveredLocation].period === 'day' ? 'Daytime' : 'Nighttime' }} in {{ useChangeCase(hoveredLocation, 'capitalCase') }}
+        <Icon name="iconoir:map-pin" size="16" class="mr-1" /> {{ data[0]?.[hoveredLocation]?.period === 'day' ? 'Daytime' : 'Nighttime' }} in {{ useChangeCase(hoveredLocation, 'capitalCase') }}
         <span class="mx-2" />
         <span class="bg-amber-100 rounded-full p-1 pb-[6px] mr-2 w-4 h-4 flex items-center justify-center font-mono">↑</span>
-        <span class="lowercase">{{ getTime(data[0][hoveredLocation].sunriseTime) }}</span>
+        <span class="lowercase">{{ getTime(data[0]?.[hoveredLocation]?.sunriseTime ?? '') }}</span>
         <span class="mx-2" />
         <span class="bg-amber-100 rounded-full p-1 pb-[6px] mr-2 w-4 h-4 flex items-center justify-center font-mono">↓</span>
-        <span class="lowercase">{{ getTime(data[0][hoveredLocation].sunsetTime) }}</span>
+        <span class="lowercase">{{ getTime(data[0]?.[hoveredLocation]?.sunsetTime ?? '') }}</span>
       </div>
       <div class="gradient sun absolute top-1/2 left-1/2 w-full h-1/2 -translate-x-1/2" />
       <div
         class="needle"
-        :style="{ transform: `translate(-50%, -50%) rotate(${data[0][hoveredLocation].sunAzimuth - 90}deg)` }">
+        :style="{ transform: `translate(-50%, -50%) rotate(${(data[0]?.[hoveredLocation]?.sunAzimuth ?? 0) - 90}deg)` }">
         <DemoCronApiSupabaseSun />
       </div>
     </div>
@@ -87,8 +87,8 @@
       <div class="gradient moon absolute top-1/2 left-1/2 w-full h-1/2 -translate-x-1/2" />
       <div
         class="needle"
-        :style="{ transform: `translate(-50%, -50%) rotate(${data[0][hoveredLocation].moonAzimuth - 90}deg)` }">
-        <DemoCronApiSupabaseMoon :phase="data[0][hoveredLocation].moonPhase" />
+        :style="{ transform: `translate(-50%, -50%) rotate(${(data[0]?.[hoveredLocation]?.moonAzimuth ?? 0) - 90}deg)` }">
+        <DemoCronApiSupabaseMoon :phase="data[0]?.[hoveredLocation]?.moonPhase ?? 0" />
       </div>
     </div>
 
@@ -103,6 +103,8 @@ import { sunMoonOrpcInput } from '@workspace/types'
 const props = defineProps<{
   data: SunMoonSupabase[]
 }>()
+
+const { $tooltip } = useNuxtApp()
 
 // Get location keys dynamically from the sunMoonOrpcInput schema
 const locationKeys = Object.keys(sunMoonOrpcInput.shape) as SunMoonLocationKey[]
@@ -136,7 +138,7 @@ const getTime = (time: string) => {
  * @returns CSS class name for the moon phase
  */
 const moonPhase = computed(() => {
-  const normalizedPhase = ((props.data[0][hoveredLocation.value].moonPhase % 360) + 360) % 360 // Ensure positive 0-360 range
+  const normalizedPhase = (((props.data[0]?.[hoveredLocation.value]?.moonPhase ?? 0) % 360) + 360) % 360 // Ensure positive 0-360 range
   if (normalizedPhase >= 0 && normalizedPhase < 22.5) return 'New'
   if (normalizedPhase >= 22.5 && normalizedPhase < 67.5) return 'Waxing Crescent'
   if (normalizedPhase >= 67.5 && normalizedPhase < 112.5) return 'First Quarter'

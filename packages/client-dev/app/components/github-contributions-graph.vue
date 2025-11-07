@@ -107,6 +107,8 @@ type WeekData = {
   days: (ContributionDay | null)[]
 }
 
+const { $tooltip } = useNuxtApp()
+
 const contributionsData = ref<ContributionsData | null>(null)
 const selectedYear = ref<number>(new Date().getFullYear())
 
