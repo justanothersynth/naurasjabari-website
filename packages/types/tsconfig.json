@@ -24,6 +24,6 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": ["*.ts"],
+  "include": ["*.ts", "src/geostorm.ts", "src/nuxt.ts", "src/orpc.ts", "src/sun-moon.ts", "src/supabase.ts"],
   "exclude": ["node_modules", "dist"]
 }

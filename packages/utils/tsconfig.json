@@ -24,6 +24,6 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": ["*.ts"],
+  "include": ["*.ts", "src/delay.ts", "src/generate-internal-jwt.ts"],
   "exclude": ["node_modules", "dist"]
 }

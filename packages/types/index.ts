@@ -7,11 +7,11 @@ export type {
   SupabaseRealtimeSubscriptionEvent,
   SupabasePaginatedItem,
   SupabaseResponse
-} from './supabase'
+} from './src/supabase'
 
-export type { OrpcContext, OrpcClient } from './orpc'
+export type { OrpcContext, OrpcClient } from './src/orpc'
 
-export type { NuxtError } from './nuxt'
+export type { NuxtError } from './src/nuxt'
 
 export type {
   Coordinates,
@@ -24,16 +24,16 @@ export type {
   SunMoonMetadata,
   SunMoonOrpcInput,
   SunMoonLocationKey
-} from './sun-moon'
+} from './src/sun-moon'
 
 export {
   sunMoonMetadata,
   sunMoonOrpcInput
-} from './sun-moon'
+} from './src/sun-moon'
 
 export {
   geostormOrpcInput,
   type GeostormOrpcInput,
   type GeostormOrpcInputRegions,
   type GeostormSupabase
-} from './geostorm'
+} from './src/geostorm'

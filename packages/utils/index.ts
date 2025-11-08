@@ -1,2 +1,2 @@
-export * from './generate-internal-jwt'
-export { delay } from './delay'
+export * from './src/generate-internal-jwt'
+export * from './src/delay'
