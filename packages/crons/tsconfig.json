@@ -25,5 +25,5 @@
     "noPropertyAccessFromIndexSignature": false
   },
   "include": ["index.ts", "jobs/**/*", "utils/**/*", "config/**/*"],
-  "exclude": ["node_modules", "dist", "test-setup.ts"]
+  "exclude": ["node_modules", "dist"]
 }

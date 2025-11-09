@@ -21,6 +21,8 @@
   "scripts": {
     "lint": "FORCE_COLOR=1 bun run --elide-lines 0 --filter '*' lint",
     "ts-check": "FORCE_COLOR=1 bun run --elide-lines 0 --filter '*' ts-check",
+    "test": "FORCE_COLOR=1 bun run --elide-lines 0 --filter '@workspace/utils' test",
+    "test:coverage": "FORCE_COLOR=1 bun run --elide-lines 0 --filter '@workspace/utils' test:coverage",
     "prepare": "husky"
   },
   "workspaces": [

@@ -1,2 +1,4 @@
 bun run lint
 bun run ts-check
+bun run test
+bun run test:coverage
