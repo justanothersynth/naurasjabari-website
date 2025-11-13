@@ -1,3 +1,5 @@
 export * from './src/generate-internal-jwt'
 export * from './src/delay'
 export * from './src/logger'
+export * from './src/pg-pool'
+export * from './src/pg-vacuum'
