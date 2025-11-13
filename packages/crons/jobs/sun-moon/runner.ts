@@ -53,10 +53,6 @@ const shutdown = async (signal: string) => {
     process.exit(1) // Exit the process with an error code
   }
 }
-
-// Register shutdown handlers
-process.on('SIGINT', () => shutdown('SIGINT'))
-process.on('SIGTERM', () => shutdown('SIGTERM'))
 /* c8 ignore stop */
 
 /**
@@ -101,6 +97,10 @@ export const job: Job = {
   description: 'Fetches sun and moon data from The Norwegian Meteorological Institute',
   optionsSchema: OptionsSchema,
   async run() {
+    // Register graceful shutdown handlers
+    process.on('SIGINT', () => shutdown('SIGINT'))
+    process.on('SIGTERM', () => shutdown('SIGTERM'))
+
     await sunMoonQueue.add('fetch-sun-moon-data', {}, {
       removeOnComplete: true,
       removeOnFail: false,

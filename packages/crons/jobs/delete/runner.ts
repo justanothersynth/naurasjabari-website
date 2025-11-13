@@ -52,10 +52,6 @@ const shutdown = async (signal: string) => {
     process.exit(1) // Exit the process with an error code
   }
 }
-
-// Register shutdown handlers
-process.on('SIGINT', () => shutdown('SIGINT'))
-process.on('SIGTERM', () => shutdown('SIGTERM'))
 /* c8 ignore stop */
 
 /**
@@ -133,6 +129,10 @@ export const job: Job = {
   description: 'Deletes azimuth data older than 1 hour and geostorm data older than 1 month',
   optionsSchema: OptionsSchema,
   async run() {
+    // Register graceful shutdown handlers
+    process.on('SIGINT', () => shutdown('SIGINT'))
+    process.on('SIGTERM', () => shutdown('SIGTERM'))
+
     await deleteQueue.add('delete-old-data', {}, {
       removeOnComplete: true,
       removeOnFail: false,

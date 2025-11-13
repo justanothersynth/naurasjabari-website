@@ -57,10 +57,6 @@ const shutdown = async (signal: string) => {
     process.exit(1) // Exit the process with an error code
   }
 }
-
-// Register shutdown handlers
-process.on('SIGINT', () => shutdown('SIGINT'))
-process.on('SIGTERM', () => shutdown('SIGTERM'))
 /* c8 ignore stop */
 
 /**
@@ -108,6 +104,10 @@ export const job: Job = {
   description: 'Creates per-second azimuth data',
   optionsSchema: OptionsSchema,
   async run() {
+    // Register graceful shutdown handlers
+    process.on('SIGINT', () => shutdown('SIGINT'))
+    process.on('SIGTERM', () => shutdown('SIGTERM'))
+
     await azimuthQueue.add('create-azimuth-data', {}, {
       removeOnComplete: true,
       removeOnFail: false,
