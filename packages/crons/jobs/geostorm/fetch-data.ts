@@ -1,18 +1,5 @@
-import { z } from 'zod'
-import cron from 'node-cron'
-import { Command } from 'commander'
-import type { Job } from './job.types'
-import { config, logger } from '../config'
-import type { OrpcContext, GeostormOrpcInput, GeostormOrpcInputRegions } from '@workspace/types'
-import { generateInternalJWT } from '@workspace/utils'
-import { createEntry } from '@workspace/api/lib/geostorm'
 import * as cheerio from 'cheerio'
-
-export const OptionsSchema = z.object({})
-
-const orpcContext: OrpcContext = {
-  headers: {}
-}
+import type { GeostormOrpcInput, GeostormOrpcInputRegions } from '@workspace/types'
 
 /**
  * Gets the table headers
@@ -22,7 +9,6 @@ const orpcContext: OrpcContext = {
  *  'Polar'
  * ]
  */
-
 export const getTableHeaders = ($: cheerio.CheerioAPI) => {
   const header = [...$('#tabular-forecast').find('thead th')].map(e => {
     return $(e).text().trim()
@@ -41,7 +27,6 @@ export const getTableHeaders = ($: cheerio.CheerioAPI) => {
  *  '24 Hour Forecast'
  * ]
  */
-
 export const getRowHeadings = ($: cheerio.CheerioAPI) => {
   return [...$('#tabular-forecast').find('tbody th')].map(e => {
     return $(e).text().trim()
@@ -52,7 +37,6 @@ export const getRowHeadings = ($: cheerio.CheerioAPI) => {
  * Gets row values
  * example output: ['<div>active</div>', '<div>stormy intervals</div>']
  */
-
 export const getRowValues = ($: cheerio.CheerioAPI) => {
   return [...$('#tabular-forecast').find('tbody td')].map(e => {
     return $(e).html()
@@ -92,7 +76,6 @@ export const getRowValues = ($: cheerio.CheerioAPI) => {
   \}
 
  */
-
 export const fetchData = async () => {
   const response = await fetch('https://naurasjabari-website-edge.vercel.app/api/geostorm')
   const data = await response.text()
@@ -176,83 +159,3 @@ export const fetchData = async () => {
 
   return output
 }
-
-let JOB_IS_RUNNING = false
-
-/**
- * Scrapes the geostorm data from the government of Canada
- * @link https://github.com/users/timelytree/contributions
- */
-const runJob = async () => {
-  if (JOB_IS_RUNNING) return
-  JOB_IS_RUNNING = true
-
-  const jobLogger = logger.withContext({ job: 'geostorm' })
-  jobLogger.info('Job started: Scraping geostorm data from government of Canada')
-
-  try {
-
-    // Generate internal JWT for authentication
-    const token = await generateInternalJWT(
-      config.supabase.jwtSecret,
-      config.supabase.jwtIssuer,
-      config.supabase.jwtSubject
-    )
-    orpcContext.headers = { authorization: `Bearer ${token}` }
-
-    const data = await fetchData()
-
-    await createEntry.internal(orpcContext)(data)
-
-    const currentTime = new Date()
-    jobLogger.info('Geostorm data fetched successfully', {
-      date: currentTime.toISOString()
-    })
-    
-    const timeframePrettyNames = {
-      'last24Hours': 'Last 24 Hours',
-      'last6Hours': 'Last 6 Hours',
-      'currentConditions': 'Current Conditions',
-      'next6Hours': 'Next 6 Hours',
-      'next24Hours': 'Next 24 Hours'
-    }
-    
-    // Log details for each timeframe
-    for (const [timeframe, timeframeName] of Object.entries(timeframePrettyNames)) {
-      const timeframeData = data[timeframe as keyof GeostormOrpcInput] as GeostormOrpcInputRegions
-      
-      jobLogger.info('Geostorm data timeframe', {
-        timeframe: timeframeName,
-        subAuroral: timeframeData.subAuroral.filter((a: string) => a !== '').join(' → ') || timeframeData.subAuroral[0],
-        auroral: timeframeData.auroral.filter((a: string) => a !== '').join(' → ') || timeframeData.auroral[0],
-        polar: timeframeData.polar.filter((a: string) => a !== '').join(' → ') || timeframeData.polar[0]
-      })
-    }
-
-  } catch (error) {
-    jobLogger.error('Error in geostorm job', {
-      error: error instanceof Error ? error.message : String(error)
-    })
-    JOB_IS_RUNNING = false
-  } finally {
-    JOB_IS_RUNNING = false
-  }
-}
-
-const job: Job = {
-  name: 'geostorm',
-  description: 'Fetches geostorm data from the government of Canada',
-  optionsSchema: OptionsSchema,
-  async run() {
-    if (config.nodeEnv === 'development') {
-      await runJob()
-      cron.schedule('*/15 * * * *', () => runJob())
-    } else {
-      await runJob()
-    }
-  }
-}
-
-export const subcommand = new Command(job.name)
-  .description(job.description)
-  .action(() => job.run())
