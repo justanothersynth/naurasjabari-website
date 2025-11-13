@@ -5,7 +5,13 @@ import tseslint from 'typescript-eslint'
 
 export default [
   {
-    ignores: ['dist/**/*', 'eslint.config.mjs', 'jest.config.js']
+    ignores: [
+      'dist/**/*',
+      'coverage/**/*',
+      'eslint.config.mjs',
+      'vitest.config.ts',
+      'tsconfig.json'
+    ]
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,

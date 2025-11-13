@@ -2,8 +2,7 @@ import dotenv from 'dotenv'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { configSchema } from './schema'
-import chalk from 'chalk'
-import boxen from 'boxen'
+import { createLogger } from '@workspace/utils'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -22,6 +21,7 @@ if (!parsedSchema.success) {
     .map((error) => `${error.path.join('.')}: ${error.message}`)
     .join('\n')
 
+  // Log to console since we don't have a logger yet
   // eslint-disable-next-line no-console
   console.error('❌ Configuration validation failed:')
   // eslint-disable-next-line no-console
@@ -54,35 +54,35 @@ const config = {
   // Github Configuration
   github: {
     pat: validatedEnv.GITHUB_PAT
+  },
+  // Redis Configuration
+  redis: {
+    host: validatedEnv.REDIS_HOST,
+    port: validatedEnv.REDIS_PORT
   }
 } as const
 
 // TypeScript interface for the config object (inferred from Zod schema)
 type Config = typeof config
 
+// Create logger instance
+const logger = createLogger({
+  name: 'crons',
+  level: config.serverEnv === 'production' ? 'info' : 'debug',
+  pretty: config.serverEnv !== 'production'
+})
+
 // Log configuration summary (excluding sensitive data) - only when running from crons package
 const shouldShowOutput = process.argv[1]?.includes('/crons/')
 
 if (shouldShowOutput) {
-  const message = `
-${chalk.green('✅ Configuration loaded successfully:')}
-
-${chalk.bold('   Node environment:')} ${chalk.cyan(config.nodeEnv)}
-${chalk.bold('   Server environment:')} ${chalk.cyan(config.serverEnv)}
-${chalk.bold('   API URL:')} ${chalk.cyan(config.apiUrl)}
-${chalk.bold('   oRPC URL:')} ${chalk.cyan(config.apiUrl + '/orpc')}
-`
-
-  // eslint-disable-next-line no-console
-  console.log(
-    boxen(message, {
-      padding: 1,
-      margin: 1,
-      borderStyle: 'classic',
-      borderColor: 'gray'
-    })
-  )
+  logger.info('Configuration loaded successfully', {
+    nodeEnv: config.nodeEnv,
+    serverEnv: config.serverEnv,
+    apiUrl: config.apiUrl,
+    orpcUrl: config.apiUrl + '/orpc'
+  })
 }
 
-export { config }
+export { config, logger }
 export type { Config }

@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 export const configSchema = z.object({
   // Environment Configuration
-  NODE_ENV: z.enum(['development', 'production', 'staging'])
+  NODE_ENV: z.enum(['development', 'production', 'staging', 'test'])
     .default('development')
     .describe('Application environment'),
 

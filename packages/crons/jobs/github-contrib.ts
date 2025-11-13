@@ -1,13 +1,8 @@
-import Chalk from 'chalk'
-import {
-  createLogBox
-} from '../utils'
-
 import { z } from 'zod'
 import cron from 'node-cron'
 import { Command } from 'commander'
 import type { Job } from './job.types'
-import { config } from '../config'
+import { config, logger } from '../config'
 import { delay } from '@workspace/utils'
 import * as cheerio from 'cheerio'
 import * as fs from 'fs/promises'
@@ -18,18 +13,18 @@ export const OptionsSchema = z.object({})
 
 let JOB_IS_RUNNING = false
 
-type ContributionCalendar = Record<string, ({ level: number, tooltip: string, count: number } | null)[]>
-interface YearContribution { count: number, calendar: ContributionCalendar, monthPosition: Record<string, number> }
-type ContributionsByYear = Record<string, YearContribution>
+export type ContributionCalendar = Record<string, ({ level: number, tooltip: string, count: number } | null)[]>
+export interface YearContribution { count: number, calendar: ContributionCalendar, monthPosition: Record<string, number> }
+export type ContributionsByYear = Record<string, YearContribution>
 
 /**
  * Loads existing contribution data from the JSON file
+ * @param filePath - Optional file path to load data from (defaults to production path)
  * @returns The existing contributions data or empty object if file doesn't exist
  */
-const loadExistingContributionsData = async (): Promise<ContributionsByYear> => {
+export const loadExistingContributionsData = async (filePath?: string): Promise<ContributionsByYear> => {
   try {
-    const outputPath = path.join(process.cwd(), '../api/static/data')
-    const outputFile = path.join(outputPath, 'github-contrib-total.json')
+    const outputFile = filePath || path.join(process.cwd(), '../api/static/data/github-contrib-total.json')
     const data = await fs.readFile(outputFile, 'utf-8')
     return JSON.parse(data) as ContributionsByYear
   } catch {
@@ -44,7 +39,7 @@ const loadExistingContributionsData = async (): Promise<ContributionsByYear> => 
  * @param existingCalendar - The existing calendar data to compare against
  * @returns The parsed contribution calendar with higher values preserved and month indices
  */
-const parseContributionCalendar = ($: cheerio.CheerioAPI, existingCalendar?: ContributionCalendar): { calendar: ContributionCalendar, monthPosition: Record<string, number> } => {
+export const parseContributionCalendar = ($: cheerio.CheerioAPI, existingCalendar?: ContributionCalendar): { calendar: ContributionCalendar, monthPosition: Record<string, number> } => {
   const calendar = $('.ContributionCalendar-grid tbody')
   const rows = calendar.children()
   const len = rows.length
@@ -115,7 +110,7 @@ const parseContributionCalendar = ($: cheerio.CheerioAPI, existingCalendar?: Con
  * @param existingYearData - The existing data for this year to compare against
  * @returns The contributions data for the given year with higher values preserved
  */
-const fetchYearContributions = async (year: number, existingYearData?: YearContribution): Promise<YearContribution> => {
+export const fetchYearContributions = async (year: number, existingYearData?: YearContribution): Promise<YearContribution> => {
   const fromDate = `${year}-01-01`
   const toDate = `${year}-12-31`
   const url = `https://github.com/users/timelytree/contributions?from=${fromDate}&to=${toDate}`
@@ -151,10 +146,11 @@ const fetchYearContributions = async (year: number, existingYearData?: YearContr
 /**
  * Saves the contributions data to a file
  * @param contributionsByYear - The contributions data to save
+ * @param filePath - Optional file path to save data to (defaults to production path), mainly used for testing
  */
-const saveContributionsDataToFile = async (contributionsByYear: ContributionsByYear): Promise<void> => {
-  const outputPath = path.join(process.cwd(), '../api/static/data')
-  const outputFile = path.join(outputPath, 'github-contrib-total.json')
+export const saveContributionsDataToFile = async (contributionsByYear: ContributionsByYear, filePath?: string): Promise<void> => {
+  const outputFile = filePath || path.join(import.meta.dirname, '../../api/static/data/github-contrib-total.json')
+  const outputPath = path.dirname(outputFile)
   await fs.mkdir(outputPath, { recursive: true })
   await fs.writeFile(outputFile, JSON.stringify(contributionsByYear))
 }
@@ -167,23 +163,20 @@ const runJob = async () => {
   if (JOB_IS_RUNNING) return
   JOB_IS_RUNNING = true
 
+  const jobLogger = logger.withContext({ job: 'github-contrib' })
+
   try {
     const startYear = 2015
     const currentYear = new Date().getFullYear()
     
-    /* eslint-disable-next-line no-console */
-    console.log(
-      createLogBox(
-        '🚀 Job: github-contributions',
-        `Fetching contribution calendar from ${startYear} to ${currentYear}`,
-        'info'
-      )
-    )
+    jobLogger.info('Job started: Fetching GitHub contributions', {
+      startYear,
+      endYear: currentYear
+    })
 
     // Load existing data
     const existingData = await loadExistingContributionsData()
 
-    let summary = ''
     let totalContributions = 0
     const contributionsByYear: ContributionsByYear = {}
 
@@ -194,16 +187,23 @@ const runJob = async () => {
           const yearData = await fetchYearContributions(year, existingYearData)
           
           totalContributions += yearData.count
-          summary += `${Chalk.bold(year)}: ${yearData.count}\n`
           contributionsByYear[year.toString()] = yearData
+
+          jobLogger.info('Fetched year contributions', {
+            year,
+            count: yearData.count
+          })
 
           // Add a delay between requests to be respectful to GitHub's servers
           if (year < currentYear) {
             await delay(2000)
           }
           
-        } catch {
-          summary += `${Chalk.bold(year)}: ${Chalk.red('❌ failed')}\n`
+        } catch (error) {
+          jobLogger.error('Failed to fetch year contributions', {
+            year,
+            error: error instanceof Error ? error.message : String(error)
+          })
           // Use existing data if available, otherwise use empty data
           contributionsByYear[year.toString()] = existingData[year.toString()] || {
             count: 0,
@@ -214,17 +214,18 @@ const runJob = async () => {
         }
       }
       
-      summary += `\n🎯 Total contributions: ${totalContributions.toLocaleString()}`
-      
-      /* eslint-disable-next-line no-console */
-      console.log(createLogBox('GitHub Contributions Summary', summary, 'success'))
+      jobLogger.info('GitHub contributions job completed', {
+        totalContributions: totalContributions.toLocaleString(),
+        yearsProcessed: Object.keys(contributionsByYear).length
+      })
 
       // Save contribution totals data to JSON file
       await saveContributionsDataToFile(contributionsByYear)
       
     } catch (error) {
-      /* eslint-disable-next-line no-console */
-      console.error('❌ Error in GitHub contributions job:', error)
+      jobLogger.error('Error in GitHub contributions job', {
+        error: error instanceof Error ? error.message : String(error)
+      })
     }
     JOB_IS_RUNNING = false
   } finally {
@@ -238,10 +239,10 @@ const job: Job = {
   optionsSchema: OptionsSchema,
   async run() {
     if (config.nodeEnv === 'development') {
-      runJob()
+      await runJob()
       cron.schedule('0 0 * * *', () => runJob())
     } else {
-      runJob()
+      await runJob()
     }
   }
 }

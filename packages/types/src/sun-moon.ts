@@ -54,46 +54,46 @@ export interface TimeInterval {
 export interface SunProperties {
   body: 'Sun'
   sunrise: {
-    time: string
-    azimuth: number
-  }
+    time: string | null
+    azimuth: number | null
+  } | null
   sunset: {
-    time: string
-    azimuth: number
-  }
+    time: string | null
+    azimuth: number | null
+  } | null
   solarnoon: {
-    time: string
-    disc_centre_elevation: number
-    visible: boolean
-  }
+    time: string | null
+    disc_centre_elevation: number | null
+    visible: boolean | null
+  } | null
   solarmidnight: {
-    time: string
-    disc_centre_elevation: number
-    visible: boolean
-  }
+    time: string | null
+    disc_centre_elevation: number | null
+    visible: boolean | null
+  } | null
 }
 
 export interface MoonProperties {
   body: 'Moon'
   moonrise: {
-    time: string
-    azimuth: number
-  }
+    time: string | null
+    azimuth: number | null
+  } | null
   moonset: {
-    time: string
-    azimuth: number
-  }
+    time: string | null
+    azimuth: number | null
+  } | null
   high_moon: {
-    time: string
-    disc_centre_elevation: number
-    visible: boolean
-  }
+    time: string | null
+    disc_centre_elevation: number | null
+    visible: boolean | null
+  } | null
   low_moon: {
-    time: string
-    disc_centre_elevation: number
-    visible: boolean
-  }
-  moonphase: number
+    time: string | null
+    disc_centre_elevation: number | null
+    visible: boolean | null
+  } | null
+  moonphase: number | null
 }
 
 export interface SunResponse {
@@ -113,3 +113,76 @@ export interface MoonResponse {
   when: TimeInterval
   properties: MoonProperties
 }
+
+// Zod schemas for runtime validation of Met.no API responses
+const CoordinatesSchema = z.object({
+  type: z.literal('Point'),
+  coordinates: z.tuple([z.number(), z.number()])
+})
+
+const TimeIntervalSchema = z.object({
+  interval: z.tuple([z.string(), z.string()])
+})
+
+const SunPropertiesSchema = z.object({
+  body: z.literal('Sun'),
+  sunrise: z.object({
+    time: z.string().nullable(),
+    azimuth: z.number().nullable()
+  }).nullable(),
+  sunset: z.object({
+    time: z.string().nullable(),
+    azimuth: z.number().nullable()
+  }).nullable(),
+  solarnoon: z.object({
+    time: z.string().nullable(),
+    disc_centre_elevation: z.number().nullable(),
+    visible: z.boolean().nullable()
+  }).nullable(),
+  solarmidnight: z.object({
+    time: z.string().nullable(),
+    disc_centre_elevation: z.number().nullable(),
+    visible: z.boolean().nullable()
+  }).nullable()
+})
+
+const MoonPropertiesSchema = z.object({
+  body: z.literal('Moon'),
+  moonrise: z.object({
+    time: z.string().nullable(),
+    azimuth: z.number().nullable()
+  }).nullable(),
+  moonset: z.object({
+    time: z.string().nullable(),
+    azimuth: z.number().nullable()
+  }).nullable(),
+  high_moon: z.object({
+    time: z.string().nullable(),
+    disc_centre_elevation: z.number().nullable(),
+    visible: z.boolean().nullable()
+  }).nullable(),
+  low_moon: z.object({
+    time: z.string().nullable(),
+    disc_centre_elevation: z.number().nullable(),
+    visible: z.boolean().nullable()
+  }).nullable(),
+  moonphase: z.number().nullable()
+})
+
+export const SunResponseSchema = z.object({
+  copyright: z.string(),
+  licenseURL: z.string(),
+  type: z.literal('Feature'),
+  geometry: CoordinatesSchema,
+  when: TimeIntervalSchema,
+  properties: SunPropertiesSchema
+})
+
+export const MoonResponseSchema = z.object({
+  copyright: z.string(),
+  licenseURL: z.string(),
+  type: z.literal('Feature'),
+  geometry: CoordinatesSchema,
+  when: TimeIntervalSchema,
+  properties: MoonPropertiesSchema
+})

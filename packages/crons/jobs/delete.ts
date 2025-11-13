@@ -1,13 +1,8 @@
-import Chalk from 'chalk'
-import {
-  createLogBox
-} from '../utils'
-
 import { z } from 'zod'
 import cron from 'node-cron'
 import { Command } from 'commander'
 import type { Job } from './job.types'
-import { config } from '../config'
+import { config, logger } from '../config'
 import pkg from 'pg'
 import { format } from 'date-fns'
 
@@ -25,14 +20,8 @@ const runJob = async () => {
   if (JOB_IS_RUNNING) return
   JOB_IS_RUNNING = true
 
-  /* eslint-disable-next-line no-console */
-  console.log(
-    createLogBox(
-      '🚀 Job: delete',
-      'Deleting azimuth data older than 1 hour and geostorm data older than 1 month',
-      'info'
-    )
-  )
+  const jobLogger = logger.withContext({ job: 'delete' })
+  jobLogger.info('Job started: Deleting old azimuth and geostorm data')
 
   // Create Postgres connection pool
   const pool = new Pool({
@@ -70,8 +59,10 @@ const runJob = async () => {
       totalAzimuthDeleted += deletedInBatch
 
       if (deletedInBatch > 0) {
-        /* eslint-disable-next-line no-console */
-        console.log(Chalk.gray(`    Deleted ${deletedInBatch} azimuth records (total: ${totalAzimuthDeleted})`))
+        jobLogger.info('Deleted azimuth records batch', {
+          batchDeleted: deletedInBatch,
+          totalDeleted: totalAzimuthDeleted
+        })
       }
 
       // Stop if we deleted fewer records than the batch size (no more records to delete)
@@ -105,8 +96,10 @@ const runJob = async () => {
       totalGeostormDeleted += deletedInBatch
 
       if (deletedInBatch > 0) {
-        /* eslint-disable-next-line no-console */
-        console.log(Chalk.gray(`    Deleted ${deletedInBatch} geostorm records (total: ${totalGeostormDeleted})`))
+        jobLogger.info('Deleted geostorm records batch', {
+          batchDeleted: deletedInBatch,
+          totalDeleted: totalGeostormDeleted
+        })
       }
 
       // Stop if we deleted fewer records than the batch size (no more records to delete)
@@ -121,25 +114,26 @@ const runJob = async () => {
       await pool.query('ANALYZE geostorm')
     }
 
-    const azimuthDeleted = totalAzimuthDeleted
-    const geostormDeleted = totalGeostormDeleted
-    
-    const summary = `${Chalk.bold('Azimuth')}\n` +
-      `Cutoff: ${format(new Date(azimuthCutoffDate), 'MMM dd, yyyy \'at\' HH:mm:ss')} UTC\n` +
-      `Deleted: ${azimuthDeleted} record${azimuthDeleted === 1 ? '' : 's'}\n\n` +
-      `${Chalk.bold('Geostorm')}\n` +
-      `Cutoff: ${format(new Date(geostormCutoffDate), 'MMM dd, yyyy \'at\' HH:mm:ss')} UTC\n` +
-      `Deleted: ${geostormDeleted} record${geostormDeleted === 1 ? '' : 's'}`
-
-    /* eslint-disable-next-line no-console */
-    console.log(createLogBox('Data Deletion Summary', summary, 'success'))
+    jobLogger.info('Deletion job completed successfully', {
+      azimuthCutoff: format(new Date(azimuthCutoffDate), 'MMM dd, yyyy \'at\' HH:mm:ss'),
+      azimuthDeleted: totalAzimuthDeleted,
+      geostormCutoff: format(new Date(geostormCutoffDate), 'MMM dd, yyyy \'at\' HH:mm:ss'),
+      geostormDeleted: totalGeostormDeleted
+    })
 
   } catch (error) {
-    /* eslint-disable-next-line no-console */
-    console.error('❌ Error in delete job:', error)
+    jobLogger.error('Error in delete job', {
+      error: error instanceof Error ? error.message : String(error)
+    })
   } finally {
-    // Always close the pool connection
-    await pool.end()
+    // Always close the pool connection and reset flag
+    try {
+      await pool.end()
+    } catch (error) {
+      jobLogger.error('Error closing pool', {
+        error: error instanceof Error ? error.message : String(error)
+      })
+    }
     JOB_IS_RUNNING = false
   }
 }
@@ -150,10 +144,10 @@ const job: Job = {
   optionsSchema: OptionsSchema,
   async run() {
     if (config.nodeEnv === 'development') {
-      runJob()
+      await runJob()
       cron.schedule('0 0 * * *', () => runJob())
     } else {
-      runJob()
+      await runJob()
     }
   }
 }

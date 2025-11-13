@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 export const configSchema = z.object({
   // Environment Configuration
-  NODE_ENV: z.enum(['development', 'production', 'staging'])
+  NODE_ENV: z.enum(['development', 'production', 'staging', 'test'])
     .default('development')
     .describe('Application environment'),
 
@@ -31,5 +31,9 @@ export const configSchema = z.object({
   SUPABASE_JWT_SUBJECT: z.string().describe('JWT subject (user identifier) for cron processes'),
 
   // Github Configuration
-  GITHUB_PAT: z.string().optional().describe('GitHub Personal Access Token')
+  GITHUB_PAT: z.string().optional().describe('GitHub Personal Access Token'),
+
+  // Redis Configuration
+  REDIS_HOST: z.string().describe('Redis host'),
+  REDIS_PORT: z.coerce.number().int().min(1).max(65535).default(6379).describe('Redis port')
 })

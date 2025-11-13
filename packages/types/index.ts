@@ -28,7 +28,9 @@ export type {
 
 export {
   sunMoonMetadata,
-  sunMoonOrpcInput
+  sunMoonOrpcInput,
+  SunResponseSchema,
+  MoonResponseSchema
 } from './src/sun-moon'
 
 export {
