@@ -27,9 +27,3 @@ export const logYearError = (jobLogger: Logger, error: unknown, year: number) =>
     error: error instanceof Error ? error.message : String(error)
   })
 }
-
-export const logError = (jobLogger: Logger, error: unknown) => {
-  jobLogger.error('Error in GitHub contributions job', {
-    error: error instanceof Error ? error.message : String(error)
-  })
-}

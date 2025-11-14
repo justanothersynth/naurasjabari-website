@@ -96,3 +96,36 @@ export function createLogger(config: LoggerConfig = {}): Logger {
   })
   return new Logger(pinoLogger)
 }
+
+/**
+ * Generic error logging utility for jobs
+ *
+ * @param logger - Logger instance to use
+ * @param error - The error to log
+ * @param message - Optional custom error message (defaults to 'Job error')
+ * @param context - Optional additional context to include in the log
+ *
+ * @example
+ * ```ts
+ * // Basic usage
+ * logError(jobLogger, error)
+ *
+ * // With custom message
+ * logError(jobLogger, error, 'Failed to process data')
+ *
+ * // With additional context
+ * logError(jobLogger, error, 'Failed to fetch location', { location: 'New York' })
+ * ```
+ */
+export function logError(
+  logger: Logger,
+  error: unknown,
+  message = 'Job error',
+  context?: LogContext
+): void {
+  logger.error(message, {
+    ...context,
+    error: error instanceof Error ? error.message : String(error),
+    stack: error instanceof Error ? error.stack : undefined
+  })
+}

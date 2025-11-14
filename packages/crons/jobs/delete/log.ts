@@ -31,10 +31,3 @@ export const logJobCompleted = (
     geostormDeleted
   })
 }
-
-export const logError = (jobLogger: Logger, error: unknown, message?: string) => {
-  jobLogger.error(message || 'Error in delete job', {
-    error: error instanceof Error ? error.message : String(error),
-    stack: error instanceof Error ? error.stack : undefined
-  })
-}

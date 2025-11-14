@@ -4,9 +4,10 @@ import { Command } from 'commander'
 import type { Job } from '../job.types'
 import { logger } from '../../config'
 import { redisConnection } from '../../config/redis'
+import { logError } from '@workspace/utils'
 import { fetchData } from './fetch-data'
 import { writeData } from './write-data'
-import { logJobStart, logJobSuccess, logError } from './log'
+import { logJobStart, logJobSuccess } from './log'
 
 /* c8 ignore start */
 export const OptionsSchema = z.object({})
@@ -65,7 +66,7 @@ export const runJob = async () => {
     await writeData(data)
     logJobSuccess(jobLogger, data)
   } catch (error) {
-    logError(jobLogger, error)
+    logError(jobLogger, error, 'Error in geostorm job')
     throw error
   }
 }

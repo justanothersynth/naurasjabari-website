@@ -7,7 +7,8 @@ import { redisConnection } from '../../config/redis'
 import { START_YEAR, getCurrentYear } from './config'
 import { processData } from './process-data'
 import { saveContributionsDataToFile } from './write-data'
-import { logJobStart, logJobComplete, logError } from './log'
+import { logError } from '@workspace/utils'
+import { logJobStart, logJobComplete } from './log'
 
 /* c8 ignore start */
 export const OptionsSchema = z.object({})
@@ -65,7 +66,7 @@ export const runJob = async () => {
     await saveContributionsDataToFile(contributionsByYear)
     logJobComplete(jobLogger, totalContributions, Object.keys(contributionsByYear).length)
   } catch (error) {
-    logError(jobLogger, error)
+    logError(jobLogger, error, 'Error in GitHub contributions job')
     throw error
   }
 }

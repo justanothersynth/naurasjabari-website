@@ -1,7 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import type { SunResponse, MoonResponse } from '@workspace/types'
 import type { Logger } from '@workspace/utils'
-import { logLocationData, logDataSaved, logError } from '../../../jobs/sun-moon/log'
+import { logError } from '@workspace/utils'
+import { logLocationData, logDataSaved } from '../../../jobs/sun-moon/log'
 
 describe('logLocationData', () => {
   let mockLogger: Logger
@@ -522,7 +523,7 @@ describe('logError', () => {
     it('should log Error instance with message and stack', () => {
       const error = new Error('Test error message')
 
-      logError(mockLogger, error)
+      logError(mockLogger, error, 'Error in sun-moon job')
 
       expect(mockLogger.error).toHaveBeenCalledOnce()
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
@@ -534,7 +535,7 @@ describe('logError', () => {
     it('should log Error with location when provided', () => {
       const error = new Error('Location-specific error')
 
-      logError(mockLogger, error, 'Toronto')
+      logError(mockLogger, error, 'Error in sun-moon job', { location: 'Toronto' })
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         location: 'Toronto',
@@ -546,7 +547,7 @@ describe('logError', () => {
     it('should log Error without location field when location is undefined', () => {
       const error = new Error('General error')
 
-      logError(mockLogger, error, undefined)
+      logError(mockLogger, error, 'Error in sun-moon job', undefined)
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         error: 'General error',
@@ -561,7 +562,7 @@ describe('logError', () => {
     it('should include stack trace in error log', () => {
       const error = new Error('Error with stack')
 
-      logError(mockLogger, error)
+      logError(mockLogger, error, 'Error in sun-moon job')
 
       const calls = (mockLogger.error as ReturnType<typeof vi.fn>).mock.calls
       const firstCall = calls[0] as [string, Record<string, unknown>]
@@ -572,7 +573,7 @@ describe('logError', () => {
     it('should handle Error with empty message', () => {
       const error = new Error('')
 
-      logError(mockLogger, error)
+      logError(mockLogger, error, 'Error in sun-moon job')
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         error: '',
@@ -583,7 +584,7 @@ describe('logError', () => {
     it('should handle TypeError', () => {
       const error = new TypeError('Type error occurred')
 
-      logError(mockLogger, error, 'Vancouver')
+      logError(mockLogger, error, 'Error in sun-moon job', { location: 'Vancouver' })
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         location: 'Vancouver',
@@ -595,7 +596,7 @@ describe('logError', () => {
     it('should handle RangeError', () => {
       const error = new RangeError('Value out of range')
 
-      logError(mockLogger, error)
+      logError(mockLogger, error, 'Error in sun-moon job')
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         error: 'Value out of range',
@@ -606,7 +607,7 @@ describe('logError', () => {
 
   describe('non-Error object handling', () => {
     it('should convert string to error message', () => {
-      logError(mockLogger, 'String error message')
+      logError(mockLogger, 'String error message', 'Error in sun-moon job')
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         error: 'String error message',
@@ -615,7 +616,7 @@ describe('logError', () => {
     })
 
     it('should convert number to error message', () => {
-      logError(mockLogger, 404)
+      logError(mockLogger, 404, 'Error in sun-moon job')
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         error: '404',
@@ -624,7 +625,7 @@ describe('logError', () => {
     })
 
     it('should convert boolean to error message', () => {
-      logError(mockLogger, false)
+      logError(mockLogger, false, 'Error in sun-moon job')
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         error: 'false',
@@ -633,7 +634,7 @@ describe('logError', () => {
     })
 
     it('should convert null to error message', () => {
-      logError(mockLogger, null)
+      logError(mockLogger, null, 'Error in sun-moon job')
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         error: 'null',
@@ -642,7 +643,7 @@ describe('logError', () => {
     })
 
     it('should convert undefined to error message', () => {
-      logError(mockLogger, undefined)
+      logError(mockLogger, undefined, 'Error in sun-moon job')
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         error: 'undefined',
@@ -653,7 +654,7 @@ describe('logError', () => {
     it('should convert object to string representation', () => {
       const errorObj = { code: 'ERR_001', details: 'Something went wrong' }
 
-      logError(mockLogger, errorObj)
+      logError(mockLogger, errorObj, 'Error in sun-moon job')
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         error: '[object Object]',
@@ -664,7 +665,7 @@ describe('logError', () => {
     it('should convert array to string representation', () => {
       const errorArray = ['error1', 'error2']
 
-      logError(mockLogger, errorArray)
+      logError(mockLogger, errorArray, 'Error in sun-moon job')
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         error: 'error1,error2',
@@ -673,7 +674,7 @@ describe('logError', () => {
     })
 
     it('should handle string error with location', () => {
-      logError(mockLogger, 'API rate limit exceeded', 'London')
+      logError(mockLogger, 'API rate limit exceeded', 'Error in sun-moon job', { location: 'London' })
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         location: 'London',
@@ -687,22 +688,19 @@ describe('logError', () => {
     it('should handle empty string location', () => {
       const error = new Error('Test error')
 
-      logError(mockLogger, error, '')
+      logError(mockLogger, error, 'Error in sun-moon job', { location: '' })
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
+        location: '',
         error: 'Test error',
         stack: expect.any(String)
       })
-
-      const calls = (mockLogger.error as ReturnType<typeof vi.fn>).mock.calls
-      const firstCall = calls[0] as [string, Record<string, unknown>]
-      expect(firstCall[1]).not.toHaveProperty('location')
     })
 
     it('should handle location with special characters', () => {
       const error = new Error('Test error')
 
-      logError(mockLogger, error, 'São Paulo, Brazil')
+      logError(mockLogger, error, 'Error in sun-moon job', { location: 'São Paulo, Brazil' })
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         location: 'São Paulo, Brazil',
@@ -715,7 +713,7 @@ describe('logError', () => {
       const error = new Error('Test error')
       const longLocation = 'A'.repeat(1000)
 
-      logError(mockLogger, error, longLocation)
+      logError(mockLogger, error, 'Error in sun-moon job', { location: longLocation })
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         location: longLocation,
@@ -730,7 +728,7 @@ describe('logError', () => {
       const error = new Error('Custom error') as Error & { customProp: string }
       error.customProp = 'custom value'
 
-      logError(mockLogger, error)
+      logError(mockLogger, error, 'Error in sun-moon job')
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         error: 'Custom error',
@@ -742,7 +740,7 @@ describe('logError', () => {
       const error = new Error('No stack error')
       error.stack = undefined
 
-      logError(mockLogger, error)
+      logError(mockLogger, error, 'Error in sun-moon job')
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         error: 'No stack error',
@@ -753,7 +751,7 @@ describe('logError', () => {
     it('should handle symbol as error', () => {
       const symbolError = Symbol('error')
 
-      logError(mockLogger, symbolError)
+      logError(mockLogger, symbolError, 'Error in sun-moon job')
 
       expect(mockLogger.error).toHaveBeenCalledWith('Error in sun-moon job', {
         error: 'Symbol(error)',
@@ -764,7 +762,7 @@ describe('logError', () => {
     it('should call logger.error exactly once', () => {
       const error = new Error('Test')
 
-      logError(mockLogger, error)
+      logError(mockLogger, error, 'Error in sun-moon job')
 
       expect(mockLogger.error).toHaveBeenCalledTimes(1)
     })
@@ -772,7 +770,7 @@ describe('logError', () => {
     it('should not call other logger methods', () => {
       const error = new Error('Test')
 
-      logError(mockLogger, error)
+      logError(mockLogger, error, 'Error in sun-moon job')
 
       expect(mockLogger.info).not.toHaveBeenCalled()
       expect(mockLogger.warn).not.toHaveBeenCalled()

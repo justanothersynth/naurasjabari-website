@@ -31,15 +31,3 @@ export const logSuccess = (
     locationCount
   })
 }
-
-/**
- * Logs errors that occur during azimuth job execution
- */
-export const logError = (
-  jobLogger: Logger,
-  error: unknown
-) => {
-  jobLogger.error('Error in azimuth job', {
-    error: error instanceof Error ? error.message : String(error)
-  })
-}

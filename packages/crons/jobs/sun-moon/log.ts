@@ -45,11 +45,3 @@ export const logDataSaved = (
     locationCount
   })
 }
-
-export const logError = (jobLogger: Logger, error: unknown, location?: string) => {
-  jobLogger.error('Error in sun-moon job', {
-    ...(location && { location }),
-    error: error instanceof Error ? error.message : String(error),
-    stack: error instanceof Error ? error.stack : undefined
-  })
-}

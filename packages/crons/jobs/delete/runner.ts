@@ -5,10 +5,10 @@ import type { Job } from '../job.types'
 import { logger } from '../../config'
 import { config } from '../../config'
 import { redisConnection } from '../../config/redis'
-import { createPool, vacuumTable } from '@workspace/utils'
+import { createPool, vacuumTable, logError } from '@workspace/utils'
 import { deleteAzimuthRecords } from './delete-azimuth'
 import { deleteGeostormRecords } from './delete-geostorm'
-import { logJobStart, logJobCompleted, logError } from './log'
+import { logJobStart, logJobCompleted } from './log'
 
 /* c8 ignore start */
 export const OptionsSchema = z.object({})
@@ -112,7 +112,7 @@ export const runJob = async () => {
     )
 
   } catch (error) {
-    logError(jobLogger, error)
+    logError(jobLogger, error, 'Error in delete job')
     throw error
   } finally {
     // Always close the pool connection

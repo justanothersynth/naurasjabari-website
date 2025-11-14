@@ -1,13 +1,21 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { runJob } from '../../../jobs/sun-moon/runner'
 import { fetchSunMoonData } from '../../../jobs/sun-moon/fetch-data'
-import { logLocationData, logDataSaved, logError } from '../../../jobs/sun-moon/log'
+import { logLocationData, logDataSaved } from '../../../jobs/sun-moon/log'
+import { logError } from '@workspace/utils'
 import { writeData } from '../../../jobs/sun-moon/write-data'
 import { LOCATIONS } from '../../../jobs/sun-moon/locations'
 import type { SunResponse, MoonResponse } from '@workspace/types'
 
 vi.mock('../../../jobs/sun-moon/fetch-data')
 vi.mock('../../../jobs/sun-moon/log')
+vi.mock('@workspace/utils', async () => {
+  const actual = await vi.importActual('@workspace/utils')
+  return {
+    ...actual,
+    logError: vi.fn()
+  }
+})
 vi.mock('../../../jobs/sun-moon/write-data')
 
 describe('runJob (unit)', () => {
@@ -234,7 +242,8 @@ describe('runJob (unit)', () => {
       expect(logError).toHaveBeenCalledWith(
         expect.anything(), // logger
         fetchError,
-        'toronto' // First location in LOCATIONS
+        'Error in sun-moon job',
+        { location: 'toronto' } // First location in LOCATIONS
       )
     })
 
@@ -251,7 +260,8 @@ describe('runJob (unit)', () => {
       const logErrorCall = vi.mocked(logError).mock.calls[0]
       expect(logErrorCall).toBeDefined()
       if (!logErrorCall) return
-      expect(logErrorCall[2]).toBe('vancouver') // Second location in LOCATIONS
+      expect(logErrorCall[2]).toBe('Error in sun-moon job')
+      expect(logErrorCall[3]).toEqual({ location: 'vancouver' }) // Second location in LOCATIONS
     })
 
     it('should throw error when writeData fails', async () => {
@@ -272,6 +282,7 @@ describe('runJob (unit)', () => {
       expect(logError).toHaveBeenCalledWith(
         expect.anything(),
         writeError,
+        'Error in sun-moon job',
         undefined // No location context for write errors
       )
     })
@@ -303,7 +314,8 @@ describe('runJob (unit)', () => {
       expect(logError).toHaveBeenCalledWith(
         expect.anything(),
         validationError,
-        'toronto'
+        'Error in sun-moon job',
+        { location: 'toronto' }
       )
     })
   })

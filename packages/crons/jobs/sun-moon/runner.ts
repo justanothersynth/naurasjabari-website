@@ -6,9 +6,10 @@ import { logger } from '../../config'
 import { redisConnection } from '../../config/redis'
 import { format } from 'date-fns'
 import type { SunResponse, MoonResponse } from '@workspace/types'
+import { logError } from '@workspace/utils'
 import { fetchSunMoonData } from './fetch-data'
 import { LOCATIONS } from './locations'
-import { logLocationData, logDataSaved, logError } from './log'
+import { logLocationData, logDataSaved } from './log'
 import { writeData } from './write-data'
 
 /* c8 ignore start */
@@ -87,7 +88,12 @@ export const runJob = async (outputDir = '../../packages/api/static/data') => {
     logDataSaved(jobLogger, date, Object.keys(sunDataByLocation).length)
 
   } catch (error) {
-    logError(jobLogger, error, currentlLocationBeingFetched)
+    logError(
+      jobLogger,
+      error,
+      'Error in sun-moon job',
+      currentlLocationBeingFetched ? { location: currentlLocationBeingFetched } : undefined
+    )
     throw error
   }
 }

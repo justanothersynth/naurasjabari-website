@@ -31,9 +31,3 @@ export const logJobSuccess = (jobLogger: Logger, data: GeostormOrpcInput) => {
     })
   }
 }
-
-export const logError = (jobLogger: Logger, error: unknown) => {
-  jobLogger.error('Error in geostorm job', {
-    error: error instanceof Error ? error.message : String(error)
-  })
-}

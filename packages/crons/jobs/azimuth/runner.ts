@@ -5,11 +5,11 @@ import type { Job } from '../job.types'
 import { config, logger } from '../../config'
 import { redisConnection } from '../../config/redis'
 import type { OrpcContext } from '@workspace/types'
-import { generateInternalJWT } from '@workspace/utils'
+import { generateInternalJWT, logError } from '@workspace/utils'
 import { createLocation } from '@workspace/api/lib/sun-moon'
 import { readSunMoonData } from './read-data'
 import { processAzimuthData } from './process-data'
-import { logLocationData, logSuccess, logError } from './log'
+import { logLocationData, logSuccess } from './log'
 
 /* c8 ignore start */
 export const OptionsSchema = z.object({})
@@ -94,7 +94,7 @@ export const runJob = async () => {
     }
 
   } catch (error) {
-    logError(jobLogger, error)
+    logError(jobLogger, error, 'Error in azimuth job')
     throw error
   }
 }
