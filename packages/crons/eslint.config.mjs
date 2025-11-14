@@ -41,5 +41,11 @@ export default [
       'promise/param-names': 'off',
       'multiline-ternary': 'off'
     }
+  },
+  {
+    files: ['test/**/*.ts', '**/*.test.ts'],
+    rules: {
+      '@typescript-eslint/no-non-null-assertion': 'off'
+    }
   }
 ]

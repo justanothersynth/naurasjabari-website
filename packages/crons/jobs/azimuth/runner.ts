@@ -83,7 +83,8 @@ export const runJob = async () => {
     const metadata = processAzimuthData(sunDataByLocation, moonDataByLocation)
     
     // Create location data in database
-    await createLocation.internal(orpcContext)(metadata)
+    // Type assertion: we know metadata has all required location keys in production
+    await createLocation.internal(orpcContext)(metadata as import('@workspace/types').SunMoonOrpcInput)
 
     const currentTime = new Date()
     logSuccess(jobLogger, currentTime, Object.keys(metadata).length)

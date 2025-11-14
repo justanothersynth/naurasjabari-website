@@ -1,4 +1,4 @@
-import type { MoonResponse, SunResponse, SunMoonMetadata, SunMoonOrpcInput } from '@workspace/types'
+import type { MoonResponse, SunResponse, SunMoonMetadata } from '@workspace/types'
 import { normalizeAzimuthToDayCycle, getSunMoonStatus } from './normalize-azimuth'
 
 /**
@@ -10,9 +10,9 @@ import { normalizeAzimuthToDayCycle, getSunMoonStatus } from './normalize-azimut
 export const processAzimuthData = (
   sunDataByLocation: Record<string, SunResponse>,
   moonDataByLocation: Record<string, MoonResponse>
-): SunMoonOrpcInput => {
+): Record<string, SunMoonMetadata> => {
   const currentTime = new Date()
-  const metadata: SunMoonOrpcInput = {} as SunMoonOrpcInput
+  const metadata: Record<string, SunMoonMetadata> = {}
   
   for (const [locationName, sunData] of Object.entries(sunDataByLocation)) {
     const moonData = moonDataByLocation[locationName]
@@ -40,7 +40,7 @@ export const processAzimuthData = (
       )
     }
     
-    (metadata as Record<string, SunMoonMetadata>)[locationName] = {
+    metadata[locationName] = {
       sunAzimuth: normalizedSunAzimuth,
       moonAzimuth: normalizedMoonAzimuth,
       moonPhase: moonData.properties.moonphase,

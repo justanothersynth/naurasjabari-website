@@ -1,6 +1,6 @@
 ---
 description: Use Bun instead of Node.js, npm, pnpm, or vite.
-globs: "*.ts, *.tsx, *.js, *.jsx, package.json"
+globs: *.js,**.ts,**.tsx,**.jsx,package.json
 alwaysApply: false
 ---
 Default to using Bun instead of Node.js.
@@ -24,15 +24,7 @@ Default to using Bun instead of Node.js.
 
 ## Testing
 
-Use `bun test` to run tests.
-
-```ts#index.test.ts
-import { test, expect } from "bun:test";
-
-test("hello world", () => {
-  expect(1).toBe(1);
-});
-```
+Use `bun run test` and vitest to run tests.
 
 ## Frontend
 
