@@ -149,8 +149,8 @@ describe('writeData (integration)', () => {
   }
 
   beforeEach(async () => {
-    // Create a unique temporary directory for each test
-    tempDir = path.join(process.cwd(), '.test-temp', `test-${Date.now()}-${Math.random().toString(36).slice(2)}`)
+    // Create a unique temporary directory for each test in crons/tmp
+    tempDir = path.join(import.meta.dirname, '../../../tmp', `test-write-data-${Date.now()}-${Math.random().toString(36).slice(2)}`)
   })
 
   afterEach(async () => {
@@ -162,9 +162,7 @@ describe('writeData (integration)', () => {
 
   describe('file system operations', () => {
     it('should create directory and write files to disk', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
-      
-      await writeData(mockSunData, mockMoonData, outputDir)
+      await writeData(mockSunData, mockMoonData, tempDir)
 
       expect(existsSync(tempDir)).toBe(true)
       expect(existsSync(path.join(tempDir, 'sun.json'))).toBe(true)
@@ -173,9 +171,8 @@ describe('writeData (integration)', () => {
 
     it('should create nested directories', async () => {
       const nestedDir = path.join(tempDir, 'deep', 'nested', 'path')
-      const outputDir = path.relative(process.cwd(), nestedDir)
       
-      await writeData(mockSunData, mockMoonData, outputDir)
+      await writeData(mockSunData, mockMoonData, nestedDir)
 
       expect(existsSync(nestedDir)).toBe(true)
       expect(existsSync(path.join(nestedDir, 'sun.json'))).toBe(true)
@@ -183,10 +180,9 @@ describe('writeData (integration)', () => {
     })
 
     it('should work with existing directory', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
       await fs.mkdir(tempDir, { recursive: true })
 
-      await writeData(mockSunData, mockMoonData, outputDir)
+      await writeData(mockSunData, mockMoonData, tempDir)
 
       expect(existsSync(path.join(tempDir, 'sun.json'))).toBe(true)
       expect(existsSync(path.join(tempDir, 'moon.json'))).toBe(true)
@@ -195,9 +191,7 @@ describe('writeData (integration)', () => {
 
   describe('file content validation', () => {
     it('should write valid JSON to sun.json', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
-      
-      await writeData(mockSunData, mockMoonData, outputDir)
+      await writeData(mockSunData, mockMoonData, tempDir)
 
       const sunContent = await fs.readFile(path.join(tempDir, 'sun.json'), 'utf8')
       const parsed = JSON.parse(sunContent)
@@ -206,9 +200,7 @@ describe('writeData (integration)', () => {
     })
 
     it('should write valid JSON to moon.json', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
-      
-      await writeData(mockSunData, mockMoonData, outputDir)
+      await writeData(mockSunData, mockMoonData, tempDir)
 
       const moonContent = await fs.readFile(path.join(tempDir, 'moon.json'), 'utf8')
       const parsed = JSON.parse(moonContent)
@@ -217,9 +209,7 @@ describe('writeData (integration)', () => {
     })
 
     it('should format JSON with proper indentation', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
-      
-      await writeData(mockSunData, mockMoonData, outputDir)
+      await writeData(mockSunData, mockMoonData, tempDir)
 
       const sunContent = await fs.readFile(path.join(tempDir, 'sun.json'), 'utf8')
       const moonContent = await fs.readFile(path.join(tempDir, 'moon.json'), 'utf8')
@@ -232,9 +222,7 @@ describe('writeData (integration)', () => {
     })
 
     it('should preserve all location data', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
-      
-      await writeData(mockSunData, mockMoonData, outputDir)
+      await writeData(mockSunData, mockMoonData, tempDir)
 
       const sunContent = await fs.readFile(path.join(tempDir, 'sun.json'), 'utf8')
       const moonContent = await fs.readFile(path.join(tempDir, 'moon.json'), 'utf8')
@@ -250,9 +238,7 @@ describe('writeData (integration)', () => {
     })
 
     it('should preserve data types and structure', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
-      
-      await writeData(mockSunData, mockMoonData, outputDir)
+      await writeData(mockSunData, mockMoonData, tempDir)
 
       const sunContent = await fs.readFile(path.join(tempDir, 'sun.json'), 'utf8')
       const parsedSun = JSON.parse(sunContent)
@@ -265,11 +251,10 @@ describe('writeData (integration)', () => {
 
   describe('overwriting existing files', () => {
     it('should overwrite existing sun.json', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
       await fs.mkdir(tempDir, { recursive: true })
       await fs.writeFile(path.join(tempDir, 'sun.json'), 'old content', 'utf8')
 
-      await writeData(mockSunData, mockMoonData, outputDir)
+      await writeData(mockSunData, mockMoonData, tempDir)
 
       const content = await fs.readFile(path.join(tempDir, 'sun.json'), 'utf8')
       expect(content).not.toBe('old content')
@@ -277,11 +262,10 @@ describe('writeData (integration)', () => {
     })
 
     it('should overwrite existing moon.json', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
       await fs.mkdir(tempDir, { recursive: true })
       await fs.writeFile(path.join(tempDir, 'moon.json'), 'old content', 'utf8')
 
-      await writeData(mockSunData, mockMoonData, outputDir)
+      await writeData(mockSunData, mockMoonData, tempDir)
 
       const content = await fs.readFile(path.join(tempDir, 'moon.json'), 'utf8')
       expect(content).not.toBe('old content')
@@ -289,10 +273,8 @@ describe('writeData (integration)', () => {
     })
 
     it('should update files with new data', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
-      
       // First write
-      await writeData(mockSunData, mockMoonData, outputDir)
+      await writeData(mockSunData, mockMoonData, tempDir)
       const firstSunContent = await fs.readFile(path.join(tempDir, 'sun.json'), 'utf8')
 
       // Second write with modified data
@@ -306,7 +288,7 @@ describe('writeData (integration)', () => {
         ...mockSunData,
         montreal: torontoSun
       }
-      await writeData(modifiedSunData, mockMoonData, outputDir)
+      await writeData(modifiedSunData, mockMoonData, tempDir)
       const secondSunContent = await fs.readFile(path.join(tempDir, 'sun.json'), 'utf8')
 
       expect(firstSunContent).not.toBe(secondSunContent)
@@ -316,31 +298,28 @@ describe('writeData (integration)', () => {
 
   describe('empty data handling', () => {
     it('should write empty object when sun data is empty', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
       const emptySun: Record<string, SunResponse> = {}
       
-      await writeData(emptySun, mockMoonData, outputDir)
+      await writeData(emptySun, mockMoonData, tempDir)
 
       const sunContent = await fs.readFile(path.join(tempDir, 'sun.json'), 'utf8')
       expect(JSON.parse(sunContent)).toEqual({})
     })
 
     it('should write empty object when moon data is empty', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
       const emptyMoon: Record<string, MoonResponse> = {}
       
-      await writeData(mockSunData, emptyMoon, outputDir)
+      await writeData(mockSunData, emptyMoon, tempDir)
 
       const moonContent = await fs.readFile(path.join(tempDir, 'moon.json'), 'utf8')
       expect(JSON.parse(moonContent)).toEqual({})
     })
 
     it('should create files even with empty data', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
       const emptySun: Record<string, SunResponse> = {}
       const emptyMoon: Record<string, MoonResponse> = {}
       
-      await writeData(emptySun, emptyMoon, outputDir)
+      await writeData(emptySun, emptyMoon, tempDir)
 
       expect(existsSync(path.join(tempDir, 'sun.json'))).toBe(true)
       expect(existsSync(path.join(tempDir, 'moon.json'))).toBe(true)
@@ -349,7 +328,6 @@ describe('writeData (integration)', () => {
 
   describe('null values in data', () => {
     it('should preserve null values in sun properties', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
       const torontoSun = mockSunData.toronto
 
       if (!torontoSun) {
@@ -373,7 +351,7 @@ describe('writeData (integration)', () => {
         }
       }
 
-      await writeData(sunWithNulls, mockMoonData, outputDir)
+      await writeData(sunWithNulls, mockMoonData, tempDir)
 
       const sunContent = await fs.readFile(path.join(tempDir, 'sun.json'), 'utf8')
       const parsed = JSON.parse(sunContent)
@@ -384,7 +362,6 @@ describe('writeData (integration)', () => {
     })
 
     it('should preserve null values in moon properties', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
       const torontoMoon = mockMoonData.toronto
 
       if (!torontoMoon) {
@@ -409,7 +386,7 @@ describe('writeData (integration)', () => {
         }
       }
 
-      await writeData(mockSunData, moonWithNulls, outputDir)
+      await writeData(mockSunData, moonWithNulls, tempDir)
 
       const moonContent = await fs.readFile(path.join(tempDir, 'moon.json'), 'utf8')
       const parsed = JSON.parse(moonContent)
@@ -422,7 +399,6 @@ describe('writeData (integration)', () => {
 
   describe('UTF-8 encoding', () => {
     it('should handle special characters in location names', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
       const torontoSun = mockSunData.toronto
       const vancouverSun = mockSunData.vancouver
       const torontoMoon = mockMoonData.toronto
@@ -441,7 +417,7 @@ describe('writeData (integration)', () => {
         'São Paulo': vancouverMoon
       }
 
-      await writeData(specialSun, specialMoon, outputDir)
+      await writeData(specialSun, specialMoon, tempDir)
 
       const sunContent = await fs.readFile(path.join(tempDir, 'sun.json'), 'utf8')
       const moonContent = await fs.readFile(path.join(tempDir, 'moon.json'), 'utf8')
@@ -457,7 +433,6 @@ describe('writeData (integration)', () => {
 
   describe('large datasets', () => {
     it('should handle many locations', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
       const manySun: Record<string, SunResponse> = {}
       const manyMoon: Record<string, MoonResponse> = {}
 
@@ -474,7 +449,7 @@ describe('writeData (integration)', () => {
         manyMoon[`location${i}`] = torontoMoon
       }
 
-      await writeData(manySun, manyMoon, outputDir)
+      await writeData(manySun, manyMoon, tempDir)
 
       const sunContent = await fs.readFile(path.join(tempDir, 'sun.json'), 'utf8')
       const moonContent = await fs.readFile(path.join(tempDir, 'moon.json'), 'utf8')
@@ -488,9 +463,7 @@ describe('writeData (integration)', () => {
 
   describe('file permissions', () => {
     it('should create readable files', async () => {
-      const outputDir = path.relative(process.cwd(), tempDir)
-      
-      await writeData(mockSunData, mockMoonData, outputDir)
+      await writeData(mockSunData, mockMoonData, tempDir)
 
       const sunPath = path.join(tempDir, 'sun.json')
       const moonPath = path.join(tempDir, 'moon.json')

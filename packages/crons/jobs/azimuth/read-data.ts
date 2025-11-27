@@ -12,8 +12,8 @@ export const readSunMoonData = async (): Promise<{
   sunDataByLocation: Record<string, SunResponse>
   moonDataByLocation: Record<string, MoonResponse>
 }> => {
-  const sunPath = path.join(process.cwd(), '../../packages/api/static/data/sun.json')
-  const moonPath = path.join(process.cwd(), '../../packages/api/static/data/moon.json')
+  const sunPath = path.join(import.meta.dirname, '../../../api/static/data/sun.json')
+  const moonPath = path.join(import.meta.dirname, '../../../api/static/data/moon.json')
 
   try {
     // Check if files exist

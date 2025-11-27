@@ -98,7 +98,7 @@ describe('writeData (unit)', () => {
 
       expect(fs.mkdir).toHaveBeenCalledTimes(1)
       expect(fs.mkdir).toHaveBeenCalledWith(
-        path.join(process.cwd(), outputDir),
+        path.join(import.meta.dirname, '../../../jobs/sun-moon/../..', outputDir),
         { recursive: true }
       )
     })
@@ -109,7 +109,7 @@ describe('writeData (unit)', () => {
       await writeData(mockSunData, mockMoonData, outputDir)
 
       expect(fs.mkdir).toHaveBeenCalledWith(
-        path.join(process.cwd(), outputDir),
+        path.join(import.meta.dirname, '../../../jobs/sun-moon/../..', outputDir),
         { recursive: true }
       )
     })
@@ -134,7 +134,7 @@ describe('writeData (unit)', () => {
 
     it('should write sun data with correct path and content', async () => {
       const outputDir = 'api/static/data'
-      const expectedPath = path.join(process.cwd(), outputDir, 'sun.json')
+      const expectedPath = path.join(import.meta.dirname, '../../../jobs/sun-moon/../..', outputDir, 'sun.json')
       const expectedContent = JSON.stringify(mockSunData, null, 2)
       
       await writeData(mockSunData, mockMoonData, outputDir)
@@ -148,7 +148,7 @@ describe('writeData (unit)', () => {
 
     it('should write moon data with correct path and content', async () => {
       const outputDir = 'api/static/data'
-      const expectedPath = path.join(process.cwd(), outputDir, 'moon.json')
+      const expectedPath = path.join(import.meta.dirname, '../../../jobs/sun-moon/../..', outputDir, 'moon.json')
       const expectedContent = JSON.stringify(mockMoonData, null, 2)
       
       await writeData(mockSunData, mockMoonData, outputDir)
@@ -352,7 +352,7 @@ describe('writeData (unit)', () => {
       await writeData(mockSunData, mockMoonData, outputDir)
 
       expect(fs.mkdir).toHaveBeenCalledWith(
-        path.join(process.cwd(), outputDir),
+        path.join(import.meta.dirname, '../../../jobs/sun-moon/../..', outputDir),
         { recursive: true }
       )
     })
@@ -362,7 +362,7 @@ describe('writeData (unit)', () => {
 
       await writeData(mockSunData, mockMoonData, outputDir)
 
-      const expectedDir = path.join(process.cwd(), outputDir)
+      const expectedDir = path.join(import.meta.dirname, '../../../jobs/sun-moon/../..', outputDir)
       expect(fs.mkdir).toHaveBeenCalledWith(expectedDir, { recursive: true })
     })
 
@@ -372,7 +372,7 @@ describe('writeData (unit)', () => {
       await writeData(mockSunData, mockMoonData, outputDir)
 
       expect(fs.mkdir).toHaveBeenCalledWith(
-        path.join(process.cwd(), outputDir),
+        path.join(import.meta.dirname, '../../../jobs/sun-moon/../..', outputDir),
         { recursive: true }
       )
     })

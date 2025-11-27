@@ -109,10 +109,9 @@ describe('runJob (integration)', () => {
   afterEach(async () => {
     vi.restoreAllMocks()
     
-    // Clean up temporary directory (convert to absolute path for cleanup)
-    const absoluteTempDir = path.join(process.cwd(), tempDir)
-    if (existsSync(absoluteTempDir)) {
-      await fs.rm(absoluteTempDir, { recursive: true, force: true })
+    // Clean up temporary directory
+    if (existsSync(tempDir)) {
+      await fs.rm(tempDir, { recursive: true, force: true })
     }
   })
 
@@ -120,10 +119,9 @@ describe('runJob (integration)', () => {
     it('should fetch data from API and write files to temp directory', async () => {
       await runJob(tempDir)
 
-      // Verify files were created (use absolute paths for checking)
-      const absoluteTempDir = path.join(process.cwd(), tempDir)
-      const sunFilePath = path.join(absoluteTempDir, 'sun.json')
-      const moonFilePath = path.join(absoluteTempDir, 'moon.json')
+      // Verify files were created
+      const sunFilePath = path.join(tempDir, 'sun.json')
+      const moonFilePath = path.join(tempDir, 'moon.json')
 
       expect(existsSync(sunFilePath)).toBe(true)
       expect(existsSync(moonFilePath)).toBe(true)
@@ -132,8 +130,7 @@ describe('runJob (integration)', () => {
     it('should write sun.json with correct structure', async () => {
       await runJob(tempDir)
 
-      const absoluteTempDir = path.join(process.cwd(), tempDir)
-      const sunFilePath = path.join(absoluteTempDir, 'sun.json')
+      const sunFilePath = path.join(tempDir, 'sun.json')
       const sunContent = await fs.readFile(sunFilePath, 'utf8')
       const sunData = JSON.parse(sunContent) as Record<string, SunResponse>
 
@@ -159,8 +156,8 @@ describe('runJob (integration)', () => {
     it('should write moon.json with correct structure', async () => {
       await runJob(tempDir)
 
-      const absoluteTempDir = path.join(process.cwd(), tempDir)
-      const moonFilePath = path.join(absoluteTempDir, 'moon.json')
+      // tempDir is already absolute
+      const moonFilePath = path.join(tempDir, 'moon.json')
       const moonContent = await fs.readFile(moonFilePath, 'utf8')
       const moonData = JSON.parse(moonContent) as Record<string, MoonResponse>
 
@@ -187,23 +184,22 @@ describe('runJob (integration)', () => {
 
     it('should create directory if it does not exist', async () => {
       const nestedDir = path.join(tempDir, 'nested', 'path', 'data')
-      const absoluteNestedDir = path.join(process.cwd(), nestedDir)
 
-      expect(existsSync(absoluteNestedDir)).toBe(false)
+      expect(existsSync(nestedDir)).toBe(false)
 
       await runJob(nestedDir)
 
-      expect(existsSync(absoluteNestedDir)).toBe(true)
-      expect(existsSync(path.join(absoluteNestedDir, 'sun.json'))).toBe(true)
-      expect(existsSync(path.join(absoluteNestedDir, 'moon.json'))).toBe(true)
+      expect(existsSync(nestedDir)).toBe(true)
+      expect(existsSync(path.join(nestedDir, 'sun.json'))).toBe(true)
+      expect(existsSync(path.join(nestedDir, 'moon.json'))).toBe(true)
     })
 
     it('should write valid JSON that can be parsed', async () => {
       await runJob(tempDir)
 
-      const absoluteTempDir = path.join(process.cwd(), tempDir)
-      const sunFilePath = path.join(absoluteTempDir, 'sun.json')
-      const moonFilePath = path.join(absoluteTempDir, 'moon.json')
+      // tempDir is already absolute
+      const sunFilePath = path.join(tempDir, 'sun.json')
+      const moonFilePath = path.join(tempDir, 'moon.json')
 
       const sunContent = await fs.readFile(sunFilePath, 'utf8')
       const moonContent = await fs.readFile(moonFilePath, 'utf8')
@@ -222,8 +218,8 @@ describe('runJob (integration)', () => {
     it('should write formatted JSON with proper indentation', async () => {
       await runJob(tempDir)
 
-      const absoluteTempDir = path.join(process.cwd(), tempDir)
-      const sunFilePath = path.join(absoluteTempDir, 'sun.json')
+      // tempDir is already absolute
+      const sunFilePath = path.join(tempDir, 'sun.json')
       const sunContent = await fs.readFile(sunFilePath, 'utf8')
 
       // Check that JSON is formatted with 2-space indentation
@@ -234,8 +230,8 @@ describe('runJob (integration)', () => {
     it('should include correct coordinates for each location', async () => {
       await runJob(tempDir)
 
-      const absoluteTempDir = path.join(process.cwd(), tempDir)
-      const sunFilePath = path.join(absoluteTempDir, 'sun.json')
+      // tempDir is already absolute
+      const sunFilePath = path.join(tempDir, 'sun.json')
       const sunContent = await fs.readFile(sunFilePath, 'utf8')
       const sunData = JSON.parse(sunContent) as Record<string, SunResponse>
 
@@ -370,8 +366,8 @@ describe('runJob (integration)', () => {
 
       await runJob(tempDir)
 
-      const absoluteTempDir = path.join(process.cwd(), tempDir)
-      const sunFilePath = path.join(absoluteTempDir, 'sun.json')
+      // tempDir is already absolute
+      const sunFilePath = path.join(tempDir, 'sun.json')
       const sunContent = await fs.readFile(sunFilePath, 'utf8')
       const sunData = JSON.parse(sunContent) as Record<string, SunResponse>
 
@@ -386,8 +382,8 @@ describe('runJob (integration)', () => {
     it('should verify date formatting in output', async () => {
       await runJob(tempDir)
 
-      const absoluteTempDir = path.join(process.cwd(), tempDir)
-      const sunFilePath = path.join(absoluteTempDir, 'sun.json')
+      // tempDir is already absolute
+      const sunFilePath = path.join(tempDir, 'sun.json')
       const sunContent = await fs.readFile(sunFilePath, 'utf8')
       const sunData = JSON.parse(sunContent) as Record<string, SunResponse>
 
@@ -419,8 +415,8 @@ describe('runJob (integration)', () => {
 
       await runJob(tempDir)
 
-      const absoluteTempDir = path.join(process.cwd(), tempDir)
-      const moonFilePath = path.join(absoluteTempDir, 'moon.json')
+      // tempDir is already absolute
+      const moonFilePath = path.join(tempDir, 'moon.json')
       const moonContent = await fs.readFile(moonFilePath, 'utf8')
       const moonData = JSON.parse(moonContent) as Record<string, MoonResponse>
 
@@ -434,8 +430,8 @@ describe('runJob (integration)', () => {
       // First run
       await runJob(tempDir)
 
-      const absoluteTempDir = path.join(process.cwd(), tempDir)
-      const sunFilePath = path.join(absoluteTempDir, 'sun.json')
+      // tempDir is already absolute
+      const sunFilePath = path.join(tempDir, 'sun.json')
       const firstContent = await fs.readFile(sunFilePath, 'utf8')
 
       // Setup new mock responses
@@ -463,15 +459,15 @@ describe('runJob (integration)', () => {
 
       // Files should exist
       expect(existsSync(sunFilePath)).toBe(true)
-      expect(existsSync(path.join(absoluteTempDir, 'moon.json'))).toBe(true)
+      expect(existsSync(path.join(tempDir, 'moon.json'))).toBe(true)
     })
 
     it('should handle all 8 locations correctly', async () => {
       await runJob(tempDir)
 
-      const absoluteTempDir = path.join(process.cwd(), tempDir)
-      const sunFilePath = path.join(absoluteTempDir, 'sun.json')
-      const moonFilePath = path.join(absoluteTempDir, 'moon.json')
+      // tempDir is already absolute
+      const sunFilePath = path.join(tempDir, 'sun.json')
+      const moonFilePath = path.join(tempDir, 'moon.json')
 
       const sunContent = await fs.readFile(sunFilePath, 'utf8')
       const moonContent = await fs.readFile(moonFilePath, 'utf8')
@@ -503,9 +499,9 @@ describe('runJob (integration)', () => {
       await expect(runJob(tempDir)).rejects.toThrow('Met.no sun API error: 404 Not Found')
 
       // Files should not be created
-      const absoluteTempDir = path.join(process.cwd(), tempDir)
-      expect(existsSync(path.join(absoluteTempDir, 'sun.json'))).toBe(false)
-      expect(existsSync(path.join(absoluteTempDir, 'moon.json'))).toBe(false)
+      // tempDir is already absolute
+      expect(existsSync(path.join(tempDir, 'sun.json'))).toBe(false)
+      expect(existsSync(path.join(tempDir, 'moon.json'))).toBe(false)
     })
 
     it('should throw error when API returns invalid JSON', async () => {
@@ -518,8 +514,8 @@ describe('runJob (integration)', () => {
       await expect(runJob(tempDir)).rejects.toThrow()
 
       // Files should not be created
-      const absoluteTempDir = path.join(process.cwd(), tempDir)
-      expect(existsSync(path.join(absoluteTempDir, 'sun.json'))).toBe(false)
+      // tempDir is already absolute
+      expect(existsSync(path.join(tempDir, 'sun.json'))).toBe(false)
     })
 
     it('should handle network errors gracefully', async () => {
@@ -529,9 +525,9 @@ describe('runJob (integration)', () => {
       await expect(runJob(tempDir)).rejects.toThrow('Network error')
 
       // Files should not be created
-      const absoluteTempDir = path.join(process.cwd(), tempDir)
-      expect(existsSync(path.join(absoluteTempDir, 'sun.json'))).toBe(false)
-      expect(existsSync(path.join(absoluteTempDir, 'moon.json'))).toBe(false)
+      // tempDir is already absolute
+      expect(existsSync(path.join(tempDir, 'sun.json'))).toBe(false)
+      expect(existsSync(path.join(tempDir, 'moon.json'))).toBe(false)
     })
   })
 })

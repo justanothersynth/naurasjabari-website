@@ -129,8 +129,8 @@ describe('readSunMoonData', () => {
 
       await readSunMoonData()
 
-      const expectedSunPath = path.default.join(process.cwd(), '../../packages/api/static/data/sun.json')
-      const expectedMoonPath = path.default.join(process.cwd(), '../../packages/api/static/data/moon.json')
+      const expectedSunPath = path.default.join(import.meta.dirname, '../../../jobs/azimuth/../../../api/static/data/sun.json')
+      const expectedMoonPath = path.default.join(import.meta.dirname, '../../../jobs/azimuth/../../../api/static/data/moon.json')
 
       expect(mockReadFileSync).toHaveBeenCalledWith(expectedSunPath, 'utf8')
       expect(mockReadFileSync).toHaveBeenCalledWith(expectedMoonPath, 'utf8')
@@ -416,8 +416,7 @@ describe('readSunMoonData', () => {
   })
 
   describe('path construction', () => {
-    it('should construct relative paths from current working directory', async () => {
-      const originalCwd = process.cwd()
+    it('should construct relative paths from module directory', async () => {
       mockExistsSync.mockReturnValue(true)
       mockReadFileSync
         .mockReturnValueOnce(JSON.stringify(mockSunData))
@@ -425,8 +424,8 @@ describe('readSunMoonData', () => {
 
       await readSunMoonData()
 
-      const expectedSunPath = path.default.join(originalCwd, '../../packages/api/static/data/sun.json')
-      const expectedMoonPath = path.default.join(originalCwd, '../../packages/api/static/data/moon.json')
+      const expectedSunPath = path.default.join(import.meta.dirname, '../../../jobs/azimuth/../../../api/static/data/sun.json')
+      const expectedMoonPath = path.default.join(import.meta.dirname, '../../../jobs/azimuth/../../../api/static/data/moon.json')
 
       expect(mockReadFileSync).toHaveBeenCalledWith(expectedSunPath, 'utf8')
       expect(mockReadFileSync).toHaveBeenCalledWith(expectedMoonPath, 'utf8')

@@ -14,7 +14,7 @@ export const writeData = async (
   outputDir: string
 ) => {
   // Ensure the output directory exists
-  const staticDataDir = path.join(process.cwd(), outputDir)
+  const staticDataDir = path.isAbsolute(outputDir) ? outputDir : path.join(import.meta.dirname, '../..', outputDir)
   await fs.mkdir(staticDataDir, { recursive: true })
 
   // Save sun data

@@ -70,7 +70,10 @@ describe('runJob (integration)', () => {
   let tempDir: string
   let sunFilePath: string
   let moonFilePath: string
-  let originalCwd: string
+  let sunBackupPath: string
+  let moonBackupPath: string
+  let hasSunBackup = false
+  let hasMoonBackup = false
 
   const createMockSunResponse = (): SunResponse => ({
     copyright: 'MET Norway',
@@ -155,32 +158,65 @@ describe('runJob (integration)', () => {
   }
 
   beforeEach(() => {
+    // Reset backup flags
+    hasSunBackup = false
+    hasMoonBackup = false
+    
     // Create temp directory inside crons/tmp (relative to test file: ../../../tmp)
     tempDir = path.join(import.meta.dirname, '../../../tmp', `test-azimuth-${Date.now()}-${Math.random().toString(36).substring(7)}`)
     fs.mkdirSync(tempDir, { recursive: true })
-
-    // Save original cwd and change to temp dir structure
-    originalCwd = process.cwd()
     
-    // Create the expected directory structure
-    const apiStaticDataDir = path.join(tempDir, 'packages', 'api', 'static', 'data')
+    // The function uses import.meta.dirname which points to jobs/azimuth/
+    // It looks for ../../../api/static/data/ which resolves to packages/api/static/data/
+    // From test file at test/azimuth/integration/, we need ../../../../api/static/data/
+    const apiStaticDataDir = path.join(import.meta.dirname, '../../../../api/static/data')
     fs.mkdirSync(apiStaticDataDir, { recursive: true })
-
-    const cronsDir = path.join(tempDir, 'packages', 'crons')
-    fs.mkdirSync(cronsDir, { recursive: true })
 
     sunFilePath = path.join(apiStaticDataDir, 'sun.json')
     moonFilePath = path.join(apiStaticDataDir, 'moon.json')
-
-    // Change working directory to mimic the cron job structure
-    process.chdir(cronsDir)
+    
+    // Backup existing data files if they exist
+    sunBackupPath = path.join(tempDir, 'sun.json.backup')
+    moonBackupPath = path.join(tempDir, 'moon.json.backup')
+    
+    if (fs.existsSync(sunFilePath)) {
+      fs.copyFileSync(sunFilePath, sunBackupPath)
+      hasSunBackup = true
+      // Remove the file so tests start with a clean state
+      fs.rmSync(sunFilePath, { force: true })
+    }
+    
+    if (fs.existsSync(moonFilePath)) {
+      fs.copyFileSync(moonFilePath, moonBackupPath)
+      hasMoonBackup = true
+      // Remove the file so tests start with a clean state
+      fs.rmSync(moonFilePath, { force: true })
+    }
 
     vi.clearAllMocks()
   })
 
   afterEach(() => {
-    // Restore original working directory
-    process.chdir(originalCwd)
+    // Ensure the data directory exists before restoring files
+    const apiStaticDataDir = path.join(import.meta.dirname, '../../../../api/static/data')
+    if ((hasSunBackup || hasMoonBackup) && !fs.existsSync(apiStaticDataDir)) {
+      fs.mkdirSync(apiStaticDataDir, { recursive: true })
+    }
+    
+    // Restore backed up data files
+    if (hasSunBackup && fs.existsSync(sunBackupPath)) {
+      fs.copyFileSync(sunBackupPath, sunFilePath)
+      hasSunBackup = false
+    } else if (fs.existsSync(sunFilePath)) {
+      fs.rmSync(sunFilePath, { force: true })
+    }
+    
+    if (hasMoonBackup && fs.existsSync(moonBackupPath)) {
+      fs.copyFileSync(moonBackupPath, moonFilePath)
+      hasMoonBackup = false
+    } else if (fs.existsSync(moonFilePath)) {
+      fs.rmSync(moonFilePath, { force: true })
+    }
 
     // Clean up temp directory
     if (fs.existsSync(tempDir)) {

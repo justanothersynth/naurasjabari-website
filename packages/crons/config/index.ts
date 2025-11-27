@@ -1,15 +1,11 @@
 import dotenv from 'dotenv'
 import path from 'path'
-import { fileURLToPath } from 'url'
 import { configSchema } from './schema'
 import { createLogger } from '@workspace/utils'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
 // Load .env file automatically
 dotenv.config({
-  path: path.resolve(__dirname, '../.env')
+  path: path.resolve(import.meta.dirname, '../.env')
 })
 
 // Validate and transform environment variables
