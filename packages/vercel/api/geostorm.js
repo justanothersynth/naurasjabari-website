@@ -8,7 +8,7 @@ export const runtime = 'edge'
 export const preferredRegion = ['iad1']
 
 export async function GET(request) {
-  const response = await fetch('https://www.spaceweather.gc.ca/forecast-prevision/short-court/zone-en.php')
+  const response = await fetch('https://spaceweather.gc.ca/forecast-prevision/short-court/zone-en.php')
   const data = await response.text()
   return new Response(data, {
     status: 200,
