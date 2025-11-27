@@ -5,7 +5,13 @@ import tseslint from 'typescript-eslint'
 
 export default [
   {
-    ignores: ['dist/**/*', 'eslint.config.mjs', 'jest.config.js']
+    ignores: [
+      'dist/**/*',
+      'coverage/**/*',
+      'eslint.config.mjs',
+      'vitest.config.ts',
+      'tsconfig.json'
+    ]
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
@@ -34,6 +40,12 @@ export default [
       'no-prototype-builtins': 'off',
       'promise/param-names': 'off',
       'multiline-ternary': 'off'
+    }
+  },
+  {
+    files: ['test/**/*.ts', '**/*.test.ts'],
+    rules: {
+      '@typescript-eslint/no-non-null-assertion': 'off'
     }
   }
 ]

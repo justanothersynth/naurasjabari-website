@@ -1,23 +1,5 @@
-import Chalk from 'chalk'
-import {
-  createLogBox
-} from '../utils'
-
-import { z } from 'zod'
-import cron from 'node-cron'
-import { Command } from 'commander'
-import type { Job } from './job.types'
-import { config } from '../config'
-import type { OrpcContext, GeostormOrpcInput, GeostormOrpcInputRegions } from '@workspace/types'
-import { generateInternalJWT } from '@workspace/utils'
-import { createEntry } from '@workspace/api/lib/geostorm'
 import * as cheerio from 'cheerio'
-
-export const OptionsSchema = z.object({})
-
-const orpcContext: OrpcContext = {
-  headers: {}
-}
+import type { GeostormOrpcInput, GeostormOrpcInputRegions } from '@workspace/types'
 
 /**
  * Gets the table headers
@@ -27,8 +9,7 @@ const orpcContext: OrpcContext = {
  *  'Polar'
  * ]
  */
-
-const getTableHeaders = ($: cheerio.CheerioAPI) => {
+export const getTableHeaders = ($: cheerio.CheerioAPI) => {
   const header = [...$('#tabular-forecast').find('thead th')].map(e => {
     return $(e).text().trim()
   })
@@ -46,8 +27,7 @@ const getTableHeaders = ($: cheerio.CheerioAPI) => {
  *  '24 Hour Forecast'
  * ]
  */
-
-const getRowHeadings = ($: cheerio.CheerioAPI) => {
+export const getRowHeadings = ($: cheerio.CheerioAPI) => {
   return [...$('#tabular-forecast').find('tbody th')].map(e => {
     return $(e).text().trim()
   })
@@ -57,8 +37,7 @@ const getRowHeadings = ($: cheerio.CheerioAPI) => {
  * Gets row values
  * example output: ['<div>active</div>', '<div>stormy intervals</div>']
  */
-
-const getRowValues = ($: cheerio.CheerioAPI) => {
+export const getRowValues = ($: cheerio.CheerioAPI) => {
   return [...$('#tabular-forecast').find('tbody td')].map(e => {
     return $(e).html()
   })
@@ -97,8 +76,7 @@ const getRowValues = ($: cheerio.CheerioAPI) => {
   \}
 
  */
-
-const fetchData = async () => {
+export const fetchData = async () => {
   const response = await fetch('https://naurasjabari-website-edge.vercel.app/api/geostorm')
   const data = await response.text()
   let $ = cheerio.load(data)
@@ -181,95 +159,3 @@ const fetchData = async () => {
 
   return output
 }
-
-let JOB_IS_RUNNING = false
-
-/**
- * Scrapes the github contributions calendar for a user and saves the data to a file
- * @link https://github.com/users/timelytree/contributions
- */
-const runJob = async () => {
-  if (JOB_IS_RUNNING) return
-  JOB_IS_RUNNING = true
-
-  /* eslint-disable-next-line no-console */
-  console.log(
-    createLogBox(
-      '🚀 Job: geostorm',
-      'Scraping geostorm data from the government of Canada',
-      'info'
-    )
-  )
-
-  try {
-
-    // Generate internal JWT for authentication
-    const token = await generateInternalJWT(
-      config.supabase.jwtSecret,
-      config.supabase.jwtIssuer,
-      config.supabase.jwtSubject
-    )
-    orpcContext.headers = { authorization: `Bearer ${token}` }
-
-    const data = await fetchData()
-
-    await createEntry.internal(orpcContext)(data)
-
-    const currentTime = new Date()
-    let summary = `${Chalk.bold('Date:')} ${currentTime.toISOString()}\n\n`
-    
-    const timeframePrettyNames = {
-      'last24Hours': 'Last 24 Hours',
-      'last6Hours': 'Last 6 Hours',
-      'currentConditions': 'Current Conditions',
-      'next6Hours': 'Next 6 Hours',
-      'next24Hours': 'Next 24 Hours'
-    }
-    
-    const regionEmojis = {
-      'subAuroral': Chalk.bold.green('sub-auroral'),
-      'auroral': Chalk.bold.yellow('auroral'),
-      'polar': Chalk.bold.blue('polar')
-    }
-    
-    for (const [timeframe, timeframeName] of Object.entries(timeframePrettyNames)) {
-      summary += `${Chalk.bold(timeframeName)}:\n`
-      const timeframeData = data[timeframe as keyof GeostormOrpcInput]
-      
-      for (const [region, regionName] of Object.entries(regionEmojis)) {
-        const activities = (timeframeData as GeostormOrpcInputRegions)[region as keyof GeostormOrpcInputRegions]
-        const activityStr = activities.filter((a: string) => a !== '').join(' → ') || activities[0]
-        summary += `  ${regionName}: ${activityStr}\n`
-      }
-      summary += '\n'
-    }
-
-    /* eslint-disable-next-line no-console */
-    console.log(createLogBox('Geostorm Summary', summary, 'success'))
-
-  } catch (error) {
-    /* eslint-disable-next-line no-console */
-    console.error('❌ Error in geostorm job:', error)
-    JOB_IS_RUNNING = false
-  } finally {
-    JOB_IS_RUNNING = false
-  }
-}
-
-const job: Job = {
-  name: 'geostorm',
-  description: 'Fetches geostorm data from the government of Canada',
-  optionsSchema: OptionsSchema,
-  async run() {
-    if (config.nodeEnv === 'development') {
-      runJob()
-      cron.schedule('*/15 * * * *', () => runJob())
-    } else {
-      runJob()
-    }
-  }
-}
-
-export const subcommand = new Command(job.name)
-  .description(job.description)
-  .action(() => job.run())

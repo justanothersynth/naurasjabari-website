@@ -24,6 +24,6 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": ["index.ts", "jobs/**/*", "utils/**/*", "config/**/*"],
-  "exclude": ["node_modules", "dist", "test-setup.ts"]
+  "include": ["*.ts", "jobs/**/*", "utils/**/*", "config/**/*", "test/**/*"],
+  "exclude": ["node_modules", "dist", "logs", "coverage"]
 }
