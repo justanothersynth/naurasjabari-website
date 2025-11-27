@@ -78,6 +78,11 @@ export const getRowValues = ($: cheerio.CheerioAPI) => {
  */
 export const fetchData = async () => {
   const response = await fetch('https://naurasjabari-website-edge.vercel.app/api/geostorm')
+  
+  if (!response.ok) {
+    throw new Error(`Failed to fetch geostorm data: ${response.status} ${response.statusText}`)
+  }
+  
   const data = await response.text()
   let $ = cheerio.load(data)
   
