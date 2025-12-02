@@ -1,2 +1,18 @@
-bun run lint
-bun run ts-check
+# Run lint and ts-check concurrently
+bun run lint &
+PID_LINT=$!
+
+bun run ts-check &
+PID_TS=$!
+
+# Wait for both and capture exit codes
+wait $PID_LINT
+EXIT_LINT=$?
+
+wait $PID_TS
+EXIT_TS=$?
+
+# Exit with error if either failed
+if [ $EXIT_LINT -ne 0 ] || [ $EXIT_TS -ne 0 ]; then
+  exit 1
+fi
