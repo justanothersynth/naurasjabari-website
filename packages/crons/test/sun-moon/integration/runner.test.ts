@@ -117,7 +117,7 @@ describe('runJob (integration)', () => {
 
   describe('end-to-end flow', () => {
     it('should fetch data from API and write files to temp directory', async () => {
-      await runJob(tempDir)
+      await runJob({ outputDir: tempDir })
 
       // Verify files were created
       const sunFilePath = path.join(tempDir, 'sun.json')
@@ -128,7 +128,7 @@ describe('runJob (integration)', () => {
     })
 
     it('should write sun.json with correct structure', async () => {
-      await runJob(tempDir)
+      await runJob({ outputDir: tempDir })
 
       const sunFilePath = path.join(tempDir, 'sun.json')
       const sunContent = await fs.readFile(sunFilePath, 'utf8')
@@ -154,7 +154,7 @@ describe('runJob (integration)', () => {
     })
 
     it('should write moon.json with correct structure', async () => {
-      await runJob(tempDir)
+      await runJob({ outputDir: tempDir })
 
       // tempDir is already absolute
       const moonFilePath = path.join(tempDir, 'moon.json')
@@ -176,7 +176,7 @@ describe('runJob (integration)', () => {
     })
 
     it('should call fetch API for all 8 locations (sun + moon each)', async () => {
-      await runJob(tempDir)
+      await runJob({ outputDir: tempDir })
 
       // 8 locations × 2 calls (sun + moon) = 16 total fetch calls
       expect(mockFetch).toHaveBeenCalledTimes(16)
@@ -187,7 +187,7 @@ describe('runJob (integration)', () => {
 
       expect(existsSync(nestedDir)).toBe(false)
 
-      await runJob(nestedDir)
+      await runJob({ outputDir: nestedDir })
 
       expect(existsSync(nestedDir)).toBe(true)
       expect(existsSync(path.join(nestedDir, 'sun.json'))).toBe(true)
@@ -195,7 +195,7 @@ describe('runJob (integration)', () => {
     })
 
     it('should write valid JSON that can be parsed', async () => {
-      await runJob(tempDir)
+      await runJob({ outputDir: tempDir })
 
       // tempDir is already absolute
       const sunFilePath = path.join(tempDir, 'sun.json')
@@ -216,7 +216,7 @@ describe('runJob (integration)', () => {
     })
 
     it('should write formatted JSON with proper indentation', async () => {
-      await runJob(tempDir)
+      await runJob({ outputDir: tempDir })
 
       // tempDir is already absolute
       const sunFilePath = path.join(tempDir, 'sun.json')
@@ -228,7 +228,7 @@ describe('runJob (integration)', () => {
     })
 
     it('should include correct coordinates for each location', async () => {
-      await runJob(tempDir)
+      await runJob({ outputDir: tempDir })
 
       // tempDir is already absolute
       const sunFilePath = path.join(tempDir, 'sun.json')
@@ -337,7 +337,7 @@ describe('runJob (integration)', () => {
           json: async () => createMockMoonResponse(LOCATIONS.sayulita.lat, LOCATIONS.sayulita.lon)
         })
 
-      await runJob(tempDir)
+      await runJob({ outputDir: tempDir })
 
       const moonFilePath = path.join(tempDir, 'moon.json')
       const moonContent = await fs.readFile(moonFilePath, 'utf8')
@@ -364,7 +364,7 @@ describe('runJob (integration)', () => {
           })
       })
 
-      await runJob(tempDir)
+      await runJob({ outputDir: tempDir })
 
       // tempDir is already absolute
       const sunFilePath = path.join(tempDir, 'sun.json')
@@ -380,7 +380,7 @@ describe('runJob (integration)', () => {
     })
 
     it('should verify date formatting in output', async () => {
-      await runJob(tempDir)
+      await runJob({ outputDir: tempDir })
 
       // tempDir is already absolute
       const sunFilePath = path.join(tempDir, 'sun.json')
@@ -413,7 +413,7 @@ describe('runJob (integration)', () => {
           })
       })
 
-      await runJob(tempDir)
+      await runJob({ outputDir: tempDir })
 
       // tempDir is already absolute
       const moonFilePath = path.join(tempDir, 'moon.json')
@@ -428,7 +428,7 @@ describe('runJob (integration)', () => {
 
     it('should complete successfully when overwriting existing files', async () => {
       // First run
-      await runJob(tempDir)
+      await runJob({ outputDir: tempDir })
 
       // tempDir is already absolute
       const sunFilePath = path.join(tempDir, 'sun.json')
@@ -449,7 +449,7 @@ describe('runJob (integration)', () => {
       })
 
       // Second run - should overwrite
-      await runJob(tempDir)
+      await runJob({ outputDir: tempDir })
 
       const secondContent = await fs.readFile(sunFilePath, 'utf8')
 
@@ -463,7 +463,7 @@ describe('runJob (integration)', () => {
     })
 
     it('should handle all 8 locations correctly', async () => {
-      await runJob(tempDir)
+      await runJob({ outputDir: tempDir })
 
       // tempDir is already absolute
       const sunFilePath = path.join(tempDir, 'sun.json')
@@ -496,7 +496,7 @@ describe('runJob (integration)', () => {
         statusText: 'Not Found'
       })
 
-      await expect(runJob(tempDir)).rejects.toThrow('Met.no sun API error: 404 Not Found')
+      await expect(runJob({ outputDir: tempDir })).rejects.toThrow('Met.no sun API error: 404 Not Found')
 
       // Files should not be created
       // tempDir is already absolute
@@ -511,7 +511,7 @@ describe('runJob (integration)', () => {
         json: async () => ({ invalid: 'structure' })
       })
 
-      await expect(runJob(tempDir)).rejects.toThrow()
+      await expect(runJob({ outputDir: tempDir })).rejects.toThrow()
 
       // Files should not be created
       // tempDir is already absolute
@@ -522,7 +522,7 @@ describe('runJob (integration)', () => {
       mockFetch.mockReset()
       mockFetch.mockRejectedValueOnce(new Error('Network error'))
 
-      await expect(runJob(tempDir)).rejects.toThrow('Network error')
+      await expect(runJob({ outputDir: tempDir })).rejects.toThrow('Network error')
 
       // Files should not be created
       // tempDir is already absolute

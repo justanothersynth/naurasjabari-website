@@ -185,7 +185,7 @@ describe('runJob (unit)', () => {
     it('should use custom outputDir when provided', async () => {
       const customOutputDir = '/custom/path/to/output'
 
-      await runJob(customOutputDir)
+      await runJob({ outputDir: customOutputDir })
 
       expect(writeData).toHaveBeenCalledWith(
         expect.any(Object),
