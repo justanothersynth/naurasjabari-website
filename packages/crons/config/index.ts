@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
 import path from 'path'
+import { z } from 'zod'
 import { configSchema } from './schema'
 import { createLogger } from '@workspace/utils'
 
@@ -61,9 +62,28 @@ const config = {
 // TypeScript interface for the config object (inferred from Zod schema)
 type Config = typeof config
 
-// Create logger instance
+// Job name schema for validation and type inference
+const jobNameSchema = z.enum(['azimuth', 'sun-moon', 'geostorm', 'github-contrib', 'delete'])
+type JobName = z.infer<typeof jobNameSchema>
+
+// Detect job name from process.argv (e.g., `bun crons azimuth` extracts 'azimuth')
+const detectJobName = (): JobName | null => {
+  for (const arg of process.argv) {
+    const result = jobNameSchema.safeParse(arg)
+    if (result.success) {
+      return result.data
+    }
+  }
+  return null
+}
+
+// Get job-specific logger name
+const jobName = detectJobName()
+const loggerName = jobName ? `crons:${jobName}` : 'crons'
+
+// Create logger instance with job-specific name for PM2 isolation
 const logger = createLogger({
-  name: 'crons',
+  name: loggerName,
   level: config.serverEnv === 'production' ? 'info' : 'debug',
   pretty: config.serverEnv !== 'production'
 })
