@@ -22,6 +22,7 @@
 
 <script lang="ts" setup>
 import { TooltipProvider } from 'reka-ui'
+import type { StoreGeneric } from 'pinia'
 
 if (import.meta.client && window.matchMedia('(prefers-color-scheme: dark)').matches) {
   useHead({
@@ -36,7 +37,7 @@ if (import.meta.client && window.matchMedia('(prefers-color-scheme: dark)').matc
 }
 
 const generalStore = useGeneralStore()
-const { forceCursorPointer } = storeToRefs(generalStore)
+const { forceCursorPointer } = storeToRefs(generalStore as StoreGeneric)
 
 const tooltipStore = useTooltipStore()
 const { tooltip } = storeToRefs(tooltipStore)

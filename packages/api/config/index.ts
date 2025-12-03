@@ -18,8 +18,8 @@ const parsedSchema = configSchema.safeParse(process.env)
 
 // Handle schema validation errors
 if (!parsedSchema.success) {
-  const errorMessages = parsedSchema.error.errors
-    .map((error) => `${error.path.join('.')}: ${error.message}`)
+  const errorMessages = parsedSchema.error.issues
+    .map((issue) => `${issue.path.join('.')}: ${issue.message}`)
     .join('\n')
   /* eslint-disable no-console */
   console.error('❌ Configuration validation failed:')

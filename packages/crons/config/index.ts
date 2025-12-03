@@ -13,8 +13,8 @@ const parsedSchema = configSchema.safeParse(process.env)
 
 // Handle validation errors
 if (!parsedSchema.success) {
-  const errorMessages = parsedSchema.error.errors
-    .map((error) => `${error.path.join('.')}: ${error.message}`)
+  const errorMessages = parsedSchema.error.issues
+    .map((issue) => `${issue.path.join('.')}: ${issue.message}`)
     .join('\n')
 
   // Log to console since we don't have a logger yet

@@ -20,7 +20,7 @@
       leave-active-class="transition-opacity duration-300 ease-in-out"
       enter-from-class="opacity-0"
       leave-to-class="opacity-0">
-      <div v-if="showError" class="absolute inset-0 flex items-center justify-center">
+      <div v-if="isErrorVisible" class="absolute inset-0 flex items-center justify-center">
         <Icon name="iconoir:media-image-xmark" size="24" class="text-gray-400" />
       </div>
     </Transition>
@@ -83,7 +83,7 @@ const shouldLoad = ref(false)
 const isLoaded = ref(false)
 const hasError = ref(false)
 const showImage = ref(false)
-const showError = ref(false)
+const isErrorVisible = ref(false)
 
 /**
  * Handles successful image load
@@ -106,7 +106,7 @@ watch(isLoaded, loaded => {
     // Wait for spinner fade-out (300ms) before fading in the content
     setTimeout(() => {
       if (hasError.value) {
-        showError.value = true
+        isErrorVisible.value = true
       } else {
         showImage.value = true
       }

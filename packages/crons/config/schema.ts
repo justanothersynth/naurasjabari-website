@@ -15,11 +15,9 @@ export const configSchema = z.object({
     .default('info')
     .describe('Logging level'),
 
-  API_URL: z.string()
-    .url()
-    .describe('API backend URL'),
+  API_URL: z.url().describe('API backend URL'),
 
-  SUPABASE_URL: z.string().url().describe('Supabase project URL'),
+  SUPABASE_URL: z.url().describe('Supabase project URL'),
   SUPABASE_KEY: z.string().describe('Supabase API key'),
   
   // Database Configuration

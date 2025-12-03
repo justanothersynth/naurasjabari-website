@@ -21,7 +21,14 @@ const optionsSchema = z.object({
 
 const inputSchema = z.object({
   fileBlob: z.instanceof(Blob),
-  options: optionsSchema.optional().default({})
+  options: optionsSchema.default({
+    format: 'png',
+    resolution: 144,
+    singleFile: false,
+    cropBox: false,
+    gray: false,
+    responseType: 'buffer'
+  })
 })
 
 const cleanupTempFiles = (tempDir: string): void => {

@@ -18,9 +18,9 @@ export const configSchema = z.object({
     .default(5000)
     .describe('Server port number'),
 
-  API_URL: z.string().url().describe('API backend URL'),
+  API_URL: z.url().describe('API backend URL'),
 
-  NGROK_URL: z.string().url().optional().describe('NGROK URL'),
+  NGROK_URL: z.url().optional().describe('NGROK URL'),
 
   // CORS Configuration
   CORS_ORIGINS: z.string()
@@ -43,7 +43,7 @@ export const configSchema = z.object({
     .describe('Logging level'),
 
   // Supabase Configuration
-  SUPABASE_URL: z.string().url().describe('Supabase project URL'),
+  SUPABASE_URL: z.url().describe('Supabase project URL'),
   SUPABASE_KEY: z.string().describe('Supabase API key'),
 
   // JWT Configuration for authenticating cron jobs with Supabase
