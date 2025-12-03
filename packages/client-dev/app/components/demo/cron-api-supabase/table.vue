@@ -36,14 +36,14 @@
         <div class="flex">
           <span class="bg-amber-100 rounded-full p-1 pb-[6px] mr-2 w-4 h-4 flex items-center justify-center">↑</span>
           <div class="flex flex-col">
-            <span class="lowercase">{{ getTime(data[0]?.[location]?.sunriseTime ?? '') }}</span>
+            <span class="lowercase">{{ getTime(data[0]?.[location]?.sunriseTime ?? '', location) }}</span>
             <span class="text-xs">sunrise</span>
           </div>
         </div>
         <div class="flex">
           <span class="bg-amber-100 rounded-full p-1 pb-[6px] mr-2 w-4 h-4 flex items-center justify-center">↓</span>
           <div class="flex flex-col">
-            <span class="lowercase">{{ getTime(data[0]?.[location]?.sunsetTime ?? '') }}</span>
+            <span class="lowercase">{{ getTime(data[0]?.[location]?.sunsetTime ?? '', location) }}</span>
             <span class="text-xs">sunset</span>
           </div>
         </div>
@@ -67,10 +67,10 @@
         <Icon name="iconoir:map-pin" size="16" class="mr-1" /> {{ data[0]?.[hoveredLocation]?.period === 'day' ? 'Daytime' : 'Nighttime' }} in {{ useChangeCase(hoveredLocation, 'capitalCase') }}
         <span class="mx-2" />
         <span class="bg-amber-100 rounded-full p-1 pb-[6px] mr-2 w-4 h-4 flex items-center justify-center font-mono">↑</span>
-        <span class="lowercase">{{ getTime(data[0]?.[hoveredLocation]?.sunriseTime ?? '') }}</span>
+        <span class="lowercase">{{ getTime(data[0]?.[hoveredLocation]?.sunriseTime ?? '', hoveredLocation) }}</span>
         <span class="mx-2" />
         <span class="bg-amber-100 rounded-full p-1 pb-[6px] mr-2 w-4 h-4 flex items-center justify-center font-mono">↓</span>
-        <span class="lowercase">{{ getTime(data[0]?.[hoveredLocation]?.sunsetTime ?? '') }}</span>
+        <span class="lowercase">{{ getTime(data[0]?.[hoveredLocation]?.sunsetTime ?? '', hoveredLocation) }}</span>
       </div>
       <div class="gradient sun absolute top-1/2 left-1/2 w-full h-1/2 -translate-x-1/2" />
       <div
@@ -112,6 +112,9 @@ const locationKeys = Object.keys(sunMoonOrpcInput.shape) as SunMoonLocationKey[]
 // Track which location is currently hovered (defaults to toronto)
 const hoveredLocation = ref<SunMoonLocationKey>('toronto')
 
+/**
+ * Links to the locations on Google Maps.
+ */
 const links = {
   toronto: 'https://maps.app.goo.gl/kuaFvAL398Gm2k6j6',
   vancouver: 'https://maps.app.goo.gl/9xjuy64k1pCQZWhh6',
@@ -124,12 +127,33 @@ const links = {
 }
 
 /**
+ * IANA timezone identifiers for each location.
+ * These properly handle daylight savings time transitions.
+ */
+const timezones: Record<SunMoonLocationKey, string> = {
+  toronto: 'America/Toronto',
+  vancouver: 'America/Vancouver',
+  kosiv: 'Europe/Kyiv',
+  montreal: 'America/Toronto',
+  heidelberg: 'Europe/Berlin',
+  bristol: 'Europe/London',
+  snowdonia: 'Europe/London',
+  sayulita: 'America/Mazatlan'
+}
+
+/**
  * Format time with consistent formatting (12-hour format with AM/PM, no spaces)
  * @param time - Time string to format
+ * @param location - Location key to determine the correct timezone (handles DST)
  * @returns Formatted time string in lowercase with no spaces
  */
-const getTime = (time: string) => {
-  return useFormatTime(time, { use24Hour: false, showAmPm: true }).replace(' ', '')
+const getTime = (time: string, location: SunMoonLocationKey) => {
+  return useFormatTime(time, {
+    timezone: timezones[location],
+    includeTimezoneOffset: true,
+    use24Hour: false,
+    showAmPm: true
+  }).replace(' ', '')
 }
 
 /**
