@@ -1,14 +1,14 @@
 <template>
   <div
     ref="navRef"
-    class="floating-nav fixed bottom-4 left-1/2 -translate-x-1/2 z-1000 bg-prime/80 backdrop-blur-lg border-1 border-gray-200 p-2 rounded-full gap-1 shadow-xl flex items-center"
+    class="floating-nav fixed bottom-4 left-1/2 -translate-x-1/2 z-1000 bg-prime/80 backdrop-blur-lg border border-gray-200 p-2 rounded-full gap-1 shadow-xl flex items-center"
     :class="{ 'is-visible': isVisible }"
     :style="{ '--mouse-x': `${elementX}px`, '--mouse-y': `${elementY}px` }">
 
     <button
       :class="buttonClasses"
       aria-label="Contact Me"
-      @click="scrollToBottom">
+      @click="openContactDialog">
       <Icon name="iconoir:mail" size="16" class="mt-0.5" />
       <span>contact me</span>
     </button>
@@ -34,25 +34,25 @@ const buttonClasses = 'flex items-center gap-1 hover:bg-gray-100 transition-colo
 
 const navRef = ref<HTMLElement | null>(null)
 const { elementX, elementY } = useMouseInElement(navRef)
-const isVisible = ref(false)
+const loaded = ref(false)
+
+const generalStore = useGeneralStore()
+const { contactDialogOpen } = storeToRefs(generalStore)
 
 onMounted(() => {
   nextTick(() => {
     setTimeout(() => {
-      isVisible.value = true
+      loaded.value = true
     }, 500)
   })
 })
 
-const scrollToBottom = () => {
-  const documentHeight = document.documentElement.scrollHeight
-  const windowHeight = window.innerHeight
-  const targetPosition = documentHeight - windowHeight
+const isVisible = computed(() => {
+  return loaded.value && !contactDialogOpen.value
+})
 
-  window.scrollTo({
-    top: targetPosition,
-    behavior: 'smooth'
-  })
+const openContactDialog = () => {
+  generalStore.setContactDialogOpen(true)
 }
 </script>
 

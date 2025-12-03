@@ -9,6 +9,7 @@
     "launch": "nuxi --bun build && pm2 restart client_dev",
     "ts-check": "vue-tsc --noEmit",
     "lint": "eslint .",
+    "prepare": "eslint . && vue-tsc --noEmit",
     "upgrade-nuxt": "bunx nuxi@latest upgrade --dedupe"
   },
   "dependencies": {

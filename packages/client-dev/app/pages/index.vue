@@ -1,6 +1,8 @@
 <template>
   <main class="pt-40 pb-20">
 
+    <ContactDialog />
+
     <HexMouseNodeIndicator />
     
     <div class="max-w-4xl mx-auto">

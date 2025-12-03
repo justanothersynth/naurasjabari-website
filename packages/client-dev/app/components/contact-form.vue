@@ -1,7 +1,7 @@
 <template>
   <form
     :key="formKey"
-    class="flex flex-col items-center gap-4 max-w-4xl"
+    class="flex flex-col items-center gap-4"
     @submit.prevent="handleSubmit">
     
     <!-- Name Field -->
