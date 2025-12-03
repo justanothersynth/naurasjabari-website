@@ -9,8 +9,8 @@
         A full-stack software engineer with 10+ years of experience. My specialty lies in prototype development, complex UI implementation and systems integration inside the javascript ecosystem.
       </p>
       <p>
-        Most of my time has been spent in the role of Lead Engineer in team-based settings, with plenty of project and account management in between.
-        I've done code integrations across multiple teams (across continents), I've set up processes and structures to keep things running smoothly and I've moved my fair share of juniors into intermediate positions.
+        Most of my time has been spent as a Lead Engineer in team-based settings, with substantial involvement in project and account management.
+        I’ve handled code integrations across multiple teams worldwide, established processes and structures to keep operations running smoothly, and helped many junior engineers advance to intermediate roles.
       </p>
     </div>
 

@@ -4,15 +4,24 @@
     <div class="prose mb-12 max-w-[66ch]">
       <h2>Web scraping and database interfacing</h2>
       <p>
-        While it's not as severe as other people I know, I do get migraines from time to time.
-        I know most of my triggers, but was recently surprised to find a bit of a correlation with solar flares (a.k.a solar "storms" or "geostorms").
-        The government of Canada has a
-        <a class="hover:text-blue-700 transition-colors" href="https://www.spaceweather.gc.ca/forecast-prevision/short-court/zone-en.php" target="_blank">
-          Solar storm forecast
+        As someone who gets migraines, I'm constantly attempting to find out what causes them. It's most often external factors for me.
+        Recently I've been anecdotally correlating them with solar flares — a.k.a "geostorms".
+        The Government of Canada has a
+        <a class="inline-link" href="https://www.spaceweather.gc.ca/forecast-prevision/short-court/zone-en.php" target="_blank">
+          solar storm forecast
           <Icon name="iconoir:arrow-up-right-square" size="16" class="ml-[2px]" />
         </a>
-        that they update every 15 minutes. Time to whip out the web scraper!
-        (The Github contributions graph at the top of this page was also scraped, but that's a story for another time 🤓)
+        that they update every 15 minutes. The website seems to be geofenced for non-clientside access, so I had to route my
+        <a class="inline-link" href="https://github.com/timelytree/naurasjabari-website/tree/main/packages/crons/jobs/geostorm" target="_blank">
+          scraper
+          <Icon name="iconoir:arrow-up-right-square" size="16" class="ml-[2px]" />
+        </a>
+        (hosted in Germany) through
+        <a class="inline-link" href="https://github.com/timelytree/naurasjabari-website/blob/main/packages/vercel/api/geostorm.js" target="_blank">
+          a proxy server
+          <Icon name="iconoir:arrow-up-right-square" size="16" class="ml-[2px]" />
+        </a>
+        (a Vercel Edge function) in the US.
       </p>
     </div>
 

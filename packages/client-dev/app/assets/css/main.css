@@ -53,3 +53,7 @@
   transform: translateY(-100%);
   max-width: 300px;
 }
+
+@utility inline-link {
+  @apply hover:text-blue-800 transition-colors inline-flex;
+}

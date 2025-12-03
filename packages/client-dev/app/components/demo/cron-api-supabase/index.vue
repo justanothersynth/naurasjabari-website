@@ -1,9 +1,9 @@
 <template>
   <section class="max-w-4xl mx-auto my-20">
     
-    <div class="prose">
+    <div class="prose max-w-[67ch]">
       <h2>Cron jobs, API integration and Supabase Realtime</h2>
-      <p class="w-[67ch]">
+      <p>
         My dad was mildly obsessed with checking sunrise and sunset times wherever he was.
         It would be a near-daily "oh the sun comes up 1 minute earlier today" 🤦‍♂️.
         He passed away back in 2022 ♥️. This section is an ode to him, with some extra visualized information, just for fun.
@@ -11,15 +11,24 @@
       </p>
       <p>
         Huge thanks to the Norwegian Meteorologisk Intitutt for making a
-        <a class="hover:text-blue-700 transition-colors" href="https://api.met.no/weatherapi/sunrise/3.0/documentation" target="_blank">
+        <a class="inline-link" href="https://api.met.no/weatherapi/sunrise/3.0/documentation" target="_blank">
           Sun/Moon API Endpoint
           <Icon name="iconoir:arrow-up-right-square" size="16" class="ml-[2px]" />
         </a>
         freely available to use.
-        I've got one cron job that queries that endpoint daily at midnight and another that populates a Supabase table every second.
-        The per-second cron performs the azimuth (position in the sky) and day/night calculations.
-        Of course, the azimuths could have just been calculated in a simple client-side timer, bypassing the database altogether, but that wouldn't be as interesting 🙃.
-        And finally, I've got a Supabase Realtime connection set up, which is how you can see the azimuth values changing.
+        I have one
+        <a class="inline-link" href="https://github.com/timelytree/naurasjabari-website/tree/main/packages/crons/jobs/sun-moon" target="_blank">
+          cron job
+          <Icon name="iconoir:arrow-up-right-square" size="16" class="ml-[2px]" />
+        </a>
+        that queries the endpoint daily at midnight, getting the sunrise and sunset times and moon phases. And another
+        <a class="inline-link" href="https://github.com/timelytree/naurasjabari-website/tree/main/packages/crons/jobs/azimuth" target="_blank">
+          cron job
+          <Icon name="iconoir:arrow-up-right-square" size="16" class="ml-[2px]" />
+        </a>
+        that updates a Supabase table every second with the azimuth (sky position) and day/night calculations.
+        Technically, the azimuths could be calculated with a simple client-side timer, skipping the database entirely — but that wouldn’t be as interesting. Overengineering at it's finest over here 🍸.
+        Finally, I set up a Supabase Realtime connection, which is how you can see the azimuth values updating live.
       </p>
     </div>
 
