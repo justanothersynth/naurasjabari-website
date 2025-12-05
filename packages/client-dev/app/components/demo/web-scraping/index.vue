@@ -137,7 +137,7 @@ const {
 } = useSupabaseFetchMulti<GeostormSupabase[]>({
   table: 'geostorm',
   select: '*',
-  limit: 10,
+  limit: 24,
   orderBy: 'created_at',
   orderDirection: 'desc'
 })
@@ -150,7 +150,7 @@ useSupabaseSubscribeMulti({
     table: 'geostorm'
   }],
   data,
-  limit: 20,
+  limit: 24,
   orderDirection: 'desc'
 })
 

@@ -27,7 +27,7 @@ export const jobRegistry: JobMetadata[] = [
     name: 'geostorm',
     description: 'Fetches geostorm data from the government of Canada',
     modulePath: `${jobsDir}/geostorm`,
-    cronPattern: '*/15 * * * *' // every 15 minutes
+    cronPattern: '0 */6 * * *' // every 6 hours
   },
   {
     name: 'github-contrib',
