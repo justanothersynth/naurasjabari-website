@@ -12,62 +12,75 @@
       </button>
     </div>
 
-    <div class="contributions-grid">
-      <div v-if="selectedYearData" class="year-section mb-8 flex flex-col">
-        
-        <div class="grid-container">
-          <!-- Month labels -->
-          <div class="month-labels">
-            <div
-              v-for="(monthData, monthName) in monthPositions"
-              :key="monthName"
-              class="month-label"
-              :style="{ gridColumnStart: monthData.position + 1 }">
-              {{ monthName }}
-            </div>
-          </div>
-          
-          <!-- Day labels -->
-          <div class="day-labels">
-            <div v-for="(label, index) in dayLabels" :key="index" class="day-label">
-              {{ label }}
-            </div>
-          </div>
-          
-          <!-- Contributions grid -->
-          <div class="calendar">
-            <div v-for="week in getWeeksForYear(selectedYearData.calendar)" :key="week.weekIndex" class="week-column">
-              <div
-                v-for="(day, dayIndex) in week.days"
-                :key="dayIndex"
-                :class="getContributionClass(day)"
-                class="day"
-                @mouseenter="day?.tooltip && $tooltip.show(day.tooltip)"
-                @mouseleave="$tooltip.hide" />
-            </div>
+    <!-- Loading State -->
+    <div
+      v-if="isLoading"
+      class="flex items-center justify-center gap-3 py-16 border border-gray-200 rounded-3xl">
+      <LoaderSpinner :duration="1" />
+      <span class="text-sm text-gray-500 font-medium">Loading contribution chart</span>
+    </div>
+
+    <!-- Error State -->
+    <div
+      v-else-if="hasError"
+      class="flex items-center justify-center py-16 text-sm text-gray-500 font-medium border border-gray-200 rounded-3xl">
+      Something went wrong fetching the contribution chart, please refresh this page or try again later
+    </div>
+
+    <div v-else-if="selectedYearData" class="year-section mb-8 flex flex-col">
+      
+      <div class="grid-container">
+        <!-- Month labels -->
+        <div class="month-labels">
+          <div
+            v-for="(monthData, monthName) in monthPositions"
+            :key="monthName"
+            class="month-label"
+            :style="{ gridColumnStart: monthData.position + 1 }">
+            {{ monthName }}
           </div>
         </div>
-
-        <div class="flex justify-between items-center mt-4">
-
-          <div class="font-medium">
-            {{ selectedYearData.count }} contributions in {{ selectedYear }}
+        
+        <!-- Day labels -->
+        <div class="day-labels">
+          <div v-for="(label, index) in dayLabels" :key="index" class="day-label">
+            {{ label }}
           </div>
-
-          <div class="flex items-center gap-2 text-sm text-gray-600 ml-auto mr-2">
-            <span>Less</span>
-            <div class="flex gap-1">
-              <div
-                v-for="color in legendColors"
-                :key="color"
-                :class="['w-3 h-3 rounded-sm', color]" />
-            </div>
-            <span>More</span>
+        </div>
+        
+        <!-- Contributions grid -->
+        <div class="calendar">
+          <div v-for="week in getWeeksForYear(selectedYearData.calendar)" :key="week.weekIndex" class="week-column">
+            <div
+              v-for="(day, dayIndex) in week.days"
+              :key="dayIndex"
+              :class="getContributionClass(day)"
+              class="day"
+              @mouseenter="day?.tooltip && $tooltip.show(day.tooltip)"
+              @mouseleave="$tooltip.hide" />
           </div>
+        </div>
+      </div>
 
+      <div class="flex justify-between items-center mt-4">
+
+        <div class="font-medium">
+          {{ selectedYearData.count }} contributions in {{ selectedYear }}
+        </div>
+
+        <div class="flex items-center gap-2 text-sm text-gray-600 ml-auto mr-2">
+          <span>Less</span>
+          <div class="flex gap-1">
+            <div
+              v-for="color in legendColors"
+              :key="color"
+              :class="['w-3 h-3 rounded-sm', color]" />
+          </div>
+          <span>More</span>
         </div>
 
       </div>
+
     </div>
     
     <div class="text-sm text-gray-400 mt-4 text-center">
@@ -113,6 +126,8 @@ const { $tooltip } = useNuxtApp()
 
 const contributionsData = ref<ContributionsData | null>(null)
 const selectedYear = ref<number>(new Date().getFullYear())
+const isLoading = ref(true)
+const hasError = ref(false)
 
 /**
  * Dynamically generates an array of years from 2015 to current year + 1
@@ -148,13 +163,19 @@ const dayLabels = ['', 'Mon', '', 'Wed', '', 'Fri', '']
  * Fetches the GitHub contributions data from the API
  */
 const fetchContributionsData = async () => {
+  isLoading.value = true
+  hasError.value = false
   try {
     const response = await fetch(`${config.apiUrl}/data/github-contrib-total.json`)
     if (response.ok) {
       contributionsData.value = await response.json()
+    } else {
+      hasError.value = true
     }
   } catch {
-    // Silence is golden
+    hasError.value = true
+  } finally {
+    isLoading.value = false
   }
 }
 
@@ -238,10 +259,6 @@ onMounted(() => {
 $cellGap: 3px;
 $cellDimension: 13px;
 $cellSpacing: 3px;
-
-.contributions-grid {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-}
 
 .grid-container {
   display: grid;
