@@ -70,7 +70,9 @@
       </div>
     </div>
     
-
+    <div class="text-sm text-gray-400 mt-4 text-center">
+      Note: large portions of my work (ex: project management, teaching, devops) cannot be reflected through github contributions
+    </div>
     
   </section>
 </template>
