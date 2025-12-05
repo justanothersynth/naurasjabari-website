@@ -23,7 +23,7 @@
 
     <DemoComplexUiCanvas />
 
-    <DemoScrapingDatabases />
+    <DemoWebScraping />
 
     <div class="max-w-4xl mx-auto">
       <Divider>

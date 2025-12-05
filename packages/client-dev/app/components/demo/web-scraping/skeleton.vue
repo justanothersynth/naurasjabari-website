@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-col gap-1">
+  <div class="w-full flex flex-col gap-1 border border-gray-200 rounded-3xl p-2 overflow-hidden">
     <div
       v-for="n in count"
       :key="n"
