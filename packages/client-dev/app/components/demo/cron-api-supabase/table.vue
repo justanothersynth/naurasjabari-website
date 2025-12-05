@@ -49,14 +49,24 @@
         </div>
       </div>
 
-      <div class="flex items-center justify-between font-mono mt-4">
+      <div class="flex items-center justify-between font-mono mt-4 gap-x-2 text-sm">
         <div class="flex">
-          <span class="p-1 pb-[1px] mr-2 w-4 h-4 flex items-center justify-center">☀️</span>
-          {{ (data[0]?.[location]?.sunAzimuth ?? 0).toFixed(3) }}
+          <span class="p-1 pb-[1px] mr-1 w-4 h-4 flex items-center justify-center">☀️</span>
+          <span class="azimuth-digits">
+            <span
+              v-for="(char, idx) in toDigitArray(data[0]?.[location]?.sunAzimuth)"
+              :key="`sun-${location}-${idx}`"
+              :class="{ 'azimuth-flash': flashingDigits[location]?.sun?.[idx] }">{{ char }}</span>
+          </span>
         </div>
         <div class="flex">
-          <span class="p-1 pb-[1px] mr-2 w-4 h-4 flex items-center justify-center">🌗</span>
-          {{ (data[0]?.[location]?.moonAzimuth ?? 0).toFixed(3) }}
+          <span class="p-1 pb-[1px] mr-1 w-4 h-4 flex items-center justify-center">🌗</span>
+          <span class="azimuth-digits">
+            <span
+              v-for="(char, idx) in toDigitArray(data[0]?.[location]?.moonAzimuth)"
+              :key="`moon-${location}-${idx}`"
+              :class="{ 'azimuth-flash': flashingDigits[location]?.moon?.[idx] }">{{ char }}</span>
+          </span>
         </div>
       </div>
 
@@ -108,6 +118,76 @@ const { $tooltip } = useNuxtApp()
 
 // Get location keys dynamically from the sunMoonOrpcInput schema
 const locationKeys = Object.keys(sunMoonOrpcInput.shape) as SunMoonLocationKey[]
+
+// Track which individual digits should flash (per location, per type, per digit index)
+type DigitFlashState = Record<SunMoonLocationKey, { sun: boolean[], moon: boolean[] }>
+const flashingDigits = ref<Partial<DigitFlashState>>({})
+
+// Store previous azimuth string values for digit comparison
+const previousAzimuthStrings = ref<Record<SunMoonLocationKey, { sun: string, moon: string }>>({} as Record<SunMoonLocationKey, { sun: string, moon: string }>)
+
+/**
+ * Converts a number to an array of characters for digit-by-digit rendering
+ * @param value - The number to convert
+ * @returns Array of individual characters (digits and decimal point)
+ */
+const toDigitArray = (value: number | null | undefined): string[] => {
+  return (value ?? 0).toFixed(3).split('')
+}
+
+/**
+ * Compares two digit arrays and returns which indices changed
+ * @param oldDigits - Previous digit array
+ * @param newDigits - New digit array
+ * @returns Array of booleans indicating which indices changed
+ */
+const compareDigits = (oldDigits: string[], newDigits: string[]): boolean[] => {
+  const maxLen = Math.max(oldDigits.length, newDigits.length)
+  const result: boolean[] = []
+  for (let i = 0; i < maxLen; i++) {
+    result.push(oldDigits[i] !== newDigits[i])
+  }
+  return result
+}
+
+/**
+ * Watches for changes in azimuth data and triggers flash animation for changed digits
+ */
+watch(() => props.data[0], (newData, oldData) => {
+  if (!newData || !oldData) return
+  
+  const newFlashState: Partial<DigitFlashState> = {}
+  
+  for (const location of locationKeys) {
+    const prevSunStr = previousAzimuthStrings.value[location]?.sun ?? (oldData[location]?.sunAzimuth ?? 0).toFixed(3)
+    const prevMoonStr = previousAzimuthStrings.value[location]?.moon ?? (oldData[location]?.moonAzimuth ?? 0).toFixed(3)
+    const newSunStr = (newData[location]?.sunAzimuth ?? 0).toFixed(3)
+    const newMoonStr = (newData[location]?.moonAzimuth ?? 0).toFixed(3)
+    
+    const sunDigitChanges = compareDigits(prevSunStr.split(''), newSunStr.split(''))
+    const moonDigitChanges = compareDigits(prevMoonStr.split(''), newMoonStr.split(''))
+    
+    const hasSunChanges = sunDigitChanges.some(changed => changed)
+    const hasMoonChanges = moonDigitChanges.some(changed => changed)
+    
+    if (hasSunChanges || hasMoonChanges) {
+      newFlashState[location] = {
+        sun: sunDigitChanges,
+        moon: moonDigitChanges
+      }
+    }
+    
+    // Update previous values
+    previousAzimuthStrings.value[location] = { sun: newSunStr, moon: newMoonStr }
+  }
+  
+  flashingDigits.value = newFlashState
+  
+  // Clear flash state after animation
+  setTimeout(() => {
+    flashingDigits.value = {}
+  }, 500)
+}, { deep: true })
 
 // Track which location is currently hovered (defaults to toronto)
 const hoveredLocation = ref<SunMoonLocationKey>('toronto')
@@ -315,5 +395,26 @@ const moonPhase = computed(() => {
   height: 112%;
   z-index: 5;
   transition: transform 0.3s ease-in-out;
+}
+
+@keyframes azimuth-flash {
+  0% { background-color: transparent; }
+  50% { background-color: var(--color-gray-300); }
+  100% { background-color: transparent; }
+}
+
+.azimuth-digits {
+  display: inline-flex;
+}
+
+.azimuth-digits > span {
+  display: inline-block;
+  min-width: 0.6rem;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.azimuth-flash {
+  animation: azimuth-flash 0.5s ease-in-out;
 }
 </style>
