@@ -8,6 +8,7 @@
   /* Fonts */
   --font-sans: 'Wotfard', sans-serif;
   --font-inter: 'Inter', serif;
+  --font-mono: 'Inconsolata', monospace;
 
   /* Font size - 1.25 Ratio Scale */
   --text-*: initial;

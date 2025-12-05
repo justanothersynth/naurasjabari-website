@@ -1,5 +1,5 @@
 <template>
-  <main class="pt-40 pb-20">
+  <main class="pt-40">
 
     <ContactDialog />
 

@@ -1,7 +1,9 @@
 <template>
-  <footer class="max-w-sm mt-20 mx-auto">
+  <footer class="max-w-4xl mx-auto overflow-hidden">
 
-    <ContactForm />
+    <div class="text-[20rem] font-mono font-bold text-right mb-[-150px]">
+      END
+    </div>
     
   </footer>
 </template>
