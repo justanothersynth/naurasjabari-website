@@ -247,8 +247,6 @@ const getContributionClass = (day: ContributionDay | null): string => {
   return `level-${day.level}`
 }
 
-
-
 // Fetch data on component mount
 onMounted(() => {
   fetchContributionsData()

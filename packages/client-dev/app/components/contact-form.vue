@@ -136,7 +136,7 @@ const formData = ref<FormData>({
 })
 
 const labelClasses = 'block font-medium mb-1'
-const fieldClasses = 'block w-full px-3 py-2 border border-1 border-gray-200 rounded-lg transition-colors'
+const fieldClasses = 'block w-full px-3 py-2 border border-1 border-gray-200 rounded-lg bg-white transition-colors'
 const errorClasses = 'text-sm text-red-500 mt-[-4px]'
 
 const errors = ref<FormErrors>({})

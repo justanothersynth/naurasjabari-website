@@ -1,7 +1,7 @@
 <template>
   <div
     ref="navRef"
-    class="floating-nav fixed bottom-4 left-1/2 -translate-x-1/2 z-1000 bg-prime/80 backdrop-blur-lg border border-gray-200 p-2 rounded-full gap-1 shadow-xl flex items-center"
+    class="floating-nav fixed bottom-4 left-1/2 -translate-x-1/2 z-1000 bg-prime/80 backdrop-blur-lg border border-gray-200 p-3 rounded-full gap-1 shadow-xl flex items-center"
     :class="{ 'is-visible': isVisible }"
     :style="{ '--mouse-x': `${elementX}px`, '--mouse-y': `${elementY}px` }">
 
@@ -30,7 +30,7 @@
 <script lang="ts" setup>
 import { useMouseInElement } from '@vueuse/core'
 
-const buttonClasses = 'flex items-center gap-1 hover:bg-gray-100 transition-colors duration-150 ease-in-out rounded-full px-2 py-1 text-sm'
+const buttonClasses = 'flex items-center gap-1 hover:bg-gray-100 transition-colors duration-150 ease-in-out rounded-full py-1 px-2 text-[14px]'
 
 const navRef = ref<HTMLElement | null>(null)
 const { elementX, elementY } = useMouseInElement(navRef)
