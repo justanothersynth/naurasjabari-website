@@ -35,7 +35,7 @@
 
         </HexCanvas>
 
-        <!-- Radial fade overlay: transparent center, fades to white beyond container edge -->
+        <!-- Radial fade overlay: transparent center, fades to background color beyond container edge -->
         <div
           class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] h-[200vh] pointer-events-none z-10"
           :style="{ background: fadeGradient }" />
@@ -77,6 +77,6 @@ const fadeBuffer = 180
 const fadeGradient = computed(() => {
   const radius = width.value / 2
   const fadeEnd = radius + fadeBuffer
-  return `radial-gradient(circle, transparent ${radius}px, white ${fadeEnd}px)`
+  return `radial-gradient(circle, transparent ${radius}px, var(--color-root) ${fadeEnd}px)`
 })
 </script>

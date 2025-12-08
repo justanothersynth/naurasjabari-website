@@ -4,8 +4,7 @@
     <div class="prose mb-12 max-w-[66ch]">
       <h2>Web scraping</h2>
       <p>
-        As someone who gets migraines, I'm constantly attempting to find out what causes them. It's most often external factors for me.
-        Recently I've been anecdotally correlating them with solar flares — a.k.a "geostorms".
+        As someone who gets migraines, I'm constantly attempting to find out what causes them. It's most often external factors for me and I've been anecdotally correlating them with solar flares — a.k.a "geostorms".
         The Government of Canada has a
         <a class="inline-link" href="https://www.spaceweather.gc.ca/forecast-prevision/short-court/zone-en.php" target="_blank">
           solar storm forecast

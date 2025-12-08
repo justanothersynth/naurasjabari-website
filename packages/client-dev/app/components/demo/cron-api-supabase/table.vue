@@ -4,7 +4,7 @@
     <div
       v-for="location in locationKeys"
       :key="location"
-      :class="['relative border-1 rounded-2xl p-4 bg-white transition-all duration-200', {
+      :class="['relative border rounded-2xl p-4 bg-white transition-all duration-200', {
         'border-amber-200': data[0]?.[location]?.period === 'day',
         'border-gray-300': data[0]?.[location]?.period === 'night',
         'scale-103 shadow-lg': hoveredLocation === location
@@ -17,10 +17,10 @@
         @mouseenter="$tooltip.show(`Currently ${data[0]?.[location]?.period === 'day' ? 'day ☀️' : 'night 🌙'}`)"
         @mouseleave="$tooltip.hide">
         <div
-          class="needle sun before:bg-white"
+          class="needle sun before:bg-root"
           :style="{ transform: `translate(-50%, -50%) rotate(${(data[0]?.[location]?.sunAzimuth ?? 0) - 90}deg)` }" />
         <div
-          class="needle moon before:bg-white"
+          class="needle moon before:bg-root"
           :style="{ transform: `translate(-50%, -50%) rotate(${(data[0]?.[location]?.moonAzimuth ?? 0) - 90}deg)` }" />
         <div class="container sun absolute top-0 left-1/2 -translate-x-1/2 w-6 h-1/2" />
         <div class="container moon absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-1/2" />
@@ -265,7 +265,7 @@ const moonPhase = computed(() => {
     width: 200%;
     height: 200%;
     transform: translate(-50%, -50%);
-    background: radial-gradient(white 20%, transparent 70%);
+    background: radial-gradient(var(--color-root) 20%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
   }
@@ -347,7 +347,7 @@ const moonPhase = computed(() => {
       transform: translateX(-50%);
       width: 50%;
       height: 5rem;
-      background-color: white;
+      background-color: var(--color-root);
     }
   }
 }
@@ -366,24 +366,24 @@ const moonPhase = computed(() => {
     &:before {
       bottom: 100%;
       height: 5rem;
-      background: linear-gradient(to top, white 40%, transparent);
+      background: linear-gradient(to top, var(--color-root) 40%, transparent);
     }
     &:after {
       top: 0;
       height: calc(100% + 4px);
-      background-color: white;
+      background-color: var(--color-root);
     }
   }
   &.moon {
     &:before {
       bottom: 100%;
       height: calc(100% + 4px);
-      background: linear-gradient(to top, white 90%, transparent);
+      background: linear-gradient(to top, var(--color-root) 90%, transparent);
     }
     &:after {
       top: 0;
       height: 5rem;
-      background: linear-gradient(to bottom, white 40%, transparent);
+      background: linear-gradient(to bottom, var(--color-root) 40%, transparent);
     }
   }
 }

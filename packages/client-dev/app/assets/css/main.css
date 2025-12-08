@@ -22,6 +22,9 @@
   --text-4xl: 49px;   /* base × 1.25⁵ ≈ 48.83px */
   --text-5xl: 61px;   /* base × 1.25⁶ ≈ 61.04px */
   --text-6xl: 76px;   /* base × 1.25⁷ ≈ 76.29px */
+
+  /* Colours */
+  --color-root: #FAFAFA;
 }
 
 @layer components {
@@ -57,4 +60,9 @@
 
 @utility inline-link {
   @apply hover:text-blue-800 transition-colors inline-flex;
+}
+
+html,
+body {
+ @apply bg-root;
 }

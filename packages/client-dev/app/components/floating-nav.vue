@@ -1,7 +1,7 @@
 <template>
   <div
     ref="navRef"
-    class="floating-nav fixed bottom-4 left-1/2 -translate-x-1/2 z-1000 bg-prime/80 backdrop-blur-lg border border-gray-200 p-3 rounded-full gap-1 shadow-xl flex items-center"
+    class="floating-nav fixed bottom-4 left-1/2 -translate-x-1/2 z-1000 bg-root/80 backdrop-blur-lg border border-gray-200 p-3 rounded-full gap-1 shadow-xl flex items-center"
     :class="{ 'is-visible': isVisible }"
     :style="{ '--mouse-x': `${elementX}px`, '--mouse-y': `${elementY}px` }">
 
