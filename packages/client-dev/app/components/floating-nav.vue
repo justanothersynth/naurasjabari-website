@@ -1,9 +1,9 @@
 <template>
   <div
     ref="navRef"
-    class="floating-nav fixed bottom-4 left-1/2 -translate-x-1/2 z-1000 bg-root/80 backdrop-blur-lg border border-gray-200 p-3 rounded-full gap-1 shadow-xl flex items-center"
+    class="floating-nav fixed bottom-4 left-1/2 -translate-x-1/2 z-1000 bg-prime/80 backdrop-blur-lg border border-gray-200 p-3 rounded-full gap-1 shadow-xl flex items-center"
     :class="{ 'is-visible': isVisible }"
-    :style="{ '--mouse-x': `${elementX}px`, '--mouse-y': `${elementY}px` }">
+    :style="{ '--mouse-x': `${mouseX}px`, '--mouse-y': `${mouseY}px` }">
 
     <button
       :class="buttonClasses"
@@ -33,7 +33,10 @@ import { useMouseInElement } from '@vueuse/core'
 const buttonClasses = 'flex items-center gap-1 hover:bg-gray-100 transition-colors duration-150 ease-in-out rounded-full py-1 px-2 text-[14px]'
 
 const navRef = ref<HTMLElement | null>(null)
-const { elementX, elementY } = useMouseInElement(navRef)
+const { elementX, elementY, isOutside } = useMouseInElement(navRef)
+
+const mouseX = ref(0)
+const mouseY = ref(0)
 const loaded = ref(false)
 
 const generalStore = useGeneralStore()
@@ -54,6 +57,13 @@ const isVisible = computed(() => {
 const openContactDialog = () => {
   generalStore.setContactDialogOpen(true)
 }
+
+watch([elementX, elementY, isOutside], ([x, y, outside]) => {
+  if (!outside) {
+    mouseX.value = x
+    mouseY.value = y
+  }
+})
 </script>
 
 <style lang="scss" scoped>
