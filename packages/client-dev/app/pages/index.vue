@@ -3,7 +3,7 @@
 
     <ContactDialog />
 
-    <HexMouseNodeIndicator />
+    <!-- <HexMouseNodeIndicator /> -->
     
     <div class="max-w-4xl mx-auto">
 
@@ -21,7 +21,7 @@
 
     <DemoCronApiSupabase />
 
-    <DemoComplexUiCanvas />
+    <DemoComplexUi />
 
     <DemoWebScraping />
 

@@ -8,6 +8,7 @@
     ref="hexagonRef"
     :class="['hex', {
       'show-blueprint': showBlueprint,
+      'show-outline': showOutline,
       visible,
       selected: hexagon?.selected,
       'not-clipped': !isClipped
@@ -27,7 +28,19 @@
 
     <HexBlueprint
       v-if="showBlueprint"
-      :name="props.name" />
+      :hex-name="props.name" />
+
+    <svg
+      v-if="showOutline"
+      viewBox="0 0 174 197"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="absolute inset-0 w-full h-full object-cover">
+      <path
+        d="M81.1025 2.47366C84.5059 0.508717 88.6991 0.508718 92.1025 2.47366L166.705 45.5459C170.108 47.5108 172.205 51.1416 172.205 55.0713V141.216C172.205 145.146 170.108 148.776 166.705 150.741L92.1025 193.814C88.6991 195.778 84.5059 195.778 81.1025 193.814L6.5 150.741C3.09683 148.776 1.00017 145.146 1 141.216V55.0713C1.00017 51.1416 3.09683 47.5108 6.5 45.5459L81.1025 2.47366Z"
+        stroke="#D9D9D9"
+        stroke-width="3" />
+    </svg>
 
   </div>
 </template>
@@ -42,6 +55,7 @@ const props = withDefaults(defineProps<{
   attachedTo?: string
   size?: string
   showBlueprint?: boolean
+  showOutline?: boolean
   margin?: number
   shift?: 'none' | 'right' | 'left',
   isClipped?: boolean
@@ -50,11 +64,20 @@ const props = withDefaults(defineProps<{
   side: 0,
   attachedTo: 'origin',
   size: '150px',
-  showBlueprint: false,
+  showBlueprint: undefined,
+  showOutline: undefined,
   margin: 8,
   shift: 'none',
   isClipped: true
 })
+
+// Inject showBlueprint from HexCanvas as fallback when prop is not explicitly set
+const injectedShowBlueprint = inject<Ref<boolean>>('hexCanvasShowBlueprint', ref(false))
+const showBlueprint = computed(() => props.showBlueprint ?? injectedShowBlueprint.value)
+
+// Inject showOutline from HexCanvas as fallback when prop is not explicitly set
+const injectedShowOutline = inject<Ref<boolean>>('hexCanvasShowOutline', ref(false))
+const showOutline = computed(() => props.showOutline ?? injectedShowOutline.value)
 
 // Provide the hexagon name to all child components
 provide('hexName', props.name)
@@ -128,6 +151,8 @@ const getHexEdgeOffset = (size1: number, size2: number): { x: number; y: number 
  * @param event - The transition event
  */
 const handleTransitionEnd = (event: TransitionEvent) => {
+  // Only handle transitions from the hexagon element itself, not child elements
+  if (event.target !== hexagonRef.value) return
   if (event.propertyName === 'opacity') {
     const data: Hexagon = {
       ref: hexagonRef.value,
@@ -220,7 +245,8 @@ onBeforeUnmount(() => {
   &.selected {
     z-index: 200;
   }
-  &.show-blueprint {
+  &.show-blueprint,
+  &.show-outline {
     &:after,
     &:before {
       display: block;

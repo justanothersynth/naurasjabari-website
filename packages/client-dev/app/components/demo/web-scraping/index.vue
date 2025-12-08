@@ -1,5 +1,5 @@
 <template>
-  <section class="max-w-4xl mx-auto">
+  <section class="max-w-4xl mx-auto mt-30 relative z-10">
     
     <div class="prose mb-12 max-w-[66ch]">
       <h2>Web scraping</h2>

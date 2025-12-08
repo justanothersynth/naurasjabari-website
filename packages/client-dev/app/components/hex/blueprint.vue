@@ -20,7 +20,7 @@
     </div>
 
     <div class="hex-name">
-      {{ name }}
+      {{ hexName }}
     </div>
 
   </div>
@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 defineProps<{
-  name: string
+  hexName: string
 }>()
 
 const sideNumbers = ref<number[]>([4, 5, 6, 1, 2, 3])

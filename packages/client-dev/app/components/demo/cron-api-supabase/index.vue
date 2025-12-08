@@ -1,13 +1,13 @@
 <template>
-  <section class="max-w-4xl mx-auto my-20">
+  <section class="max-w-4xl mx-auto my-20 relative z-10">
     
     <div class="prose max-w-[67ch]">
       <h2>Cron jobs, API integration and Supabase Realtime</h2>
       <p>
         My dad was mildly obsessed with checking sunrise and sunset times wherever he was.
         It would be a near-daily "oh the sun comes up 1 minute earlier today" 🤦‍♂️.
-        He passed away back in 2022 ♥️. This section is an ode to him, with some extra visualized information, just for fun.
-        The locations below are a list of places I've either lived in or visited often.
+        He passed away back in 2022 ♥️. This section is an ode to him.
+        The locations below are places I've either lived in or visited often.
       </p>
       <p>
         Huge thanks to the Norwegian Meteorologisk Intitutt for making a

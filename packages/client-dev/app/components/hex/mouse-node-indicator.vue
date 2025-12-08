@@ -35,10 +35,6 @@ type Coordinates = {
   y: number
 }
 
-const { $bus } = useNuxtApp()
-
-const { onMousePressStart, onMousePressEnd } = useGlobalMousePress()
-
 const { x, y } = useMouse({ type: 'client' })
 const generalStore = useGeneralStore()
 const hexagonStore = useHexagonStore()
@@ -211,43 +207,6 @@ const calculateProgressPercentage = ( mousePos: Coordinates, selectedPos: Coordi
   // Calculate progress as percentage
   return Math.min((mouseToSelectedDistance / totalDistance) * 100, 100)
 }
-
-/**
- * Centers the canvas vertically in the viewport
- */
-const centerCanvasVertically = () => {
-  if (!isHoveringCanvas.value) return
-  
-  const canvas = isHoveringCanvas.value
-  const rect = canvas.getBoundingClientRect()
-  const viewportHeight = window.innerHeight
-  
-  // Calculate the center position
-  const canvasHeight = rect.height
-  const targetTop = (viewportHeight - canvasHeight) / 2
-  const currentTop = rect.top
-  const scrollOffset = targetTop - currentTop
-  
-  // Smoothly scroll to center the canvas
-  window.scrollBy({
-    top: -scrollOffset,
-    behavior: 'smooth'
-  })
-}
-
-onMousePressStart(async () => {
-  if (!isHoveringCanvas.value || !visitButtonVisible.value) return
-  visitButtonActive.value = true
-  await useDelay(150)
-  const targetHexNode = hexagonStore.getHexNode(targetNodeInfo.value?.name ?? '')
-  if (targetHexNode?.url && visitButtonVisible.value) {
-    $bus.$emit('hex-node-triggered', { name: targetNodeInfo.value?.name })
-  }
-})
-onMousePressEnd(() => {
-  visitButtonActive.value = false
-  centerCanvasVertically()
-})
 
 watch(computedPercentage, (newVal) => {
   const setForceCursorPointer = newVal > settings.maxPercentage && isHoveringHexagonName.value === ''
