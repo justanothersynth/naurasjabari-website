@@ -5,7 +5,7 @@
 
     <!-- <HexMouseNodeIndicator /> -->
     
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-4xl w-[91%] mx-auto">
 
       <Intro />
 
@@ -25,7 +25,7 @@
 
     <DemoWebScraping />
 
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-4xl w-[91%] mx-auto">
       <Divider>
         ⬇️
       </Divider>
