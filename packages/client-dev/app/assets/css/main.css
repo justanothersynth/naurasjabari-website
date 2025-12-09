@@ -23,6 +23,16 @@
   --text-5xl: 61px;   /* base × 1.25⁶ ≈ 61.04px */
   --text-6xl: 76px;   /* base × 1.25⁷ ≈ 76.29px */
 
+  /* Breakpoints (mobile-first, min-width) */
+  --breakpoint-*: initial;
+  --breakpoint-tiny: 26.875rem;       /* 430px */
+  --breakpoint-mini: 40rem;           /* 640px */
+  --breakpoint-small: 53.125rem;      /* 850px */
+  --breakpoint-medium: 64rem;         /* 1024px */
+  --breakpoint-large: 75rem;          /* 1200px */
+  --breakpoint-xlarge: 90rem;         /* 1440px */
+  --breakpoint-ultra-large: 140.625rem; /* 2250px */
+
   /* Colours */
   --color-root: #FAFAFA;
 }

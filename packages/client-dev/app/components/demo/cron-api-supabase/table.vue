@@ -51,7 +51,7 @@
 
       <div class="flex items-center justify-between font-mono mt-4 gap-x-2 text-sm">
         <div class="flex">
-          <span class="p-1 pb-[1px] mr-1 w-4 h-4 flex items-center justify-center">☀️</span>
+          <span class="p-1 pb-px mr-1 w-4 h-4 flex items-center justify-center">☀️</span>
           <span class="azimuth-digits">
             <span
               v-for="(char, idx) in toDigitArray(data[0]?.[location]?.sunAzimuth)"
@@ -60,7 +60,7 @@
           </span>
         </div>
         <div class="flex">
-          <span class="p-1 pb-[1px] mr-1 w-4 h-4 flex items-center justify-center">🌗</span>
+          <span class="p-1 pb-px mr-1 w-4 h-4 flex items-center justify-center">🌗</span>
           <span class="azimuth-digits">
             <span
               v-for="(char, idx) in toDigitArray(data[0]?.[location]?.moonAzimuth)"
@@ -72,7 +72,7 @@
 
     </div>
 
-    <div class="current-azimuth-indicator sun absolute top-15 left-1/2 -translate-y-1/2 -translate-x-1/2 w-1/2 aspect-square border-1 border-dashed border-amber-300 rounded-full">
+    <div class="current-azimuth-indicator sun absolute top-15 left-1/2 -translate-y-1/2 -translate-x-1/2 w-1/2 aspect-square border border-dashed border-amber-300 rounded-full">
       <div class="absolute top-30 left-0 w-full flex items-center justify-center">
         <Icon name="iconoir:map-pin" size="16" class="mr-1" /> {{ data[0]?.[hoveredLocation]?.period === 'day' ? 'Daytime' : 'Nighttime' }} in {{ useChangeCase(hoveredLocation, 'capitalCase') }}
         <span class="mx-2" />
@@ -90,7 +90,7 @@
       </div>
     </div>
 
-    <div class="current-azimuth-indicator moon absolute bottom-15 left-1/2 translate-y-1/2 -translate-x-1/2 w-1/2 aspect-square border-1 border-dashed border-gray-300 rounded-full">
+    <div class="current-azimuth-indicator moon absolute bottom-15 left-1/2 translate-y-1/2 -translate-x-1/2 w-1/2 aspect-square border border-dashed border-gray-300 rounded-full">
       <div class="absolute bottom-25 left-0 w-full flex items-center justify-center">
         Currently a {{ moonPhase }} Moon
       </div>

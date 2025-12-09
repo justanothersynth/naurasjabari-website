@@ -1,20 +1,26 @@
 <template>
-  <section class="flex gap-12">
+  <section class="flex flex-col gap-8 small:flex-row small:gap-12">
 
-    <div class="prose max-w-none flex-2">
-      <h1 class="text-2xl flex items-center gap-2">
+    <div class="prose max-w-[50ch] small:max-w-none small:flex-2">
+      <h1 class="text-xl small:text-2xl flex items-center gap-3">
         Hi 👋 I'm Nauras
+        <NuxtImg
+          preload
+          format="webp"
+          src="/images/nauras-profile.jpg"
+          alt="Profile picture of Nauras"
+          class="w-12 tiny:w-14 aspect-square object-cover rounded-2xl shadow-md small:hidden mt-0 mb-0" />
       </h1>
-      <p class="text-lg">
+      <p class="text-base small:text-lg">
         A full-stack software engineer with 10+ years of experience. My specialty lies in prototype development, complex UI implementation and systems integration inside the javascript ecosystem.
       </p>
-      <p>
+      <p class="text-sm small:text-base">
         Most of my time has been spent as a Lead Engineer in team-based settings, with substantial involvement in project and account management.
-        I’ve handled code integrations across multiple teams worldwide, established processes and structures to keep operations running smoothly, and helped many junior engineers advance to intermediate roles.
+        I've handled code integrations across multiple teams worldwide, established processes and structures to keep operations running smoothly, and helped many junior engineers advance to intermediate roles.
       </p>
     </div>
 
-    <div class="flex items-start justify-end flex-1">
+    <div class="hidden small:flex items-start justify-end flex-1">
       <client-only>
         <NuxtImg
           ref="imageRef"
