@@ -1,7 +1,7 @@
 <template>
-  <section class="github-contributions mt-20">
+  <section class="mt-20">
 
-    <div class="flex gap-1 mb-4 justify-center">
+    <div class="flex flex-wrap gap-1 mb-6 justify-center container">
       <button
         v-for="year in years"
         :key="year"
@@ -27,48 +27,61 @@
       Something went wrong fetching the contribution chart, please refresh this page or try again later
     </div>
 
-    <div v-else-if="selectedYearData" class="year-section mb-8 flex flex-col">
+    <div v-else-if="selectedYearData" class="year-section flex flex-col container">
       
-      <div class="grid-container">
-        <!-- Month labels -->
-        <div class="month-labels">
-          <div
-            v-for="(monthData, monthName) in monthPositions"
-            :key="monthName"
-            class="month-label"
-            :style="{ gridColumnStart: monthData.position + 1 }">
-            {{ monthName }}
-          </div>
-        </div>
+      <div class="scroll-wrapper relative">
+        <!-- Left gradient overlay -->
+        <div
+          class="scroll-gradient scroll-gradient-left"
+          :class="{ 'opacity-0': isScrolledLeft }" />
         
-        <!-- Day labels -->
-        <div class="day-labels">
-          <div v-for="(label, index) in dayLabels" :key="index" class="day-label">
-            {{ label }}
-          </div>
-        </div>
+        <!-- Right gradient overlay -->
+        <div
+          class="scroll-gradient scroll-gradient-right"
+          :class="{ 'opacity-0': isScrolledRight }" />
         
-        <!-- Contributions grid -->
-        <div class="calendar">
-          <div v-for="week in getWeeksForYear(selectedYearData.calendar)" :key="week.weekIndex" class="week-column">
-            <div
-              v-for="(day, dayIndex) in week.days"
-              :key="dayIndex"
-              :class="getContributionClass(day)"
-              class="day"
-              @mouseenter="day?.tooltip && $tooltip.show(day.tooltip)"
-              @mouseleave="$tooltip.hide" />
+        <div
+          ref="scrollContainerRef"
+          class="scroll-container"
+          @scroll="handleScroll">
+          <div class="grid-container">
+            <!-- Month labels -->
+            <div class="month-labels">
+              <div
+                v-for="(monthData, monthName) in monthPositions"
+                :key="monthName"
+                class="month-label"
+                :style="{ gridColumnStart: monthData.position + 1 }">
+                {{ monthName }}
+              </div>
+            </div>
+            
+            <!-- Day labels -->
+            <div class="day-labels">
+              <div v-for="(label, index) in dayLabels" :key="index" class="day-label">
+                {{ label }}
+              </div>
+            </div>
+            
+            <!-- Contributions grid -->
+            <div class="calendar">
+              <div v-for="week in getWeeksForYear(selectedYearData.calendar)" :key="week.weekIndex" class="week-column">
+                <div
+                  v-for="(day, dayIndex) in week.days"
+                  :key="dayIndex"
+                  :class="getContributionClass(day)"
+                  class="day"
+                  @mouseenter="day?.tooltip && $tooltip.show(day.tooltip)"
+                  @mouseleave="$tooltip.hide" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="flex justify-between items-center mt-4">
+      <div class="flex flex-col items-center mt-4 mini:mt-6 mini:flex-row-reverse mini:justify-between">
 
-        <div class="font-medium">
-          {{ selectedYearData.count }} contributions in {{ selectedYear }}
-        </div>
-
-        <div class="flex items-center gap-2 text-sm text-gray-600 ml-auto mr-2">
+        <div class="flex items-center gap-2 text-sm text-gray-600 mini:ml-auto mini:mr-2">
           <span>Less</span>
           <div class="flex gap-1">
             <div
@@ -79,11 +92,15 @@
           <span>More</span>
         </div>
 
+        <div class="font-medium mt-2 mini:mt-0">
+          {{ selectedYearData.count }} contributions in {{ selectedYear }}
+        </div>
+
       </div>
 
     </div>
     
-    <div class="text-sm text-gray-400 mt-4 text-center">
+    <div class="text-sm text-gray-400 mt-6 mini:mt-8 text-center container">
       Note: large portions of my work (ex: project management, teaching, devops) cannot be reflected through github contributions
     </div>
     
@@ -128,6 +145,44 @@ const contributionsData = ref<ContributionsData | null>(null)
 const selectedYear = ref<number>(new Date().getFullYear())
 const isLoading = ref(true)
 const hasError = ref(false)
+
+const scrollContainerRef = ref<HTMLElement | null>(null)
+const isScrolledLeft = ref(true)
+const isScrolledRight = ref(false)
+
+const { width: windowWidth } = useWindowSize()
+
+/**
+ * Handles scroll events on the container to update gradient visibility
+ */
+const handleScroll = () => {
+  if (!scrollContainerRef.value) return
+  
+  const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.value
+  const scrollThreshold = 5
+  
+  isScrolledLeft.value = scrollLeft <= scrollThreshold
+  isScrolledRight.value = scrollLeft + clientWidth >= scrollWidth - scrollThreshold
+}
+
+/**
+ * Throttled resize handler to update gradient visibility
+ */
+const handleResize = useThrottleFn(() => {
+  checkScrollState()
+}, 150)
+
+/**
+ * Checks initial scroll state when data loads
+ */
+const checkScrollState = () => {
+  nextTick(() => {
+    handleScroll()
+  })
+}
+
+// Watch window width to handle resize
+watch(windowWidth, handleResize)
 
 /**
  * Dynamically generates an array of years from 2015 to current year + 1
@@ -251,12 +306,60 @@ const getContributionClass = (day: ContributionDay | null): string => {
 onMounted(() => {
   fetchContributionsData()
 })
+
+// Check scroll state when data changes
+watch(selectedYearData, () => {
+  checkScrollState()
+})
 </script>
 
 <style lang="scss" scoped>
 $cellGap: 3px;
 $cellDimension: 13px;
 $cellSpacing: 3px;
+$mobileBreakpoint: 61.5rem; // 56rem (max-w-4xl) / 0.91 (container width %)
+
+.scroll-wrapper {
+  position: relative;
+}
+
+.scroll-container {
+  @media (max-width: $mobileBreakpoint) {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.scroll-gradient {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 5rem;
+  z-index: 10;
+  pointer-events: none;
+  transition: opacity 200ms ease-out;
+  
+  @media (max-width: $mobileBreakpoint) {
+    display: block;
+  }
+}
+
+.scroll-gradient-left {
+  left: 0;
+  background: linear-gradient(to right, var(--color-root) 30%, transparent 100%);
+}
+
+.scroll-gradient-right {
+  right: 0;
+  background: linear-gradient(to left, var(--color-root) 30%, transparent 100%);
+}
 
 .grid-container {
   display: grid;

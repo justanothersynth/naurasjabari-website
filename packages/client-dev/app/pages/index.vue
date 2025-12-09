@@ -1,23 +1,19 @@
 <template>
-  <main class="pt-70">
+  <main class="pt-40 small:pt-70">
 
     <ContactDialog />
 
     <!-- <HexMouseNodeIndicator /> -->
     
-    <div class="max-w-4xl w-[91%] mx-auto">
+    <Intro />
+    
+    <GithubContributionsGraph />
 
-      <Intro />
-
-      <GithubContributionsGraph />
-
-      <Divider>
-        <Icon name="iconoir:arrow-down" size="12" />
-        things I can do
-        <Icon name="iconoir:arrow-down" size="12" />
-      </Divider>
-
-    </div>
+    <Divider class="container">
+      <Icon name="iconoir:arrow-down" size="12" />
+      things I can do
+      <Icon name="iconoir:arrow-down" size="12" />
+    </Divider>
 
     <DemoCronApiSupabase />
 
@@ -25,7 +21,7 @@
 
     <DemoWebScraping />
 
-    <div class="max-w-4xl w-[91%] mx-auto">
+    <div class="container">
       <Divider>
         ⬇️
       </Divider>
