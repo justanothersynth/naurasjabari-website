@@ -307,16 +307,6 @@ $cellSpacing: 3px;
 .calendar {
   grid-area: calendar;
   display: flex;
-  // &:hover {
-  //   .day {
-  //     transition: 150ms ease-in;
-  //     opacity: 0.75;
-  //     &:hover {
-  //       transition: 150ms ease-in;
-  //       opacity: 1;
-  //     }
-  //   }
-  // }
 }
 
 .week-column {
@@ -332,7 +322,7 @@ $cellSpacing: 3px;
   &:hover {
     &.level-0 {
       &:before {
-        filter: brightness(1.05);
+        filter: brightness(0.9);
       }
     }
     &.level-1,
