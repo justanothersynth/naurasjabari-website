@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt --bun build",
-    "dev": "nuxt --bun dev",
+    "dev": "nuxt --bun dev --hostname 0.0.0.0",
     "start": "bun .output/server/index.mjs",
     "launch": "nuxi --bun build && pm2 restart client_dev",
     "ts-check": "vue-tsc --noEmit",

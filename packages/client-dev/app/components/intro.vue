@@ -14,7 +14,7 @@
       <p class="text-base small:text-lg">
         A full-stack software engineer with 10+ years of experience. My specialty lies in prototype development, complex UI implementation and systems integration inside the javascript ecosystem.
       </p>
-      <p class="text-sm small:text-base">
+      <p class="small:text-base">
         Most of my time has been spent as a Lead Engineer in team-based settings, with substantial involvement in project and account management.
         I've handled code integrations across multiple teams worldwide, established processes and structures to keep operations running smoothly, and helped many junior engineers advance to intermediate roles.
       </p>
@@ -37,9 +37,51 @@
 </template>
 
 <script setup lang="ts">
-import { useMouse, useElementVisibility } from '@vueuse/core'
+import { useMouse, useElementVisibility, useDeviceOrientation } from '@vueuse/core'
+
+// Type for iOS 13+ DeviceOrientationEvent with requestPermission
+type DeviceOrientationEventWithPermission = typeof DeviceOrientationEvent & {
+  requestPermission?: () => Promise<'granted' | 'denied' | 'default'>
+}
 
 const { x, y } = useMouse()
+const { gamma, beta } = useDeviceOrientation()
+
+// Track whether device has actual accelerometer data
+const hasAccelerometer = ref(false)
+
+// Detect actual accelerometer data (not just API presence)
+watchEffect(() => {
+  if (gamma.value !== null && beta.value !== null) {
+    hasAccelerometer.value = true
+  }
+})
+
+/**
+ * Request permission for device orientation on iOS 13+
+ * Must be called from a user gesture (e.g., touch event)
+ */
+const requestOrientationPermission = async () => {
+  const DeviceOrientation = DeviceOrientationEvent as DeviceOrientationEventWithPermission
+  if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientation.requestPermission === 'function') {
+    try {
+      const permission = await DeviceOrientation.requestPermission()
+      return permission === 'granted'
+    } catch {
+      return false
+    }
+  }
+  return true
+}
+
+// Request permission on first touch for iOS devices
+onMounted(() => {
+  const handleFirstTouch = async () => {
+    await requestOrientationPermission()
+    window.removeEventListener('touchstart', handleFirstTouch)
+  }
+  window.addEventListener('touchstart', handleFirstTouch, { once: true })
+})
 
 // Create template reference for the image
 const imageRef = ref<HTMLImageElement>()
@@ -53,21 +95,31 @@ const lastTransform = ref({
 })
 
 /**
- * Calculate current tilt transformation based on mouse position
+ * Calculate current tilt transformation based on accelerometer or mouse position
+ * Prefers accelerometer when available, falls back to mouse
  */
 const currentTransform = computed(() => {
-  // Get viewport dimensions
-  const centerX = window.innerWidth / 2
-  const centerY = window.innerHeight / 2
-  
-  // Calculate offset from center (-1 to 1)
-  const offsetX = (x.value - centerX) / centerX
-  const offsetY = (y.value - centerY) / centerY
-  
-  // Convert to rotation degrees (max 15 degrees)
-  const rotateY = offsetX * 15
-  const rotateX = -offsetY * 15
-  
+  let rotateX = 0
+  let rotateY = 0
+
+  if (hasAccelerometer.value && gamma.value !== null && beta.value !== null) {
+    // Use device orientation (accelerometer)
+    // gamma: left-to-right tilt (-90 to 90) -> rotateY
+    // beta: front-to-back tilt (-180 to 180) -> rotateX (clamped to useful range)
+    rotateY = Math.max(-15, Math.min(15, gamma.value * 0.5))
+    rotateX = Math.max(-15, Math.min(15, (beta.value - 45) * 0.5))
+  } else {
+    // Fall back to mouse position
+    const centerX = window.innerWidth / 2
+    const centerY = window.innerHeight / 2
+    
+    const offsetX = (x.value - centerX) / centerX
+    const offsetY = (y.value - centerY) / centerY
+    
+    rotateY = offsetX * 15
+    rotateX = -offsetY * 15
+  }
+
   return {
     transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
   }
