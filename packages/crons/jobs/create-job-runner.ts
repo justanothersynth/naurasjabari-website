@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { Queue, Worker } from 'bullmq'
 import { Command } from 'commander'
 import type { Job } from './job.types'
-import { getJobMetadata, type JobMetadata } from './registry'
+import { cronScheduleToHuman, getJobMetadata, type JobMetadata } from './registry'
 import { logger } from '../config'
 import { redisConnection } from '../config/redis'
 
@@ -12,8 +12,14 @@ export interface JobSettings {
   outputDir?: string
 }
 
+export interface JobContext {
+  jobLogger: JobLogger
+  schedule: string
+  settings?: JobSettings
+}
+
 export interface JobRunnerConfig {
-  runJob: (ctx: { jobLogger: JobLogger; settings?: JobSettings }) => Promise<void>
+  runJob: (ctx: JobContext) => Promise<void>
 }
 
 export const createJobRunner = (config: JobRunnerConfig) => {
@@ -23,9 +29,10 @@ export const createJobRunner = (config: JobRunnerConfig) => {
   /* c8 ignore stop */
 
   const queue = new Queue(metadata.name, { connection: redisConnection })
+  const schedule = cronScheduleToHuman(metadata.cronPattern)
 
   const worker = new Worker(metadata.name, async () => {
-    await config.runJob({ jobLogger })
+    await config.runJob({ jobLogger, schedule })
   }, { connection: redisConnection })
 
   /* c8 ignore start */
@@ -88,7 +95,7 @@ export const createJobRunner = (config: JobRunnerConfig) => {
   /* c8 ignore stop */
 
   // Wrapper for testing - calls runJob with the jobLogger context
-  const runJobWrapper = (settings?: JobSettings) => config.runJob({ jobLogger, settings })
+  const runJobWrapper = (settings?: JobSettings) => config.runJob({ jobLogger, schedule, settings })
 
   return { job, subcommand, jobLogger, metadata, runJob: runJobWrapper }
 }

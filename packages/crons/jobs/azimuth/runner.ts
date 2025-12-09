@@ -11,8 +11,8 @@ import { logLocationData, logSuccess } from './log'
  * Creates per-second azimuth data
  */
 export const { job, subcommand, runJob } = createJobRunner({
-  runJob: async ({ jobLogger }) => {
-    jobLogger.info('Job started: Creating per-second azimuth data')
+  runJob: async ({ jobLogger, schedule }) => {
+    jobLogger.info('Job started: Creating per-second azimuth data', { schedule })
 
     const orpcContext: OrpcContext = {
       headers: {}

@@ -10,8 +10,8 @@ import { logJobStart, logJobCompleted } from './log'
  * and geostorm data older than 1 month (UTC) from the geostorm table
  */
 export const { job, subcommand } = createJobRunner({
-  runJob: async ({ jobLogger }) => {
-    logJobStart(jobLogger)
+  runJob: async ({ jobLogger, schedule }) => {
+    logJobStart(jobLogger, schedule)
 
     const pool = createPool(config.supabase.databaseUrl)
 

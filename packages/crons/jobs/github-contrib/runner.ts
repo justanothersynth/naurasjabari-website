@@ -10,8 +10,8 @@ import { logJobStart, logJobComplete } from './log'
  * @link https://github.com/users/timelytree/contributions
  */
 export const { job, subcommand } = createJobRunner({
-  runJob: async ({ jobLogger }) => {
-    logJobStart(jobLogger, START_YEAR, getCurrentYear())
+  runJob: async ({ jobLogger, schedule }) => {
+    logJobStart(jobLogger, schedule, START_YEAR, getCurrentYear())
 
     try {
       const { contributionsByYear, totalContributions } = await processData(jobLogger)

@@ -1,8 +1,8 @@
 import { format } from 'date-fns'
 import type { Logger } from '@workspace/utils'
 
-export const logJobStart = (jobLogger: Logger) => {
-  jobLogger.info('Job started: Deleting old azimuth and geostorm data')
+export const logJobStart = (jobLogger: Logger, schedule: string) => {
+  jobLogger.info('Job started: Deleting old azimuth and geostorm data', { schedule })
 }
 
 export const logBatchDeleted = (

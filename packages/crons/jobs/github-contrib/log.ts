@@ -1,7 +1,8 @@
 import type { Logger } from '@workspace/utils'
 
-export const logJobStart = (jobLogger: Logger, startYear: number, endYear: number) => {
+export const logJobStart = (jobLogger: Logger, schedule: string, startYear: number, endYear: number) => {
   jobLogger.info('Job started: Fetching GitHub contributions', {
+    schedule,
     startYear,
     endYear
   })

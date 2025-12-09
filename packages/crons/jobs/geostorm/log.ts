@@ -1,8 +1,8 @@
 import type { Logger } from '@workspace/utils'
 import type { GeostormOrpcInput, GeostormOrpcInputRegions } from '@workspace/types'
 
-export const logJobStart = (jobLogger: Logger) => {
-  jobLogger.info('Job started: Scraping geostorm data from government of Canada')
+export const logJobStart = (jobLogger: Logger, schedule: string) => {
+  jobLogger.info('Job started: Scraping geostorm data from government of Canada', { schedule })
 }
 
 export const logJobSuccess = (jobLogger: Logger, data: GeostormOrpcInput) => {

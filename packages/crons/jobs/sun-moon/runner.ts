@@ -11,8 +11,9 @@ import { writeData } from './write-data'
  * Fetches sun and moon data for all locations and saves to files
  */
 export const { job, subcommand, runJob } = createJobRunner({
-  runJob: async ({ jobLogger, settings }) => {
+  runJob: async ({ jobLogger, schedule, settings }) => {
     jobLogger.info('Job started: Fetching sun and moon data', {
+      schedule,
       locations: Object.keys(LOCATIONS).join(', ')
     })
 

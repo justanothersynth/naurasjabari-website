@@ -10,8 +10,8 @@ import { logJobStart, logJobSuccess } from './log'
  * @link https://www.spaceweather.gc.ca/forecast-prevision/short-court/zone-en.php
  */
 export const { job, subcommand } = createJobRunner({
-  runJob: async ({ jobLogger }) => {
-    logJobStart(jobLogger)
+  runJob: async ({ jobLogger, schedule }) => {
+    logJobStart(jobLogger, schedule)
 
     try {
       const data = await fetchData()

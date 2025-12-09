@@ -50,3 +50,20 @@ export const getJobMetadata = (name: string): JobMetadata | undefined => {
 export const getAvailableJobNames = (): string[] => {
   return jobRegistry.map(job => job.name)
 }
+
+/**
+ * Converts a cron pattern to a human-readable string
+ */
+export const cronScheduleToHuman = (pattern: string): string => {
+  const cronMap: Record<string, string> = {
+    '* * * * * *': 'every second',
+    '* * * * *': 'every minute',
+    '0 * * * *': 'every hour',
+    '0 0 * * *': 'every day at midnight',
+    '0 */6 * * *': 'every 6 hours',
+    '0 */12 * * *': 'every 12 hours',
+    '0 0 * * 0': 'every week on Sunday',
+    '0 0 1 * *': 'every month on the 1st'
+  }
+  return cronMap[pattern] ?? pattern
+}
