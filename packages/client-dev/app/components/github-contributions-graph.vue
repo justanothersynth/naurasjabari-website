@@ -108,8 +108,6 @@
 </template>
 
 <script lang="ts" setup>
-const config = useRuntimeConfig().public
-
 type ContributionDay = {
   date: string
   level: number
@@ -221,7 +219,7 @@ const fetchContributionsData = async () => {
   isLoading.value = true
   hasError.value = false
   try {
-    const response = await fetch(`${config.apiUrl}/data/github-contrib-total.json`)
+    const response = await fetch('/api/data/github-contrib-total.json')
     if (response.ok) {
       contributionsData.value = await response.json()
     } else {
@@ -341,11 +339,10 @@ $mobileBreakpoint: 61.5rem; // 56rem (max-w-4xl) / 0.91 (container width %)
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 5rem;
+  width: 3rem;
   z-index: 10;
   pointer-events: none;
   transition: opacity 200ms ease-out;
-  
   @media (max-width: $mobileBreakpoint) {
     display: block;
   }

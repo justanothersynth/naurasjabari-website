@@ -13,7 +13,6 @@ import path from 'path'
 import { config, logConfigToConsole } from './config/index'
 import { logger } from './utils/logger'
 import { orpcMiddleware, apiMiddleware } from './orpc/express'
-import fs from 'fs'
 import boxen from 'boxen'
 import chalk from 'chalk'
 
@@ -99,30 +98,6 @@ app.get('/health', (req, res) => {
 app.get('/', (_req, res) => {
   res.status(200).send('🤖')
 })
-
-/**
- * Log a notice if HTTPS certificates are not found for development mode
- * @returns void
- */
-function logHttpsNotice() {
-  if (config.nodeEnv !== 'development') return
-  const keyPath = path.join(__dirname, '../../localhost_key.pem')
-  const certPath = path.join(__dirname, '../../localhost_cert.pem')
-
-  try {
-    fs.readFileSync(keyPath)
-    fs.readFileSync(certPath)
-  } catch {
-    logger.error('❌ HTTPS certificates are required for development mode')
-    logger.error('Certificate files not found at:')
-    logger.error(`  Key: ${keyPath}`)
-    logger.error(`  Cert: ${certPath}`)
-    logger.error('Please run the mkcert setup as described in the README')
-    process.exit(1)
-  }
-}
-
-logHttpsNotice()
 
 app.listen(port, () => {
   logConfigToConsole()

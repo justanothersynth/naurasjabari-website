@@ -1,5 +1,5 @@
 <template>
-  <div v-if="data.length > 0" class="relative grid grid-cols-4 gap-4 my-55 text-sm">
+  <div v-if="data.length > 0" class="relative grid grid-cols-2 mini:grid-cols-3 large:grid-cols-4 gap-2 tiny:gap-4 my-55 text-sm mini:max-w-2xl large:max-w-none mx-auto">
 
     <div
       v-for="location in locationKeys"
@@ -49,7 +49,7 @@
         </div>
       </div>
 
-      <div class="flex items-center justify-between font-mono mt-4 gap-x-2 text-sm">
+      <div class="flex flex-col tiny:flex-row tiny:items-center tiny:justify-between font-mono mt-4 text-sm">
         <div class="flex">
           <span class="p-1 pb-px mr-1 w-4 h-4 flex items-center justify-center">☀️</span>
           <span class="azimuth-digits">
@@ -72,7 +72,7 @@
 
     </div>
 
-    <div class="current-azimuth-indicator sun absolute top-15 left-1/2 -translate-y-1/2 -translate-x-1/2 w-1/2 aspect-square border border-dashed border-amber-300 rounded-full">
+    <div class="current-azimuth-indicator sun absolute top-15 left-1/2 -translate-y-1/2 -translate-x-1/2 w-[448px] aspect-square border border-dashed border-amber-300 rounded-full">
       <div class="absolute top-30 left-0 w-full flex items-center justify-center">
         <Icon name="iconoir:map-pin" size="16" class="mr-1" /> {{ data[0]?.[hoveredLocation]?.period === 'day' ? 'Daytime' : 'Nighttime' }} in {{ useChangeCase(hoveredLocation, 'capitalCase') }}
         <span class="mx-2" />
@@ -90,7 +90,7 @@
       </div>
     </div>
 
-    <div class="current-azimuth-indicator moon absolute bottom-15 left-1/2 translate-y-1/2 -translate-x-1/2 w-1/2 aspect-square border border-dashed border-gray-300 rounded-full">
+    <div class="current-azimuth-indicator moon absolute bottom-15 left-1/2 translate-y-1/2 -translate-x-1/2 w-[448px] aspect-square border border-dashed border-gray-300 rounded-full">
       <div class="absolute bottom-25 left-0 w-full flex items-center justify-center">
         Currently a {{ moonPhase }} Moon
       </div>
@@ -409,8 +409,8 @@ const moonPhase = computed(() => {
 
 .azimuth-digits > span {
   display: inline-block;
-  min-width: 0.6rem;
   text-align: center;
+  letter-spacing: 1px;
   border-radius: 2px;
 }
 

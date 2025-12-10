@@ -25,7 +25,7 @@
 
   /* Breakpoints (mobile-first, min-width) */
   --breakpoint-*: initial;
-  --breakpoint-tiny: 26.875rem;       /* 430px */
+  --breakpoint-tiny: 25.9375rem;       /* 415px */
   --breakpoint-mini: 40rem;           /* 640px */
   --breakpoint-small: 53.125rem;      /* 850px */
   --breakpoint-medium: 64rem;         /* 1024px */

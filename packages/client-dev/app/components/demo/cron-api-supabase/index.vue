@@ -1,7 +1,7 @@
 <template>
-  <section class="max-w-4xl mx-auto my-20 relative z-10">
+  <section class="container my-20 relative z-10">
     
-    <div class="prose max-w-[67ch]">
+    <div class="prose max-w-[50ch] small:max-w-[67ch]">
       <h2>Cron jobs, API integration and Supabase Realtime</h2>
       <p>
         My dad was mildly obsessed with checking sunrise and sunset times wherever he was.

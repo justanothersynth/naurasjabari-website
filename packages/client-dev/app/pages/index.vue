@@ -17,15 +17,13 @@
 
     <DemoCronApiSupabase />
 
-    <DemoComplexUi />
+    <!-- <DemoComplexUi /> -->
 
-    <DemoWebScraping />
+    <!-- <DemoWebScraping /> -->
 
-    <div class="container">
-      <Divider>
-        ⬇️
-      </Divider>
-    </div>
+    <Divider class="container">
+      ⬇️
+    </Divider>
 
     <Footer />
 
