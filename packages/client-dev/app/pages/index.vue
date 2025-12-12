@@ -15,11 +15,11 @@
       <Icon name="iconoir:arrow-down" size="12" />
     </Divider>
 
-    <DemoCronApiSupabase />
+    <!-- <DemoCronApiSupabase /> -->
 
-    <!-- <DemoComplexUi /> -->
+    <DemoComplexUi />
 
-    <!-- <DemoWebScraping /> -->
+    <DemoWebScraping />
 
     <Divider class="container">
       ⬇️

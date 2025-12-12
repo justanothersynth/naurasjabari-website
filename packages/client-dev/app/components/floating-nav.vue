@@ -1,28 +1,42 @@
 <template>
   <div
-    ref="navRef"
-    class="floating-nav fixed bottom-4 left-1/2 -translate-x-1/2 z-1000 bg-prime/80 backdrop-blur-lg border border-gray-200 p-3 rounded-full gap-1 shadow-xl flex items-center"
-    :class="{ 'is-visible': isVisible }"
-    :style="{ '--mouse-x': `${mouseX}px`, '--mouse-y': `${mouseY}px` }">
+    class="floating-nav-wrapper fixed bottom-4 left-1/2 -translate-x-1/2 z-1000 flex items-center gap-3"
+    :class="{ 'is-visible': isVisible }">
 
-    <button
-      :class="buttonClasses"
-      aria-label="Contact Me"
-      @click="openContactDialog">
-      <Icon name="iconoir:mail" size="16" class="mt-0.5" />
-      <span>contact me</span>
-    </button>
+    <div
+      ref="navRef"
+      class="floating-nav bg-prime/80 backdrop-blur-lg border border-gray-200 p-3 rounded-full gap-1 shadow-xl flex items-center"
+      :style="{ '--mouse-x': `${mouseX}px`, '--mouse-y': `${mouseY}px` }">
 
-    <a
-      href="https://github.com/timelytree"
-      target="_blank"
-      rel="noopener noreferrer"
-      :class="buttonClasses"
-      aria-label="View GitHub Profile">
-      <Icon name="iconoir:github" size="14" />
-      <span>github</span>
-      <Icon name="iconoir:arrow-up-right-square" size="14" class="text-gray-400 ml-[-2px]"/>
-    </a>
+      <button
+        :class="buttonClasses"
+        aria-label="Contact Me"
+        @click="openContactDialog">
+        <Icon name="iconoir:mail" size="16" class="mt-0.5" />
+        <span>contact me</span>
+      </button>
+
+      <a
+        href="https://github.com/timelytree"
+        target="_blank"
+        rel="noopener noreferrer"
+        :class="buttonClasses"
+        aria-label="View GitHub Profile">
+        <Icon name="iconoir:github" size="14" />
+        <span>github</span>
+        <Icon name="iconoir:arrow-up-right-square" size="14" class="text-gray-400 ml-[-2px]"/>
+      </a>
+
+    </div>
+
+    <!-- Joystick control -->
+    <div
+      class="joystick-wrapper"
+      :class="{ 'is-active': joystickData.display }">
+      <HexJoystick
+        v-if="joystickData.display"
+        class="joystick-beside-nav" />
+    </div>
 
   </div>
 </template>
@@ -41,6 +55,9 @@ const loaded = ref(false)
 
 const generalStore = useGeneralStore()
 const { contactDialogOpen } = storeToRefs(generalStore)
+
+const hexStore = useHexagonStore()
+const { joystickData } = storeToRefs(hexStore)
 
 onMounted(() => {
   nextTick(() => {
@@ -67,18 +84,25 @@ watch([elementX, elementY, isOutside], ([x, y, outside]) => {
 </script>
 
 <style lang="scss" scoped>
-.floating-nav {
-  overflow: hidden;
+.floating-nav-wrapper {
   transform: translateY(calc(100% + 2rem));
   transition: transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  &.is-visible {
+    transform: translateY(0);
+  }
+}
+
+.floating-nav {
+  overflow: hidden;
+  position: relative;
+
   &:hover {
     &:before {
       opacity: 1;
     }
   }
-  &.is-visible {
-    transform: translateY(0);
-  }
+
   > * {
     position: relative;
     z-index: 2;
@@ -102,5 +126,27 @@ watch([elementX, elementY, isOutside], ([x, y, outside]) => {
     pointer-events: none;
     z-index: 1;
   }
+}
+
+.joystick-wrapper {
+  width: 0;
+  overflow: hidden;
+  transition: width 300ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 300ms ease;
+  opacity: 0;
+
+  &.is-active {
+    width: 50px;
+    opacity: 1;
+  }
+}
+
+:deep(.joystick-beside-nav) {
+  position: relative;
+  bottom: auto;
+  right: auto;
+  z-index: auto;
+  transform: scale(0.42);
+  transform-origin: center;
+  margin: -36px -36px;
 }
 </style>

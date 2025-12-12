@@ -7,18 +7,18 @@
     
     <div
       ref="hexCanvasInnerRef"
-      :style="{ transform: `translate(${hexCanvasTranslation.x}px, ${hexCanvasTranslation.y}px)` }"
-      :class="['hex-canvas-inner absolute inset-0', { 'mouse-reveal-active': isMouseRevealActive }]">
+      :style="{ transform: canvasIsVisible ? `translate(${hexCanvasTranslation.x}px, ${hexCanvasTranslation.y}px)` : undefined }"
+      :class="['hex-canvas-inner absolute inset-0', { 'mouse-reveal-active': isMouseRevealActive || isTouchDevice }]">
       
       <slot />
       
     </div>
-    
+
   </section>
 </template>
 
 <script setup lang="ts">
-import { useElementVisibility, useMouse, useElementBounding } from '@vueuse/core'
+import { useWindowSize, useMouse, useElementBounding } from '@vueuse/core'
 import type { Hexagon } from '@/types/hexagon'
 
 const props = withDefaults(defineProps<{
@@ -38,11 +38,17 @@ const { hexCanvasTranslation, hexagons } = storeToRefs(hexStore)
 const hexCanvasRef = ref<HTMLElement | null>(null)
 const hexCanvasInnerRef = ref<HTMLElement | null>(null)
 
+// Detect touch device
+const isTouchDevice = ref(false)
+
 // Track mouse position within the canvas
 const { x: mouseX, y: mouseY } = useMouse({ type: 'client' })
 
 // Track canvas element bounds
 const canvasBounds = useElementBounding(hexCanvasRef)
+
+// Track window dimensions for full visibility check
+const { width: windowWidth, height: windowHeight } = useWindowSize()
 
 // Track content bounds (extent of all hexagons)
 const contentBounds = ref({
@@ -164,19 +170,45 @@ const computeMouseRevealTranslation = () => {
 // Throttled mouse reveal update
 const throttledMouseReveal = useThrottleFn(computeMouseRevealTranslation, 16)
 
-// Watch for mouse movement when reveal is active
+// Watch for mouse movement when reveal is active (only on non-touch devices)
 watch([mouseX, mouseY], () => {
-  if (isMouseRevealActive.value) {
+  if (isMouseRevealActive.value && !isTouchDevice.value) {
     throttledMouseReveal()
   }
 })
 
-// Detect when the canvas is in viewport
-const canvasIsVisible = useElementVisibility(hexCanvasRef)
+// Detect when the canvas is fully in viewport
+const canvasIsVisible = computed(() => {
+  const { top, left, right, bottom } = canvasBounds
+  return (
+    top.value >= 0 &&
+    left.value >= 0 &&
+    bottom.value <= windowHeight.value &&
+    right.value <= windowWidth.value
+  )
+})
 
 // Update store when canvas visibility changes
 watchEffect(() => {
   hexStore.setCanvasIsInViewport(canvasIsVisible.value)
+})
+
+// Reset canvas translation when canvas leaves viewport
+watch(canvasIsVisible, (visible) => {
+  if (!visible) {
+    hexStore.setHexCanvasTranslation({ x: 0, y: 0 })
+  }
+})
+
+// Update joystick data in store for floating nav
+watch([contentBounds, () => canvasBounds.width.value, () => canvasBounds.height.value, isMouseRevealActive, isTouchDevice, canvasIsVisible], () => {
+  hexStore.setJoystickData({
+    display: isTouchDevice.value && isMouseRevealActive.value && canvasIsVisible.value,
+    contentBounds: contentBounds.value,
+    canvasWidth: canvasBounds.width.value,
+    canvasHeight: canvasBounds.height.value,
+    revealPadding: mouseRevealPadding
+  })
 })
 
 provide('hexCanvasRef', hexCanvasRef)
@@ -219,6 +251,8 @@ onMounted(() => {
   hexCanvasInnerRef.value?.addEventListener('transitionend', handleTransitionEnd)
   // Calculate initial bounds if hexagons are already registered
   calculateContentBounds()
+  // Detect touch device
+  isTouchDevice.value = 'ontouchstart' in window || navigator.maxTouchPoints > 0
 })
 
 onBeforeUnmount(() => {

@@ -98,7 +98,7 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .hex-node {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   font-size: toRem(12);

@@ -12,6 +12,13 @@ export const useHexagonStore = defineStore('hexagon', () => {
   const isHoveringHexagonName = ref<string>('')
   const isHoveringCanvas = ref<HTMLElement | null>(null)
   const canvasIsInViewport = ref<boolean>(false)
+  const joystickData = ref({
+    display: false,
+    contentBounds: { minX: 0, maxX: 0, minY: 0, maxY: 0 },
+    canvasWidth: 0,
+    canvasHeight: 0,
+    revealPadding: 250
+  })
 
   // ================================================================== computed
   const selectedHexagon = computed(() => Array.from(hexagons.value.values()).find(hexagon => hexagon.selected === true))
@@ -100,6 +107,14 @@ export const useHexagonStore = defineStore('hexagon', () => {
     canvasIsInViewport.value = inViewport
   }
 
+  /**
+   * Updates joystick data for floating nav display
+   * @param data - Joystick configuration data
+   */
+  const setJoystickData = (data: Partial<typeof joystickData.value>) => {
+    joystickData.value = { ...joystickData.value, ...data }
+  }
+
   // ==================================================================== return
   return {
     // ----- state
@@ -110,6 +125,7 @@ export const useHexagonStore = defineStore('hexagon', () => {
     isHoveringHexagonName,
     isHoveringCanvas,
     canvasIsInViewport,
+    joystickData,
     // ----- computed
     selectedHexagon,
     // ----- actions
@@ -122,6 +138,7 @@ export const useHexagonStore = defineStore('hexagon', () => {
     setSelectedHexNode,
     setIsHoveringHexagonName,
     setIsHoveringCanvas,
-    setCanvasIsInViewport
+    setCanvasIsInViewport,
+    setJoystickData
   }
 })

@@ -71,11 +71,13 @@
 <script setup lang="ts">
 const containerRef = ref<HTMLElement | null>(null)
 const { width } = useElementSize(containerRef)
+const isSmallScreen = useMediaQuery('(max-width: 639px)')
 
 const fadeBuffer = 180
 
 const fadeGradient = computed(() => {
-  const radius = width.value / 2
+  const divisor = isSmallScreen.value ? 3 : 2
+  const radius = width.value / divisor
   const fadeEnd = radius + fadeBuffer
   return `radial-gradient(circle, transparent ${radius}px, var(--color-root) ${fadeEnd}px)`
 })
