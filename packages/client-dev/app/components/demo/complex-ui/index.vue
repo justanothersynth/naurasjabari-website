@@ -1,8 +1,8 @@
 <template>
-  <section class="mt-20 relative z-1">
+  <section class="mt-20 relative z-1 container">
     
     <div class="max-w-4xl mx-auto relative z-30">
-      <div class="prose max-w-[67ch]">
+      <div class="prose max-w-[50ch] small:max-w-[67ch]">
         <h2>Complex UI</h2>
         <p>
           Building truly complex UIs is difficult and time-consuming, but it can be very rewarding —

@@ -1,7 +1,7 @@
 <template>
   <div
     ref="joystickRef"
-    class="absolute bottom-6 right-6 z-100 touch-none"
+    class="relative scale-[0.42] origin-center -m-[36px] touch-none"
     @touchstart.prevent="handleJoystickStart"
     @touchmove.prevent="handleJoystickMove"
     @touchend.prevent="handleJoystickEnd"
@@ -76,6 +76,11 @@ const computeJoystickTranslation = () => {
 const handleJoystickStart = (event: TouchEvent) => {
   isJoystickActive.value = true
   updateJoystickPosition(event)
+  
+  // Dismiss hint on first use
+  if (joystickData.value.hintVisible) {
+    hexStore.setJoystickHintDismissed(true)
+  }
 }
 
 /**

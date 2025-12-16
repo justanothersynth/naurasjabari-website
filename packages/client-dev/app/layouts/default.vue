@@ -43,6 +43,11 @@ const { forceCursorPointer } = storeToRefs(generalStore)
 
 const tooltipStore = useTooltipStore()
 const { tooltip } = storeToRefs(tooltipStore)
+
+onMounted(() => {
+  // Detect if device has touch support
+  generalStore.setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+})
 </script>
 
 <style lang="scss" scoped>

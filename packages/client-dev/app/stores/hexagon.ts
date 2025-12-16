@@ -3,7 +3,8 @@ import { defineStore } from 'pinia'
 import type { Hexagon, HexNode } from '@/types/hexagon'
 
 export const useHexagonStore = defineStore('hexagon', () => {
-
+  const { $ls } = useNuxtApp()
+  
   // ===================================================================== state
   const hexagons = ref<Map<string, Hexagon>>(new Map())
   const hexNodes = ref<Map<string, HexNode>>(new Map())
@@ -17,7 +18,8 @@ export const useHexagonStore = defineStore('hexagon', () => {
     contentBounds: { minX: 0, maxX: 0, minY: 0, maxY: 0 },
     canvasWidth: 0,
     canvasHeight: 0,
-    revealPadding: 250
+    revealPadding: 250,
+    hintVisible: true
   })
 
   // ================================================================== computed
@@ -115,6 +117,25 @@ export const useHexagonStore = defineStore('hexagon', () => {
     joystickData.value = { ...joystickData.value, ...data }
   }
 
+  /**
+   * Sets whether the joystick hint has been dismissed
+   * @param dismissed - True if the hint has been dismissed
+   */
+  const setJoystickHintDismissed = (dismissed: boolean) => {
+    joystickData.value.hintVisible = !dismissed
+    $ls.set('joystick-hint-dismissed', dismissed)
+  }
+
+  /**
+   * Initializes joystick hint dismissed state from localStorage
+   */
+  const initJoystickHintDismissed = () => {
+    const dismissed = $ls.get('joystick-hint-dismissed')
+    if (dismissed !== null) {
+      joystickData.value.hintVisible = !dismissed
+    }
+  }
+
   // ==================================================================== return
   return {
     // ----- state
@@ -139,6 +160,8 @@ export const useHexagonStore = defineStore('hexagon', () => {
     setIsHoveringHexagonName,
     setIsHoveringCanvas,
     setCanvasIsInViewport,
-    setJoystickData
+    setJoystickData,
+    setJoystickHintDismissed,
+    initJoystickHintDismissed
   }
 })

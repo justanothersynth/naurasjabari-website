@@ -32,14 +32,11 @@ const props = withDefaults(defineProps<{
 const { $bus } = useNuxtApp()
 
 const generalStore = useGeneralStore()
-const { forceCursorPointer } = storeToRefs(generalStore)
+const { forceCursorPointer, isTouchDevice } = storeToRefs(generalStore)
 const hexStore = useHexagonStore()
 const { hexCanvasTranslation, hexagons } = storeToRefs(hexStore)
 const hexCanvasRef = ref<HTMLElement | null>(null)
 const hexCanvasInnerRef = ref<HTMLElement | null>(null)
-
-// Detect touch device
-const isTouchDevice = ref(false)
 
 // Track mouse position within the canvas
 const { x: mouseX, y: mouseY } = useMouse({ type: 'client' })
@@ -251,8 +248,6 @@ onMounted(() => {
   hexCanvasInnerRef.value?.addEventListener('transitionend', handleTransitionEnd)
   // Calculate initial bounds if hexagons are already registered
   calculateContentBounds()
-  // Detect touch device
-  isTouchDevice.value = 'ontouchstart' in window || navigator.maxTouchPoints > 0
 })
 
 onBeforeUnmount(() => {

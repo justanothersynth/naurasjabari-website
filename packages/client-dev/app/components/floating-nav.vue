@@ -1,19 +1,23 @@
 <template>
   <div
-    class="floating-nav-wrapper fixed bottom-4 left-1/2 -translate-x-1/2 z-1000 flex items-center gap-3"
+    class="floating-nav-wrapper fixed bottom-4 left-1/2 -translate-x-1/2 z-1000 flex flex-col items-center gap-3"
     :class="{ 'is-visible': isVisible }">
 
-    <div
-      ref="navRef"
-      class="floating-nav bg-prime/80 backdrop-blur-lg border border-gray-200 p-3 rounded-full gap-1 shadow-xl flex items-center"
-      :style="{ '--mouse-x': `${mouseX}px`, '--mouse-y': `${mouseY}px` }">
+    <!-- Joystick hint -->
+    <JoystickHint />
+
+    <div class="flex items-center">
+      <div
+        ref="navRef"
+        class="floating-nav bg-prime/80 backdrop-blur-lg border border-gray-200 p-3 rounded-full gap-1 shadow-xl flex items-center"
+        :style="{ '--mouse-x': `${mouseX}px`, '--mouse-y': `${mouseY}px` }">
 
       <button
         :class="buttonClasses"
         aria-label="Contact Me"
         @click="openContactDialog">
         <Icon name="iconoir:mail" size="16" class="mt-0.5" />
-        <span>contact me</span>
+        <span class="whitespace-nowrap">contact me</span>
       </button>
 
       <a
@@ -23,19 +27,18 @@
         :class="buttonClasses"
         aria-label="View GitHub Profile">
         <Icon name="iconoir:github" size="14" />
-        <span>github</span>
+        <span class="whitespace-nowrap">github</span>
         <Icon name="iconoir:arrow-up-right-square" size="14" class="text-gray-400 ml-[-2px]"/>
       </a>
 
-    </div>
+      </div>
 
-    <!-- Joystick control -->
-    <div
-      class="joystick-wrapper"
-      :class="{ 'is-active': joystickData.display }">
-      <HexJoystick
-        v-if="joystickData.display"
-        class="joystick-beside-nav" />
+      <!-- Joystick control -->
+      <div
+        class="joystick-wrapper ml-3"
+        :class="{ 'is-active': joystickData.display }">
+        <HexJoystick v-if="joystickData.display" />
+      </div>
     </div>
 
   </div>
@@ -130,23 +133,11 @@ watch([elementX, elementY, isOutside], ([x, y, outside]) => {
 
 .joystick-wrapper {
   width: 0;
-  overflow: hidden;
   transition: width 300ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 300ms ease;
   opacity: 0;
-
   &.is-active {
     width: 50px;
     opacity: 1;
   }
-}
-
-:deep(.joystick-beside-nav) {
-  position: relative;
-  bottom: auto;
-  right: auto;
-  z-index: auto;
-  transform: scale(0.42);
-  transform-origin: center;
-  margin: -36px -36px;
 }
 </style>

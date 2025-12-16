@@ -4,6 +4,7 @@ export const useGeneralStore = defineStore('general', () => {
   // ===================================================================== state
   const forceCursorPointer = ref(false)
   const contactDialogOpen = ref(false)
+  const isTouchDevice = ref(false)
 
   // =================================================================== actions
   /**
@@ -22,13 +23,23 @@ export const useGeneralStore = defineStore('general', () => {
     contactDialogOpen.value = open
   }
 
+  /**
+   * Sets whether the device supports touch input
+   * @param isTouch - Whether the device supports touch input
+   */
+  const setIsTouchDevice = (isTouch: boolean) => {
+    isTouchDevice.value = isTouch
+  }
+
   // ==================================================================== return
   return {
     // ----- state
     forceCursorPointer,
     contactDialogOpen,
+    isTouchDevice,
     // ----- actions
     setForceCursorPointer,
-    setContactDialogOpen
+    setContactDialogOpen,
+    setIsTouchDevice
   }
 })
