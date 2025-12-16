@@ -2,12 +2,10 @@
   <main class="pt-40 small:pt-70">
 
     <ContactDialog />
-
-    <!-- <HexMouseNodeIndicator /> -->
     
-    <!-- <Intro /> -->
+    <Intro />
     
-    <!-- <GithubContributionsGraph /> -->
+    <GithubContributionsGraph />
 
     <Divider class="container">
       <Icon name="iconoir:arrow-down" size="12" />
@@ -15,9 +13,9 @@
       <Icon name="iconoir:arrow-down" size="12" />
     </Divider>
 
-    <!-- <DemoCronApiSupabase /> -->
+    <DemoCronApiSupabase />
 
-    <!-- <DemoComplexUi /> -->
+    <DemoComplexUi />
 
     <DemoWebScraping />
 

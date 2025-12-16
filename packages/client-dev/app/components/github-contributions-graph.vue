@@ -92,7 +92,7 @@
           <span>More</span>
         </div>
 
-        <div class="font-medium mt-2 mini:mt-0">
+        <div class="font-medium mt-8 mini:mt-0">
           {{ selectedYearData.count }} contributions in {{ selectedYear }}
         </div>
 
@@ -100,7 +100,7 @@
 
     </div>
     
-    <div class="text-sm text-gray-400 mt-6 mini:mt-8 text-center container">
+    <div class="text-sm text-gray-400 mt-2 mini:mt-8 text-center container">
       Note: large portions of my work (ex: project management, teaching, devops) cannot be reflected through github contributions
     </div>
     
