@@ -22,20 +22,20 @@
             v-for="(activities, timeframeIndex) in regions"
             :key="`${region}-${timeframeIndex}`"
             class="relative flex gap-1 hover:bg-gray-100 transition-colors duration-150 rounded-md p-[4px]"
-            @mouseenter="$tooltip.show(`${timeframeMap[activities.timeframe]}<br /> <span class='font-mono'>${activities.transition}</span>`)"
+            @mouseenter="$tooltip.show(`${props.timeframeConfig[activities.timeframe as TimePeriod].long}<br /> <span class='font-mono'>${activities.transition}</span>`)"
             @mouseleave="$tooltip.hide">
             <div
               v-for="(activity, activityIndex) in activities.points"
               :key="`${region}-${timeframeIndex}-${activityIndex}`"
-              class="flex justify-end gap-1">
+              class="flex justify-end gap-0.5 mini:gap-1">
               <div
                 v-for="(column, columnIndex) in activity"
                 :key="`${region}-${timeframeIndex}-${activityIndex}-${columnIndex}`"
-                class="flex flex-col justify-end gap-1">
+                class="flex flex-col justify-end gap-0.5 mini:gap-1">
                 <span
                   v-for="point in 8"
                   :key="`${region}-${timeframeIndex}-${activityIndex}-${columnIndex}-${point}`"
-                  class="block w-2 h-2 rounded-full"
+                  class="block w-[4.5px] h-[4.5px] mini:w-2 mini:h-2 rounded-full"
                   :class="[
                     activityColors[column] || 'bg-green-500',
                     (9 - point) > column ? 'invisible' : ''
@@ -55,20 +55,16 @@
 import { format } from 'date-fns'
 import type { GeostormSupabase, GeostormOrpcInput, GeostormOrpcInputRegions } from '@workspace/types'
 
+type TimePeriod = 'last24Hours' | 'last6Hours' | 'currentConditions' | 'next6Hours' | 'next24Hours'
+
 const props = defineProps<{
   entry: GeostormSupabase
   activityColors: string[]
+  timePeriodsVisible: ReadonlyArray<TimePeriod>
+  timeframeConfig: Record<TimePeriod, { short: string, long: string }>
 }>()
 
 const { $tooltip } = useNuxtApp()
-
-const timeframeMap: Record<string, string> = {
-  'last24Hours': 'Last 24 hours',
-  'last6Hours': 'Last 6 hours',
-  'currentConditions': 'Current conditions',
-  'next6Hours': 'Next 6 hours',
-  'next24Hours': 'Next 24 hours'
-}
 
 const heatMap: Record<string, number> = {
   quiet: 1,
@@ -135,19 +131,18 @@ const generatePointsArray = (current: number, next: number): number[] => {
 const reformattedData = computed(() => {
   const data = props.entry
   const regions = ['subAuroral', 'auroral', 'polar'] as const
-  const timePeriods = ['last24Hours', 'last6Hours', 'currentConditions', 'next6Hours', 'next24Hours'] as const
   const result: Record<string, Array<{ timeframe: string, points: number[][], transition: string }>> = {}
 
   for (const region of regions) {
     const activitiesList: string[] = []
-    for (const timePeriod of timePeriods) {
+    for (const timePeriod of props.timePeriodsVisible) {
       const activities = (data[timePeriod as keyof GeostormOrpcInput] as GeostormOrpcInputRegions)[region]
       for (const activity of activities) {
         activitiesList.push(activity === '' ? (activities[0] ?? '') : activity)
       }
     }
   
-    let currentTimeperiod: typeof timePeriods[number] = timePeriods[0]
+    let currentTimeperiod: TimePeriod = props.timePeriodsVisible[0]!
     const lenI = activitiesList.length
 
     for (let i = 0; i < lenI; i++) {
@@ -171,8 +166,8 @@ const reformattedData = computed(() => {
       timeframeEntry.points.push(currentTimeperiodArray)
 
       if ((i + 1) % 2 === 0) {
-        const nextIndex: number = timePeriods.indexOf(currentTimeperiod) + 1
-        currentTimeperiod = timePeriods[nextIndex] ?? currentTimeperiod
+        const nextIndex: number = props.timePeriodsVisible.indexOf(currentTimeperiod) + 1
+        currentTimeperiod = props.timePeriodsVisible[nextIndex] ?? currentTimeperiod
       }
     }
   }

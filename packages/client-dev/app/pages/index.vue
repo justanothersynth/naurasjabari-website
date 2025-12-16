@@ -5,9 +5,9 @@
 
     <!-- <HexMouseNodeIndicator /> -->
     
-    <Intro />
+    <!-- <Intro /> -->
     
-    <GithubContributionsGraph />
+    <!-- <GithubContributionsGraph /> -->
 
     <Divider class="container">
       <Icon name="iconoir:arrow-down" size="12" />
@@ -17,7 +17,7 @@
 
     <!-- <DemoCronApiSupabase /> -->
 
-    <DemoComplexUi />
+    <!-- <DemoComplexUi /> -->
 
     <DemoWebScraping />
 
