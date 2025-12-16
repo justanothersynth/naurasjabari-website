@@ -23,7 +23,7 @@
     <!-- Error State -->
     <div
       v-else-if="hasError"
-      class="flex items-center justify-center py-16 text-sm text-gray-500 font-medium border border-gray-200 rounded-3xl">
+      class="flex items-center justify-center py-16 text-sm text-gray-500 font-medium border border-gray-200 rounded-3xl container">
       Something went wrong fetching the contribution chart, please refresh this page or try again later
     </div>
 
@@ -142,7 +142,7 @@ const { $tooltip } = useNuxtApp()
 const contributionsData = ref<ContributionsData | null>(null)
 const selectedYear = ref<number>(new Date().getFullYear())
 const isLoading = ref(true)
-const hasError = ref(false)
+const hasError = ref(true)
 
 const scrollContainerRef = ref<HTMLElement | null>(null)
 const isScrolledLeft = ref(true)
