@@ -139,10 +139,16 @@ type WeekData = {
 
 const { $tooltip } = useNuxtApp()
 
-const contributionsData = ref<ContributionsData | null>(null)
+// Fetch GitHub contributions data using the API fetch composable
+const { data: contributionsData, error, isLoading } = useApiFetch<ContributionsData>(
+  '/data/github-contrib-total.json',
+  { immediate: true }
+)
+
+// Computed to check if there's an error
+const hasError = computed(() => error.value !== null)
+
 const selectedYear = ref<number>(new Date().getFullYear())
-const isLoading = ref(true)
-const hasError = ref(true)
 
 const scrollContainerRef = ref<HTMLElement | null>(null)
 const isScrolledLeft = ref(true)
@@ -213,26 +219,6 @@ const legendColors = [
 const dayLabels = ['', 'Mon', '', 'Wed', '', 'Fri', '']
 
 /**
- * Fetches the GitHub contributions data from the API
- */
-const fetchContributionsData = async () => {
-  isLoading.value = true
-  hasError.value = false
-  try {
-    const response = await fetch('/api/data/github-contrib-total.json')
-    if (response.ok) {
-      contributionsData.value = await response.json()
-    } else {
-      hasError.value = true
-    }
-  } catch {
-    hasError.value = true
-  } finally {
-    isLoading.value = false
-  }
-}
-
-/**
  * Returns the data for the currently selected year
  */
 const selectedYearData = computed(() => {
@@ -299,11 +285,6 @@ const getContributionClass = (day: ContributionDay | null): string => {
   }
   return `level-${day.level}`
 }
-
-// Fetch data on component mount
-onMounted(() => {
-  fetchContributionsData()
-})
 
 // Check scroll state when data changes
 watch(selectedYearData, () => {
