@@ -113,8 +113,8 @@ const activityColors = [
   'bg-purple-900'
 ]
 
-const customContainerClasses = 'max-w-4xl! w-82! mini:w-138! medium:w-[91%]! medium:mx-auto'
-const offsetClasses = 'mx-4! mini:mr-0! mini:ml-11! medium:ml-0!'
+const customContainerClasses = 'max-w-4xl! w-82! mini:w-138! medium:w-[91%]!'
+const offsetClasses = 'mx-4! mini:mr-0! mini:ml-11! medium:mx-auto! '
 
 type TimePeriod = 'last24Hours' | 'last6Hours' | 'currentConditions' | 'next6Hours' | 'next24Hours'
 

@@ -15,7 +15,7 @@
     <!-- Loading State -->
     <div
       v-if="isLoading"
-      class="flex items-center justify-center gap-3 py-16 border border-gray-200 rounded-3xl">
+      class="flex items-center justify-center gap-3 py-16 border border-gray-200 rounded-3xl container">
       <LoaderSpinner :duration="1" />
       <span class="text-sm text-gray-500 font-medium">Loading contribution chart</span>
     </div>
