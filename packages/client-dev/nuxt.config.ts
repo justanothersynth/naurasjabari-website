@@ -85,6 +85,7 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@nuxt/eslint',
+    '@nuxt/scripts',
     '@nuxt/image',
     '@pinia/nuxt',
     '@vueuse/nuxt',
@@ -94,6 +95,15 @@ export default defineNuxtConfig({
   icon: {
     serverBundle: {
       collections: ['iconoir', 'fluent']
+    }
+  },
+  $production: {
+    scripts: {
+      registry: {
+        googleAnalytics: {
+          id: 'G-VXGQ32DHZR'
+        }
+      }
     }
   }
 })
