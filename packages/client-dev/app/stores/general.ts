@@ -3,7 +3,6 @@ import { defineStore } from 'pinia'
 export const useGeneralStore = defineStore('general', () => {
   // ===================================================================== state
   const forceCursorPointer = ref(false)
-  const contactDialogOpen = ref(false)
   const isTouchDevice = ref(false)
 
   // =================================================================== actions
@@ -13,14 +12,6 @@ export const useGeneralStore = defineStore('general', () => {
    */
   const setForceCursorPointer = (force: boolean) => {
     forceCursorPointer.value = force
-  }
-
-  /**
-   * Sets the contact dialog open state
-   * @param open - Whether to open the contact dialog
-   */
-  const setContactDialogOpen = (open: boolean) => {
-    contactDialogOpen.value = open
   }
 
   /**
@@ -35,11 +26,9 @@ export const useGeneralStore = defineStore('general', () => {
   return {
     // ----- state
     forceCursorPointer,
-    contactDialogOpen,
     isTouchDevice,
     // ----- actions
     setForceCursorPointer,
-    setContactDialogOpen,
     setIsTouchDevice
   }
 })

@@ -12,13 +12,13 @@
         class="floating-nav bg-prime/80 backdrop-blur-lg border border-gray-200 p-3 rounded-full gap-1 shadow-xl flex items-center"
         :style="{ '--mouse-x': `${mouseX}px`, '--mouse-y': `${mouseY}px` }">
 
-      <button
+      <a
         :class="buttonClasses"
-        aria-label="Contact Me"
-        @click="openContactDialog">
+        href="mailto:nauras@moogmedia.ca"
+        aria-label="Contact Me">
         <Icon name="iconoir:mail" size="16" class="mt-0.5" />
-        <span class="whitespace-nowrap">contact me</span>
-      </button>
+        <span class="whitespace-nowrap">get in touch</span>
+      </a>
 
       <a
         href="https://github.com/timelytree"
@@ -56,9 +56,6 @@ const mouseX = ref(0)
 const mouseY = ref(0)
 const loaded = ref(false)
 
-const generalStore = useGeneralStore()
-const { contactDialogOpen } = storeToRefs(generalStore)
-
 const hexStore = useHexagonStore()
 const { joystickData } = storeToRefs(hexStore)
 
@@ -71,12 +68,8 @@ onMounted(() => {
 })
 
 const isVisible = computed(() => {
-  return loaded.value && !contactDialogOpen.value
+  return loaded.value
 })
-
-const openContactDialog = () => {
-  generalStore.setContactDialogOpen(true)
-}
 
 watch([elementX, elementY, isOutside], ([x, y, outside]) => {
   if (!outside) {

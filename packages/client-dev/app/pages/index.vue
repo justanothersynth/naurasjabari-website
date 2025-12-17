@@ -1,7 +1,5 @@
 <template>
   <main class="pt-40 small:pt-70">
-
-    <ContactDialog />
     
     <Intro />
     
