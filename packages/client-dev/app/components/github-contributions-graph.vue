@@ -372,6 +372,12 @@ $mobileBreakpoint: 61.5rem; // 56rem (max-w-4xl) / 0.91 (container width %)
   gap: $cellGap;
   padding-right: 8px;
   font-size: 12px;
+  
+  @media (max-width: $mobileBreakpoint) {
+    position: sticky;
+    left: 0;
+    z-index: 20;
+  }
 }
 
 .day-label {
