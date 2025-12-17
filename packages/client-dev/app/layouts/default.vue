@@ -8,16 +8,7 @@
       <FloatingNav />
 
       <!-- Global mouse-following tooltip -->
-      <Teleport to="body">
-        <div
-          v-if="tooltip.show && tooltip.content"
-          class="global-tooltip"
-          :style="{
-            left: `${tooltip.x + 15}px`,
-            top: `${tooltip.y + 15}px`
-          }"
-          v-html="tooltip.content" />
-      </Teleport>
+      <GlobalTooltip />
 
     </div>
   </TooltipProvider>
@@ -41,9 +32,6 @@ if (import.meta.client && window.matchMedia('(prefers-color-scheme: dark)').matc
 const generalStore = useGeneralStore()
 const { forceCursorPointer } = storeToRefs(generalStore)
 
-const tooltipStore = useTooltipStore()
-const { tooltip } = storeToRefs(tooltipStore)
-
 onMounted(() => {
   // Detect if device has touch support
   generalStore.setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
@@ -55,22 +43,5 @@ onMounted(() => {
   &.force-cursor-pointer {
     cursor: pointer;
   }
-}
-</style>
-
-<style lang="scss">
-.global-tooltip {
-  position: fixed;
-  z-index: 9999;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  white-space: nowrap;
-  pointer-events: none;
-  backdrop-filter: blur(4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: opacity 0.2s ease-in-out;
 }
 </style>
