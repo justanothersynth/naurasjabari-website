@@ -1,5 +1,5 @@
 <template>
-  <div class="divider flex items-center gap-4 mt-20 before:bg-gray-300 after:bg-gray-300">
+  <div class="divider flex items-center gap-4 mt-20">
     <slot />
   </div>
 </template>
@@ -10,7 +10,8 @@
   &::after {
     content: '';
     flex: 1;
-    height: 1px;
+    height: 1.25rem;
+    background-color: var(--color-highlighter);
   }
 }
 </style>

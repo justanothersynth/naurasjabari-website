@@ -35,6 +35,7 @@
 
   /* Colours */
   --color-root: #FAFAFA;
+  --color-highlighter: #FFF68D;
 }
 
 @layer components {

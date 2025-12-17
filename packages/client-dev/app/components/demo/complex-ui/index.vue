@@ -1,5 +1,5 @@
 <template>
-  <section class="mt-20 relative z-1 container">
+  <section class="container mt-70 relative z-1">
     
     <div class="max-w-4xl mx-auto relative z-30">
       <div class="prose max-w-[50ch] small:max-w-[67ch]">
