@@ -12,12 +12,12 @@
             <Icon name="iconoir:arrow-up-right-square" size="16" class="ml-[2px]" />
           </a>
           that they update every 15 minutes. The website seems to be geofenced for non-clientside access, so I had to route my
-          <a class="inline-link" href="https://github.com/timelytree/naurasjabari-website/tree/main/packages/crons/jobs/geostorm" target="_blank">
+          <a class="inline-link" href="https://github.com/justanothersynth/naurasjabari-website/tree/main/packages/crons/jobs/geostorm" target="_blank">
             scraper
             <Icon name="iconoir:arrow-up-right-square" size="16" class="ml-[2px]" />
           </a>
           (hosted in Germany) through
-          <a class="inline-link" href="https://github.com/timelytree/naurasjabari-website/blob/main/packages/vercel/api/geostorm.js" target="_blank">
+          <a class="inline-link" href="https://github.com/justanothersynth/naurasjabari-website/blob/main/packages/vercel/api/geostorm.js" target="_blank">
             a proxy server
             <Icon name="iconoir:arrow-up-right-square" size="16" class="ml-[2px]" />
           </a>

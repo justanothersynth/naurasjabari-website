@@ -82,7 +82,7 @@ export const parseContributionCalendar = ($: cheerio.CheerioAPI, existingCalenda
 export const fetchYearContributions = async (year: number, existingYearData?: YearContribution): Promise<YearContribution> => {
   const fromDate = `${year}-01-01`
   const toDate = `${year}-12-31`
-  const url = `https://github.com/users/timelytree/contributions?from=${fromDate}&to=${toDate}`
+  const url = `https://github.com/users/justanothersynth/contributions?from=${fromDate}&to=${toDate}`
   
   const response = await fetch(url)
   

@@ -7,7 +7,7 @@ import { logJobStart, logJobComplete } from './log'
 
 /**
  * Scrapes the github contributions calendar for a user and saves the data to a file
- * @link https://github.com/users/timelytree/contributions
+ * @link https://github.com/users/justanothersynth/contributions
  */
 export const { job, subcommand } = createJobRunner({
   runJob: async ({ jobLogger, schedule }) => {

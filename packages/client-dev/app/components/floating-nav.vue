@@ -21,7 +21,7 @@
       </a>
 
       <a
-        href="https://github.com/timelytree"
+        href="https://github.com/justanothersynth"
         target="_blank"
         rel="noopener noreferrer"
         :class="buttonClasses"

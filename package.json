@@ -1,20 +1,20 @@
 {
-  "name": "timelytree/naurasjabari-website",
+  "name": "justanothersynth/naurasjabari-website",
   "author": {
     "name": "Nauras Jabari",
     "email": "naurasj@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:timelytree/naurasjabari-website.git"
+    "url": "git@github.com:justanothersynth/naurasjabari-website.git"
   },
   "bugs": {
-    "url": "https://github.com/timelytree/naurasjabari-website/issues"
+    "url": "https://github.com/justanothersynth/naurasjabari-website/issues"
   },
   "engines": {
     "node": ">=22.14"
   },
-  "homepage": "https://github.com/timelytree/naurasjabari-website#readme",
+  "homepage": "https://github.com/justanothersynth/naurasjabari-website#readme",
   "keywords": [],
   "license": "Apache-2.0",
   "private": true,

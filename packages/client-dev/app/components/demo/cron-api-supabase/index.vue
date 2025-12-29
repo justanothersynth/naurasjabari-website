@@ -17,12 +17,12 @@
         </a>
         freely available to use.
         I have one
-        <a class="inline-link" href="https://github.com/timelytree/naurasjabari-website/tree/main/packages/crons/jobs/sun-moon" target="_blank">
+        <a class="inline-link" href="https://github.com/justanothersynth/naurasjabari-website/tree/main/packages/crons/jobs/sun-moon" target="_blank">
           cron job
           <Icon name="iconoir:arrow-up-right-square" size="16" class="ml-[2px]" />
         </a>
         that queries the endpoint daily at midnight, getting the sunrise and sunset times and moon phases. And another
-        <a class="inline-link" href="https://github.com/timelytree/naurasjabari-website/tree/main/packages/crons/jobs/azimuth" target="_blank">
+        <a class="inline-link" href="https://github.com/justanothersynth/naurasjabari-website/tree/main/packages/crons/jobs/azimuth" target="_blank">
           cron job
           <Icon name="iconoir:arrow-up-right-square" size="16" class="ml-[2px]" />
         </a>
