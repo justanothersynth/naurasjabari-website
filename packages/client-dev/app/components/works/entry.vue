@@ -7,7 +7,7 @@
     :rel="link ? 'noopener noreferrer' : undefined"
     class="work-entry block group cursor-pointer">
     
-    <div class="overflow-hidden rounded-lg transition-shadow duration-300 group-hover:shadow-lg">
+    <div class="overflow-hidden rounded-lg transition-all duration-300 group-hover:shadow-lg border border-gray-200/50 group-hover:border-gray-200">
       <ImageLazy
         :src="image"
         :alt="title"
@@ -18,7 +18,7 @@
     </div>
 
     <div class="prose mt-4 px-2">
-      <h3 class="flex items-center gap-2 mb-2 font-medium">
+      <h3 class="flex items-center gap-2 mb-2 font-medium text-[18.3px]">
         <span class="relative flex items-center">
           <span
             class="w-3 h-3 rounded-full animate-ping [animation-duration:1.5s] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -32,12 +32,22 @@
         <span>{{ title }}</span>
       </h3>
       <div class="flex items-center gap-2">
-        <span
-          v-for="tag in tags"
-          :key="tag"
-          class="text-xs px-2 py-0.125 rounded-[6px] bg-gray-200/50 text-gray-700">
-          {{ tag }}
-        </span>
+        <template v-for="tag in tags" :key="typeof tag === 'string' ? tag : tag.label">
+          <a
+            v-if="typeof tag === 'object' && tag.url"
+            :href="tag.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            :class="cn('flex whitespace-nowrap items-center text-xs px-2 py-0.125 rounded-[6px] transition-colors duration-200 bg-gray-200/50 text-gray-700 hover:bg-orange-200 hover:text-orange-800', tag.extraClasses)">
+            {{ tag.label }}
+            <Icon name="iconoir:arrow-up-right-square" size="12" class="ml-[2px]" />
+          </a>
+          <span
+            v-else
+            class="text-xs whitespace-nowrap px-2 py-0.125 rounded-[6px] bg-gray-200/50 text-gray-700">
+            {{ tag }}
+          </span>
+        </template>
       </div>
       <p>{{ description }}</p>
     </div>
@@ -46,17 +56,24 @@
 </template>
 
 <script setup lang="ts">
+type Tag = string | {
+  label: string
+  url?: string
+  extraClasses?: string
+}
+
 type Props = {
   title: string
   description: string
   image: string
   link?: string
   status: 'live' | 'archived'
-  tags?: string[]
+  tags?: Tag[]
 }
 
 const props = defineProps<Props>()
 
+const cn = useCn
 const componentType = computed(() => props.link ? 'a' : 'div')
 
 const statusColour = computed(() => {
