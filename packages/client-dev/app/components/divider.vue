@@ -1,5 +1,5 @@
 <template>
-  <div class="divider flex items-center gap-4 mt-20">
+  <div class="divider flex items-center gap-4 mt-40 large:mt-60">
     <slot />
   </div>
 </template>

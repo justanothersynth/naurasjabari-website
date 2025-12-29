@@ -1,8 +1,8 @@
 <template>
-  <section class="container mt-10 relative z-10">
+  <section class="container mt-20 relative z-10">
     
     <div class="prose max-w-[50ch] small:max-w-[67ch]">
-      <h3>Cron jobs, API integration and Supabase Realtime</h3>
+      <h2>Cron jobs, API integration and Supabase Realtime</h2>
       <p>
         My dad was mildly obsessed with checking sunrise and sunset times wherever he was.
         It would be a near-daily "oh the sun comes up 1 minute earlier today" 🤦‍♂️.

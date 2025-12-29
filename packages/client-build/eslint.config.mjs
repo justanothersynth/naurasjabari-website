@@ -59,5 +59,17 @@ export default createConfigForNuxt({
     rules: {
       '@typescript-eslint/no-explicit-any': 'off'
     }
+  },
+  {
+    files: ['modules/**/*.ts'],
+    plugins: {
+      tsdoc
+    },
+    rules: {
+      semi: ['error', 'never'],
+      quotes: ['error', 'single'],
+      'no-console': process.env.NODE_ENV !== 'development' ? 'error' : 'off',
+      'tsdoc/syntax': 'error'
+    }
   }
 )

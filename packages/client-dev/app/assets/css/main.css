@@ -36,6 +36,9 @@
   /* Colours */
   --color-root: #FAFAFA;
   --color-highlighter: #FFF68D;
+
+  /* Sizing */
+  --text-2xl: 40px;
 }
 
 @layer components {
