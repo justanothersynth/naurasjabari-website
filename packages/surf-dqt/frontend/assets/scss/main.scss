@@ -1,0 +1,706 @@
+////////////////////////////////////////////////////////////////////////// Fonts
+// -----------------------------------------------------------------------------
+$fontAssetPath: '~assets/fonts';
+
+///////////////////////////////////////////////////////////////////////// Avenir
+@font-face {
+  font-family: 'Avenir';
+  src: url('#{$fontAssetPath}/Avenir/EOT/Avenir-Roman.eot');
+  src: url('#{$fontAssetPath}/Avenir/EOT/Avenir-Roman.eot?#iefix') format('embedded-opentype'),
+       url('#{$fontAssetPath}/Avenir/WOFF2/Avenir-Roman.woff2') format('woff2'),
+       url('#{$fontAssetPath}/Avenir/WOFF/Avenir-Roman.woff') format('woff'),
+       url('#{$fontAssetPath}/Avenir/SVG/Avenir-Roman.svg#Avenir-Roman') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('#{$fontAssetPath}/Avenir/EOT/Avenir-Oblique.eot');
+  src: url('#{$fontAssetPath}/Avenir/EOT/Avenir-Oblique.eot?#iefix') format('embedded-opentype'),
+       url('#{$fontAssetPath}/Avenir/WOFF2/Avenir-Oblique.woff2') format('woff2'),
+       url('#{$fontAssetPath}/Avenir/WOFF/Avenir-Oblique.woff') format('woff'),
+       url('#{$fontAssetPath}/Avenir/SVG/Avenir-Oblique.svg#Avenir-Oblique') format('svg');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('#{$fontAssetPath}/Avenir/EOT/Avenir-Medium.eot');
+  src: url('#{$fontAssetPath}/Avenir/EOT/Avenir-Medium.eot?#iefix') format('embedded-opentype'),
+       url('#{$fontAssetPath}/Avenir/WOFF2/Avenir-Medium.woff2') format('woff2'),
+       url('#{$fontAssetPath}/Avenir/WOFF/Avenir-Medium.woff') format('woff'),
+       url('#{$fontAssetPath}/Avenir/SVG/Avenir-Medium.svg#Avenir-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('#{$fontAssetPath}/Avenir/EOT/Avenir-Heavy.eot');
+  src: url('#{$fontAssetPath}/Avenir/EOT/Avenir-Heavy.eot?#iefix') format('embedded-opentype'),
+       url('#{$fontAssetPath}/Avenir/WOFF2/Avenir-Heavy.woff2') format('woff2'),
+       url('#{$fontAssetPath}/Avenir/WOFF/Avenir-Heavy.woff') format('woff'),
+       url('#{$fontAssetPath}/Avenir/SVG/Avenir-Heavy.svg#Avenir-Heavy') format('svg');
+  font-weight: 700;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('#{$fontAssetPath}/Avenir/EOT/Avenir-Black.eot');
+  src: url('#{$fontAssetPath}/Avenir/EOT/Avenir-Black.eot?#iefix') format('embedded-opentype'),
+       url('#{$fontAssetPath}/Avenir/WOFF2/Avenir-Black.woff2') format('woff2'),
+       url('#{$fontAssetPath}/Avenir/WOFF/Avenir-Black.woff') format('woff'),
+       url('#{$fontAssetPath}/Avenir/SVG/Avenir-Black.svg#Avenir-Black') format('svg');
+  font-weight: 900;
+  font-style: bold;
+}
+
+//////////////////////////////////////////////////////////////////////// General
+//------------------------------------------------------------------------------
+html, body {
+  padding: 0;
+  margin: 0;
+  height: auto;
+  background-color: $athensGray;
+  font-family: $fontAvenir;
+  color: $mineShaft;
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  ::-moz-selection { background: $mineShaft; color: white; }
+  ::selection { background: $mineShaft; color: white; }
+  &.no-scroll {
+    overflow-y: hidden;
+  }
+}
+
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+select::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+  outline: none !important;
+}
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+
+strong {
+  font-weight: 700;
+}
+
+pre {
+  margin: 0;
+}
+
+a,
+ol,
+ul,
+li,
+nav,
+div,
+span,
+input,
+label,
+header,
+button,
+section,
+textarea,
+figcaption,
+select option,
+h1, h2, h3, h4, h5, h6,
+input:not([type]),
+input[type=color],
+input[type=date],
+input[type=datetime-local],
+input[type=datetime],
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=time],
+input[type=url],
+input[type=week],
+input[type="radio"],
+input[type="submit"],
+input[type="checkbox"] {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: inherit;
+  font-size: inherit;
+  background-color: transparent;
+  box-sizing: border-box;
+  outline: none;
+  letter-spacing: 1px;
+}
+
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=time],
+input[type=url],
+input[type=week] {
+  @include placeholder {
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    font-weight: 400;
+    opacity: 0.5;
+  }
+}
+
+a,
+input[type="button"],
+button, .button {
+  outline: none;
+  cursor: pointer;
+  &:hover, &:active, &:focus {
+    outline: none;
+    background-color: transparent;
+  }
+}
+
+label {
+  display: block;
+}
+
+input[type="submit"] {
+  @include label;
+  height: 2.5rem;
+  padding: 0 1.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  &.style-1 {
+    color: white;
+    background-color: $mineShaft;
+  }
+}
+
+textarea {
+  background-color: transparent;
+  resize: none;
+  transition: 250ms;
+  &:active, &:focus, &:hover {
+    transition: 250ms;
+    background-color: transparent;
+  }
+}
+
+ol, ul {
+  margin: 0;
+  li {
+    list-style: none;
+  }
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+a,
+button, .button {
+  color: $mineShaft;
+  font-family: inherit;
+  outline: none;
+  text-decoration: none;
+  position: relative;
+  transition: 250ms;
+  &:active, &:focus, &:hover {
+    transition: 250ms;
+    outline: none;
+    color: $mineShaft;
+  }
+}
+
+button, .button {
+  transition: 250ms;
+  &:active, &:focus, &:hover {
+    transition: 250ms;
+  }
+  &.disabled {
+    cursor: no-drop;
+    opacity: 0.75;
+  }
+}
+
+.pos-relative {
+  position: relative;
+}
+
+small.error,
+span.error {
+  background-color: transparent;
+  font-style: normal;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  background-color: transparent;
+  color: red;
+  span {
+    padding: 0.375rem 0.5625rem 0.5625rem;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////// Fonts
+//------------------------------------------------------------------------------
+// Font Sizing
+// 10px = 0.625rem
+// 12px = 0.75rem
+// 14px = 0.875rem
+// 16px = 1rem (base)
+// 18px = 1.125rem
+// 19px = 1.1875rem
+// 20px = 1.25rem
+// 24px = 1.5rem
+// 30px = 1.875rem
+// 32px = 2rem
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6,
+p,
+div,
+button {
+  line-height: 1.6;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3 {
+  letter-spacing: unset;
+}
+
+h1, .h1 {
+  font-size: 1.5625rem;
+}
+
+h2, .h2 {
+  font-size: 1.375rem;
+  line-height: 1.8;
+}
+
+h3, .h3 {
+  font-size: 1.6rem;
+}
+
+h4, .h4 {
+  font-size: 1.3rem;
+}
+
+h5, .h5 {
+  font-size: 1.2rem;
+}
+
+h6, .h6 {
+  font-size: 1.1rem;
+}
+
+div, button, a, p, li {
+  font-size: 1rem;
+}
+
+///////////////////////////////////////////////////////////////////// Components
+//------------------------------------------------------------------------------
+#__nuxt {
+  position: relative;
+  z-index: 2;
+}
+
+#__layout {
+  overflow: hidden;
+  .master-container {
+    position: relative;
+  }
+}
+
+[class~="grid"],
+[class*="grid-"],
+[class*="grid_"] {
+  width: $containerWidth;
+  margin: 0 auto;
+  @include customMaxMQ(81.25rem) {
+    width: 100%;
+  }
+  [class~="grid"],
+  [class*="grid-"],
+  [class*="grid_"] {
+    width: 100%;
+    padding: 0;
+  }
+  &.full {
+    width: 100%;
+    padding: 0 0.5rem;
+    &.maxed {
+      max-width: 90rem;
+    }
+  }
+  &.no-padding {
+    padding: 0;
+  }
+  &.force-centered {
+    margin: 0 auto;
+  }
+}
+
+.grecaptcha-badge {
+  display: none;
+}
+
+$placeholderLineLength: 150%;
+$placeholderLineWidth: 2px;
+$placeholderLineAngle: 60deg;
+
+.placeholder-section {
+  @include label;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $gray100;
+  height: 75vh;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: calc(50% - #{$placeholderLineLength} / 2);
+    left: calc(50% - #{$placeholderLineWidth} / 2);
+    width: $placeholderLineWidth;
+    height: $placeholderLineLength;
+    background-color: rgba(0, 0, 0, 0.0375);
+    z-index: 0;
+  }
+  &:before {
+    transform: rotate(-#{$placeholderLineAngle});
+  }
+  &:after {
+    transform: rotate(#{$placeholderLineAngle});
+  }
+  span {
+    background-color: inherit;
+    padding: 2rem 3rem;
+    z-index: 1;
+  }
+}
+
+.client-label {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.client-sublabel {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  color: $mineShaft2;
+}
+
+/////////////////////////////////////////////////////////// Blog Post formatting
+//------------------------------------------------------------------------------
+.post-format {
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    margin-bottom: 1.75rem;
+    display: inline-block;
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
+
+  p, li, span {
+    a {
+      position: relative;
+      border-bottom: 0px solid darkorange;
+      transition: 250ms;
+      &:hover {
+        transition: 250ms;
+        border-bottom-width: 2px;
+      }
+    }
+  }
+
+  p {
+    display: inline-block;
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  a {
+    font-weight: 700;
+  }
+
+  ul, ol {
+    margin-bottom: 2rem;
+    padding: 0 3rem;
+    @include tiny {
+      padding-left: 1rem;
+      padding-right: 0;
+    }
+    li {
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+        p {
+          margin-bottom: 0;
+        }
+      }
+      &:before {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  ul {
+    li {
+      &:before {
+        content: '•';
+        margin-left: -0.9rem;
+      }
+    }
+  }
+
+  ol {
+    li {
+      counter-increment: step-counter;
+      &:before {
+        content: counter(step-counter)'.';
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        margin-left: -1.5rem;
+      }
+    }
+  }
+
+  figure {
+    margin: 1rem 0 3rem;
+    &.align-left {
+      text-align: left;
+    }
+    &.align-center {
+      text-align: center;
+    }
+    &.align-right {
+      text-align: right;
+    }
+    img {
+      border-radius: 0.25rem;
+      position: relative;
+      z-index: 15;
+    }
+  }
+
+  blockquote {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: $mineShaft;
+    text-align: center;
+    padding: 0;
+    border: 0;
+    margin: 4rem 0 5rem;
+    position: relative;
+    @include tiny {
+      font-size: 2rem;
+    }
+    &:before {
+      content: '';
+      display: block;
+      width: 4rem;
+      height: 4rem;
+      margin: 0 auto;
+      margin-bottom: 2rem;
+      // background-image: url('../img/icons/quote-black.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.2;
+    }
+    + figcaption {
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      position: relative;
+      text-align: center;
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: calc(100% - 0.25rem);
+        left: calc(50% - 1rem);
+        width: 2rem;
+        height: 0.25rem;
+        background-color: $mineShaft;
+      }
+    }
+  }
+
+  .quote {
+    margin: 5rem 0;
+    @include mini {
+      margin: 3rem 0;
+    }
+  }
+
+  .gallery {
+    display: inline-block;
+    &.gallery-columns-3 {
+      .gallery-item {
+        margin-right: 1rem !important;
+        width: calc(33.333% - 0.6667rem) !important;
+        &:nth-child(3n) {
+          margin-right: 0 !important;
+        }
+      }
+    }
+    .gallery-item {
+      margin: 0 !important;
+      margin-bottom: 1rem !important;
+      br {
+        display: none;
+      }
+      a {
+        display: block;
+      }
+      img {
+        border: 0 !important;
+      }
+    }
+  }
+}
+
+.markdown {
+  h1, h2, h3, h4, h5, h6, p, ul, ol {
+    + h2, + h3, + h3, + h4, + h5, + h6 {
+      margin-top: 2.5rem;
+    }
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+    + ul, + ol {
+      margin-top: 2rem;
+    }
+  }
+  h1 { font-size: 2.875rem; }
+  h2 {
+    font-size: 2.25rem;
+    color: $electricViolet;
+  }
+  h3 {
+    display: inline-block;
+    font-size: 1.75rem;
+    padding: 0.25rem 1rem;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+  }
+  h4 { font-size: 1.375rem; }
+  h5 {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  h6 { font-size: 1rem; }
+  p, pre {
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+  a {
+    color: $internationalKleinBlue;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  pre,
+  code {
+    background: $gray200;
+    padding: 5px 12px;
+    border-radius: 4px;
+    color: $gray800;
+  }
+  pre {
+    code {
+      word-break: break-all;
+      white-space: break-spaces;
+      padding: 0;
+      border-radius: 0;
+    }
+  }
+  code {
+    &::-moz-selection { background: $gray800; color: white; }
+    &::selection { background: $gray800; color: white; }
+  }
+  ul, ol {
+    padding-left: 1.5rem;
+    li {
+      margin-bottom: 1rem;
+    }
+    ul, ol {
+      margin-top: 1rem;
+    }
+  }
+  ul {
+    li {
+      list-style: none;
+      padding-left: 1.75rem;
+      margin-bottom: 1rem;
+      &:before {
+        content: '';
+        display: inline-block;
+        position: relative;
+        left: calc(-1.75rem + 2px + 9px);
+        width: 7px;
+        height: 7px;
+        margin-left: -9px;
+        border-radius: 50%;
+        background-color: $gray800;
+      }
+      li {
+        &:before {
+          background-color: transparent;
+          border: 1px solid $gray800;
+        }
+      }
+    }
+  }
+  ol {
+    padding-left: 1.375rem;
+    > li {
+      list-style: decimal;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////// Imports
+// -----------------------------------------------------------------------------
+@import 'vendor/nouislider-14.1.1'
