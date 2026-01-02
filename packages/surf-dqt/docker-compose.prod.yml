@@ -1,0 +1,27 @@
+# Production configuration for remote Ubuntu server
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+services:
+  mongodb:
+    # Enable authentication for production
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DATABASE_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MONGO_INITDB_DATABASE: Douglas_Production
+    # No exposed ports - internal only
+    restart: unless-stopped
+
+  backend:
+    environment:
+      # Override DATABASE_URL to use Docker MongoDB with authentication
+      - DATABASE_URL=mongodb://${DATABASE_USER}:${DATABASE_PASSWORD}@mongodb:27017/Douglas_Production?authSource=admin
+    # No exposed ports - behind nginx reverse proxy
+    # No SSL certificate volumes - nginx proxy handles SSL
+    restart: unless-stopped
+
+  frontend:
+    environment:
+      # Override backend URL for Docker internal network
+      - BACKEND_URL=https://localhost:3458
+    # No exposed ports - behind nginx reverse proxy
+    restart: unless-stopped

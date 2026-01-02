@@ -48,7 +48,8 @@ module.exports = {
     // useUnifiedTopology: true,
     autoIndex: false,
     user: process.env.DATABASE_USER,
-    pass: process.env.DATABASE_PASSWORD
+    pass: process.env.DATABASE_PASSWORD,
+    authSource: 'admin'
   },
 
   // Database: (function () {
@@ -65,7 +66,11 @@ module.exports = {
   Model: {},
   ApolloServer: false,
   CorsOptions: {
-    origin: ['http://localhost:3457', 'https://localhost:3457', 'https://douglas.undone.agency', 'https://surf-dataquery.com'],
+    origin: [
+      'http://localhost:3457',
+      'https://localhost:3457',
+      'http://frontend:3457'
+    ],
     methods: 'OPTIONS,GET,POST',
     allowedHeaders: 'Origin,Accept,Authorization,X-Requested-With,Content-Type,Cache-Control',
     credentials: true,

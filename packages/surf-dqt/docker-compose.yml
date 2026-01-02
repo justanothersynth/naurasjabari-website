@@ -1,28 +1,50 @@
-version: '3.8'
-
 services:
+  mongodb:
+    image: mongo:6
+    container_name: surf-dqt-mongodb
+    env_file:
+      - .env
+    environment:
+      MONGO_INITDB_DATABASE: ${DATABASE_NAME:-Douglas_Production}
+      MONGO_INITDB_ROOT_USERNAME: ${DATABASE_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+    healthcheck:
+      test: ['CMD-SHELL', 'mongosh --username $$DATABASE_USER --password $$DATABASE_PASSWORD --authenticationDatabase admin --eval "db.adminCommand(\"ping\")"']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: surf-dqt-backend
-    restart: unless-stopped
-    environment:
-      - NODE_ENV=production
-      - PORT=3458
-    ports:
-      - "3458:3458"
+    env_file:
+      - .env
+    depends_on:
+      mongodb:
+        condition: service_healthy
     networks:
       - app-network
+    healthcheck:
+      test: ['CMD', 'node', '-e', 'require("http").get("http://localhost:3458", (r) => process.exit(r.statusCode === 200 ? 0 : 1))']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: portfolio-frontend
-    restart: unless-stopped
-    ports:
-      - "127.0.0.1:8080:3457"
+    container_name: surf-dqt-frontend
+    env_file:
+      - .env
     depends_on:
       - backend
     networks:
@@ -31,3 +53,6 @@ services:
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  mongo-data:

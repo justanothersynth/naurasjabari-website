@@ -92,6 +92,30 @@ require('@App/SiteContent')
 require('@App/Result')
 require('@App/Auth')
 
+// ////////////////////////////////////////////////////////////// Initialize User
+// -----------------------------------------------------------------------------
+const initializeUser = async () => {
+  const email = process.env.SURF_USERNAME
+  const password = process.env.SURF_PWD
+
+  console.log(email, password)
+  
+  if (!email || !password) {
+    console.log('⚠️  [User Init] SURF_USERNAME or SURF_PWD not set, skipping user initialization')
+    return
+  }
+  
+  try {
+    const user = await MC.Model.User.find({ email })
+    if (!user || user.length === 0) {
+      await MC.Model.User.create({ email, password })
+      console.log(`✅ [User Init] Created new user: ${email}`)
+    }
+  } catch (error) {
+    console.error('❌ [User Init] Error initializing user:', error)
+  }
+}; initializeUser()
+
 // //////////////////////////////////////////////////////////// Useful Functions
 // -----------------------------------------------------------------------------
 // --------------------------------------------------------------- Hash password

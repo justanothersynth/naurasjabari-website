@@ -10,6 +10,10 @@ export default {
   // ---------------------------------------------------------- [Runtime] Public
   publicRuntimeConfig: {
     backendUrl: (function () {
+      // Allow environment variable to override (for Docker)
+      if (process.env.BACKEND_URL) {
+        return process.env.BACKEND_URL
+      }
       const env = process.env.SERVER_ENV
       let uri
       switch (env) {
@@ -20,6 +24,11 @@ export default {
       } return uri
     }()),
     csvUploadPath: (function () {
+      // Allow environment variable to override (for Docker)
+      const backendUrl = process.env.BACKEND_URL
+      if (backendUrl) {
+        return backendUrl + '/result-csv-upload'
+      }
       const env = process.env.NODE_ENV
       let uri
       switch (env) {
@@ -117,6 +126,10 @@ export default {
   void: {
     core: {
       backendUrl: (function () {
+        // Allow environment variable to override (for Docker)
+        if (process.env.BACKEND_URL) {
+          return process.env.BACKEND_URL
+        }
         const env = process.env.NODE_ENV
         let uri
         switch (env) {

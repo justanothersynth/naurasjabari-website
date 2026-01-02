@@ -20,6 +20,7 @@ export const actions = {
   // //////////////////////////////////////////////////////////// getSiteContent
   async getSiteContent ({ commit }, flatten = false) {
     try {
+      console.log('HIT', this.$config.backendUrl)
       const response = await this.$AxiosAuth.get(`${this.$config.backendUrl}/get-site-content?flatten=${flatten}`)
       const content = response.data.payload
       this.dispatch('admin/setSiteContent', content)
