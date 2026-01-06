@@ -148,7 +148,8 @@ const { data: contributionsData, error, isLoading } = useApiFetch<ContributionsD
 // Computed to check if there's an error
 const hasError = computed(() => error.value !== null)
 
-const selectedYear = ref<number>(new Date().getFullYear())
+// const selectedYear = ref<number>(new Date().getFullYear())
+const selectedYear = ref<number>(2025)
 
 const scrollContainerRef = ref<HTMLElement | null>(null)
 const isScrolledLeft = ref(true)
@@ -189,17 +190,18 @@ const checkScrollState = () => {
 watch(windowWidth, handleResize)
 
 /**
- * Dynamically generates an array of years from 2015 to current year + 1
+ * Dynamically generates an array of years from 2015 to current year, excluding specified years
  */
 const years = computed(() => {
+  const excludedYears = [2026]
   const currentYear = new Date().getFullYear()
   const startYear = 2015
-  const endYear = currentYear // Include next year for future data
+  const endYear = currentYear
   
   return Array.from(
     { length: endYear - startYear + 1 },
     (_, index) => (startYear + index)
-  )
+  ).filter(year => !excludedYears.includes(year))
 })
 
 /**

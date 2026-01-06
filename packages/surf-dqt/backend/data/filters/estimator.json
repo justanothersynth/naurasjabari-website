@@ -1,0 +1,373 @@
+{
+  "type": "checkboxes",
+  "match": "exact",
+  "key": "estimator",
+  "groups": [
+    {
+      "definitions": [
+        "hr",
+        "shr",
+        "chr"
+      ],
+      "description": "HR, SHR and CHR"
+    },
+    {
+      "definitions": [
+        "or",
+        "ror",
+        "cor"
+      ],
+      "description": "OR, ROR and COR"
+    },
+    {
+      "definitions": [
+        "smr"
+      ],
+      "description": "SMR"
+    },
+    {
+      "definitions": [
+        "rr"
+      ],
+      "description": "RR, IRR and Coefficient of Aggravation"
+    },
+    {
+      "definitions": [
+        "beta",
+        "urw",
+        "ie",
+        "de"
+      ],
+      "description": "Beta, Unstandardized Regression Weight, IE and DE"
+    },
+    {
+      "definitions": [
+        "r"
+      ],
+      "description": "R (Correlation coefficient)"
+    },
+    {
+      "definitions": [
+        "oes"
+      ],
+      "description": "Overall Effect Size"
+    },
+    {
+      "definitions": [
+        "ungrouped",
+        "smd",
+        "pe",
+        "coa",
+        "tr",
+        "mrr",
+        "pr",
+        "rd",
+        "spe",
+        "te",
+        "rer"
+      ],
+      "description": "The results below do not belong to any Estimator grouping"
+    }
+  ],
+  "definitions": {
+    "hr": {
+      "id": "hr",
+      "name": "Hazard Ratio",
+      "label": "HR",
+      "description": "The chance of an event occurring in the treatment arm : the chance of an event occurring in the control arm",
+      "matches": [
+        "hr",
+        "hazard ratio"
+      ]
+    },
+    "shr": {
+      "id": "shr",
+      "name": "Subhazard Ratio",
+      "label": "SHR",
+      "description": "The instantaneous rate of occurrence of the given type of event in subjects who have not yet experienced an event of that type",
+      "matches": [
+        "shr",
+        "subhazard ratio",
+        "sub hazard ratio",
+        "subhazard",
+        "sub hazard",
+        "subdistribution hazard",
+        "sub distribution hazard",
+        "sub distribution hazard ratio"
+      ]
+    },
+    "chr": {
+      "id": "chr",
+      "name": "Cause-specific Hazard Ratio",
+      "label": "CHR",
+      "description": "The relative change in the instantaneous rate of the occurrence of the primary event in subjects who are currently event?free",
+      "matches": [
+        "chr",
+        "cause-specific hazard ratio"
+      ]
+    },
+    "smr": {
+      "id": "smr",
+      "name": "Standardized Mortality Ratio",
+      "label": "SMR",
+      "description": "The ratio of observed deaths in the study group to expected deaths in the general population",
+      "matches": [
+        "smr",
+        "standardized mortality ratio",
+        "suicide related standardized mortality ratio",
+        "standardized mortality"
+      ]
+    },
+    "or": {
+      "id": "or",
+      "name": "Odds Ratio",
+      "label": "OR",
+      "description": "The odds that an outcome will occur given a particular exposure, compared to the odds of the outcome occurring in the absence of that exposure",
+      "matches": [
+        "or",
+        "orr",
+        "odds ratio",
+        "overall ratio",
+        "exp b",
+        "exp(b)",
+        "expb"
+      ]
+    },
+    "cor": {
+      "id": "cor",
+      "name": "Conditional Odds Ratio",
+      "label": "COR",
+      "description": "A measure of the odds ratio between two variables when a third variable is held at a fixed level",
+      "matches": [
+        "conditional odds ratio",
+        "cor"
+      ]
+    },
+    "rr": {
+      "id": "rr",
+      "name": "Risk Ratio",
+      "label": "RR",
+      "description": "The ratio of the probability of an outcome in an exposed group to the probability of an outcome in an unexposed group",
+      "matches": [
+        "rr",
+        "rrr",
+        "risk ratio",
+        "relative risk",
+        "relative rate",
+        "relative rate ratio",
+        "relative risk ratio",
+        "ir",
+        "irr",
+        "incidence risk",
+        "incidence risk rate",
+        "incidence risk ratio",
+        "coefficient of aggravation",
+        "aggravation coefficient"
+      ]
+    },
+    "pr": {
+      "id": "pr",
+      "name": "Prevalence Ratio",
+      "label": "PR",
+      "description": "A measure of risk that compares the prevalence of a disease in an exposed group to the prevalence in an unexposed group",
+      "matches": [
+        "pr",
+        "prevalence ratio (pr)"
+      ]
+    },
+    "mrr": {
+      "id": "mrr",
+      "name": "Mortality Rate Ratio",
+      "label": "MRR",
+      "description": "",
+      "matches": [
+        "mrr",
+        "mortality rate ratio"
+      ]
+    },
+    "tr": {
+      "id": "tr",
+      "name": "Time Ratio",
+      "label": "TR",
+      "description": "Estimate the relationship between nonfatal index self-harm episode characteristics and subsequent nonfatal self-harm and suicide",
+      "matches": [
+        "tr",
+        "time ratio"
+      ]
+    },
+    "ror": {
+      "id": "ror",
+      "name": "Ratio of Odds Ratios",
+      "label": "ROR",
+      "description": "",
+      "matches": [
+        "ror",
+        "ratio of odds ratios",
+        "ratio of odds ratio",
+        "ratio of odds",
+        "Ratio of odds ratios (ROR)"
+      ]
+    },
+    "beta": {
+      "id": "beta",
+      "name": "Beta",
+      "label": "Beta",
+      "description": "The standardized regression coefficient, which compares the strength of the effect of each individual independent variable to the dependent variable (the higher the absolute value of the beta coefficient, the stronger the effect)",
+      "matches": [
+        "b",
+        "B",
+        "beta",
+        "Beta",
+        "bc",
+        "beta coefficient",
+        "regression coefficient",
+        "stdb",
+        "std b",
+        "srw",
+        "src",
+        "standardized regression weight",
+        "standardized regression coefficient",
+        "standardized regression",
+        "standardized coefficient",
+        "standardized weight",
+        "Path coefficient",
+        "Path coefficients",
+        "Standardised pathway coefficient",
+        "Repeated-measure regression model estimate"
+      ]
+    },
+    "urw": {
+      "id": "urw",
+      "name": "Unstandardized Regression Weight",
+      "label": "URW",
+      "description": "The amount of change in a dependent variable Y due to a change of 1 unit of independent variable X",
+      "matches": [
+        "urw",
+        "unstandardized regression weight",
+        "unstandardized weight",
+        "unstandardized regression",
+        "urc",
+        "unstandardized regression coefficient",
+        "unstandardized coefficient",
+        "Unstandardized regression coefficient (B)"
+      ]
+    },
+    "r": {
+      "id": "r",
+      "name": "Correlation Coefficient",
+      "label": "R",
+      "description": "A statistical measure of the strength of the relationship between the relative movements of two variables",
+      "matches": [
+        "r",
+        "correlation coefficient",
+        "coefficient",
+        "cc",
+        "Parameter estimate"
+      ]
+    },
+    "coa": {
+      "id": "coa",
+      "name": "Coefficient of Aggravation",
+      "label": "COA",
+      "description": "A ratio of suicide rate among divorced to suicide rate among married groups",
+      "matches": [
+        "Coefficient of Aggravation"
+      ]
+    },
+    "oes": {
+      "id": "oes",
+      "name": "Overall Effect Size",
+      "label": "OES",
+      "description": "The mean difference between groups in standard score form (used in meta-analysis)",
+      "matches": [
+        "ose",
+        "oes",
+        "overall size effect",
+        "overall effect size",
+        "Cohen’s d",
+        "effect size",
+        "Effect"
+      ]
+    },
+    "ie": {
+      "id": "ie",
+      "name": "Indirect Effect Coefficient",
+      "label": "IE",
+      "description": "Measures the extent to which the dependent variable changes when the independent variable is held fixed and the mediator variable changes by the amount it would have changed had the independent variable increased by one unit (used in mediation analysis)",
+      "matches": [
+        "ie",
+        "indirect effect",
+        "indirect effect coefficient",
+        "indirect",
+        "Estimated Indirect Effect"
+      ]
+    },
+    "de": {
+      "id": "de",
+      "name": "Direct Effect Coefficient",
+      "label": "DE",
+      "description": "Measures the extent to which the dependent variable changes when the independent variable increases by one unit and the mediator variable remains unaltered (used in mediation analysis)",
+      "matches": [
+        "de",
+        "direct effect",
+        "direct effect coefficient",
+        "direct"
+      ]
+    },
+    "te": {
+      "id": "te",
+      "name": "Total Effect",
+      "label": "TE",
+      "description": "Measures how much two cases that differ by one unit on one variable are estimated to differ on the other variable (used in mediation analysis)",
+      "matches": [
+        "Total effect"
+      ]
+    },
+    "pe": {
+      "id": "pe",
+      "name": "Pooled Estimate",
+      "label": "PE",
+      "description": "A statistical estimate that combines information from multiple samples to estimate a common mean or variance",
+      "matches": [
+        "Pooled estimate"
+      ]
+    },
+    "smd": {
+      "id": "smd",
+      "name": "Standardized Mean Difference",
+      "label": "SMD",
+      "description": "A measure of the difference between the means of a variable in relation to its standard deviation",
+      "matches": [
+        "SMD",
+        "Standardized mean difference"
+      ]
+    },
+    "rd": {
+      "id": "rd",
+      "name": "Risk Difference",
+      "label": "RD",
+      "description": "A measure of the difference in risk between two groups, and is calculated by subtracting the risk in the unexposed group from the risk in the exposed group",
+      "matches": [
+        "RD"
+      ]
+    },
+    "spe": {
+      "id": "spe",
+      "name": "Standardized Point Estimate",
+      "label": "SPE",
+      "description": "A single value that's calculated from sample data to estimate an unknown population parameter",
+      "matches": [
+        "Standardized point estimate"
+      ]
+    },
+    "rer": {
+      "id": "rer",
+      "name": "Relative Excess Risk",
+      "label": "RER",
+      "description": "A measure of comparative risk that is used in epidemiology to show an increased amount of risk compared to a group without risk factors obtained by subtracting 1 from the relative risk",
+      "matches": [
+        "relative excess risk"
+      ]
+    }
+  }
+}

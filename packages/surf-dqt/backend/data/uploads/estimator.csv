@@ -1,0 +1,34 @@
+Type,Match,Description,Name,Label,Key
+group,hr|shr|chr,"HR, SHR and CHR",,,
+group,or|ror|cor,"OR, ROR and COR",,,
+group,smr,SMR,,,
+group,rr,"RR, IRR and Coefficient of Aggravation",,,
+group,beta|urw|ie|de,"Beta, Unstandardized Regression Weight, IE and DE",,,
+group,r,R (Correlation coefficient),,,
+group,oes,Overall Effect Size,,,
+group,ungrouped|smd|pe|coa|tr|mrr|pr|rd|spe|te|rer,The results below do not belong to any Estimator grouping,,,
+,,,,,
+definition,hr|hazard ratio,The chance of an event occurring in the treatment arm : the chance of an event occurring in the control arm,Hazard Ratio,HR,hr
+definition,shr|subhazard ratio|sub hazard ratio|subhazard|sub hazard|subdistribution hazard|sub distribution hazard|sub distribution hazard ratio,The instantaneous rate of occurrence of the given type of event in subjects who have not yet experienced an event of that type,Subhazard Ratio,SHR,shr
+definition,chr|cause-specific hazard ratio,The relative change in the instantaneous rate of the occurrence of the primary event in subjects who are currently event?free,Cause-specific Hazard Ratio,CHR,chr
+definition,smr|standardized mortality ratio|suicide related standardized mortality ratio|standardized mortality,The ratio of observed deaths in the study group to expected deaths in the general population,Standardized Mortality Ratio,SMR,smr
+definition,or|orr|odds ratio|overall ratio|exp b|exp(b)|expb,"The odds that an outcome will occur given a particular exposure, compared to the odds of the outcome occurring in the absence of that exposure",Odds Ratio,OR,or
+definition,conditional odds ratio|cor,A measure of the odds ratio between two variables when a third variable is held at a fixed level,Conditional Odds Ratio,COR,cor
+definition,rr|rrr|risk ratio|relative risk|relative rate|relative rate ratio|relative risk ratio|ir|irr|incidence risk|incidence risk rate|incidence risk ratio|coefficient of aggravation|aggravation coefficient,The ratio of the probability of an outcome in an exposed group to the probability of an outcome in an unexposed group,Risk Ratio,RR,rr
+definition,pr|prevalence ratio (pr),A measure of risk that compares the prevalence of a disease in an exposed group to the prevalence in an unexposed group,Prevalence Ratio,PR,pr
+definition,mrr|mortality rate ratio,,Mortality Rate Ratio,MRR,mrr
+definition,tr|time ratio,Estimate the relationship between nonfatal index self-harm episode characteristics and subsequent nonfatal self-harm and suicide,Time Ratio,TR,tr
+definition,ror|ratio of odds ratios|ratio of odds ratio|ratio of odds|Ratio of odds ratios (ROR),,Ratio of Odds Ratios,ROR,ror
+definition,b|B|beta|Beta|bc|beta coefficient|regression coefficient|stdb|std b|srw|src|standardized regression weight|standardized regression coefficient|standardized regression|standardized coefficient|standardized weight|Path coefficient|Path coefficients|Standardised pathway coefficient|Repeated-measure regression model estimate,"The standardized regression coefficient, which compares the strength of the effect of each individual independent variable to the dependent variable (the higher the absolute value of the beta coefficient, the stronger the effect)",Beta,Beta,beta
+definition,urw|unstandardized regression weight|unstandardized weight|unstandardized regression|urc|unstandardized regression coefficient|unstandardized coefficient|Unstandardized regression coefficient (B),The amount of change in a dependent variable Y due to a change of 1 unit of independent variable X,Unstandardized Regression Weight,URW,urw
+definition,r|correlation coefficient|coefficient|cc|Parameter estimate,A statistical measure of the strength of the relationship between the relative movements of two variables,Correlation Coefficient,R,r
+definition,Coefficient of Aggravation,A ratio of suicide rate among divorced to suicide rate among married groups,Coefficient of Aggravation,COA,coa
+definition,ose|oes|overall size effect|overall effect size|Cohen’s d|effect size|Effect,The mean difference between groups in standard score form (used in meta-analysis),Overall Effect Size,OES,oes
+definition,ie|indirect effect|indirect effect coefficient|indirect|Estimated Indirect Effect,Measures the extent to which the dependent variable changes when the independent variable is held fixed and the mediator variable changes by the amount it would have changed had the independent variable increased by one unit (used in mediation analysis),Indirect Effect Coefficient,IE,ie
+definition,de|direct effect|direct effect coefficient|direct,Measures the extent to which the dependent variable changes when the independent variable increases by one unit and the mediator variable remains unaltered (used in mediation analysis),Direct Effect Coefficient,DE,de
+definition,Total effect,Measures how much two cases that differ by one unit on one variable are estimated to differ on the other variable (used in mediation analysis),Total Effect,TE,te
+definition,Pooled estimate,A statistical estimate that combines information from multiple samples to estimate a common mean or variance,Pooled Estimate,PE,pe
+definition,SMD|Standardized mean difference,A measure of the difference between the means of a variable in relation to its standard deviation,Standardized Mean Difference,SMD,smd
+definition,RD,"A measure of the difference in risk between two groups, and is calculated by subtracting the risk in the unexposed group from the risk in the exposed group",Risk Difference,RD,rd
+definition,Standardized point estimate,A single value that's calculated from sample data to estimate an unknown population parameter,Standardized Point Estimate,SPE,spe
+definition,relative excess risk,A measure of comparative risk that is used in epidemiology to show an increased amount of risk compared to a group without risk factors obtained by subtracting 1 from the relative risk,Relative Excess Risk,RER,rer

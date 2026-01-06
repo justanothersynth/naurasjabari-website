@@ -1,0 +1,249 @@
+Key,Label,Primary,Secondary
+sc,Suicide Completion,SC (Suicide Completion),SC (Suicide Completion)
+sc,Suicide Completion,SC (Suicide Completion),SC
+sc,Suicide Completion,SC (Suicide Completion),Incident SC
+sc,Suicide Completion,SC (Suicide Completion),Prevalent SC
+sc,Suicide Completion,SC (Suicide Completion),SC at first year follow-up
+sc,Suicide Completion,SC (Suicide Completion),SC at 13 years follow-up
+sc,Suicide Completion,SC (Suicide Completion),Confirmed SC
+sc,Suicide Completion,SC (Suicide Completion),Firearm SC
+sc,Suicide Completion,SC (Suicide Completion),Nonfirearm SC
+sc,Suicide Completion,SC (Suicide Completion),Probable SC
+sc,Suicide Completion,SC (Suicide Completion),SC (repeated fatal self-harm)
+sc,Suicide Completion,SC (Suicide Completion),SC by firearm
+sc,Suicide Completion,SC (Suicide Completion),Suicidal drug overdose
+,,,
+sa,Suicide Attempt,SA (Suicide Attempt),SA
+sa,Suicide Attempt,SA (Suicide Attempt),First SA
+sa,Suicide Attempt,SA (Suicide Attempt),SA (continuous)
+sa,Suicide Attempt,SA (Suicide Attempt),Repeated SA
+sa,Suicide Attempt,SA (Suicide Attempt),SA (& suicide plans)
+sa,Suicide Attempt,SA (Suicide Attempt),SA using a violent method
+sa,Suicide Attempt,SA (Suicide Attempt),SA (continuous/dichotomous)
+sa,Suicide Attempt,SA (Suicide Attempt),SA (3 months after hospitalization)
+sa,Suicide Attempt,SA (Suicide Attempt),Actual SA
+sa,Suicide Attempt,SA (Suicide Attempt),Impulsive SA
+sa,Suicide Attempt,SA (Suicide Attempt),SA only
+sa,Suicide Attempt,SA (Suicide Attempt),SA (lifetime prevalence)
+sa,Suicide Attempt,SA (Suicide Attempt),SA (including SI report)
+sa,Suicide Attempt,SA (Suicide Attempt),SA (12-month prevalence)
+sa,Suicide Attempt,SA (Suicide Attempt),SA (12 months after hospitalization)
+sa,Suicide Attempt,SA (Suicide Attempt),Repeat SA
+sa,Suicide Attempt,SA (Suicide Attempt),Lifetime SA
+sa,Suicide Attempt,SA (Suicide Attempt),Current SA
+sa,Suicide Attempt,SA (Suicide Attempt),Number of SA
+sa,Suicide Attempt,SA (Suicide Attempt),Suicidal events (SA)
+sa,Suicide Attempt,SA (Suicide Attempt),Suicidal act
+sa,Suicide Attempt,SA (Suicide Attempt),Incident SA
+sa,Suicide Attempt,SA (Suicide Attempt),New SA
+sa,Suicide Attempt,SA (Suicide Attempt),Recurred SA
+sa,Suicide Attempt,SA (Suicide Attempt),Recurrent SA
+sa,Suicide Attempt,SA (Suicide Attempt),SA (only those requiring inpatient stay/most severe)
+sa,Suicide Attempt,SA (Suicide Attempt),Suicide reattempt
+sa,Suicide Attempt,SA (Suicide Attempt),Suicide re-attempt
+sa,Suicide Attempt,SA (Suicide Attempt),Less lethal suicide-related events (SA)
+,,,
+si,Suicide Ideation,SI (Suicide Ideation),SI
+si,Suicide Ideation,SI (Suicide Ideation),New onset SI
+si,Suicide Ideation,SI (Suicide Ideation),First-onset SI
+si,Suicide Ideation,SI (Suicide Ideation),SI at T2
+si,Suicide Ideation,SI (Suicide Ideation),Recurrent SI
+si,Suicide Ideation,SI (Suicide Ideation),Passive SI
+si,Suicide Ideation,SI (Suicide Ideation),Late report of SI
+si,Suicide Ideation,SI (Suicide Ideation),Active SI
+si,Suicide Ideation,SI (Suicide Ideation),SI at 3 month follow-up
+si,Suicide Ideation,SI (Suicide Ideation),SI at 6 months follow-up
+si,Suicide Ideation,SI (Suicide Ideation),SI at 12 months follow-up
+si,Suicide Ideation,SI (Suicide Ideation),SI (Trajectory: Subclinical ideation)
+si,Suicide Ideation,SI (Suicide Ideation),SI (Trajectory: Elevated and fast declining)
+si,Suicide Ideation,SI (Suicide Ideation),SI (Trajectory: Chronically elevated)
+si,Suicide Ideation,SI (Suicide Ideation),SI (lifetime prevalence)
+si,Suicide Ideation,SI (Suicide Ideation),SI (Beck Scale for Suicide Ideation score at 6 months follow-up)
+si,Suicide Ideation,SI (Suicide Ideation),SI (Beck Scale for Suicide Ideation score at 12 months follow-up)
+si,Suicide Ideation,SI (Suicide Ideation),SI (2007)
+si,Suicide Ideation,SI (Suicide Ideation),SI (2003)
+si,Suicide Ideation,SI (Suicide Ideation),SI (12-month prevalence)
+si,Suicide Ideation,SI (Suicide Ideation),SI - Narrow (lifetime prevalence)
+si,Suicide Ideation,SI (Suicide Ideation),SI - Narrow (12-month prevalence)
+si,Suicide Ideation,SI (Suicide Ideation),SI - Broad (lifetime prevalence)
+si,Suicide Ideation,SI (Suicide Ideation),SI - Broad (12-month prevalence)
+si,Suicide Ideation,SI (Suicide Ideation),SI (0-32 weeks postpartum)
+si,Suicide Ideation,SI (Suicide Ideation),SI (32 weeks postpartum)
+si,Suicide Ideation,SI (Suicide Ideation),SI (8 weeks postpartum)
+si,Suicide Ideation,SI (Suicide Ideation),SI remission
+si,Suicide Ideation,SI (Suicide Ideation),SI at 6 month follow-up
+si,Suicide Ideation,SI (Suicide Ideation),Persistent/ recurrent SI
+si,Suicide Ideation,SI (Suicide Ideation),Incident SI
+si,Suicide Ideation,SI (Suicide Ideation),Recurrent reporting of SI
+si,Suicide Ideation,SI (Suicide Ideation),Lifetime SI
+si,Suicide Ideation,SI (Suicide Ideation),Current SI
+si,Suicide Ideation,SI (Suicide Ideation),Change in level of SI
+si,Suicide Ideation,SI (Suicide Ideation),Change in SI
+si,Suicide Ideation,SI (Suicide Ideation),Change in SI from 6 to 24 months
+si,Suicide Ideation,SI (Suicide Ideation),Change in SI from baseline to 6 months
+si,Suicide Ideation,SI (Suicide Ideation),Chronic SI
+si,Suicide Ideation,SI (Suicide Ideation),Chronicity SI
+si,Suicide Ideation,SI (Suicide Ideation),Next-day SI duration
+si,Suicide Ideation,SI (Suicide Ideation),Next-day SI frequency
+si,Suicide Ideation,SI (Suicide Ideation),Next-day SI urge
+si,Suicide Ideation,SI (Suicide Ideation),Occurrent SI
+si,Suicide Ideation,SI (Suicide Ideation),Passive death wish
+si,Suicide Ideation,SI (Suicide Ideation),Persistent SI
+si,Suicide Ideation,SI (Suicide Ideation),Recurred SI
+si,Suicide Ideation,SI (Suicide Ideation),Repeat SI
+si,Suicide Ideation,SI (Suicide Ideation),Same-day SI duration
+si,Suicide Ideation,SI (Suicide Ideation),Same-day SI frequency
+si,Suicide Ideation,SI (Suicide Ideation),Same-day SI urge
+si,Suicide Ideation,SI (Suicide Ideation),Self-harm thoughts
+si,Suicide Ideation,SI (Suicide Ideation),Severity SI
+si,Suicide Ideation,SI (Suicide Ideation),SI intensity
+si,Suicide Ideation,SI (Suicide Ideation),SI recurrence
+si,Suicide Ideation,SI (Suicide Ideation),SI severity
+si,Suicide Ideation,SI (Suicide Ideation),SI trajectory
+si,Suicide Ideation,SI (Suicide Ideation),SI trajectory (moderate-decreasing-increasing)
+si,Suicide Ideation,SI (Suicide Ideation),Suicidal wishing without intent
+si,Suicide Ideation,SI (Suicide Ideation),Suicidal/ self-harm ideation
+si,Suicide Ideation,SI (Suicide Ideation),Thoughts of self-harm (TSH)
+si,Suicide Ideation,SI (Suicide Ideation),Suicide urges
+si,Suicide Ideation,SI (Suicide Ideation),Suicide intent
+si,Suicide Ideation,SI (Suicide Ideation),Suicidal intent
+si,Suicide Ideation,SI (Suicide Ideation),Rrecurrent SI
+,,,
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),SH
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),DSH
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Deliberate self-harm (DSH)
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Repeat DSH
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Incident DSH
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Presentation to the ED for DSH
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),DSH (ICD-codes X60-X84 and Y10-Y34)
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),DSH (ICD-codes X60-X84)
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),DSH during 0-1 year of follow-up
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),DSH anytime during follow-up
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),DSH after 1 year of follow-up
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),DSH (with suicidal intent)
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Persistent DSH
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Repeated SH
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),SH at year 2 follow-up
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),SH at year 1 follow-up
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),SH by poisoning
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Self-harm attempt
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Self-harm
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),SH (without suicidal intent)
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Repeat SH
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Self-injurious behaviour
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Self-injurious behavior
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Self-injurious behaviors
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Self-injury
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),SIB (self-injurious behaviour)
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),SH (with suicidal intent)
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Direct self-injurious behaviour maintenance
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Direct self-injurious behaviour cessation
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Repeated non-fatal self-harm
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Repeating SH
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Repetition of SH
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Severe SH
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Repetitive DSH
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Self-harm behaviours
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Self-harm repetition
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),SH repetition
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Self-directed violence
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Suicidal act
+dsh,Self Harm,DSH (DSH) & SH (Self Harm),Suicidal acts
+,,,
+sasc,Both Attempt & Completion,SA/SC (Both),SA/SC (Both)
+sasc,Both Attempt & Completion,SA/SC (Both),sa/sc
+sasc,Both Attempt & Completion,SA/SC (Both),Fatal and near-fatal attempts (SC/SA)
+sasc,Both Attempt & Completion,SA/SC (Both),SC/SA
+sasc,Both Attempt & Completion,SA/SC (Both),SA/SC
+sasc,Both Attempt & Completion,SA/SC (Both),Suicidal behaviour (SA and SC)
+sasc,Both Attempt & Completion,SA/SC (Both),Suicidal behaviour (SC/SA)
+sasc,Both Attempt & Completion,SA/SC (Both),Suicide event
+,,,
+shsc,Both Self Harm & Completion,SH/SC (Both),Severe SH/SC
+shsc,Both Self Harm & Completion,SH/SC (Both),SH/SC
+shsc,Both Self Harm & Completion,SH/SC (Both),"SC, DSH"
+,,,
+sish,Both Suicidal Ideation & Self Harm,SI/SH (Both),SH/SI
+sish,Both Suicidal Ideation & Self Harm,SI/SH (Both),SI or self-harm
+sish,Both Suicidal Ideation & Self Harm,SI/SH (Both),SI or SH
+,,,
+sisa,Suicidality,Suicidality (SI and SA),Suicidality
+sisa,Suicidality,Suicidality (SI and SA),Suicidality (SI and SA)
+sisa,Suicidality,Suicidality (SI and SA),Suicidality (need to check definiton in papers)
+sisa,Suicidality,Suicidality (SI and SA),Suicide risk (SI/Suicide plan/SA)
+sisa,Suicidality,Suicidality (SI and SA),"Suicide risk (suicidal behaviors, including ideation and self-harm)"
+sisa,Suicidality,Suicidality (SI and SA),Suicide risk
+sisa,Suicidality,Suicidality (SI and SA),Perinatal suicidality
+sisa,Suicidality,Suicidality (SI and SA),Recurred SI and SA
+sisa,Suicidality,Suicidality (SI and SA),SA/SI
+sisa,Suicidality,Suicidality (SI and SA),SI or SA
+sisa,Suicidality,Suicidality (SI and SA),"SI, SA"
+sisa,Suicidality,Suicidality (SI and SA),SI/SA
+sisa,Suicidality,Suicidality (SI and SA),"SI, SP, SA"
+sisa,Suicidality,Suicidality (SI and SA),SI/SP/SA
+sisa,Suicidality,Suicidality (SI and SA),"Suicidality (SA, SI)"
+sisa,Suicidality,Suicidality (SI and SA),Suicidality (Suicidal thinking and self-reported attempts)
+sisa,Suicidality,Suicidality (SI and SA),Combination of suicidal thoughts and SA
+sisa,Suicidality,Suicidality (SI and SA),Suicidal thoughts and SA
+sisa,Suicidality,Suicidality (SI and SA),Suicide-related outcomes
+sisa,Suicidality,Suicidality (SI and SA),"Suicidality (Death wishes, SI, suicidal plans, SA)"
+sisa,Suicidality,Suicidality (SI and SA),"Suicidality (SA, SI, SB)"
+sisa,Suicidality,Suicidality (SI and SA),Suicidality/self-injury
+,,,
+stb,Suicidal Thoughts and Behaviour,STB (Suicidal Thoughts and Behaviour),STB
+stb,Suicidal Thoughts and Behaviour,STB (Suicidal Thoughts and Behaviour),Suicidal thoughts and behaviour
+stb,Suicidal Thoughts and Behaviour,STB (Suicidal Thoughts and Behaviour),Suicidal Thoughts and Behaviors (STB)
+stb,Suicidal Thoughts and Behaviour,STB (Suicidal Thoughts and Behaviour),Suicidal thoughts and behaviours
+stb,Suicidal Thoughts and Behaviour,STB (Suicidal Thoughts and Behaviour),Self-harm thoughts and behaviours
+,,,
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",SB
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",SB (suicidal behaviour)
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)","Suicidal behaviour (SI, SA, SC)"
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Suicidal Behaviour
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",SI/SA/SC
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)","SC, SA, SI"
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Any type of suicidal behaviour
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)","SI, SA, SC"
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",SI/SB
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Suicidal behaviors (SB)
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Suicidal behavior
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Suicidal behaviour
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Self-harm or suicidal behavior
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)","Suicidal behaviour (SI, SA, SC)"
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Suicidal behaviour-related hospital visit
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Suicide related behaviour
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Suicide related behaviour before 13 years
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Suicide related behaviour between 13-21 years
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Suicide-related behavior (SRB)
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)","Suicidal behaviour (SI, suicidal plans, SA)"
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Suicidal ideation and behavior
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Suicidal ideation and/or behaviour (SIB)
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Suicidal ideation/behavior
+sisasc,Suicidal Behaviour,"Suicidal behaviour (SI, SA, SC)",Suicide ideation/behaviours
+,,,
+st,Suicidal Thoughts,ST (Suicidal Thoughts),ST
+st,Suicidal Thoughts,ST (Suicidal Thoughts),ST (suicidal thoughts)
+st,Suicidal Thoughts,ST (Suicidal Thoughts),Suicidal thought
+st,Suicidal Thoughts,ST (Suicidal Thoughts),Suicidal thoughts
+st,Suicidal Thoughts,ST (Suicidal Thoughts),Suicidal thoughts (ST)
+st,Suicidal Thoughts,ST (Suicidal Thoughts),Suicidal thoughts (with suicide plan)
+st,Suicidal Thoughts,ST (Suicidal Thoughts),Suicidal thoughts (without suicide plan)
+st,Suicidal Thoughts,ST (Suicidal Thoughts),Suicide thoughts
+st,Suicidal Thoughts,ST (Suicidal Thoughts),Suicide-related thoughts (SRT)
+st,Suicidal Thoughts,ST (Suicidal Thoughts),Incident suicide-related thoughts (SRT)
+st,Suicidal Thoughts,ST (Suicidal Thoughts),Persistent ST
+st,Suicidal Thoughts,ST (Suicidal Thoughts),Recurrent suicide-related thoughts (SRT)
+,,,
+sp,Suicidal Plan,SP (Suicidal Plan),SP
+sp,Suicidal Plan,SP (Suicidal Plan),Suicidal plan
+sp,Suicidal Plan,SP (Suicidal Plan),Suicidal planning
+sp,Suicidal Plan,SP (Suicidal Plan),Suicidal planning with intent
+sp,Suicidal Plan,SP (Suicidal Plan),Suicidal plans
+sp,Suicidal Plan,SP (Suicidal Plan),Suicidal plans (SP)
+sp,Suicidal Plan,SP (Suicidal Plan),Suicide plan
+sp,Suicidal Plan,SP (Suicidal Plan),Suicide plan(s) (lifetime prevalence)
+sp,Suicidal Plan,SP (Suicidal Plan),Suicide planning
+,,,
+shsasi,Non-Fatal Suicidal Events,Non-Fatal Suicidal Events (SH/SA/SI),Non-fatal suicidal events (SH/SA/SI)
+,,,
+postDeath,Post-death,Reasons for dying at 6 months follow-up,

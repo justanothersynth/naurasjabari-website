@@ -1,0 +1,183 @@
+[
+  {
+    "id": "section_1",
+    "type": "group",
+    "label": "Section 1",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_1_image",
+        "type": "image",
+        "label": "Image",
+        "description": "",
+        "value": "about-section-1-image.png"
+      }
+    ]
+  },
+  {
+    "id": "section_2",
+    "type": "group",
+    "label": "Section 2",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_2_image",
+        "type": "image",
+        "label": "Image",
+        "description": "",
+        "value": "about-section-2-image.jpeg"
+      },
+      {
+        "id": "section_2_label",
+        "type": "text",
+        "label": "Label",
+        "description": "",
+        "value": "About the Team"
+      },
+      {
+        "id": "section_2_name",
+        "type": "text",
+        "label": "Name and denomination",
+        "description": "",
+        "value": "Stéphane Richard-Devantoy, MD, PhD"
+      },
+      {
+        "id": "section_2_description",
+        "type": "wysiwyg",
+        "label": "Description",
+        "description": "",
+        "value": "<p>Stéphane Richard-Devantoy, MD, PhD, conducts studies to better understand the characteristics of elderly depressed suicide attempters, focusing on neuropsychological and functional neuroimaging. He obtained a PhD in neuropsychology and completed postdoctoral fellowship training in neuroimaging of suicidal behaviour at the McGill Group for Suicide Studies.</p><p>He is currently a psychiatrist in the Depressive Disorders Program at the Douglas Mental Health University Institute and in Department of Psychiatry at St-Jerôme Hospital. The general objective of his current research is to improve our understanding of cognitive control mechanisms involved in elderly suicidal processes. This preliminary step is crucial to define stronger predictive markers and more effective prevention strategies for late-life suicide.</p>"
+      },
+      {
+        "id": "section_2_subtext",
+        "type": "wysiwyg",
+        "label": "Subtext",
+        "description": "",
+        "value": "<p><strong>Expertise</strong>: Elderly Suicide, Depressive Disorders, Cognitive Control, Neuropsychology, Cerebral Neuroimaging</p>"
+      }
+    ]
+  },
+  {
+    "id": "section_3",
+    "type": "group",
+    "label": "Section 3",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_3_image",
+        "type": "image",
+        "label": "Image",
+        "description": "",
+        "value": "about-section-3-image.jpeg"
+      },
+      {
+        "id": "section_3_name",
+        "type": "text",
+        "label": "Name and denomination",
+        "description": "",
+        "value": "Charles-Edouard Notredame, MD, PhD"
+      },
+      {
+        "id": "section_3_description",
+        "type": "wysiwyg",
+        "label": "Description",
+        "description": "",
+        "value": "<p>Is a psychiatrist in the Child and Adolescent Department of the Lille University Hospital, France. He is particularly interested in the specific determinants of youth suicidal behaviors and related prevention strategies. He refers to developmental approaches to study adversity trajectories and suicide-related risk factors.</p><p>He is the Deputy National Coordinator of the 3114, French National Helpline for Suicide Prevention. Responsible for the evaluation of the Papageno program (www.papageno-suicide.com), he also focuses on the mechanisms, consequences and prevention of suicide contagion, especially in adolescents. He is member of the Lille Center for Neuroscience et Cognition Research, INSERM U1172, Lille University, France, the Groupement d’étude et de Prévention du Suicide (Geps), France, and of the Réseau Québecois sur les Troubles de l’Humeur, le Suicide et les troubles Associés (RQHSA), QC, Canada.</p>"
+      },
+      {
+        "id": "section_3_subtext",
+        "type": "wysiwyg",
+        "label": "Subtext",
+        "description": "",
+        "value": "<p><strong>Expertise</strong>: youth suicidal behaviours, suicide contagion, life trajectories, adolescent development</p><p></p>"
+      }
+    ]
+  },
+  {
+    "id": "section_4",
+    "type": "group",
+    "label": "Section 4",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_4_image",
+        "type": "image",
+        "label": "Image",
+        "description": "",
+        "value": "about-section-4-image.jpeg"
+      },
+      {
+        "id": "section_4_name",
+        "type": "text",
+        "label": "Name and denomination",
+        "description": "",
+        "value": "Madison Ford, RA"
+      },
+      {
+        "id": "section_4_description",
+        "type": "wysiwyg",
+        "label": "Description",
+        "description": "",
+        "value": "<p>Madison Ford is a Research Assistant at the McGill Group for Suicide Studies and a Research Coordinator in the Justice and Equity Research Program at the MAP Centre for Urban Health Solutions, St. Michael’s Hospital. She holds a Bachelor of Science from Queen’s University and a Master’s of Public Health from Lund University.</p>"
+      }
+    ]
+  },
+  {
+    "id": "section_5",
+    "type": "group",
+    "label": "Section 5",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_5_image",
+        "type": "image",
+        "label": "Image",
+        "description": "",
+        "value": "about-section-5-image.jpeg"
+      },
+      {
+        "id": "section_5_name",
+        "type": "text",
+        "label": "Name and denomination",
+        "description": "",
+        "value": "Jillian Adams, RA"
+      },
+      {
+        "id": "section_5_description",
+        "type": "wysiwyg",
+        "label": "Description",
+        "description": "",
+        "value": "<p>Originally from Halifax, Nova Scotia, Jill worked as a Research Assistant for the McGill Group for Suicide Studies while completing her MScPH at McGill University.</p>"
+      }
+    ]
+  },
+  {
+    "id": "section_6",
+    "type": "group",
+    "label": "Section 6",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_6_label",
+        "type": "text",
+        "label": "Label",
+        "description": "",
+        "value": "About the Project"
+      },
+      {
+        "id": "section_6_heading",
+        "type": "text",
+        "label": "Heading",
+        "description": "",
+        "value": "Since the World Health Organization’s call for improved suicide prevention efforts, the dynamics of global suicide rates remain a cause for concern."
+      },
+      {
+        "id": "section_6_description",
+        "type": "wysiwyg",
+        "label": "Description",
+        "description": "",
+        "value": "<p>Each year, about 800,000 people die by suicide worldwide. However, it is well established that a combination of individual and population integrated interventions can prevent suicidal behaviours.</p><p>From a clinical perspective, providing appropriate medical and psychosocial responses to those at risk of self-harm is recognized as one of the most effective actions. However, such epidemiologically-sound, common-sense approaches are not necessarily straightforward to apply in clinical practice. To adapt their interventions, professionals are required to adequately evaluate the level of suicide risk. This evaluation requires probabilistic reasoning that integrates multiple, multi-level, contextualized parameters into a single overall assessment suitable for decision-making. To carry out this complicated but crucial task, one could refer to evidenced-based practices that propose to integrate “individual clinical expertise with the best available external clinical evidence from systematic research”.</p><p>From a public health perspective, the matching between needs and interventions is a crucial condition for an efficient prevention strategy. As a consequence, policy makers and experts need robust criteria to determine the relevant populations to target and tailor the deployment of actions to the characteristics of these populations. Identifying the most at risk individuals is particularly important in developing efficient selective policies.</p><p>To face these challenges, both clinicians and policy makers need to rely on high quality evidence. In the field of suicidology, this comes from a considerable amount of studies that have tested the association between suicide-related outcomes and specific psychopathological, sociodemographic or environmental conditions, referred to as risk factors. However, analysis of this wealth of data is difficult due to the heterogeneity of study design and quality. To help clinicians and policy makers we have created the SURF data query application. </p><p>Finally, the SURF is intended to help researchers to quickly access the most up to date general or specific knowledge about suicide-related risk factors. With the application, it is easier and more convenient to build an evidence-based argument and refine research questions. </p>"
+      }
+    ]
+  }
+]
