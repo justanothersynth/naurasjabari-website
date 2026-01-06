@@ -16,12 +16,8 @@
         <span class="relative flex items-center">
           <span
             class="w-3 h-3 rounded-full animate-ping [animation-duration:1.5s] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            :class="statusColour">
-          </span>
-          <span
-            class="w-2.5 h-2.5 rounded-full"
-            :class="statusColour">
-          </span>
+            :class="statusColour" />
+          <span class="w-2.5 h-2.5 rounded-full" :class="statusColour" />
         </span>
         <a
           :href="link"
@@ -76,7 +72,6 @@ type Props = {
 const props = defineProps<Props>()
 
 const cn = useCn
-// const componentType = computed(() => props.link ? 'a' : 'div')
 
 const statusColour = computed(() => {
   return props.status === 'live' ? 'bg-[#40c463]/75' : 'bg-orange-400'

@@ -1,19 +1,17 @@
 <template>
-  <section class="container mt-12">
-    <div class="grid grid-cols-1 mini:grid-cols-2 small:grid-cols-3 gap-12 mini:gap-x-6 mini:gap-y-12">
+  <div class="grid grid-cols-1 mini:grid-cols-2 small:grid-cols-3 gap-12 mini:gap-x-6 mini:gap-y-12">
 
-      <WorksEntry
-        v-for="work in works"
-        :key="work.id"
-        :title="work.title"
-        :description="work.description"
-        :image="work.image"
-        :link="work.link"
-        :status="work.status"
-        :tags="work.tags" />
+    <WorksEntry
+      v-for="work in works"
+      :key="work.id"
+      :title="work.title"
+      :description="work.description"
+      :image="work.image"
+      :link="work.link"
+      :status="work.status"
+      :tags="work.tags" />
 
-    </div>
-  </section>
+  </div>
 </template>
 
 <script setup lang="ts">
