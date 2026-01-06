@@ -29,8 +29,9 @@ services:
     restart: unless-stopped
 
   frontend:
+    ports:
+      - 127.0.0.1:3457:3457
     environment:
       # Override backend URL for Docker internal network
       - BACKEND_URL=https://localhost:3458
-    # No exposed ports - behind nginx reverse proxy
     restart: unless-stopped
