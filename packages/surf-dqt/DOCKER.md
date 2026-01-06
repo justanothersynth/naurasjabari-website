@@ -92,31 +92,38 @@ docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 Add this to your existing nginx configuration on the host:
 
 ```nginx
+upstream naurasjabari_surfdqt_frontend_proxy {
+  server 127.0.0.1:3457;
+}
+
+upstream naurasjabari_surfdqt_backend_proxy {
+  server 127.0.0.1:3458;
+}
+
 # Frontend
-location / {
-    proxy_pass http://localhost:3457;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-    proxy_set_header X-Real-IP $remote_addr;
+location /surf-dqt/ {
+    proxy_pass http://naurasjabari_surfdqt_frontend_proxy/;
+    proxy_set_header Host $server_name;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-Forwarded-Port 443;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
+
+    proxy_redirect off;
 }
 
 # Backend API
-location /api {
-    rewrite ^/api/(.*) /$1 break;
-    proxy_pass http://localhost:3458;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
+location /surf-dqt/api/ {
+  proxy_pass http://naurasjabari_surfdqt_backend_proxy/;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-Proto $scheme;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_connect_timeout 300;
+  port_in_redirect off;
+  proxy_http_version 1.1;
+  proxy_set_header Upgrade $http_upgrade;
+  proxy_set_header Connection "upgrade";
+  client_max_body_size 100M;
 }
 ```
 
