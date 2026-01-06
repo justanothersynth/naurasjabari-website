@@ -25,16 +25,16 @@ module.exports = {
     const env = process.env.SERVER_ENV
     let uri = 'https://localhost:3457' // development
     switch (env) {
-      case 'stable': uri = 'https://surf-dataquery.com'; break
-      case 'production': uri = 'https://surf-dataquery.com'; break
+      case 'stable': uri = 'https://works.naurasjabari.com/surf-dqt'; break
+      case 'production': uri = 'https://works.naurasjabari.com/surf-dqt'; break
     } return uri
   }()),
   backendUrl: (function () {
     const env = process.env.SERVER_ENV
     let uri = 'https://localhost:3458' // development
     switch (env) {
-      case 'stable': uri = 'https://surf-dataquery.com/api'; break
-      case 'production': uri = 'https://surf-dataquery.com/api'; break
+      case 'stable': uri = 'https://works.naurasjabari.com/surf-dqt/api'; break
+      case 'production': uri = 'https://works.naurasjabari.com/surf-dqt/api'; break
     } return uri
   }()),
   Jwt: false,
@@ -69,7 +69,8 @@ module.exports = {
     origin: [
       'http://localhost:3457',
       'https://localhost:3457',
-      'http://frontend:3457'
+      'http://frontend:3457',
+      'https://works.naurasjabari.com'
     ],
     methods: 'OPTIONS,GET,POST',
     allowedHeaders: 'Origin,Accept,Authorization,X-Requested-With,Content-Type,Cache-Control',

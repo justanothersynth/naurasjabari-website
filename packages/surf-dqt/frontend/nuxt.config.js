@@ -18,8 +18,8 @@ export default {
       let uri
       switch (env) {
         case 'development': uri = 'https://localhost:3458'; break
-        case 'staging': uri = 'https://surf-dataquery.com/api'; break
-        case 'production': uri = 'https://surf-dataquery.com/api'; break
+        case 'staging': uri = 'https://works.naurasjabari.com/surf-dqt/api'; break
+        case 'production': uri = 'https://works.naurasjabari.com/surf-dqt/api'; break
         default : uri = 'https://localhost:3458'; break
       } return uri
     }()),
@@ -33,8 +33,8 @@ export default {
       let uri
       switch (env) {
         case 'development': uri = 'https://localhost:3458/result-csv-upload'; break
-        case 'staging': uri = 'https://surf-dataquery.com/api/result-csv-upload'; break
-        case 'production': uri = 'https://surf-dataquery.com/api/result-csv-upload'; break
+        case 'staging': uri = 'https://works.naurasjabari.com/surf-dqt/api/result-csv-upload'; break
+        case 'production': uri = 'https://works.naurasjabari.com/surf-dqt/api/result-csv-upload'; break
         default : uri = 'https://localhost:3458/result-csv-upload'; break
       } return uri
     }())
@@ -97,6 +97,7 @@ export default {
   // /////////////////////////////////////////////////////// Router + Middleware
   // ---------------------------------------------------------------------------
   router: {
+    base: '/surf-dqt/',
     middleware: ['auth']
   },
   // //////////////////////////////////////////////// Axios module configuration
@@ -134,8 +135,8 @@ export default {
         let uri
         switch (env) {
           case 'development': uri = 'https://localhost:3458'; break
-          case 'staging': uri = 'https://surf-dataquery.com/api'; break
-          case 'production': uri = 'https://surf-dataquery.com/api'; break
+          case 'staging': uri = 'https://works.naurasjabari.com/surf-dqt/api'; break
+          case 'production': uri = 'https://works.naurasjabari.com/surf-dqt/api'; break
           default : uri = 'https://localhost:3458'; break
         } return uri
       }())
@@ -146,8 +147,8 @@ export default {
     //     let uri
     //     switch (env) {
     //       case 'development': uri = 'https://localhost:3458/graphql'; break
-    //       case 'staging': uri = 'https://surf-dataquery.com/api/graphql'; break
-    //       case 'production': uri = 'https://surf-dataquery.com/api/graphql'; break
+    //       case 'staging': uri = 'https://works.naurasjabari.com/surf-dqt/api/graphql'; break
+    //       case 'production': uri = 'https://works.naurasjabari.com/surf-dqt/api/graphql'; break
     //       default : uri = 'https://localhost:3458/graphql'; break
     //     } return uri
     //   }())
@@ -193,8 +194,8 @@ export default {
     //       let uri
     //       switch (env) {
     //         case 'development': uri = 'https://localhost:3458/result/csv-upload'; break
-    //         case 'staging': uri = 'https://surf-dataquery.com/api/result/csv-upload'; break
-    //         case 'production': uri = 'https://surf-dataquery.com/api/result/csv-upload'; break
+    //         case 'staging': uri = 'https://works.naurasjabari.com/surf-dqt/api/result/csv-upload'; break
+    //         case 'production': uri = 'https://works.naurasjabari.com/surf-dqt/api/result/csv-upload'; break
     //         default : uri = 'https://localhost:3458/result/csv-upload'; break
     //       } return uri
     //     }())
@@ -209,8 +210,8 @@ export default {
     //       let uri
     //       switch (env) {
     //         case 'development': uri = 'https://localhost:3458/media/upload'; break
-    //         case 'staging': uri = 'https://surf-dataquery.com/api/media/upload'; break
-    //         case 'production': uri = 'https://surf-dataquery.com/api/media/upload'; break
+    //         case 'staging': uri = 'https://works.naurasjabari.com/surf-dqt/api/media/upload'; break
+    //         case 'production': uri = 'https://works.naurasjabari.com/surf-dqt/api/media/upload'; break
     //         default : uri = 'https://localhost:3458/media/upload'; break
     //       } return uri
     //     }())
