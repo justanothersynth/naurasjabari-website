@@ -9,7 +9,7 @@ EXPRESS
 - Change MC.frontendUrl
 - Re-enable secure flag on cookie
 
-# Douglas Suicide Data Visualization VueJS Frontend
+# Surf DQT Suicide Data Visualization VueJS Frontend
 
 // ----------------------------------------------------------------------- TO DO
 // =============================================================================
@@ -55,8 +55,8 @@ EXPRESS
 - Look into ApolloClient caching
 
 ### Server
-pm2 start npm --name "douglas-frontend" -- start
-pm2 start app.js --name "douglas-backend"
+pm2 start npm --name "surfdqt-frontend" -- start
+pm2 start app.js --name "surfdqt-backend"
 - https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-18-04
 
 // ------------------------------------------------------------------- Resources

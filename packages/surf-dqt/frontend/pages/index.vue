@@ -47,7 +47,7 @@ import Spinner from '@/components/Spinner'
 
 // =================================================================== Functions
 /*
-  cookie name = 'douglas__visited'
+  cookie name = 'surfdqt__visited'
   visited once = 1
   visited twice = 2
 */

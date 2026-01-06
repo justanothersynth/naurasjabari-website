@@ -1,7 +1,7 @@
 {
-  "name": "douglas-nuxt",
+  "name": "surf-dqt-nuxt",
   "version": "1.0.0",
-  "description": "Douglas",
+  "description": "Surf DQT",
   "author": {
     "name": "Nauras Jabari",
     "email": "nauras@agencyundone.com"
@@ -12,7 +12,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "launch": "nuxt build && pm2 restart douglas-fe",
+    "launch": "nuxt build && pm2 restart surfdqt-fe",
     "analyze": "nuxt build --analyze",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },

@@ -44,7 +44,7 @@ export default {
   // /////////////////////////////////////////////////////// Headers of the Page
   // ---------------------------------------------------------------------------
   head: {
-    title: 'Douglas',
+    title: 'Surf DQT',
     description: '#1 source for suicide data.',
     meta: [
       { charset: 'utf-8' },
