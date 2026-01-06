@@ -55,7 +55,7 @@ const works: Work[] = [
   {
     id: 'labur',
     title: 'Labur',
-    description: 'Angular application seamlessly integrated into a highly bespoke Wordpress website',
+    description: 'Seamless integration of Angular application into a bespoke Wordpress website build',
     image: '/images/works/labur.jpg',
     link: 'https://labur.com',
     status: 'live',
