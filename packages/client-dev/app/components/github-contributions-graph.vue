@@ -193,7 +193,7 @@ watch(windowWidth, handleResize)
  * Dynamically generates an array of years from 2015 to current year, excluding specified years
  */
 const years = computed(() => {
-  const excludedYears = [2018, 2026]
+  const excludedYears = [2026]
   const currentYear = new Date().getFullYear()
   const startYear = 2015
   const endYear = currentYear
