@@ -13,11 +13,11 @@
         A full-stack software engineer with 10+ years of experience. My specialty lies in prototype development, AI engineering, complex UI implementation and systems integration inside the javascript ecosystem.
       </p>
       <p class="small:text-base">
-        Most of my time has been spent as a Lead Engineer in team-based settings, with substantial involvement in project and account management.
+        Most of my time has been spent as Lead Engineer in team-based settings, with substantial involvement in project and account management.
         I've handled code integrations across multiple teams worldwide, established processes and structures to keep operations running smoothly, and helped many junior engineers advance to intermediate roles.
       </p>
       <p class="small:text-base">
-        ⭐ Hands-on experience integrating AI services (OpenAI, Anthropic, Mistral, etc.), prompt design, LLM routing, structured outputs and API orchestration.
+        ⭐ Experienced in the integration of AI services (OpenAI, Anthropic, Mistral, etc.), prompt design, LLM routing, structured outputs and API orchestration.
       </p>
     </div>
 
