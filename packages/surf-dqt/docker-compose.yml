@@ -42,6 +42,10 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - BACKEND_URL=${BACKEND_URL}
+        - NODE_ENV=${NODE_ENV}
+        - SERVER_ENV=${SERVER_ENV}
     container_name: surf-dqt-frontend
     env_file:
       - .env

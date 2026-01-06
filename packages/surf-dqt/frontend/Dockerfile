@@ -3,6 +3,16 @@ FROM node:16.13.0-alpine AS build
 
 WORKDIR /app
 
+# Add build arguments
+ARG BACKEND_URL
+ARG NODE_ENV
+ARG SERVER_ENV
+
+# Make them available as environment variables during build
+ENV BACKEND_URL=$BACKEND_URL
+ENV NODE_ENV=$NODE_ENV
+ENV SERVER_ENV=$SERVER_ENV
+
 COPY package*.json ./
 RUN npm ci
 
