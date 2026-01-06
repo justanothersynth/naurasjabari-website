@@ -1,11 +1,5 @@
 <template>
-  <component
-    :is="componentType"
-    ref="cardRef"
-    :href="link"
-    :target="link ? '_blank' : undefined"
-    :rel="link ? 'noopener noreferrer' : undefined"
-    class="work-entry block group cursor-pointer">
+  <div ref="cardRef" class="work-entry block group">
     
     <div class="overflow-hidden rounded-lg transition-all duration-300 group-hover:shadow-lg border border-gray-200/50 group-hover:border-gray-200">
       <ImageLazy
@@ -29,7 +23,15 @@
             :class="statusColour">
           </span>
         </span>
-        <span>{{ title }}</span>
+        <a
+          :href="link"
+          target="_blank"
+          class="relative no-underline group-hover:underline inline-link">
+          {{ title }}
+          <span class="block absolute left-full top-1/2 -translate-y-1/2 pl-1">
+            <Icon name="iconoir:arrow-up-right-square" size="16" class="opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+          </span>
+        </a>
       </h3>
       <div class="flex items-center gap-2">
         <template v-for="tag in tags" :key="typeof tag === 'string' ? tag : tag.label">
@@ -52,7 +54,7 @@
       <p>{{ description }}</p>
     </div>
 
-  </component>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -74,7 +76,7 @@ type Props = {
 const props = defineProps<Props>()
 
 const cn = useCn
-const componentType = computed(() => props.link ? 'a' : 'div')
+// const componentType = computed(() => props.link ? 'a' : 'div')
 
 const statusColour = computed(() => {
   return props.status === 'live' ? 'bg-[#40c463]/75' : 'bg-orange-400'
