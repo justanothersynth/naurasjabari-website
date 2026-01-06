@@ -5,6 +5,16 @@ WORKDIR /app
 # Install MongoDB tools for mongodump (used by archiver cron)
 RUN apk add --no-cache mongodb-tools
 
+# Add build arguments
+ARG BACKEND_URL
+ARG NODE_ENV
+ARG SERVER_ENV
+
+# Make them available as environment variables during build
+ENV BACKEND_URL=$BACKEND_URL
+ENV NODE_ENV=$NODE_ENV
+ENV SERVER_ENV=$SERVER_ENV
+
 COPY package*.json ./
 RUN npm ci --only=production
 
@@ -14,6 +24,6 @@ EXPOSE 3458
 
 # Healthcheck to ensure the server is responding
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD node -e "const isProd = process.env.NODE_ENV === 'production'; const url = isProd ? 'https://works.naurasjabari.com/surf-dqt/' : 'http://localhost:3458'; const proto = isProd ? require('https') : require('http'); proto.get(url, (r) => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"
+  CMD node -e "const isProd = process.env.NODE_ENV === 'production'; const url = isProd ? 'https://works.naurasjabari.com/surf-dqt/api' : 'http://localhost:3458'; const proto = isProd ? require('https') : require('http'); proto.get(url, (r) => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"
 
 CMD ["node", "app.js"]
