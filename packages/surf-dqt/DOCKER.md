@@ -41,13 +41,11 @@ cp .env.local.example backend/.env
 
 ```bash
 # From the surf-dqt directory
-docker-compose up
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up
 
 # Or run in background:
-docker-compose up -d
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d
 ```
-
-The `docker-compose.override.yml` file is automatically loaded for local development.
 
 4. **Access the Application**:
 
@@ -58,10 +56,10 @@ The `docker-compose.override.yml` file is automatically loaded for local develop
 5. **Stop Services**:
 
 ```bash
-docker-compose down
+docker compose -f docker-compose.yml -f docker-compose.dev.yml down
 
 # To also remove volumes (delete all data):
-docker-compose down -v
+docker compose -f docker-compose.yml -f docker-compose.dev.yml down -v
 ```
 
 ### Production Deployment (Ubuntu Server)
@@ -86,7 +84,7 @@ openssl rand -base64 32
 
 ```bash
 # Use both base and production compose files
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 ```
 
 3. **Configure Nginx Reverse Proxy**:
@@ -128,16 +126,16 @@ Note: In production, containers don't expose ports directly - they're only acces
 
 ```bash
 # All services
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml logs -f
+docker compose -f docker-compose.yml -f docker-compose.prod.yml logs -f
 
 # Specific service
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml logs -f backend
+docker compose -f docker-compose.yml -f docker-compose.prod.yml logs -f backend
 ```
 
 5. **Stop Services**:
 
 ```bash
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml down
+docker compose -f docker-compose.yml -f docker-compose.prod.yml down
 ```
 
 ## Environment Variables
@@ -170,7 +168,7 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml down
 ```
 surf-dqt/
 ├── docker-compose.yml              # Base configuration (common)
-├── docker-compose.override.yml     # Local dev overrides (auto-loaded)
+├── docker-compose.dev.yml          # Local dev overrides (explicit)
 ├── docker-compose.prod.yml         # Production overrides (explicit)
 ├── .env.example                    # Environment variables template
 ├── .env.local.example              # Local development defaults
@@ -194,12 +192,13 @@ Common configuration shared by all environments:
 - Base environment variables
 - Health checks
 
-### docker-compose.override.yml (Local Dev)
-Automatically loaded by `docker-compose` for local development:
+### docker-compose.dev.yml (Local Dev)
+Explicitly loaded with `-f` flag for local development:
 - Exposes all ports for direct access
 - Mounts SSL certificates
 - Sets `SERVER_ENV=development`
 - MongoDB without authentication
+- Hot reload with volume mounts
 - Restart policies
 
 ### docker-compose.prod.yml (Production)
@@ -215,17 +214,21 @@ Explicitly loaded with `-f` flag for production:
 ### View Running Containers
 
 ```bash
-docker-compose ps
+# Local
+docker compose -f docker-compose.yml -f docker-compose.dev.yml ps
+
+# Production
+docker compose -f docker-compose.yml -f docker-compose.prod.yml ps
 ```
 
 ### Rebuild After Code Changes
 
 ```bash
 # Local
-docker-compose up --build
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 
 # Production
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
 ```
 
 ### Access Container Shell
@@ -336,7 +339,11 @@ This is expected! MongoDB data is stored in a named volume. To remove:
 
 ```bash
 # Remove volumes (deletes all data)
-docker-compose down -v
+# Local
+docker compose -f docker-compose.yml -f docker-compose.dev.yml down -v
+
+# Production
+docker compose -f docker-compose.yml -f docker-compose.prod.yml down -v
 ```
 
 ## Development Workflow
@@ -345,17 +352,16 @@ docker-compose down -v
 
 **Frontend**:
 1. Make changes to frontend code
-2. Rebuild: `docker-compose up --build frontend`
-3. Refresh browser
+2. Rebuild: `docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build frontend`
+3. Refresh browser (or use hot reload if mounted)
 
 **Backend**:
 1. Make changes to backend code
-2. Rebuild: `docker-compose up --build backend`
-3. Backend will restart automatically
+2. Backend will restart automatically (nodemon watches for changes)
 
-### Hot Reload (Optional)
+### Hot Reload
 
-For faster development, you can mount source code as volumes in `docker-compose.override.yml`:
+The `docker-compose.dev.yml` file mounts source code as volumes for hot reload:
 
 ```yaml
 services:

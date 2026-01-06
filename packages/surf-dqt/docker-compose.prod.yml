@@ -1,11 +1,14 @@
 # Production configuration for remote Ubuntu server
-# Usage: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+# Usage: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 
 # Stop a service
 # Ex: docker compose -f docker-compose.yml -f docker-compose.prod.yml stop frontend
 
 # Rebuild and start just that service
 # Ex: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build frontend
+
+# View logs
+# Ex: docker compose -f docker-compose.yml -f docker-compose.prod.yml logs -f frontend
 
 services:
   mongodb:

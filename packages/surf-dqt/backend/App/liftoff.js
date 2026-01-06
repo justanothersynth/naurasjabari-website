@@ -97,8 +97,6 @@ require('@App/Auth')
 const initializeUser = async () => {
   const email = process.env.SURF_USERNAME
   const password = process.env.SURF_PWD
-
-  console.log(email, password)
   
   if (!email || !password) {
     console.log('⚠️  [User Init] SURF_USERNAME or SURF_PWD not set, skipping user initialization')

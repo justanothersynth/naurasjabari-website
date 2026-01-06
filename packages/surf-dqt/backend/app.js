@@ -60,7 +60,9 @@ MC.App.use(Express.static(MC.publicPath))
 // ///////////////////////////////////////////////////////////////////// Liftoff
 // -----------------------------------------------------------------------------
 const liftoff = () => {
-  console.log(`🤖 [Server] ${MC.backendUrl}`)
+  if (process.env.SERVER_ENV === 'development') {
+    console.log(`🤖 [Server] ${MC.backendUrl}`)
+  }
   require('@App/liftoff')
 }
 
