@@ -24,14 +24,9 @@ services:
     environment:
       # Override DATABASE_URL to use Docker MongoDB with authentication
       - DATABASE_URL=mongodb://${DATABASE_USER}:${DATABASE_PASSWORD}@mongodb:27017/Douglas_Production?authSource=admin
-    # No exposed ports - behind nginx reverse proxy
-    # No SSL certificate volumes - nginx proxy handles SSL
     restart: unless-stopped
 
   frontend:
     ports:
       - 127.0.0.1:3457:3457
-    environment:
-      # Override backend URL for Docker internal network
-      - BACKEND_URL=https://localhost:3458
     restart: unless-stopped
