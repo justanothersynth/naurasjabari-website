@@ -40,7 +40,7 @@
             :href="tag.url"
             target="_blank"
             rel="noopener noreferrer"
-            :class="cn('flex whitespace-nowrap items-center text-xs px-2 py-0.125 rounded-[6px] transition-colors duration-200 bg-gray-200/50 text-gray-700 hover:bg-orange-200 hover:text-orange-800', tag.extraClasses)">
+            :class="cn('flex whitespace-nowrap items-center text-xs px-2 py-0.125 rounded-[6px] transition-colors duration-200 bg-blue-100 text-blue-700 hover:bg-blue-200 hover:text-blue-800', tag.extraClasses)">
             {{ tag.label }}
             <Icon name="iconoir:arrow-up-right-square" size="12" class="ml-[2px]" />
           </a>

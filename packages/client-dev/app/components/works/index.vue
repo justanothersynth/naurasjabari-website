@@ -1,6 +1,6 @@
 <template>
   <section class="container mt-12">
-    <div class="grid grid-cols-1 mini:grid-cols-2 small:grid-cols-3 gap-12 mini:gap-6">
+    <div class="grid grid-cols-1 mini:grid-cols-2 small:grid-cols-3 gap-12 mini:gap-x-6 mini:gap-y-12">
 
       <WorksEntry
         v-for="work in works"
@@ -37,15 +37,14 @@ const works: Work[] = [
   {
     id: 'amera',
     title: 'Amera Health Solutions',
-    description: 'AI-powered document parsing, information processing and analysis. YCombinator Fall 2025 ⭐️',
+    description: 'AI-powered document parsing, information processing and analysis. ⭐️ YCombinator Fall 2025.',
     image: '/images/works/amera.jpg',
     link: 'https://www.amerahealthsolutions.com/',
     status: 'live',
     tags: [
       {
         label: 'YC Fall 2025',
-        url: 'https://www.ycombinator.com/companies/amera',
-        extraClasses: 'bg-orange-100 text-orange-700'
+        url: 'https://www.ycombinator.com/companies/amera'
       },
       'AI',
       'supabase',
@@ -69,6 +68,21 @@ const works: Work[] = [
     link: 'https://ipts.ai',
     status: 'live',
     tags: ['nuxt/vue', 'static site', 'complex ui', 'devops']
+  },
+  {
+    id: 'surf-dqt',
+    title: 'SURF Data Query Tool',
+    description: 'Nuxt and Express dockerized pairing for visualization of suicide research. ⭐️ Published work.',
+    image: '/images/works/surf-dqt.jpg',
+    link: 'https://works.naurasjabari.com/surf-dqt',
+    status: 'archived',
+    tags: [
+      {
+        label: 'Publication',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/39647866/'
+      },
+      'nuxt/vue', 'express', 'mongodb'
+    ]
   }
 ]
 </script>
