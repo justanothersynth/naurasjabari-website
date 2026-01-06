@@ -1,0 +1,34 @@
+# Production configuration for remote Ubuntu server
+# Usage: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+
+# Stop a service
+# Ex: docker compose -f docker-compose.yml -f docker-compose.prod.yml stop frontend
+
+# Rebuild and start just that service
+# Ex: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build frontend
+
+# View logs
+# Ex: docker compose -f docker-compose.yml -f docker-compose.prod.yml logs -f frontend
+
+services:
+  mongodb:
+    # Enable authentication for production
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DATABASE_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MONGO_INITDB_DATABASE: Douglas_Production
+    # No exposed ports - internal only
+    restart: unless-stopped
+
+  backend:
+    ports:
+      - 127.0.0.1:3458:3458
+    environment:
+      # Override DATABASE_URL to use Docker MongoDB with authentication
+      - DATABASE_URL=mongodb://${DATABASE_USER}:${DATABASE_PASSWORD}@mongodb:27017/Douglas_Production?authSource=admin
+    restart: unless-stopped
+
+  frontend:
+    ports:
+      - 127.0.0.1:3457:3457
+    restart: unless-stopped

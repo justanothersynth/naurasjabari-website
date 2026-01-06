@@ -51,6 +51,11 @@ h2 {
     background-color: oklch(92.8% 0.006 264.531 / 0.75);
     border-radius: 6px;
     transform: translateY(-50%);
+    @include medium {
+      right: auto;
+      left: calc(100% + 1rem);
+      width: 100vw;
+    }
   }
 }
 </style>

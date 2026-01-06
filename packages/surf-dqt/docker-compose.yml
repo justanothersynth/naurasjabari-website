@@ -1,0 +1,66 @@
+services:
+  mongodb:
+    image: mongo:6
+    container_name: surf-dqt-mongodb
+    env_file:
+      - .env
+    environment:
+      MONGO_INITDB_DATABASE: ${DATABASE_NAME:-Douglas_Production}
+      MONGO_INITDB_ROOT_USERNAME: ${DATABASE_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+    healthcheck:
+      test: ['CMD-SHELL', 'mongosh --username $$DATABASE_USER --password $$DATABASE_PASSWORD --authenticationDatabase admin --eval "db.adminCommand(\"ping\")"']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        - BACKEND_URL=${BACKEND_URL}
+        - NODE_ENV=${NODE_ENV}
+        - SERVER_ENV=${SERVER_ENV}
+    container_name: surf-dqt-backend
+    env_file:
+      - .env
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - app-network
+    healthcheck:
+      test: ['CMD', 'node', '-e', 'const isProd = process.env.NODE_ENV === "production"; const url = isProd ? "https://works.naurasjabari.com/surf-dqt/api" : "http://localhost:3458"; const proto = isProd ? require("https") : require("http"); proto.get(url, (r) => process.exit(r.statusCode === 200 ? 0 : 1)).on("error", () => process.exit(1))']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - BACKEND_URL=${BACKEND_URL}
+        - NODE_ENV=${NODE_ENV}
+        - SERVER_ENV=${SERVER_ENV}
+    container_name: surf-dqt-frontend
+    env_file:
+      - .env
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo-data:

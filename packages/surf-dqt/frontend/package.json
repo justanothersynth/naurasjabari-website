@@ -1,0 +1,43 @@
+{
+  "name": "surf-dqt-nuxt",
+  "version": "1.0.0",
+  "description": "Surf DQT",
+  "author": {
+    "name": "Nauras Jabari",
+    "email": "nauras@agencyundone.com"
+  },
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "launch": "nuxt build && pm2 restart surfdqt-fe",
+    "analyze": "nuxt build --analyze",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
+  },
+  "engines": {
+    "node": ">=16.13.0"
+  },
+  "dependencies": {
+    "@agency-undone/au-nuxt-module-zero": "^1.0.18",
+    "@babel/core": "^7.17.3",
+    "@babel/eslint-parser": "^7.17.0",
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/eslint-config": "^10.0.0",
+    "@nuxtjs/eslint-module": "^3.1.0",
+    "@nuxtjs/style-resources": "^1.2.1",
+    "eslint": "^8.16.0",
+    "eslint-plugin-nuxt": "^3.2.0",
+    "kramed": "^0.5.6",
+    "lodash": "^4.17.21",
+    "nuxt": "^2.15.8",
+    "nuxt-dropzone": "^1.0.4",
+    "parallax-js": "^3.1.0",
+    "raw-loader": "^4.0.2",
+    "sass": "^1.52.1",
+    "sass-loader": "^10.2.1",
+    "tiptap": "^1.32.2",
+    "tiptap-extensions": "^1.35.2"
+  }
+}

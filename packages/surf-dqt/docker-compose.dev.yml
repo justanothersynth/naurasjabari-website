@@ -1,0 +1,47 @@
+# Local development configuration
+# Usage: docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+services:
+  mongodb:
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_DATABASE: Douglas_Development
+      MONGO_INITDB_ROOT_USERNAME: ${DATABASE_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+
+  backend:
+    command: sh -c "npm ci && npm run dev"
+    ports:
+      - '3458:3458'
+    volumes:
+      # Mount source code for live development changes
+      - ./backend:/app
+      # Mount node_modules separately to avoid overwriting container's modules
+      - /app/node_modules
+      # Mount SSL certificates for local HTTPS
+      - ./backend/localhost_key.pem:/app/localhost_key.pem:ro
+      - ./backend/localhost_cert.pem:/app/localhost_cert.pem:ro
+    environment:
+      # Override DATABASE_URL to use local Docker MongoDB with authentication
+      - DATABASE_URL=mongodb://${DATABASE_USER}:${DATABASE_PASSWORD}@mongodb:27017/Douglas_Development?authSource=admin
+    restart: unless-stopped
+
+  frontend:
+    build: {}  # Explicitly disable build from base docker-compose.yml
+    image: node:16.13.0-alpine
+    working_dir: /app
+    command: sh -c "npm ci && npm run dev"
+    ports:
+      - '3457:3457'
+    volumes:
+      # Mount source code for live development changes
+      - ./frontend:/app
+      # Mount node_modules separately to avoid overwriting container's modules
+      - /app/node_modules
+      - /app/.nuxt
+    environment:
+      # Override backend URL for local Docker environment
+      - BACKEND_URL=https://localhost:3458
+      - HOST=0.0.0.0
+    restart: unless-stopped
