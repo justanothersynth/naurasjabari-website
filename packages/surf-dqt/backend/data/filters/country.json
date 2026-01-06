@@ -1,0 +1,183 @@
+{
+  "type": "dropdown-multiple",
+  "match": "exact",
+  "key": "country",
+  "options": [
+    {
+      "id": "98ee25ef-7cab-4190-9893-58bac49f6216",
+      "name": "Finland"
+    },
+    {
+      "id": "55cb14b6-0644-426b-844f-e1a652990bef",
+      "name": "United Kingdom"
+    },
+    {
+      "id": "00e8e9a3-8f0c-40dd-b828-b8fb507ba26a",
+      "name": "United States"
+    },
+    {
+      "id": "cb2af99b-5d4e-4b3a-b662-6677dd5890e3",
+      "name": "Israel"
+    },
+    {
+      "id": "c88d5554-75fb-4166-acc8-8ccc574d3074",
+      "name": "Canada"
+    },
+    {
+      "id": "ccb0b92f-0807-47ac-bac7-b0af9ce76faf",
+      "name": "Italy"
+    },
+    {
+      "id": "2b4dad53-e5a0-448b-91e1-7234b17345d0",
+      "name": "Spain"
+    },
+    {
+      "id": "baaddc38-10e3-43f4-9062-aa41f7e06156",
+      "name": "Sweden"
+    },
+    {
+      "id": "2abc6168-875a-4a10-9b63-40db8cd4ed25",
+      "name": "Iran"
+    },
+    {
+      "id": "7e647cfe-577f-4f14-9d44-8a7c4a5866d2",
+      "name": "Brazil"
+    },
+    {
+      "id": "672e309b-8a35-49bc-9f2c-998ab185d158",
+      "name": "Australia"
+    },
+    {
+      "id": "0de91f79-c668-4860-8774-5d485edea528",
+      "name": "Ireland"
+    },
+    {
+      "id": "57f60ab6-f6e0-4d29-874a-522e982d139a",
+      "name": "Scotland"
+    },
+    {
+      "id": "c069c59c-fc51-4029-a7cf-c09c6f075f3f",
+      "name": "Kenya"
+    },
+    {
+      "id": "c2ea9940-7eba-4d62-93b0-e4ba56c8f9d3",
+      "name": "Mexico"
+    },
+    {
+      "id": "5fd785db-6c2e-4a33-91dc-d859b6d3fa82",
+      "name": "Germany"
+    },
+    {
+      "id": "f3fac3a3-4781-4cfd-a7f7-3291f5109fe9",
+      "name": "Switzerland"
+    },
+    {
+      "id": "cc264a15-65de-404b-b790-d2556ea5fc3f",
+      "name": "France"
+    },
+    {
+      "id": "18983339-8a1c-4b7b-ba48-7969ebd4f28e",
+      "name": "Portugal"
+    },
+    {
+      "id": "cc855cea-7a75-4f32-9e6d-dbb0374444a9",
+      "name": "Netherlands"
+    },
+    {
+      "id": "cfaa95e7-ec59-4002-8816-dba76d4530ab",
+      "name": "China"
+    },
+    {
+      "id": "77b7dab3-1f71-476c-96d1-09c9b27c2a02",
+      "name": "Hong Kong"
+    },
+    {
+      "id": "c874ba5c-e9e3-4e82-b782-fa69496e911c",
+      "name": "Taiwan"
+    },
+    {
+      "id": "de5f6534-0ab2-47cc-ac06-48579064f2c5",
+      "name": "South Korea"
+    },
+    {
+      "id": "6b42f345-86fe-4432-ba80-3177a5765611",
+      "name": "Denmark"
+    },
+    {
+      "id": "9b6d7729-1ce3-46f5-bea5-8a4da359cd74",
+      "name": "New Zealand"
+    },
+    {
+      "id": "2deb979e-cf67-44a0-b7c8-b45c24e66a28",
+      "name": "Lithuania"
+    },
+    {
+      "id": "6b461f93-1847-4097-90ce-52af8592103d",
+      "name": "Greece"
+    },
+    {
+      "id": "bd14b7a2-f2e8-456b-a8c0-0c9ac14fcea1",
+      "name": "Romania"
+    },
+    {
+      "id": "da960f72-7292-4d1f-ab86-cd17ce85ba86",
+      "name": "Norway"
+    },
+    {
+      "id": "be1c1a4b-2126-4308-b594-f78b401c65ff",
+      "name": "Belgium"
+    },
+    {
+      "id": "22567db7-7971-40de-afce-113d92311fb5",
+      "name": "Japan"
+    },
+    {
+      "id": "fb756800-db93-4129-926f-f00be0bd72ad",
+      "name": "South Africa"
+    },
+    {
+      "id": "c8a410bc-8b3e-474a-9b1f-59f9c29b036e",
+      "name": "Argentina"
+    },
+    {
+      "id": "cb9532eb-e5ed-44d2-95c8-1162d95baa51",
+      "name": "Daejeon"
+    },
+    {
+      "id": "8a626aca-440e-4f61-a882-d5ba1c8c6463",
+      "name": "Korea"
+    },
+    {
+      "id": "67e3cee7-dcef-4f42-907d-2f41b6081608",
+      "name": "Vietnam"
+    },
+    {
+      "id": "37788e64-f031-4013-8f91-4cd5e9a6c48a",
+      "name": "Northern Ireland"
+    },
+    {
+      "id": "69e8ea07-06ea-4e6e-8c07-8d9f5fa55529",
+      "name": "Singapore"
+    },
+    {
+      "id": "bc199e48-8719-4116-9f09-77c7b2c198b7",
+      "name": "Austria"
+    },
+    {
+      "id": "a3a651cf-089b-4a23-9ffe-607d881588bf",
+      "name": "Sri Lanka"
+    },
+    {
+      "id": "3273b647-116e-4537-97ab-cccb36b66edc",
+      "name": "Ethiopia"
+    },
+    {
+      "id": "9156ef2b-7ed2-4a65-ba2d-b2dca044940e",
+      "name": "Chile"
+    },
+    {
+      "id": "801b4216-2524-4119-b573-c96d095350ed",
+      "name": "Europe"
+    }
+  ]
+}

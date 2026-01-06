@@ -1,0 +1,1890 @@
+{
+  "type": "dropdown-multiple",
+  "match": "exact",
+  "key": "riskFactor",
+  "options": [
+    {
+      "id": "39eade34-18c2-4753-a3af-7f2f62e48f39",
+      "category": "Gender",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "826f8a27-490a-437b-9028-922407bfdf57",
+          "name": "Man/Male/Boy",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "4c6213ba-76e3-4db6-a942-314072adebdd",
+          "name": "Woman/Female/Girl",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "15c7497c-4d37-432c-ab48-57dcac119fa4",
+          "name": "Transgender",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "7bac4bf5-2130-4667-8dae-4511a24a359f",
+          "name": "Gender",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "c030e5ce-0b48-4ce0-a0b4-3216b2149bba",
+          "name": "Conformity to masculine norms",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "c4a85846-eeb9-41aa-9726-9f45d4d92034",
+          "name": "Nonbinary",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "3d36e818-2084-4e68-8c9d-020079177704",
+          "name": "Mental health disorders (unspecified)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "1c0e61e7-c671-4a9e-9263-cce351157d11",
+      "category": "Psychiatric and Mental Health Conditions",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "f9b84a5a-b871-4e20-a12e-5de8bc2fde71",
+          "name": "Depression severity",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "5872bc4d-95c1-4781-8283-d8f78008790f",
+          "name": "Post-traumatic stress disorder and trauma",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "a36d3785-9339-484c-947d-6056c45da39c",
+          "name": "Characterized depressive disorder",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "a2f5565c-837e-4f87-a2f3-f8095e96ba28",
+          "name": "Bipolar disorder",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "5ed834c3-9ea1-4204-bf43-5b752eb845bc",
+          "name": "Anxiety disorders",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "eeb6f678-6f09-4211-a3c0-4091c5dcbce8",
+          "name": "Prior psychiatric hospitalization",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f378d5fc-3c4c-4f2a-9bcc-92e8479f0593",
+          "name": "Mental health disorders (unspecified)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "baf4cf40-f6c1-41e7-8196-1631d5175e2c",
+          "name": "Personality disorder",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "b53d8491-ca75-475b-a5ee-50725cc6768a",
+          "name": "Psychosis symptoms",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "abc071d4-e75e-431a-8a01-c5f512dfff8f",
+          "name": "Psychiatric treatment",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f718e368-6f46-40d9-afc8-49954ca6e62b",
+          "name": "Depressive symptoms",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f819f6b9-adde-4fb9-bf75-cd0adf02bed7",
+          "name": "Psychological distress",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "9749eefa-a73c-45ca-b673-2e81443a33ff",
+          "name": "Disability due to mental health condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "c2fcdc3f-26af-445d-8eb0-a9a121347ef6",
+          "name": "Psychosis diagnosis",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "0d9f15f7-c657-436f-82fe-c4f6fe7ee910",
+          "name": "Stress-related disorders",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "083e1047-b291-419e-a4b4-74dccbe172fd",
+          "name": "Mood disorders (unspecified)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "777ec96a-e521-4603-9996-0f93fc2039ca",
+          "name": "Behavioural disorders",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "95da7ba1-2c47-48eb-b7e2-343e4383ed40",
+          "name": "Developmental disorders",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "e8c98837-3bc7-411f-9054-9a1377e64c66",
+          "name": "Eating disorder",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "44aa048c-b4bc-44f7-ac94-3beb6f8927a9",
+          "name": "Anxiety symptoms",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f63931c3-bf41-40d7-9829-07f0017ab43b",
+          "name": "Mental health condition (unspecified)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "00d9dd60-5229-455a-ba66-16114f14c209",
+          "name": "Borderline personality symptoms",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f50747bc-bbd7-4952-bfc1-e03062b6e4b9",
+          "name": "General psychopathology",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "195110db-6df6-4cc2-8e37-1bb3bab1e968",
+          "name": "Mania/Hypomania",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "0486c814-07d7-412d-8b22-86eeb2476c29",
+          "name": "Psychotic experiences",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "74ecf92b-f901-41a0-b9de-7d0232a58767",
+          "name": "Insight",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "3e766c79-0a22-459f-8d07-7ff86ec9b100",
+          "name": "Therapeutic treatment",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "d7e512f1-1fb1-4b66-b775-3dcf19b152b2",
+          "name": "Compulsive behavior",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "c7dbc91b-4ebc-457b-a6c8-5d167b254ca6",
+          "name": "Neurotic disorders",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "d8d22c59-d4dc-4944-8a93-f353e1fe8bca",
+          "name": "Adjustment disorders",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "0fbfe906-375b-48a1-a1a2-0154c040ff95",
+          "name": "Neurological condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "4912d1f1-e4c5-435d-b389-f56c6df955ed",
+          "name": "Emotional and behavioural regulation",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "7e6639eb-f033-4958-821a-d1e6180e6720",
+          "name": "Substance use disorder (unspecified)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "99b7c79c-218e-433b-a2c1-2395d68d90e3",
+          "name": "Sleep problems",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "1dc5e52f-c1f4-4af0-9f84-89241ac6417a",
+          "name": "Personality disorder symptoms",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "53d498dc-aac2-4e7b-ab12-3d5c10f40147",
+      "category": "Substance Use and Addictions",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "50d5c786-f8d2-4edf-8356-ab44603738e5",
+          "name": "Alcohol use and disorder",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "e583a4c3-62b6-46e9-ab74-29356ebb23df",
+          "name": "Substance use disorder (unspecified)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "dae8c820-7c9f-4673-b3c4-2da7160c9beb",
+          "name": "Drug use disorder",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "bd04f655-2e85-4a5d-a7e4-044b97a72cda",
+          "name": "Cigarette smoking",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "e53cf1e4-e8a1-4a86-8634-6b530ae40dbd",
+          "name": "Other substance use",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "fbaaef76-622a-44b1-bb91-d57a263d0dbd",
+          "name": "Substance use (unspecified)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "51a0b019-7c05-4fba-87ed-7553b2f8dcc3",
+          "name": "Behavioral addiction",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "469f9fde-bbde-4fe1-90ec-54726f174264",
+          "name": "Drug use and disorder",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "1604b2c2-9ade-4ef4-8abd-e44fd9ca970b",
+          "name": "Treatment for Substance Use and Addictions",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "2d390a92-9198-4965-b5fe-c8fb0492d099",
+      "category": "Non-fatal suicidal behaviors",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "80877bad-12f9-4123-ac30-f1f23f33b282",
+          "name": "SA",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f4d78456-1149-487e-8e85-a6488e2f9ebe",
+          "name": "Method of SA",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "e9ffd9c8-55ef-4510-a89c-d265424ea166",
+          "name": "Beliefs about suicide acceptability",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "2103f73a-99bb-4fd7-8dc8-5900b01c0664",
+      "category": "Education",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "afa5b0c6-db19-49be-9d96-7c1a1f046ce0",
+          "name": "High school",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "9e5ea500-10df-4c38-b5ae-970a19185619",
+          "name": "Higher education",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "c6f2a4f5-63ed-4ca4-80de-f6687a4d3339",
+          "name": "Student status",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "a5a0baca-2bfe-42b6-ad79-2d0963b04e24",
+          "name": "Middle school",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "309e4af5-99c3-44c5-af10-b9da39b68410",
+          "name": "School attendance",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "ccc77a3c-dd70-447b-8f00-3067003c9558",
+          "name": "Primary school",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "ef8f8cba-dbf1-44c3-ab10-905c1dfd5e97",
+          "name": "School achievement",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "0c0afa03-695f-4376-a286-0abbbaa649d4",
+          "name": "School environment",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "da36f2ed-c646-4acd-9454-d3b3091ace4c",
+          "name": "School conditions",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "50e5bcb4-7605-4d3d-9482-3d68d8a920fa",
+          "name": "Education",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "4f984228-ddd7-49d5-85a6-2c8691c5840d",
+          "name": "Special education needs",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "54757814-bc0e-4843-a166-f32a59e49879",
+          "name": "School discipline",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "5ba7076c-9399-42dd-aa75-978a98bb76c3",
+      "category": "Income and Socioeconomic Status",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "31785d05-770d-41e7-a9bb-5524d43c5a03",
+          "name": "High income or socioeconomic position",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "aaeda645-a3f0-474e-b7f2-3577632195d5",
+          "name": "Financial Problems and Precarity",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "a8cbaf54-45ef-4256-84fb-5785029ce9c1",
+          "name": "Middle income or socioeconomic position",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f5e0437f-9c2e-44e1-aacb-6234413de163",
+          "name": "Low income or socioeconomic position",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "1d044f76-cb9b-4769-adcf-294c81d6deb2",
+          "name": "Household income",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "43a1ed00-7e40-4965-bafa-2d3138e7f6a9",
+          "name": "Other socioeconomic status",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "28daa70d-3547-47cc-9e61-9be69264be6e",
+          "name": "County-level income",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f0dd10fe-db4d-4222-9226-c9edd75a372e",
+          "name": "Monthly income",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "42033315-96a2-4ae5-aaf2-dd5ac8a24b2f",
+          "name": "Neighborhood income",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "d77aa9fb-6c19-469c-b465-32cf6855f7e9",
+          "name": "Annual income",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "fa0dd3bb-2330-42dc-916d-18ddc553614e",
+      "category": "Living Condition",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "19dac3e0-3059-4dae-9821-67ef11cd2be7",
+          "name": "Living situation",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "2d823c20-e547-4a75-98f9-5ec432fafd45",
+          "name": "Household structure",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "d9970993-a8e7-4455-a491-5ec66259164d",
+          "name": "Geographic Area",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "7973110b-473a-4caf-a807-8c7b232e765c",
+      "category": "Physical Health Conditions",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "1b82fa77-0604-4ee0-9304-81cc3f0084c8",
+          "name": "Infection",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "44c38547-7da8-49f5-9d0c-2466d7207e7f",
+          "name": "Physical health condition (unspecified)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "d39af36a-8a8f-41d3-8ec0-c8070eddc618",
+          "name": "Systemic inflammation",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "fe7901a4-def9-4097-9616-05441db9f15a",
+          "name": "Digestive condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "b7ea18c7-f221-4c05-9271-47c984ca4023",
+          "name": "Neurological condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "b137df12-bd7d-4e6f-9ffb-2ac9aa39829e",
+          "name": "Disability due to physical health condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "5e94e263-ed94-4e82-a648-f09db5dedb1c",
+          "name": "Physical activity",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "2751ce96-ba10-43fc-9617-ac2873158ba4",
+          "name": "Sleep problems",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "927f5f91-121b-4468-8082-afd6407657bf",
+          "name": "Physical pain",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "4503e072-c689-4c1c-9406-422fb71fdc9c",
+          "name": "Physical trauma",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "3a365ba7-9f26-4a69-8408-93b6a7644d19",
+          "name": "Respiratory condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "9c8fb78d-5de4-4a79-bede-f66b56bcbdc2",
+          "name": "Genital and urinary tract condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "bd8b3304-df4e-4be1-b97d-ca71188dd270",
+          "name": "Cardiovascular condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "abef7c4e-0285-4039-a062-36fe518d0e97",
+          "name": "Reproductive system",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "988ec82e-20ed-4d99-a2c4-b7623bbb2f5f",
+          "name": "Endocrine and metabolic condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "9434e5f4-3bc9-49f2-b122-c3b778acd1d8",
+          "name": "Digestive conditions",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "523073e7-0e01-41ea-b7a7-ac2c6fee51b0",
+          "name": "Eye and adnexa condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "3747b0ed-5a1c-443d-8447-9983b294ab39",
+          "name": "Rheumatological condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "73c1e777-b7b9-4efd-afd9-627f8c911d98",
+          "name": "Postnatal Factors",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "09b58b48-16ba-47af-b114-a1362a9eac10",
+          "name": "Physical size/weight",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "c8f45e6f-48a4-4fb6-aead-c5f8b67a5632",
+          "name": "Circulatory system",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f1c1f5fc-c9fd-4c73-a9d3-397caaebbc2b",
+          "name": "Physical health procedure",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "8a7f3fa0-1be9-4e45-933d-ec9ac27f7b52",
+          "name": "Dermatological condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "6d8e14d0-755f-4427-933c-5cff2270ba0c",
+          "name": "Sleep characteristics",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "6fb30fbe-3414-49b1-89af-f46a2b32684c",
+          "name": "Ear, nose and throat condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "5e9d5f52-caa3-49ed-8cdb-bd6bd02ec60b",
+          "name": "In-utero and perinatal exposures",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "2793764a-a11c-498b-8484-cd717ca4b736",
+          "name": "Dermatological conditions",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "00c959cf-2483-451e-8aec-35de882f7f4e",
+      "category": "Cancer",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "14aba50b-2968-4c6b-98f4-67caa4817904",
+          "name": "Uro-gential cancer",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "d9afb72e-344a-499a-bdff-cffc5e5f14dc",
+          "name": "Digestive system cancer",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "75dd8cd2-c5d5-4ca1-bc79-6feffeece89b",
+          "name": "Cancer treatment (unspecified)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "fc4de37a-5a69-4c48-acbc-6b25034e4584",
+          "name": "Stage of cancer (unspecified)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "750823fd-82d0-4d0a-b1ad-12350153d79d",
+          "name": "Childhood and adolescent cancer",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "80f9628a-480b-45ce-8c93-0c251aa13508",
+          "name": "Blood cancer",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f568920c-9338-410c-ba10-120eaca263a2",
+          "name": "Unspecified cancer",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "9be261f6-700c-4c4b-8138-5e56c4ca1020",
+          "name": "Head and neck cancer",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f1076013-264c-4b5c-ae3b-bfeed6f42b31",
+          "name": "Bronchus, trachea and lung cancer",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "d8773dbc-d262-4895-9e7f-bb0bb545bba2",
+          "name": "Breast cancer",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "a7532dc1-5dbc-4a07-adc0-85d27d439467",
+          "name": "Timing of Cancer Diagnosis (unspecified)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "e131ebd3-9737-4d6b-9315-217b27dc05a5",
+          "name": "Primary bone and soft tissue cancer",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "b182091e-d565-4022-aa2b-4e2110015b91",
+          "name": "Histological grade",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "e5af2850-1445-4d7d-9653-7e871d304cf6",
+          "name": "Central nervous system cancer",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "e50810a1-2c3d-4c60-a0ae-624abd832126",
+          "name": "Reproductive cancer",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "b62bdda1-e0fd-403f-afa7-13c9aa761fa5",
+          "name": "Skin cancer",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "3a3b623d-0c17-4c0d-82a9-b0139a4c060e",
+          "name": "Cancer grade",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "b0300e63-60a9-4fb0-a8b5-be3bf520efe5",
+      "category": "Health Conditions",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "e9885879-8464-45db-b78f-34d5409976e4",
+          "name": "Neurological condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "06c555b0-cbb5-40fa-895f-ec1eb66c6ec1",
+      "category": "Age",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "670aece3-92e8-4065-84bd-5d329cfc0a9f",
+          "name": "Age",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "8d6ffcb6-aa9a-43f7-8208-5b27ef577056",
+          "name": "Age: 50-59 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "73e66c9e-5ad4-4d0a-a922-99e181a44650",
+          "name": "Age at diagnosis: 0-49 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "d9258ef4-89b0-4a6c-868c-398ffdbb793c",
+          "name": "Age: ? 65 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "b2d60445-2276-4211-a1d2-c0d29b044a32",
+          "name": "Age: 60-69 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "fa6e73e4-33a0-4fb5-82c7-d2828be413c8",
+          "name": "Age: 40s",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "35d838ba-eb7b-4640-897d-f52e9ef40484",
+          "name": "Age: < 25 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "3ad1c765-971a-4247-bba9-6dcca9d1c723",
+          "name": "Birth year: 1950-54 (above 27 years)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "6fcabde3-17db-425e-b27d-4bdd12944118",
+          "name": "Birth year",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "e6f61344-c08f-430e-8ca8-52d40c33f48d",
+          "name": "Age: 35-65 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "2ae99659-8add-4cc3-9332-12ce0533dacc",
+          "name": "Age: < 35 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f1707b28-7461-43c0-91f4-3d92a5e78f91",
+          "name": "Age (1 year increase in age)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "5547afa0-7fc4-4d44-ac2d-103081acb402",
+          "name": "Age: > 65 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "64d73cd6-c7af-4ba2-ac4d-f95757faa5d1",
+          "name": "Age: 60-74 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "64b79e01-9607-4e9e-b35e-ebeeb5c9e727",
+          "name": "Age: 45-64 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "ac697ad5-f493-47ae-9fc7-a6ac29a00b90",
+          "name": "Age: < 45 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "992b4bca-b471-4ddf-aff3-ea853dc49f25",
+          "name": "Age: 40-49 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "bddf7b8f-3ab1-4036-9445-dce5aef7d697",
+          "name": "Age: greater than or equal to 65 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "d3937b33-fe2a-4d16-8cf3-5a52d2204d72",
+          "name": "Age: 40-59 years old",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "b3c51d38-0ca7-42c9-a503-6ace68b6d941",
+          "name": "Age: older than or equal to 65 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "0840cbda-7da7-46ee-8471-991e9ddba8a3",
+          "name": "Age (continuous)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "c43ca754-6e0c-4c04-9d6e-8fc243495b96",
+          "name": "Age at diagnosis: 50-64 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "b21e0466-16db-4d36-8081-b24b4b3fc712",
+          "name": "Age at diagnosis: 60-69 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "61dbfae4-eb0a-4921-a7a8-3dbfc2256e2b",
+          "name": "Age at diagnosis: 50-59 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "32eaada6-8ee5-4fa7-b571-501c3ecffe45",
+          "name": "Age: 18-54 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "04bd3d70-6c8a-4a3a-a312-24023a48cccd",
+          "name": "Age: 55-64 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "996c0e42-e6b4-4608-9ab2-86c2a0ce7570",
+          "name": "Age: ≥ 65 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "58111cfc-40d6-4251-86bf-a49041abfef8",
+          "name": "Age: 41-50 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "7aae1a20-ed7a-4860-aa8d-676f137754b0",
+          "name": "Age: 51-60 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "44160e87-6c7e-49fb-a25f-b8513676f0e4",
+          "name": "Age: 61-70 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "0221c90e-28d7-4883-ac29-2c6f73c11d72",
+          "name": "Age: 50-69 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "bc456652-bacc-49cf-8a67-f130f9f21103",
+          "name": "Age: 30-49 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "b06ad30d-3903-40fd-9f6e-640619137a89",
+          "name": "Age^2",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "5e19b505-43de-4065-9bab-bc3ac5d99ba9",
+          "name": "Age: 30-54 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "0370cae8-2d70-424b-87fb-24e7cb7ca2f1",
+          "name": "Age: 45-54 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "c5594149-9e40-42be-a3bb-db31210afa1b",
+          "name": "Age: 55+ years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "4c699d73-b7a1-4282-9613-925724131e15",
+          "name": "Age: ? 49 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "fe8d3ea1-f079-4777-9809-84f55641c0a2",
+          "name": "Age (every 1 year)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "d8a8f82c-7f70-4e2c-8376-360d8ff6d284",
+          "name": "Age: ≤ 49 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "bdae3360-fe73-4c3d-bf5b-f1c7688c133c",
+          "name": "Age at death: 50-59 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "6a8101db-3bc0-4bfd-8e87-b34966c50a78",
+          "name": "Age at death: 60-69 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "c209f1a3-54e0-476e-bb22-a592d9fce31d",
+          "name": "Age, per 1 year",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "56de6887-7942-489d-861d-ce414c09838f",
+          "name": "Age: 36-49 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "73d19382-88a9-4d45-8742-c57fb5d0217b",
+          "name": "Age: ? 56 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "1d6437b7-9f72-4ee9-9709-1e24e01ee28d",
+          "name": "Age: 40 years or older",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "68b3c2d4-c122-44fc-b38c-7cbb6ec8aa88",
+          "name": "Age at evaluation (per 1 year)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "689d0c9c-578e-4510-8218-7cb4f225e3e8",
+          "name": "Age at last discharge: 45-64 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "eaf728dc-7f72-416e-b0f3-710c44a1006a",
+          "name": "Age at index date: 36-45 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "bf554a1f-f4ea-4813-9138-462d61473808",
+          "name": "Age: � 65 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "402b3631-6c3f-425f-b69a-4d3b93e49764",
+          "name": "Age: 36-50 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "0beba263-606b-4920-9875-82d2f64ebb73",
+          "name": "Age: 51-65 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "00a7c463-14de-4e21-84f0-7732d09d11e6",
+          "name": "Age: 40-64 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "7283b868-ff46-4a66-9cfb-2c0b054c9c80",
+          "name": "Age at cancer diagnosis: 55+ years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "c4d028ce-131c-4b9a-884c-e01bbc7eee87",
+          "name": "Age: 50-64 years old",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "0d993cca-a25e-4bb9-97f8-de4048bc1b7c",
+          "name": "Age: 30 to 49 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f0ff450c-6ca4-47e0-a681-c8804f476ec0",
+          "name": "Younger age",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "01ab2816-a9dc-44aa-87db-441b296de008",
+          "name": "Age: older age",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "e4444814-7bed-44ab-9989-0dfef38c84db",
+          "name": "Age: 65 years and older",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "b400adfb-c936-4fae-b6a8-02d61fa8acc8",
+          "name": "Age: 36.4-47.4 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "69dbeaab-9c57-46f7-9944-4d7ba45b14bb",
+          "name": "Age: 46-55 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "c96ddbff-479a-40eb-b673-024d8461ac67",
+          "name": "Age: 56-65 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "099238dc-741a-4be3-a563-20a5a44e46ae",
+          "name": "Mean age at baseline",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "128e62ca-b9ca-44b5-bc59-00a3b9406daa",
+          "name": "Age at diagnosis: 59-69 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "1f94c68c-ffbb-479e-9423-4bef667768b8",
+          "name": "Age at diagnosis: 18-66 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "ef17b215-9a7b-416d-8946-80a44ed557bc",
+          "name": "Age at diagnosis: 18-58 years",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "e58ecfc5-9c56-4635-812b-dbe64e30d2b7",
+          "name": "Age (10-year band)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "7fabe061-529a-454b-9580-c8585cca9d8b",
+      "category": "NSSI and deliberate self-harm (undetermined intention)",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "e10b044b-8cf3-495a-a7af-2ed1d68fc363",
+          "name": "Deliberate self-harm",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "0cf53834-1318-4a7a-b9d0-b8401a728d8a",
+          "name": "NSSI",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "163446b6-0151-49c6-9c72-1301cb3d7af2",
+          "name": "Method of SH",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "1ee20705-72d0-41a2-b327-c062294895f6",
+      "category": "Coping and Problem Solving",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "858520ae-2994-4af5-be2f-9fc94fd9ec34",
+          "name": "Problem Solving",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "9b72b997-8ac0-4d9e-a93c-4673421de826",
+          "name": "Coping",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "31376964-97c3-49eb-84cf-1e265a284132",
+      "category": "Interpersonal Theory of Suicidal Behavior",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "d80483c1-1661-4b23-b2f1-aa9defbaf518",
+          "name": "Perceived burdensomeness",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "c0cb7ced-bc7b-4ae4-9e0b-a036cb743522",
+          "name": "Capability for suicide",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "9eda0f09-8527-45e9-9e21-44631c7b8feb",
+          "name": "Thwarted belongingness",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "6884b057-ceb6-4f9c-bd94-ec3662e58f0b",
+      "category": "Employment",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "8e09480d-8a52-4736-affb-31584e1ad776",
+          "name": "Type of employment",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "ee98ec2c-c8e6-4ded-927e-933c28deccac",
+          "name": "Unemployment",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "9fbacedd-5521-487d-9103-247b2585aee7",
+          "name": "Employment conditions",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "282b4248-bb0f-4738-95f8-a0f70ce028f7",
+          "name": "Employment status",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "df4874cd-4a4d-4c35-ae70-142054da7aed",
+          "name": "Economic activity/industry",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "7185aebe-4809-404f-aeda-547603cd2724",
+          "name": "Socio-professional category",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "74cfbe1c-b24b-49b9-b2b4-13f64a8aa867",
+          "name": "Skill level",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "94621562-98a2-41bf-a228-a8e729e0693e",
+          "name": "Employment status transition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "a6a69071-8f3a-4a94-ae2a-b08d349a4224",
+          "name": "Sickness absence",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "b798e064-acdb-4283-bec1-3ef351a3dfad",
+      "category": "Personality and Psychological Traits",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "9b4c873b-7e18-442f-9634-e73e412c41c3",
+          "name": "Emotional and behavioural regulation",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "1467c0f2-4979-4681-9dab-05fb7645dc16",
+          "name": "Self-directed traits",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "d3ce19df-2f4b-4a49-bee5-b1c8a121f0e5",
+          "name": "Cognitive characteristics",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "d3659f3e-6b26-4605-89cf-6a2eee49d9cb",
+          "name": "Psychological characteristics",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "e08b8afa-9398-4a38-a11a-5bb1a86cd40e",
+          "name": "Personality traits",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "26d8124a-3e0c-434f-8a96-ec2767826abe",
+          "name": "Emotional state",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "2e42c09d-c4e8-4930-9a73-38a73dd9d8ae",
+      "category": "Immigration",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "4bc7b75e-d8b5-4dc4-9f96-663bddd6265e",
+          "name": "Immigration",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "6c17f8d9-6964-4417-b291-ac1a05f8c7da",
+          "name": "Generational status",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f7eb9703-641f-4c6d-9287-3a27e7a9ef12",
+          "name": "Region of origin",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "585c17ee-ce10-45d1-b63f-24daa3d3e031",
+          "name": "Duration of residence",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "5f519fc2-b120-4357-8a39-2e9056653a78",
+          "name": "Age at arrival",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "a7aef647-bd57-43ce-94f9-0ada22aaea8c",
+          "name": "Refugees",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "bad2a6cd-912c-4b0c-887d-d4e69dc45150",
+      "category": "Social Factors",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "289d23c3-2894-4169-aa15-ea0c1ca8bec8",
+          "name": "Social integration",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "ad7d851d-dd5c-40fa-b289-1d28689b3ede",
+          "name": "Overall peer support",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "1ef4fc7c-1fe3-4ac0-a4d5-964bf6543ba9",
+          "name": "Dysfunctional social relationships",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "b720ec4a-66cb-4ffd-8139-e292ee73a32e",
+          "name": "Interpersonal stressors",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "89d75fff-3483-4817-96b1-f90f914ade74",
+      "category": "Suicidal ideation and cognitions",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "e7a6319a-b9d7-4644-a7a0-7fe838b68556",
+          "name": "SI",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "856c7e5f-514f-434c-9e0e-e880936a3235",
+          "name": "Suicide cognitions",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "3c8ed3bc-c592-4868-bdf5-00ed558735d6",
+          "name": "Risk of suicide",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "c6b271d8-bd8e-4115-9343-04821865ddfa",
+          "name": "High risk of suicide",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "00db7f8f-8337-4323-bdff-a52ad9220931",
+      "category": "Relationship Status",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "553aa46d-654e-4720-a37f-ab5e6be4da88",
+          "name": "Married",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "e4d235b5-1176-4b01-b89d-f3f68e0a1ebe",
+          "name": "Single/Unmarried",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "4eae2669-9857-4505-a770-bd73756fb001",
+          "name": "Separated/divorced/widowed",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "05292269-388d-4768-9658-8c673a24a923",
+          "name": "Married/Registered Partnership/Cohabiting",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "eb38559d-274f-4c70-8e33-c41e5ad117ad",
+      "category": "Race/Ethnicity/Language",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "c6b506c9-e222-45b9-bb11-5a33c437ff37",
+          "name": "White",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "b23ba5c5-f730-4035-906b-0ee49a5711da",
+          "name": "Black",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "281d6926-8450-4776-a447-d0ed12488f81",
+          "name": "Other Race/Ethnicity/Language",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "2dfa791b-7445-4f53-a475-6f37df55ee28",
+          "name": "Nationality",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "ad0528bd-2ca5-41f1-9f61-1085c37b95cc",
+          "name": "Linguistic region",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "ca9317d4-206a-41ad-8bdb-e878a415ccbe",
+      "category": "TBD",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "41f63c1c-cde1-4d17-8e92-32b1238413d2",
+          "name": "TBD",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "c4f3bc5e-f529-4a44-ba4f-9a16e517bf7d",
+      "category": "Violence",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "bc5d9db1-8cf1-431f-a3ba-1971270675ce",
+          "name": "Victim of violence",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "11b70d62-6b2b-412a-a86f-439d07f2cc99",
+          "name": "Peer victimization",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "7a667aba-4229-4a91-8cd3-966188ad9002",
+          "name": "Childhood trauma",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "d966dfa0-ac38-43cc-816c-ad9ce2770c34",
+          "name": "Perpetrator of violence",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "78d184fe-b022-40a9-87a3-08bf9763adae",
+          "name": "Interpersonal violence (victim or perpetrator)",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "363d371f-7361-4ddb-b6e7-0f53be10c8fe",
+          "name": "Exposure to violence",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "68fafc5f-acb6-47f3-b319-bc4aab569c72",
+          "name": "Firearm ownership",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "4297aed2-84bd-43d8-bc8f-ed623f0b4e0a",
+          "name": "Weapon ownership",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "540ac3dc-77a8-4edf-82c1-b8f36bbda573",
+      "category": "Life events",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "d082818d-038c-4304-b0d6-782bbbf6eadc",
+          "name": "Life events",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "0c2c6f86-f027-4027-9ca9-c9196dcbf76f",
+          "name": "Puberty",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "6865a868-d654-40e5-a3ed-e707a17c4a0e",
+      "category": "Sexual Orientation",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "89e5d64b-d4dc-4441-bcd0-93061a92874f",
+          "name": "Homosexuality",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "4611bfbc-5ff4-4a67-9d41-f7ca07f3a066",
+          "name": "Bisexuality",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "9eb8a6ac-369b-42b7-a0ca-353a6bc2ce6d",
+          "name": "Sexual minority",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "1831fbff-bd8c-4b6b-a67d-fae0e1d4d21c",
+          "name": "Non-monosexual",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "b4aa84f5-ef1d-43d3-b57e-ce01e50f630d",
+      "category": "Legal Issues",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "95762b38-664f-4d2d-9f86-1c6337bc8e84",
+          "name": "Custody",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "0894ad88-fa3f-43e7-949c-800f6c1d4e5c",
+          "name": "Crime",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "200f0121-fc31-4a38-b674-3347765b5609",
+          "name": "Conviction",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "5a94ca29-4561-4462-a0a9-aba612d1abf9",
+          "name": "Legal Issues",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "485788e3-15c3-4aa0-87bc-869e8aa191cb",
+      "category": "Family Characteristics",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "1795f2ef-e44f-4577-b76b-e6861f77a109",
+          "name": "Family adversity",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f06c601e-8744-4b30-b98c-b13411bc4a27",
+          "name": "Family mental health disorder",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "c3089fcb-0071-4ad1-8cdd-e00bb166555a",
+          "name": "Family history of suicidal behavior",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "4f611a98-8f42-4457-8749-c1e0bf3b09ae",
+          "name": "Family environment",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "00f14387-6aa4-4ed4-8b6f-e0734a855f92",
+          "name": "Family sociodemographics",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "cd96b072-6956-401a-bf32-37beff3adc1d",
+          "name": "Adoption",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "76c30131-e20b-461c-a42f-a0c411226e54",
+          "name": "Family substance use disorder",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "1b128960-b060-4ad5-ba46-ceed1d495997",
+      "category": "Legal issues",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "6046653b-7422-4aff-9fc3-78540f2a6277",
+          "name": "Custody",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "b6bb57d8-9964-48f4-bddf-208fb599d257",
+          "name": "Police stop",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "f0ae8af0-96f0-45ba-b1dd-29b863028f71",
+      "category": "Life Events",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "04dec9b3-3991-4cd4-9380-79a889149114",
+          "name": "Life events",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "784ec425-8cf7-4b21-8828-4d26c2195679",
+          "name": "Life Events",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "9e7fe575-9483-432a-8445-77945f2ca9f2",
+          "name": "Pregnancy",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "336a27f8-e4f2-4013-b7c4-fb37fd7bcf1f",
+          "name": "Life changes",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "51c7bf90-c62a-4ade-8856-1275cf1285b9",
+          "name": "Negative life events",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "50d9661c-c71b-4f8e-9e15-768632113fa3",
+      "category": "Digital media use",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "2363b422-00ef-48e7-a403-35e40324a032",
+          "name": "Digital media use",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "5cc02d15-66e6-4359-acc3-4fde51a9e750",
+          "name": "Social media",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "80580c2d-2c20-432a-976e-4d951e8a69e7",
+          "name": "Television use",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "564b8010-cbe9-4acd-9d5b-b3324fe80247",
+          "name": "Video game use",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "19c064dc-d644-4681-82fc-9d56fba7dc05",
+          "name": "Social media use",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "1eab0507-8293-476f-8ee6-d22ccbb314c5",
+          "name": "Internet use",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "41fd6e24-b5d6-4bd9-8d6a-8b11549184cc",
+      "category": "Health Insurance",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "c571e921-8dc2-4c25-89fe-6950b9d3f8e4",
+          "name": "Health Insurance",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "7f8fc25b-3361-460e-a2ad-be28f5f639f4",
+          "name": "Health insurance",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "0ebfcbfb-3d94-4a98-a690-bbb2723a80d4",
+      "category": "Military Factors",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "24b0e135-a138-44c5-af2c-f51aa102bbb5",
+          "name": "Deployment",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "2daf1a87-f39c-44ff-824a-ae869b3f8fb9",
+          "name": "Enlistment",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "4998ff64-c67e-4161-b86e-906e67dce5e7",
+          "name": "Military service",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "3ccfa1d0-387a-431a-a3ee-60aba0717259",
+          "name": "Discharge",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "6d639b9e-3e4f-46d7-8c77-c8dff015fa53",
+          "name": "Military occupation",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "1e0ba5bc-3e0b-42ed-a812-e5e7a90f35c3",
+          "name": "Military Rank/Grade",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "d53c6a05-ad6d-40c0-a9cf-84fe37a19140",
+          "name": "Enlistment waiver, Demotion, Disciplinary Problems",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "d9878897-9a27-46fd-8489-2a14cf005b54",
+      "category": "Physical Health Condition",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "23ea6ca5-50df-4bbb-a7a2-23342bcbaa8a",
+          "name": "Auditory conditions",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "1cbf7472-4180-4b62-8492-8b7f5840b4ab",
+          "name": "Disability due to physical health condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "5f4c80aa-0ca9-4187-b6c9-9548250a8385",
+      "category": "Exposure to family death",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "2f9f721a-1290-49ac-9afb-2399b4bfc919",
+          "name": "Exposure to parental death",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "659894ab-5aab-41d7-af24-223054788f6c",
+          "name": "Exposure to natural parental death",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "a74dfc81-334c-4465-afc1-cd7c9f7cd3cb",
+          "name": "Exposure to unnatural parental death",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "a275c0b5-2805-456e-a37f-570b53cd74e9",
+          "name": "Exposure to death of a loved one",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "3fbc7511-9aed-4583-864b-ec5dfba3767e",
+      "category": "Medication",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "0d844f7b-8fc8-40d9-acfc-a54c0c401ad3",
+          "name": "Psychotropic drugs",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "2adb0358-9f75-4536-a682-4faeb498728a",
+          "name": "Other medication",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "4b77f550-9321-4b8b-8c48-f1454225bcf0",
+          "name": "Psychoactive drugs",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "ca8da2ca-8259-47b3-a8a4-71b7cee31b3c",
+      "category": "Religion",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "aaa4146a-d1af-429e-b3df-ad7ffa1b45a0",
+          "name": "Religion",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "be7605fc-2203-45a1-a98b-321ceb211d8f",
+      "category": "Quality of Life and Functioning",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "87d03944-da10-4189-980a-fbdcc33c1edb",
+          "name": "Functioning",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "1089568c-a98e-4625-b0f1-2f2eb2974d4b",
+          "name": "Quality of life",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "e383b6ba-4fea-40e4-8075-44ca074c376c",
+          "name": "Cognitive Functioning",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "e0c731ad-2fa9-4381-8d13-56c67bfc367b",
+          "name": "Behavioural Functioning",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "5366f6cb-65d1-4d9a-81f6-b37b84268e44",
+      "category": "Combined Risk Factors",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "bc658d7f-b856-4334-9f57-2a9a0970ccb7",
+          "name": "Prior SI, hopelessness, depression, abuse history, anxiety",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "df23f61f-bf78-4288-9766-2530e5e6b105",
+          "name": "Prior non-suicidal self injury, prior SA, screening instrument, axis II diagnosis, prior psychiatric hospitalization",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "bbb19c2b-5a34-4a1b-8322-cb9b42cce5a7",
+          "name": "Social factors",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "99198315-d76b-4000-a9c5-5adad3f62bfd",
+          "name": "Prior psychiatric hospitalization, prior SA, prior SI, socioeconomic status (lower), stressful life events",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "966a8eaf-71f7-4062-ad95-3fee049d7065",
+      "category": "Exposure to suicidal behaviours",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "e69e11b9-f29e-4b81-a18d-117d6562fcf3",
+          "name": "Exposure to suicidal behaviours",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "f232ae68-0a5b-43e2-9292-1746718c994e",
+          "name": "Exposure to suicidal behaviors",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "26e5b784-69c2-4896-b09e-3efac43e943f",
+      "category": "Stigma and Discrimination",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "4b5c9fed-5a78-4294-a097-fc177dce0553",
+          "name": "Self-stigma",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "73b220a7-d587-4e43-bb57-00ab88d1b183",
+          "name": "Stereotypes",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "8bfc917c-c106-4a99-9c03-83ce80b1e88d",
+          "name": "Discrimination",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "34f432f8-2fa1-460e-8d6c-b2289da2a291",
+          "name": "Stigma in relation to a health condition",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "ecef59e9-6030-4b7c-b3c4-47ae160e6b14",
+      "category": "Air Polution",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "1ff67367-fa73-421d-af2f-44d6f8151d22",
+          "name": "Amount of particulate matter",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "98d639a7-09c3-4df6-ba34-cf461acbe51d",
+          "name": "Nitrogen dioxide",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "de95604b-1176-445e-87a2-af67bb603551",
+          "name": "Sulfur dioxide",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "f387e178-d9ec-414c-9b42-11054cfb5673",
+      "category": "Sexuality",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "5e631987-d1a4-4ecc-9d48-d8cfe9ab1448",
+          "name": "Sexual activity",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "07235be6-3666-4539-a40c-0b29eed409c9",
+      "category": "Physical Traits",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "75f5cc80-01b9-4b6b-9454-f3517ccf02f8",
+          "name": "Physical Traits",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    },
+    {
+      "id": "a7b4e68a-1816-42f2-a011-91cf648be4dd",
+      "category": "Childhood Adversity",
+      "filterDatabaseKey": "riskFactorCategory",
+      "matches": [
+        {
+          "id": "c39176e2-98dd-49df-99c3-aff9f661ca98",
+          "name": "Childhood stress",
+          "filterDatabaseKey": "riskFactorPrimary"
+        },
+        {
+          "id": "bab383df-0b88-4777-b84f-f4fa4dc2dda3",
+          "name": "Childhood trauma",
+          "filterDatabaseKey": "riskFactorPrimary"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+[
+  {
+    "id": "section_1",
+    "type": "group",
+    "label": "Section 1",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_1_heading",
+        "type": "text",
+        "label": "Heading",
+        "description": "",
+        "value": "Easily find the highest quality evidence about suicide related risk factors."
+      },
+      {
+        "id": "section_1_description",
+        "type": "wysiwyg",
+        "label": "Description",
+        "description": "",
+        "value": "<p>This academic tool aims to help researchers, clinicians, students, and the community to efficiently find evidence about suicide related risk factors. </p><p>You can search by hundreds of risk factors, population, date, and indicator filters. At a glimpse, the graphical matrix allows you to visualize the outcome of your inquiry from the intersections of research.</p>"
+      },
+      {
+        "id": "section_1_image",
+        "type": "image",
+        "label": "Image",
+        "description": "",
+        "value": "home-section-1-image.png"
+      },
+      {
+        "id": "section_1_cta_text",
+        "type": "text",
+        "label": "Button Text",
+        "description": "",
+        "value": "Explore Studies"
+      }
+    ]
+  },
+  {
+    "id": "section_2",
+    "type": "group",
+    "label": "Section 2",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_2_label",
+        "type": "text",
+        "label": "Label",
+        "description": "",
+        "value": "Results "
+      },
+      {
+        "id": "section_2_heading",
+        "type": "text",
+        "label": "Heading",
+        "description": "",
+        "value": "Extract all the information you need about each result. "
+      },
+      {
+        "id": "section_2_description",
+        "type": "wysiwyg",
+        "label": "Description",
+        "description": "",
+        "value": "<p>The SURF database contains the results of the most recent studies with the highest quality designs (historical and prospective cohort studies and meta-analysis).</p><p>You can access, in a standardized format, the statistical results and significance of each predictor in reference to its comparator. Want more information? The direct link to the original study is also made available. </p>"
+      },
+      {
+        "id": "section_2_image",
+        "type": "image",
+        "label": "Image",
+        "description": "",
+        "value": "home-section-2-image.png"
+      },
+      {
+        "id": "section_2_cta_text",
+        "type": "text",
+        "label": "Button Text",
+        "description": "",
+        "value": "Explore Studies"
+      }
+    ]
+  },
+  {
+    "id": "section_3",
+    "type": "group",
+    "label": "Section 3",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_3_label",
+        "type": "text",
+        "label": "Label",
+        "description": "",
+        "value": "Contact Us"
+      },
+      {
+        "id": "section_3_link_1",
+        "type": "group",
+        "label": "Links",
+        "description": "",
+        "fields": [
+          {
+            "id": "section_3_group_1_link_1_text",
+            "type": "text",
+            "label": "Link 1 Text",
+            "description": "",
+            "value": "Stéphane Richard-Devantoy"
+          },
+          {
+            "id": "section_3_group_1_link_1_url",
+            "type": "text",
+            "label": "Link 1 Url",
+            "description": "",
+            "value": "stephane.richard-devantoy@mcgill.ca"
+          }
+        ]
+      },
+      {
+        "id": "section_3_link_2",
+        "type": "group",
+        "label": "Links",
+        "description": "",
+        "fields": [
+          {
+            "id": "section_3_group_1_link_2_text",
+            "type": "text",
+            "label": "Link 2 Text",
+            "description": "",
+            "value": "Charles-Edouard Notredame"
+          },
+          {
+            "id": "section_3_group_1_link_2_url",
+            "type": "text",
+            "label": "Link 2 Url",
+            "description": "",
+            "value": "charles-edouard.notredame@chu-lille.fr"
+          }
+        ]
+      },
+      {
+        "id": "section_3_link_3",
+        "type": "group",
+        "label": "Links",
+        "description": "",
+        "fields": [
+          {
+            "id": "section_3_group_3_link_1_text",
+            "type": "text",
+            "label": "Link 3 Text",
+            "description": "",
+            "value": ""
+          },
+          {
+            "id": "section_3_group_3_link_1_url",
+            "type": "text",
+            "label": "Link 3 Url",
+            "description": "",
+            "value": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "section_4",
+    "type": "group",
+    "label": "Section 4",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_4_label",
+        "type": "text",
+        "label": "Label",
+        "description": "",
+        "value": "Supports"
+      },
+      {
+        "id": "section_4_image",
+        "type": "image",
+        "label": "Image",
+        "description": "",
+        "value": "home-section-4-image.png"
+      },
+      {
+        "id": "section_4_subtext",
+        "type": "text",
+        "label": "Image Subtext",
+        "description": "",
+        "value": ""
+      },
+      {
+        "id": "section_4_cta_text",
+        "type": "text",
+        "label": "Button Text",
+        "description": "",
+        "value": "About"
+      }
+    ]
+  }
+]

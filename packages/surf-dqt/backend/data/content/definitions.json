@@ -1,0 +1,104 @@
+[
+  {
+    "id": "section_1",
+    "type": "group",
+    "label": "Section 1",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_1_heading",
+        "type": "text",
+        "label": "Heading",
+        "description": "",
+        "value": "Risk Factors Defined"
+      }
+    ]
+  },
+  {
+    "id": "section_2",
+    "type": "group",
+    "label": "Section 2",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_2_heading",
+        "type": "text",
+        "label": "Heading",
+        "description": "",
+        "value": "How are risk factors defined in the context of suicide?"
+      },
+      {
+        "id": "section_2_description",
+        "type": "wysiwyg",
+        "label": "Description",
+        "description": "",
+        "value": "<p>Broadly speaking, a risk factor can be defined as a characteristic, variable, or hazard that prospectively increases the likelihood of adverse outcomes in a measurable way. In the field of suicidology, it corresponds to any clinical, biological or neural trait or state that may indicate to the clinician that there is a higher probability for a suicide-related event to occur in a given patient. As paraclinical measurements have not yet entered routine practice, we have focused on clinical RFs.</p><p>Due to its probabilistic nature, a RF is, by definition, unmeasurable for a single individual. Epidemiological approaches allow us to approximate the risk at a population level by making the assumption that a causal relationship ties the RF to its outcome (in this case, SB), and that this causal relationship holds true when examining a large of number events. By using the mean of averages in a representative sample, epidemiology scientifically measures risk as an objective, depersonalized and quantitative value. Such inductively estimated measures for epidemiological RFs are then made available for clinicians to inform their practice via deduction.</p><p>There are two important caveats when considering RFs:</p><ol><li><p>A RF should not be considered equivalent to a cause. Probabilistic association between a variable and an outcome is only suggestive of for causal underlying relationship. To be valid, the assumptions need to be supported by other converging arguments, such as prior events, biological plausibility, or reversibility.</p><p></p></li><li><p>A RF does not actually quantify the likelihood of an outcome occurring in a singular individual. In line with evidence-based principles, this epidemiological value should always be put in perspective with complex clinical and contextual considerations that modulate theoretical probabilities.</p><p></p></li></ol>"
+      }
+    ]
+  },
+  {
+    "id": "section_3",
+    "type": "group",
+    "label": "Section 3",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_3_heading",
+        "type": "text",
+        "label": "Heading",
+        "description": "",
+        "value": "How should risk estimates be interpreted?"
+      },
+      {
+        "id": "section_3_description_1",
+        "type": "wysiwyg",
+        "label": "Description 1",
+        "description": "",
+        "value": "<p>In epidemiological studies, any psychosocial, psychopathological, environmental or sociodemographic characteristic that is statistically associated with an adverse outcome could be called a RF when the association is positive, or a protective factor (PF) when the association is negative. However, the notion of “statistical association” is problematically unprecise. Various types of study designs and analytical strategies could achieve quantification of risk or protection. Although the concepts of RF or PF include all the resulting indices, these indices should not all be interpreted in the same way. Table 2 summarizes all possible study configurations and corresponding risk estimates. Interpretation of such risk estimates should be tempered by the methodology used in the study, especially the nature of the outcome. Figure 2 complements Table 2 by illustrating possible study designs and comparisons and showing how SMR, RR, and OR are calculated.</p>"
+      },
+      {
+        "id": "section_3_image",
+        "type": "image",
+        "label": "Image",
+        "description": "",
+        "value": "definitions-section-3-image.jpeg"
+      },
+      {
+        "id": "section_3_description_2",
+        "type": "wysiwyg",
+        "label": "Description 2",
+        "description": "",
+        "value": "<p>A few basic rules to interpret a RF:</p><ol><li><p>RF is a relative concept: a condition or population could only be considered at risk in comparison to another condition or population.</p></li><li><p>An exception to the previous rule is the case of continuous variables, for which predictive value is dose-dependent: the higher the mean value of the predictor, the higher the probability of outcome occurrence.</p></li><li><p>A RF is only relevant within the population from which the study sample was drawn.</p></li></ol>"
+      }
+    ]
+  },
+  {
+    "id": "section_4",
+    "type": "group",
+    "label": "Section 4",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_4_heading",
+        "type": "text",
+        "label": "Heading",
+        "description": "",
+        "value": "How strong is the risk factor?"
+      },
+      {
+        "id": "section_4_description",
+        "type": "wysiwyg",
+        "label": "Description",
+        "description": "",
+        "value": "<p>Dichotomous RF estimates (e.g. presence or absence of the risk condition) are analytically equivalent to ratios between risk in exposed and risk in non-exposed individuals. As a consequence, a RR, OR, or HR that statistically differs from 1 is defined as a RF (if above) or a PF (if below). However, in addition to defining the nature of the prediction, estimates also measure the strength of the association. Borenstein et al. proposed the following scale, which we use as a reference to interpret our results.</p><ul><li><p><strong>Strong RF or PF</strong>: |RR, OR or HR| ≥4</p><p></p></li><li><p><strong>Moderate RF or PF</strong>: |RR, OR or HR| = [2.5-4]</p><p></p></li><li><p><strong>Weak RF or PF</strong>: |RR, OR or HR| = [1-2.5]</p></li></ul><p>Figure 2. Schematization of cohort study designs employed to assess the predictive value of risk factors, and corresponding formula for rate estimates. Panel A: Descriptive cohort design. Standardized Mortality Ratio (SMR) is the ratio between observed (o) and expected (e) number of deaths. Expected value is obtained by summing the product of mortality rate (r) and the population effective (n) of each of the population strata (i). Panel B. Analytical design with within- cohort comparisons. Panel C. Analytical design, type exposed—non-exposed. Relative risk (RR) is the risk of outcome occurrence in the exposed cohort/cohort subdivision (RE) by the same risk in the non-exposed cohort/cohort subdivision (RNE). When inaccessible, RR can be approximated by Odd Ratios (OR). Odds ratios represent the probability that the event occurs (R) by the probability that it doesn’t occur (1-R). OR is calculated by dividing the odds of the exposed cohort/cohort subdivision by the odds of the non-exposed cohort/cohort subdivision. OR is a good approximation of RR when the outcome is rare.</p>"
+      },
+      {
+        "id": "section_4_image",
+        "type": "image",
+        "label": "Image",
+        "description": "",
+        "value": "definitions-section-4-image.jpeg"
+      }
+    ]
+  }
+]

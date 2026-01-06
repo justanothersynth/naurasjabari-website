@@ -1,0 +1,74 @@
+[
+  {
+    "id": "section_1",
+    "type": "group",
+    "label": "Logos",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_1_logo_1",
+        "type": "image",
+        "label": "Logo 1",
+        "description": "",
+        "value": "site-footer-logo-1.png"
+      },
+      {
+        "id": "section_1_logo_2",
+        "type": "image",
+        "label": "Logo 2",
+        "description": "",
+        "value": "site-footer-logo-2.png"
+      },
+      {
+        "id": "section_1_logo_3",
+        "type": "image",
+        "label": "Logo 3",
+        "description": "",
+        "value": "site-footer-logo-3.png"
+      },
+      {
+        "id": "section_1_logo_4",
+        "type": "image",
+        "label": "Logo 4",
+        "description": "",
+        "value": "site-footer-logo-4.png"
+      },
+      {
+        "id": "section_1_logo_5",
+        "type": "image",
+        "label": "Logo 5",
+        "description": "",
+        "value": "site-footer-logo-5.png"
+      }
+    ]
+  },
+  {
+    "id": "section_2",
+    "type": "group",
+    "label": "Section 2",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_2_logo",
+        "type": "image",
+        "label": "Logo",
+        "description": "",
+        "value": "site-footer-section-2-logo.png"
+      },
+      {
+        "id": "section_2_contact",
+        "type": "wysiwyg",
+        "label": "Contact Information",
+        "description": "",
+        "value": "<p>6875 Boulevard LaSalle</p><p>Verdun, QC H4H 1R3</p><p>+1.514.761.6131</p>"
+      },
+      {
+        "id": "section_2_copyright",
+        "type": "wysiwyg",
+        "label": "Copyright Information",
+        "description": "",
+        "value": "<p>Copyright ©️ 2026&nbsp;<strong>Stéphane Richard-Devantoy</strong> and <strong>Charles-Edouard Notredame</strong>. All Rights Reserved. Tous droits réservés.</p>"
+      }
+    ]
+  }
+]

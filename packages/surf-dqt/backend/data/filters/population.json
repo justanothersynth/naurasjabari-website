@@ -1,0 +1,219 @@
+{
+  "type": "dropdown-multiple",
+  "match": "exact",
+  "key": "populationPrimary",
+  "options": [
+    {
+      "id": "880d68a5-bc9e-4855-a7e5-32e66af541d6",
+      "name": "Individuals suffering from depression"
+    },
+    {
+      "id": "767ec9a7-5ae7-4e04-9f4e-e97ec5903d96",
+      "name": "Adults"
+    },
+    {
+      "id": "cc74fd83-fcde-492c-a92d-bbbb1410ffff",
+      "name": "Military service members and veterans"
+    },
+    {
+      "id": "ab52816e-0aed-4fbb-8a11-d32514e1ccd7",
+      "name": "Fibromyalgia"
+    },
+    {
+      "id": "1ba24285-432d-4e51-af7a-9c271011fc8f",
+      "name": "General population"
+    },
+    {
+      "id": "67da9c08-3245-4592-b3d4-227d11b7edb5",
+      "name": "Individuals with a history of non-fatal suicidal behaviors and NSSI"
+    },
+    {
+      "id": "b280a227-57fc-422e-ae7b-e0373842ed35",
+      "name": "Relatives of persons who suffer from a psychiatric disorder"
+    },
+    {
+      "id": "26d4331d-2e29-4d70-8178-463976cef7ea",
+      "name": "Employees"
+    },
+    {
+      "id": "ed213651-3279-4a37-ba95-d98f0d607d3e",
+      "name": "Children, adolescents and young adults"
+    },
+    {
+      "id": "e6e7c33c-eb2e-494b-a59f-c20d34627e6d",
+      "name": "Individuals suffering from a psychiatric condition"
+    },
+    {
+      "id": "48955e1e-2ec0-49e2-9ea4-c59a11f1cd36",
+      "name": "Refugee status"
+    },
+    {
+      "id": "98729c34-fa56-477d-8e97-e39ef5d2dcdb",
+      "name": "N/A"
+    },
+    {
+      "id": "6868deac-1a97-48c6-835c-324e904c9850",
+      "name": "Males"
+    },
+    {
+      "id": "3b4b55a2-a72e-4755-ad6c-a4455dd06245",
+      "name": "Females"
+    },
+    {
+      "id": "1f302ac6-7f52-4d06-8db5-4bc2d34aedf6",
+      "name": "Individuals suffering from cancer"
+    },
+    {
+      "id": "31f3aaba-b6b4-4c7a-99cf-8ed7050f0947",
+      "name": "Individuals suffering from a personality disorder"
+    },
+    {
+      "id": "8ed004ed-9633-4bcf-95bf-ec2a476c2e87",
+      "name": "Individuals suffering from substance use disorders"
+    },
+    {
+      "id": "6dda3c79-bce4-4913-aadc-cda5bc85d679",
+      "name": "Individuals suffering from a physical health condition"
+    },
+    {
+      "id": "b846c06d-e804-4905-a88f-f5a1ef997e87",
+      "name": "Justice involved individuals"
+    },
+    {
+      "id": "bc0bafeb-3d13-4cbf-aed3-05eda264b437",
+      "name": "Older adults"
+    },
+    {
+      "id": "f8b05de3-a50a-4148-abbd-506a2a6a5b41",
+      "name": "Individuals who underwent surgery"
+    },
+    {
+      "id": "3882ba9e-1de6-4385-8f14-bfdff2c1ed20",
+      "name": "Newly partnered or married individuals"
+    },
+    {
+      "id": "30429869-aeda-4f14-9141-3b84dc57eee6",
+      "name": "Patients with multiple sclerosis"
+    },
+    {
+      "id": "07068070-4d47-47b7-8b7f-5561bf90b189",
+      "name": "Refugees"
+    },
+    {
+      "id": "7346eb41-c870-4d64-8757-3d15a4bf9d10",
+      "name": "Students"
+    },
+    {
+      "id": "3e9d3f16-b6e5-4fbf-87d5-3a3980bee23b",
+      "name": "Patients with eating disorders"
+    },
+    {
+      "id": "24d9606d-b048-4d90-80de-eff2c4e55a5c",
+      "name": "Other"
+    },
+    {
+      "id": "a952ac08-bbec-436f-a07b-0b59f3f95096",
+      "name": "Patients with schizophrenia/ related disorders and controls"
+    },
+    {
+      "id": "680054f0-2119-4f85-a08c-e829c46ad991",
+      "name": "Offspring"
+    },
+    {
+      "id": "788075a5-c971-4c7b-8a88-ce58a58b7b9c",
+      "name": "Individuals suffering from bipolar disorder"
+    },
+    {
+      "id": "d6b64b45-1582-496d-a54d-8005433a264d",
+      "name": "Individuals involved with the criminal justice system"
+    },
+    {
+      "id": "7654e3c5-a870-43de-80fe-b06508835d68",
+      "name": "Ethnic groups and communities"
+    },
+    {
+      "id": "0fa7f596-d170-4906-87c0-a09a14522ff8",
+      "name": "Depending on studies"
+    },
+    {
+      "id": "324fb4b3-3cbc-4e88-977f-39312747b2fb",
+      "name": "Individuals with co-occurring depression and substance misuse"
+    },
+    {
+      "id": "b74eeb0d-4802-44a1-a082-a902feb13764",
+      "name": "Individuals with a gambling disorder"
+    },
+    {
+      "id": "74b4b4c6-e83f-48ad-ab18-bf8d773800d6",
+      "name": "Individuals suffering from a disability"
+    },
+    {
+      "id": "283b2fba-cb08-4a1d-a2d9-88a390075268",
+      "name": "Female"
+    },
+    {
+      "id": "5da121b6-88a6-4c9e-8930-e630205b942a",
+      "name": "Patients with schizophrenia/ related disorders"
+    },
+    {
+      "id": "e434af16-46e1-4a2a-a208-fd6495fc7945",
+      "name": "Chinese adolescents"
+    },
+    {
+      "id": "51045b38-e111-4c5c-a11d-8fc4023030b9",
+      "name": "Gender diverse individuals"
+    },
+    {
+      "id": "b42b472b-10fd-4d5e-a15d-bf0fdfd99544",
+      "name": "Adult"
+    },
+    {
+      "id": "a1ee3d3d-50a4-467c-86d3-2eb4303a1d59",
+      "name": "Offspring of parent(s) with a history of psychiatric condition or suicidal behaviors"
+    },
+    {
+      "id": "ebc821dc-135b-44e0-9276-cac30ddbcbf9",
+      "name": "Patients with schizophrenia/related disorders"
+    },
+    {
+      "id": "9cf10ba1-4d3b-4a09-8705-ff8c12a0eed2",
+      "name": "Participants with history of childhood sexual abuse"
+    },
+    {
+      "id": "c9248598-31ea-4846-a26e-c30bcc1dda64",
+      "name": "Participants with history of childhood sexual abuse (Population-based)"
+    },
+    {
+      "id": "31e8b812-e20a-47e7-9452-1999d25bf528",
+      "name": "Participants with history of childhood sexual abuse (Clinical sample)"
+    },
+    {
+      "id": "71743097-6b89-4f85-9d89-3e1e90374ba4",
+      "name": "Korean non-demented older adults without depression"
+    },
+    {
+      "id": "032d1869-81b6-4fb6-92c3-41a98c8e8b1a",
+      "name": "Korean non-demented older adults without depression with executive dysfunction"
+    },
+    {
+      "id": "1690fda2-5af6-4205-80e7-fd6144a1019e",
+      "name": "Variable"
+    },
+    {
+      "id": "4f374333-6817-461d-b354-a4874abe912f",
+      "name": "Immigrant individuals"
+    },
+    {
+      "id": "7eefc374-97a6-4e85-952c-6c46346c189e",
+      "name": "Low-income adolescents"
+    },
+    {
+      "id": "cf428b3c-3fb4-47a1-8394-7441a2984c2a",
+      "name": "Parents"
+    },
+    {
+      "id": "7f885d88-1def-4a6f-a574-ccadd2e74657",
+      "name": "Patients with schizophrenia/related disorders and controls"
+    }
+  ]
+}

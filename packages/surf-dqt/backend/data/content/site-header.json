@@ -1,0 +1,80 @@
+[
+  {
+    "id": "section_1",
+    "type": "group",
+    "label": "Section 1",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_1_logo",
+        "type": "image",
+        "label": "Logo",
+        "description": "",
+        "value": "site-header-section-1-logo.png"
+      }
+    ]
+  },
+  {
+    "id": "section_2",
+    "type": "group",
+    "label": "Section 2",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_2_description",
+        "type": "text",
+        "label": "Description",
+        "description": "",
+        "value": "Search this database and discover studies performed worldwide on suicide and suicidality."
+      }
+    ]
+  },
+  {
+    "id": "section_3",
+    "type": "group",
+    "label": "Section 3",
+    "description": "",
+    "fields": [
+      {
+        "id": "section_3_link_1",
+        "type": "text",
+        "label": "Link 1",
+        "description": "",
+        "value": "Home",
+        "metadata": {
+          "link": "home"
+        }
+      },
+      {
+        "id": "section_3_link_2",
+        "type": "text",
+        "label": "Link 2",
+        "description": "",
+        "value": "Search Data",
+        "metadata": {
+          "link": "search-data"
+        }
+      },
+      {
+        "id": "section_3_link_3",
+        "type": "text",
+        "label": "Link 3",
+        "description": "",
+        "value": "About",
+        "metadata": {
+          "link": "about"
+        }
+      },
+      {
+        "id": "section_3_link_4",
+        "type": "text",
+        "label": "Link 4",
+        "description": "",
+        "value": "Definitions",
+        "metadata": {
+          "link": "definitions"
+        }
+      }
+    ]
+  }
+]
