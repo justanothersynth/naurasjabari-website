@@ -225,6 +225,8 @@ export default {
   // /////////////////////////////////////////////////////// Build configuration
   // ------------------------------------------------ Extend webpack config here
   build: {
+    // ------------------------------------------------------------- Public Path
+    publicPath: '/surf-dqt/_nuxt/',
     // ---------------------------------------------------------- Hot Middleware
     hotMiddleware: {
       client: {
