@@ -4,34 +4,15 @@
     <WorksEntry
       v-for="work in works"
       :key="work.id"
-      :title="work.title"
-      :description="work.description"
-      :image="work.image"
-      :link="work.link"
-      :status="work.status"
-      :tags="work.tags" />
+      v-bind="work" />
 
   </div>
 </template>
 
 <script setup lang="ts">
-type Tag = string | {
-  label: string
-  url?: string
-  extraClasses?: string
-}
+import type { WorkEntry } from '@/types/works'
 
-type Work = {
-  id: string
-  title: string
-  description: string
-  image: string
-  link?: string
-  status: 'live' | 'archived'
-  tags?: Tag[]
-}
-
-const works: Work[] = [
+const works: WorkEntry[] = [
   {
     id: 'amera',
     title: 'Amera Health Solutions',
@@ -47,7 +28,8 @@ const works: Work[] = [
       'AI',
       'supabase',
       'full stack'
-    ]
+    ],
+    attribution: 'agencyundone'
   },
   {
     id: 'labur',
@@ -56,7 +38,8 @@ const works: Work[] = [
     image: '/images/works/labur.jpg',
     link: 'https://labur.com',
     status: 'live',
-    tags: ['wordpress', 'angular', 'devops']
+    tags: ['wordpress', 'angular', 'devops'],
+    attribution: 'agencyundone'
   },
   {
     id: 'ipts',
@@ -65,7 +48,18 @@ const works: Work[] = [
     image: '/images/works/ipts.jpg',
     link: 'https://ipts.ai',
     status: 'live',
-    tags: ['nuxt/vue', 'static site', 'complex ui', 'devops']
+    tags: ['nuxt/vue', 'static site', 'complex ui', 'devops'],
+    attribution: 'agencyundone'
+  },
+  {
+    id: 'tucows',
+    title: 'Mailchimp Importer Tool',
+    description: 'Custom importer tool, parsing CSV contact lists and importing them into Mailchimp',
+    image: '/images/works/tucows.jpg',
+    link: 'https://github.com/justanothersynth?tab=repositories&q=tucows',
+    status: 'offline',
+    tags: ['vue', 'express', 'api interfacing'],
+    attribution: 'tucows'
   },
   {
     id: 'surf-dqt',
@@ -80,7 +74,8 @@ const works: Work[] = [
         url: 'https://pubmed.ncbi.nlm.nih.gov/39647866/'
       },
       'nuxt/vue', 'express', 'mongodb'
-    ]
+    ],
+    attribution: 'agencyundone'
   }
 ]
 </script>

@@ -12,6 +12,8 @@
     </div>
 
     <div class="prose mt-4 px-2">
+
+      <!-- Title -->
       <h3 class="flex items-center gap-2 mb-2 font-medium text-[18.3px]">
         <span class="relative flex items-center">
           <span
@@ -29,6 +31,8 @@
           </span>
         </a>
       </h3>
+
+      <!-- Tags -->
       <div class="flex items-center gap-2">
         <template v-for="tag in tags" :key="typeof tag === 'string' ? tag : tag.label">
           <a
@@ -47,33 +51,49 @@
           </span>
         </template>
       </div>
-      <p>{{ description }}</p>
+
+      <!-- Description -->
+      <p class="mb-1">
+        {{ description }}
+      </p>
+
+      <!-- Attribution -->
+      <div
+        v-if="attribution"
+        class="text-sm text-gray-400"
+        v-html="attribution" />
+
     </div>
 
   </div>
 </template>
 
 <script setup lang="ts">
-type Tag = string | {
-  label: string
-  url?: string
-  extraClasses?: string
-}
+import type { WorkEntry } from '@/types/works'
 
-type Props = {
-  title: string
-  description: string
-  image: string
-  link?: string
-  status: 'live' | 'archived'
-  tags?: Tag[]
-}
-
-const props = defineProps<Props>()
+const props = defineProps<WorkEntry>()
 
 const cn = useCn
 
 const statusColour = computed(() => {
-  return props.status === 'live' ? 'bg-[#40c463]/75' : 'bg-orange-400'
+  switch (props.status) {
+    case 'live':
+      return 'bg-[#40c463]/75'
+    case 'archived':
+      return 'bg-orange-400'
+    case 'offline':
+      return 'bg-gray-400'
+    default:
+      return 'bg-gray-500'
+  }
+})
+
+const attribution = computed(() => {
+  if (props.attribution === 'agencyundone') {
+    return 'An <a href="https://agencyundone.com/" target="_blank" class="inline-link text-gray-400">Agency Undone</a> project'
+  } else if (props.attribution === 'tucows') {
+    return 'A <a href="https://tucows.com/" target="_blank" class="inline-link text-gray-400">Tucows</a> project'
+  }
+  return null
 })
 </script>

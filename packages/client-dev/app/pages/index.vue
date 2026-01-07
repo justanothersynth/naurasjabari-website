@@ -12,12 +12,12 @@
           Works
         </h2>
 
-        <div class="flex items-center gap-2 mb-2 font-medium mt-1 gap-x-4">
+        <div class="flex items-center gap-2 mb-2 font-medium mt-1 gap-x-5">
           <span
             v-for="status in statuses"
             :key="status.text"
-            class="relative flex items-center">
-            <span class="relative flex items-center mr-2">
+            class="relative flex items-center gap-2">
+            <span class="relative flex items-center">
               <span
                 class="w-3 h-3 rounded-full animate-ping [animation-duration:1.5s] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                 :class="status.color" />
@@ -60,7 +60,8 @@
 <script setup lang="ts">
 const statuses = [
   { text: 'Live', color: 'bg-[#40c463]/75' },
-  { text: 'Hosted archive', color: 'bg-orange-400' }
+  { text: 'Hosted archive', color: 'bg-orange-400' },
+  { text: 'Offline archive', color: 'bg-gray-400' }
 ]
 </script>
 
