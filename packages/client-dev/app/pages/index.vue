@@ -61,7 +61,7 @@
 const statuses = [
   { text: 'Live', color: 'bg-[#40c463]/75' },
   { text: 'Hosted archive', color: 'bg-orange-400' },
-  { text: 'Offline archive', color: 'bg-gray-400' }
+  { text: 'Offline', color: 'bg-gray-400' }
 ]
 </script>
 
