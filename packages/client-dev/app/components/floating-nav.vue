@@ -16,7 +16,7 @@
           as="nuxt-link"
           to="/"
           variant="default"
-          :selected="$route.path === '/'"
+          :selected="useIsRouteSelected('/')"
           aria-label="Home">
           <Icon name="iconoir:home-simple-door" size="16" class="mr-2" />
           <span class="whitespace-nowrap">home</span>
@@ -47,7 +47,7 @@
           as="nuxt-link"
           to="/resume"
           variant="default"
-          :selected="$route.path === '/resume'"
+          :selected="useIsRouteSelected('/resume', 'startsWith')"
           aria-label="Resume">
           <Icon name="iconoir:user-badge-check" size="16" class="mr-2"/>
           <span class="whitespace-nowrap">resume</span>
