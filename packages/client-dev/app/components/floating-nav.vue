@@ -1,6 +1,6 @@
 <template>
   <div
-    class="floating-nav-wrapper fixed bottom-4 left-1/2 -translate-x-1/2 z-1000 flex flex-col items-center gap-3"
+    class="floating-nav-wrapper fixed bottom-8 left-1/2 -translate-x-1/2 z-1000 flex flex-col items-center gap-3"
     :class="{ 'is-visible': isVisible }">
 
     <!-- Joystick hint -->
@@ -9,8 +9,8 @@
     <div class="flex items-center">
       <div
         ref="navRef"
-        class="floating-nav bg-prime/80 backdrop-blur-lg border border-gray-200 p-3 rounded-full gap-1 shadow-xl flex items-center"
-        :style="{ '--mouse-x': `${mouseX}px`, '--mouse-y': `${mouseY}px` }">
+        class="floating-nav backdrop-blur-lg border p-3 rounded-full gap-1 shadow-xl flex items-center"
+        :style="{ '--mouse-x': `${mouseX}px`, '--mouse-y': `${mouseY}px`, backgroundColor: scrollBgColor, borderColor: scrollBorderColor }">
 
         <UiButton
           as="nuxt-link"
@@ -78,6 +78,8 @@ const loaded = ref(false)
 
 const hexStore = useHexagonStore()
 const { joystickData } = storeToRefs(hexStore)
+
+const { bgColor: scrollBgColor, borderColor: scrollBorderColor } = useScrollColor()
 
 onMounted(() => {
   nextTick(() => {
