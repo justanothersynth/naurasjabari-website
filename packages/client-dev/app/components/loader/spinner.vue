@@ -31,7 +31,7 @@ const { duration = 1 } = defineProps<Props>()
   width: 16px;
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 2px solid #514B82;
+  border: 2px solid currentColor;
   animation:
     l20-1 var(--l20-1-duration, 0.6s) infinite linear alternate,
     l20-2 var(--l20-2-duration, 1.2s) infinite linear;

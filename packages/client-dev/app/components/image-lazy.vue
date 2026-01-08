@@ -10,8 +10,9 @@
       leave-active-class="transition-opacity duration-300 ease-in-out"
       enter-from-class="opacity-0"
       leave-to-class="opacity-0">
-      <div v-if="!isLoaded" class="absolute inset-0 flex items-center justify-center">
+      <div v-if="!isLoaded" class="absolute inset-0 flex flex-col items-center justify-center gap-2">
         <LoaderSpinner :duration="1.75" class="text-gray-400" />
+        <span v-if="displayLoadingText" class="text-gray-500">loading{{ ellipsis }}</span>
       </div>
     </Transition>
 
@@ -63,6 +64,7 @@ interface Props {
   rootMargin?: string,
   width?: number
   height?: number
+  displayLoadingText?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -73,7 +75,8 @@ const props = withDefaults(defineProps<Props>(), {
   threshold: 0.1,
   rootMargin: '50px',
   width: -1,
-  height: -1
+  height: -1,
+  displayLoadingText: false
 })
 
 const cn = useCn
@@ -84,6 +87,37 @@ const isLoaded = ref(false)
 const hasError = ref(false)
 const showImage = ref(false)
 const showError = ref(false)
+
+// Dynamic ellipsis state
+const ellipsisCount = ref(0)
+let ellipsisInterval: NodeJS.Timeout | null = null
+
+/**
+ * Computed property that returns the ellipsis string based on count
+ */
+const ellipsis = computed(() => '.'.repeat(ellipsisCount.value))
+
+/**
+ * Starts the ellipsis animation
+ */
+function startEllipsisAnimation() {
+  if (ellipsisInterval) return
+  
+  ellipsisInterval = setInterval(() => {
+    ellipsisCount.value = (ellipsisCount.value + 1) % 4
+  }, 300) // 500ms interval between each dot
+}
+
+/**
+ * Stops the ellipsis animation and cleans up
+ */
+function stopEllipsisAnimation() {
+  if (ellipsisInterval) {
+    clearInterval(ellipsisInterval)
+    ellipsisInterval = null
+    ellipsisCount.value = 0
+  }
+}
 
 /**
  * Handles successful image load
@@ -103,6 +137,7 @@ function handleError() {
 // Watch for load completion and delay showing content until spinner fades out
 watch(isLoaded, loaded => {
   if (loaded) {
+    stopEllipsisAnimation()
     // Wait for spinner fade-out (300ms) before fading in the content
     setTimeout(() => {
       if (hasError.value) {
@@ -112,6 +147,18 @@ watch(isLoaded, loaded => {
       }
     }, 300)
   }
+})
+
+// Start ellipsis animation when loading begins
+watch(shouldLoad, loading => {
+  if (loading && !isLoaded.value && props.displayLoadingText) {
+    startEllipsisAnimation()
+  }
+})
+
+// Cleanup on unmount
+onUnmounted(() => {
+  stopEllipsisAnimation()
 })
 
 // Set up intersection observer to trigger loading when in viewport
