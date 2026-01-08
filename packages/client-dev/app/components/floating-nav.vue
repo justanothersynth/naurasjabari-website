@@ -12,24 +12,46 @@
         class="floating-nav bg-prime/80 backdrop-blur-lg border border-gray-200 p-3 rounded-full gap-1 shadow-xl flex items-center"
         :style="{ '--mouse-x': `${mouseX}px`, '--mouse-y': `${mouseY}px` }">
 
-      <a
-        :class="buttonClasses"
-        href="mailto:nauras@moogmedia.ca"
-        aria-label="Contact Me">
-        <Icon name="iconoir:mail" size="16" class="mt-0.5" />
-        <span class="whitespace-nowrap">get in touch</span>
-      </a>
+        <UiButton
+          as="nuxt-link"
+          to="/"
+          variant="default"
+          :selected="$route.path === '/'"
+          aria-label="Home">
+          <Icon name="iconoir:home-simple-door" size="16" class="mr-2" />
+          <span class="whitespace-nowrap">home</span>
+        </UiButton>
 
-      <a
-        href="https://github.com/justanothersynth"
-        target="_blank"
-        rel="noopener noreferrer"
-        :class="buttonClasses"
-        aria-label="View GitHub Profile">
-        <Icon name="iconoir:github" size="14" />
-        <span class="whitespace-nowrap">github</span>
-        <Icon name="iconoir:arrow-up-right-square" size="14" class="text-gray-400 ml-[-2px]"/>
-      </a>
+        <UiButton
+          as="a"
+          href="mailto:nauras@moogmedia.ca"
+          variant="default"
+          aria-label="Contact Me">
+          <Icon name="iconoir:mail" size="16" class="mt-0.5 mr-2" />
+          <span class="whitespace-nowrap">get in touch</span>
+        </UiButton>
+
+        <UiButton
+          as="a"
+          href="https://github.com/justanothersynth"
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="default"
+          aria-label="View GitHub Profile">
+          <Icon name="iconoir:github" size="14" class="mr-2" />
+          <span class="whitespace-nowrap">github</span>
+          <Icon name="iconoir:arrow-up-right-square" size="14" class="text-gray-400 ml-1"/>
+        </UiButton>
+
+        <UiButton
+          as="nuxt-link"
+          to="/resume"
+          variant="default"
+          :selected="$route.path === '/resume'"
+          aria-label="Resume">
+          <Icon name="iconoir:user-badge-check" size="16" class="mr-2"/>
+          <span class="whitespace-nowrap">resume</span>
+        </UiButton>
 
       </div>
 
@@ -46,8 +68,6 @@
 
 <script lang="ts" setup>
 import { useMouseInElement } from '@vueuse/core'
-
-const buttonClasses = 'flex items-center gap-1 hover:bg-gray-100 transition-colors duration-150 ease-in-out rounded-full py-1 px-2 text-[14px]'
 
 const navRef = ref<HTMLElement | null>(null)
 const { elementX, elementY, isOutside } = useMouseInElement(navRef)

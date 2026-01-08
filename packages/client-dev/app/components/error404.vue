@@ -10,7 +10,7 @@
     </div>
 
     <UiButton
-      variant="form"
+      variant="bare"
       class="mt-4"
       @click="handleGoHome">
       <Icon name="iconoir:arrow-left" size="12" class="mr-2" />

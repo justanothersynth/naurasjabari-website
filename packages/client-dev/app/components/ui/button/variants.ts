@@ -7,46 +7,37 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         bare: '',
-        default: 'py-2 px-3',
-        sidebar: 'rounded-xl p-1.5 aspect-square w-10 h-10',
-        link: 'text-dark underline-offset-4 hover:underline',
-        form: 'py-2 px-3 bg-gray-200 rounded-sm'
+        default: 'py-1 px-2 rounded-full flex items-center gap-1 hover:underline text-[14px]'
       },
       selected: {
-        true: 'bg-white cursor-default',
+        true: '',
         false: ''
       },
       disabled: {
-        true: 'disabled:opacity-50 cursor-not-allowed',
+        true: '',
         false: ''
       },
       size: {
         default: '',
-        icon: 'size-9'
+        medium: 'text-lg [&_.iconify]:!text-lg px-3'
       }
     },
     compoundVariants: [
       {
-        variant: 'sidebar',
+        variant: 'default',
         selected: false,
         disabled: false,
-        class: 'hover:bg-gray-100'
+        class: 'hover:bg-gray-200'
       },
       {
-        variant: 'sidebar',
+        variant: 'default',
         selected: true,
         disabled: false,
-        class: 'bg-gray-900 text-white'
-      },
-      {
-        variant: 'form',
-        disabled: false,
-        class: 'hover:bg-gray-500 hover:text-white'
+        class: 'bg-gray-100 cursor-default hover:no-underline'
       }
     ],
     defaultVariants: {
-      variant: 'default',
-      size: 'default'
+      variant: 'default'
     }
   }
 )

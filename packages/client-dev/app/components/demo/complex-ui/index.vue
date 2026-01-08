@@ -37,7 +37,7 @@
 
         <!-- Radial fade overlay: transparent center, fades to background color beyond container edge -->
         <div
-          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] h-[200vh] pointer-events-none z-10"
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] h-[200%] pointer-events-none z-10"
           :style="{ background: fadeGradient }" />
 
         <!-- Bottom layer: blueprint visible -->
