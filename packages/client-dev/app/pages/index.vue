@@ -48,10 +48,6 @@
 
     <DemoWebScraping />
 
-    <Divider class="container">
-      ⬇️
-    </Divider>
-
     <Footer />
 
   </main>

@@ -41,10 +41,6 @@
     </div>
 
     <!-- Footer -->
-    <Divider class="container">
-      ⬇️
-    </Divider>
-
     <Footer />
 
   </main>
