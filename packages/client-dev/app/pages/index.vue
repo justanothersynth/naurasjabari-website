@@ -54,6 +54,9 @@
 </template>
 
 <script setup lang="ts">
+const { $seo } = useNuxtApp()
+$seo('index')
+
 const statuses = [
   { text: 'Live', color: 'bg-[#40c463]/75' },
   { text: 'Hosted archive', color: 'bg-orange-400' },

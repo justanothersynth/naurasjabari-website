@@ -8,7 +8,6 @@ export default createConfigForNuxt({
 }).append(
   {
     files: ['**/*.vue', '**/*.js', '**/*.ts'],
-    ignores: ['server/**/*'],
     plugins: {
       tsdoc
     },
@@ -56,21 +55,27 @@ export default createConfigForNuxt({
     }
   },
   {
-    files: ['server/**/*.ts'],
+    files: ['nuxt.config.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off'
+    }
+  },
+  {
+    files: ['modules/**/*.ts'],
     plugins: {
       tsdoc
+    },
+    languageOptions: {
+      parserOptions: {
+        tsconfigRootDir: import.meta.dirname,
+        project: './modules/tsconfig.json'
+      }
     },
     rules: {
       semi: ['error', 'never'],
       quotes: ['error', 'single'],
       'no-console': process.env.NODE_ENV !== 'development' ? 'error' : 'off',
       'tsdoc/syntax': 'error'
-    }
-  },
-  {
-    files: ['nuxt.config.ts'],
-    rules: {
-      '@typescript-eslint/no-explicit-any': 'off'
     }
   }
 )

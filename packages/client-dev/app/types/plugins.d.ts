@@ -1,6 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { Emitter } from 'mitt'
 import type { SupabaseRealtimePayload, SupabaseRealtimeSubscriptionEvent } from '@workspace/types'
+import type { SeoEntry } from '@@/modules/seo/types'
 
 declare module '#app' {
   interface NuxtApp {
@@ -22,6 +23,7 @@ declare module '#app' {
       hide: () => void
       state: { show: boolean; content: string; x: number; y: number }
     }
+    $seo: (key?: string, override?: Partial<SeoEntry>) => void
   }
 }
 

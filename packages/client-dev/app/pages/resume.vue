@@ -47,6 +47,9 @@
 </template>
 
 <script lang="ts" setup>
+const { $seo } = useNuxtApp()
+$seo('resume')
+
 /**
  * Downloads a resume PDF file.
  * The server endpoint sets Content-Disposition: attachment to force download

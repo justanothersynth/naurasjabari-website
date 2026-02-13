@@ -1,0 +1,17 @@
+{
+  "_": {
+    "title": "Nauras Jabari",
+    "description": "10+ years fullstack software engineer. Specializing in AI engineering, prototype development, complex UIs and systems integration in javascript ecosystem.",
+    "siteName": "Nauras Jabari",
+    "ogImage": "/images/open-graph.jpg"
+  },
+  "index": {
+    "title": "Home - Nauras Jabari"
+  },
+  "resume": {
+    "title": "Resume - Nauras Jabari"
+  },
+  "404": {
+    "title": "404 Not Found"
+  }
+}

@@ -16,7 +16,7 @@
           as="nuxt-link"
           to="/"
           variant="default"
-          :selected="useIsRouteSelected('/')"
+          :selected="isRouteSelected('/')"
           aria-label="Home">
           <Icon name="iconoir:home-simple-door" size="18" class="mini:mr-2" />
           <span class="whitespace-nowrap hidden mini:block">home</span>
@@ -47,7 +47,7 @@
           as="nuxt-link"
           to="/resume"
           variant="default"
-          :selected="useIsRouteSelected('/resume', 'startsWith')"
+          :selected="isRouteSelected('/resume', 'startsWith')"
           aria-label="Resume">
           <Icon name="iconoir:user-badge-check" size="18" class="mr-2"/>
           <span class="whitespace-nowrap">resume</span>
@@ -99,6 +99,10 @@ watch([elementX, elementY, isOutside], ([x, y, outside]) => {
     mouseY.value = y
   }
 })
+
+const isRouteSelected = (path: string, matchMode: 'exact' | 'startsWith' = 'exact') => {
+  return useIsRouteSelected(path, matchMode)
+}
 </script>
 
 <style lang="scss" scoped>
