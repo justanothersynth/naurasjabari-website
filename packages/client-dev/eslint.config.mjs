@@ -8,6 +8,7 @@ export default createConfigForNuxt({
 }).append(
   {
     files: ['**/*.vue', '**/*.js', '**/*.ts'],
+    ignores: ['server/**/*'],
     plugins: {
       tsdoc
     },
@@ -52,6 +53,18 @@ export default createConfigForNuxt({
       'tsdoc/syntax': 'error',
       // Disable JSDoc nested param check (conflicts with TSDoc)
       'jsdoc/check-param-names': 'off'
+    }
+  },
+  {
+    files: ['server/**/*.ts'],
+    plugins: {
+      tsdoc
+    },
+    rules: {
+      semi: ['error', 'never'],
+      quotes: ['error', 'single'],
+      'no-console': process.env.NODE_ENV !== 'development' ? 'error' : 'off',
+      'tsdoc/syntax': 'error'
     }
   },
   {
