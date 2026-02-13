@@ -25,13 +25,14 @@
 
   /* Breakpoints (mobile-first, min-width) */
   --breakpoint-*: initial;
-  --breakpoint-tiny: 25.9375rem;       /* 415px */
-  --breakpoint-mini: 40rem;           /* 640px */
-  --breakpoint-small: 53.125rem;      /* 850px */
-  --breakpoint-medium: 64rem;         /* 1024px */
-  --breakpoint-large: 75rem;          /* 1200px */
-  --breakpoint-xlarge: 90rem;         /* 1440px */
-  --breakpoint-ultra-large: 140.625rem; /* 2250px */
+  --breakpoint-tiny: 25.9375rem;           /* 415px */
+  --breakpoint-mini: 40rem;                /* 640px */
+  --breakpoint-small: 53.125rem;           /* 850px */
+  --breakpoint-cont: 56rem;                /* 896px */
+  --breakpoint-medium: 64rem;              /* 1024px */
+  --breakpoint-large: 75rem;               /* 1200px */
+  --breakpoint-xlarge: 90rem;              /* 1440px */
+  --breakpoint-ultra-large: 140.625rem;    /* 2250px */
 
   /* Colours */
   --color-root: #FAFAFA;

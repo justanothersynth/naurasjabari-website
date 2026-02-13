@@ -1,5 +1,9 @@
 <template>
-  <main class="pt-40 small:pt-70">
+  <main class="pt-40 small:pt-70 relative">
+
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 font-bold text-[27vw] mini:text-[172.8px] small:text-[14rem] cont:text-[17rem] mt-[-11.5vw] mini:mt-[-73.6px] small:-mt-25 cont:-mt-31">
+      RESUME
+    </div>
 
     <!-- Toolbar -->
     <div class="container">
