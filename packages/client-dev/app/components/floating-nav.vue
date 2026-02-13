@@ -18,8 +18,8 @@
           variant="default"
           :selected="useIsRouteSelected('/')"
           aria-label="Home">
-          <Icon name="iconoir:home-simple-door" size="16" class="mr-2" />
-          <span class="whitespace-nowrap">home</span>
+          <Icon name="iconoir:home-simple-door" size="18" class="mini:mr-2" />
+          <span class="whitespace-nowrap hidden mini:block">home</span>
         </UiButton>
 
         <UiButton
@@ -27,8 +27,8 @@
           href="mailto:nauras@moogmedia.ca"
           variant="default"
           aria-label="Contact Me">
-          <Icon name="iconoir:mail" size="16" class="mt-0.5 mr-2" />
-          <span class="whitespace-nowrap">get in touch</span>
+          <Icon name="iconoir:mail" size="18" class="mt-0.5 mini:mr-2" />
+          <span class="whitespace-nowrap hidden mini:block">get in touch</span>
         </UiButton>
 
         <UiButton
@@ -49,7 +49,7 @@
           variant="default"
           :selected="useIsRouteSelected('/resume', 'startsWith')"
           aria-label="Resume">
-          <Icon name="iconoir:user-badge-check" size="16" class="mr-2"/>
+          <Icon name="iconoir:user-badge-check" size="18" class="mr-2"/>
           <span class="whitespace-nowrap">resume</span>
         </UiButton>
 

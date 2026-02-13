@@ -7,7 +7,7 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         bare: '',
-        default: 'py-1 px-2 rounded-full flex items-center gap-1 hover:underline text-[14px]'
+        default: 'p-2 mini:py-1 mini:px-3 rounded-full flex items-center gap-1 hover:underline text-[16px]'
       },
       selected: {
         true: '',

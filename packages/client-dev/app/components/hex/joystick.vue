@@ -1,18 +1,22 @@
 <template>
   <div
     ref="joystickRef"
-    class="relative scale-[0.42] origin-center -m-[36px] touch-none"
+    class="relative scale-[0.5] mini:scale-[0.42] origin-center -m-[36px] touch-none"
     @touchstart.prevent="handleJoystickStart"
     @touchmove.prevent="handleJoystickMove"
     @touchend.prevent="handleJoystickEnd"
     @touchcancel.prevent="handleJoystickEnd">
+
     <div class="joystick-base size-[120px] rounded-full border-2 border-white/20 backdrop-blur-md flex items-center justify-center">
+
       <div
         class="joystick-knob size-12 rounded-full border-2 border-white/40 transition-transform duration-50 ease-out cursor-grab active:cursor-grabbing"
         :style="{
           transform: `translate(${joystickPosition.x}px, ${joystickPosition.y}px)`
         }" />
+
     </div>
+
   </div>
 </template>
 
