@@ -148,8 +148,7 @@ const { data: contributionsData, error, isLoading } = useApiFetch<ContributionsD
 // Computed to check if there's an error
 const hasError = computed(() => error.value !== null)
 
-// const selectedYear = ref<number>(new Date().getFullYear())
-const selectedYear = ref<number>(2025)
+const selectedYear = ref<number>(new Date().getFullYear())
 
 const scrollContainerRef = ref<HTMLElement | null>(null)
 const isScrolledLeft = ref(true)
@@ -193,7 +192,7 @@ watch(windowWidth, handleResize)
  * Dynamically generates an array of years from 2015 to current year, excluding specified years
  */
 const years = computed(() => {
-  const excludedYears = [2026]
+  const excludedYears: number[] = []
   const currentYear = new Date().getFullYear()
   const startYear = 2015
   const endYear = currentYear
