@@ -24,7 +24,7 @@
 
         <UiButton
           as="a"
-          href="mailto:nauras@moogmedia.ca"
+          href="mailto:hello@naurasjabari.com"
           variant="default"
           aria-label="Contact Me">
           <Icon name="iconoir:mail" size="18" class="mt-0.5 mini:mr-2" />
