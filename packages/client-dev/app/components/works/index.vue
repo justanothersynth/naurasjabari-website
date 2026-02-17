@@ -41,6 +41,7 @@ const works: WorkEntry[] = [
     ]
   },
   {
+    disabled: true,
     id: 'labur',
     title: 'Labur',
     description: 'Seamless integration of Angular application into a bespoke Wordpress website build',
@@ -62,6 +63,7 @@ const works: WorkEntry[] = [
     attribution: 'agencyundone'
   },
   {
+    disabled: true,
     id: 'surf-dqt',
     title: 'SURF Data Query Tool',
     description: 'Data-intensive tooling for a research database with drill-down UI.<br />⭐️ Published work.',
