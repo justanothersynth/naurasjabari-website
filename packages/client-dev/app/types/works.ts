@@ -11,12 +11,13 @@ export type WorkTag = string | {
 /**
  * Represents the status of a work project
  */
-export type WorkStatus = 'live' | 'archived' | 'offline'
+export type WorkStatus = 'live' | 'archived' | 'offline' | 'under-construction'
 
 /**
  * Represents a work/project entry
  */
 export type WorkEntry = {
+  disabled?: boolean
   id: string
   title: string
   description: string

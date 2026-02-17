@@ -53,9 +53,7 @@
       </div>
 
       <!-- Description -->
-      <p class="mb-1">
-        {{ description }}
-      </p>
+      <p class="mb-1" v-html="description" />
 
       <!-- Attribution -->
       <div

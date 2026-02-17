@@ -1,10 +1,20 @@
 <template>
   <div class="grid grid-cols-1 mini:grid-cols-2 small:grid-cols-3 gap-12 mini:gap-x-6 mini:gap-y-12">
 
-    <WorksEntry
-      v-for="work in works"
-      :key="work.id"
-      v-bind="work" />
+    <template v-for="work in works" :key="work.id">
+
+      <WorksEntry
+        v-if="!work.disabled && work.status !== 'under-construction'"
+        v-bind="work" />
+
+      <div
+        v-else-if="work.status === 'under-construction'"
+        class="work-entry group flex flex-col items-center justify-center border-gray-200 bg-amber-100/40 rounded-2xl text-center p-4 gap-4">
+        <span>{{ work.title }}</span>
+        <span>{{ work.description }}</span>
+      </div>
+
+    </template>
 
   </div>
 </template>
@@ -28,8 +38,7 @@ const works: WorkEntry[] = [
       'AI',
       'supabase',
       'full stack'
-    ],
-    attribution: 'agencyundone'
+    ]
   },
   {
     id: 'labur',
@@ -42,6 +51,7 @@ const works: WorkEntry[] = [
     attribution: 'agencyundone'
   },
   {
+    disabled: true,
     id: 'ipts',
     title: 'Interplanetary Talent Services',
     description: 'Combination of static site development and complex UI implementation',
@@ -52,19 +62,9 @@ const works: WorkEntry[] = [
     attribution: 'agencyundone'
   },
   {
-    id: 'tucows',
-    title: 'Mailchimp Importer Tool',
-    description: 'Custom importer tool, parsing CSV contact lists and importing them into Mailchimp',
-    image: '/images/works/tucows.jpg',
-    link: 'https://github.com/justanothersynth?tab=repositories&q=tucows',
-    status: 'offline',
-    tags: ['vue', 'express', 'api interfacing'],
-    attribution: 'tucows'
-  },
-  {
     id: 'surf-dqt',
     title: 'SURF Data Query Tool',
-    description: 'Nuxt and Express dockerized pairing for visualization of suicide research. ⭐️ Published work.',
+    description: 'Data-intensive tooling for a research database with drill-down UI.<br />⭐️ Published work.',
     image: '/images/works/surf-dqt.jpg',
     link: 'https://works.naurasjabari.com/surf-dqt',
     status: 'archived',
@@ -76,6 +76,23 @@ const works: WorkEntry[] = [
       'nuxt/vue', 'express', 'mongodb'
     ],
     attribution: 'agencyundone'
+  },
+  {
+    id: 'tucows',
+    title: 'Mailchimp Importer Tool',
+    description: 'Custom importer tool, parsing CSV contact lists and importing them into Mailchimp via API',
+    image: '/images/works/tucows.jpg',
+    link: 'https://github.com/justanothersynth?tab=repositories&q=tucows',
+    status: 'offline',
+    tags: ['vue', 'express', 'api interfacing'],
+    attribution: 'tucows'
+  },
+  {
+    id: 'under-construction',
+    title: '🚧 Under Construction 🚧',
+    description: 'Works are still being populated, please check back soon!',
+    image: '',
+    status: 'under-construction'
   }
 ]
 </script>
