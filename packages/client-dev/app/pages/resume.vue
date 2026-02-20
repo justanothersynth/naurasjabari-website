@@ -19,20 +19,11 @@
           <span class="whitespace-nowrap">download PDF</span>
         </UiButton>
 
-        <UiButton
-          variant="default"
-          size="medium"
-          aria-label="Download Print-Friendly Version"
-          @click="downloadResume('naurasjabari-resume-bw.pdf')">
-          <Icon name="iconoir:printing-page" size="16" class="mr-2" />
-          <span class="whitespace-nowrap">print-friendly PDF</span>
-        </UiButton>
-
       </div>
     </div>
 
     <!-- Resume -->
-    <div class="container resume aspect-210/297 bg-root border border-gray-200 rounded-lg overflow-hidden shadow-xl">
+    <div class="container resume aspect-210/268 bg-root border border-gray-200 rounded-lg overflow-hidden shadow-xl">
       <ImageLazy
         src="/resume/naurasjabari-resume.jpg"
         alt="Nauras Jabari Resume"
