@@ -1,0 +1,45 @@
+---
+globs: *.ts,packages/**,services/**
+alwaysApply: false
+---
+### Typescript Documentation Standards
+
+**Every function must have a TSDoc comment block:**
+- No need to be too verbose
+- But do be descriptive
+- It should become clear as to what the function is doing and what is going on, just by reading the comment block
+
+```typescript
+/**
+ * Converts a Date to Eastern Time with optional formatting.
+ * Returns formatted string or Date object based on format parameter.
+ */
+export function convertToET(date: Date, format?: string): string | Date {
+  // Implementation
+}
+
+/**
+ * Fetches current market status from the market service API.
+ * Returns open/closed status and current trading session (premarket/regular/afterhours/closed).
+ */
+export async function getMarketStatus(): Promise<MarketStatus> {
+  // Implementation
+}
+
+/**
+ * Service orchestration singleton managing scanner startup, shutdown, and lifecycle.
+ * Coordinates 5-phase startup sequence and handles automatic market close scheduling.
+ */
+export const $lifecycle: LifecycleMethods & LifecycleState = {
+  // Implementation
+}
+```
+
+**Comment Guidelines:**
+- Place above every function, method, and service singleton
+- First sentence: What the function does
+- Additional sentences: Key parameters, return values, or behavior notes
+- Keep concise - 1-3 sentences is ideal, can be a little more if required
+- Focus on **what** and **why**, not **how** (code shows the how)
+- Use TSDoc syntax (`@param`, `@returns`, `@example`) for complex functions
+- Update comments when changing function behavior

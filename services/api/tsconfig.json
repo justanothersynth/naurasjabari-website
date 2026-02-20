@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "verbatimModuleSyntax": true,
+    "types": ["bun"]
+  },
+  "include": [
+    "config/**/*",
+    "lib/**/*",
+    "orpc/**/*",
+    "utils/**/*",
+    "app.ts"
+  ]
+}

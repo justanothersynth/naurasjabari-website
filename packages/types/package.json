@@ -1,5 +1,5 @@
 {
-  "name": "@workspace/types",
+  "name": "@package/types",
   "version": "1.0.0",
   "type": "module",
   "main": "index.ts",
@@ -13,7 +13,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@workspace/api": "workspace:*",
+    "@service/api": "workspace:*",
     "zod": "^4.1.13",
     "@orpc/server": "^1.12.2",
     "vue": "^3.5.25"

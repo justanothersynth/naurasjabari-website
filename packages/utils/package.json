@@ -1,15 +1,8 @@
 {
-  "name": "@workspace/utils",
+  "name": "@package/utils",
   "version": "1.0.0",
   "type": "module",
   "main": "./index.ts",
-  "types": "./index.ts",
-  "exports": {
-    ".": {
-      "types": "./index.ts",
-      "default": "./index.ts"
-    }
-  },
   "scripts": {
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",

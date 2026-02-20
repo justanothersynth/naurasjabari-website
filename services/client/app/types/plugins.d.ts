@@ -1,0 +1,30 @@
+import type { SupabaseClient } from '@supabase/supabase-js'
+import type { Emitter } from 'mitt'
+import type { SupabaseRealtimePayload, SupabaseRealtimeSubscriptionEvent } from '@package/types'
+import type { SeoEntry } from '@@/modules/seo/types'
+
+declare module '#app' {
+  interface NuxtApp {
+    $bus: {
+      $on: Emitter<Record<string, unknown>>['on']
+      $off: Emitter<Record<string, unknown>>['off']
+      $emit: Emitter<Record<string, unknown>>['emit']
+    }
+    $supabase: {
+      client: SupabaseClient
+      subscribe: (
+        topic: string,
+        events: SupabaseRealtimeSubscriptionEvent[],
+        handleRealtimeChange: (payload: SupabaseRealtimePayload) => void
+      ) => void
+    }
+    $tooltip: {
+      show: (content: string) => void
+      hide: () => void
+      state: { show: boolean; content: string; x: number; y: number }
+    }
+    $seo: (key?: string, override?: Partial<SeoEntry>) => void
+  }
+}
+
+export {}

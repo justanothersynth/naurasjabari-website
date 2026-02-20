@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "verbatimModuleSyntax": true,
+    "jsx": "react-jsx",
+    "types": ["bun"]
+  },
+  "include": [
+    "config/**/*",
+    "jobs/**/*",
+    "index.ts"
+  ],
+  "exclude": [
+    "test/**/*"
+  ]
+}
